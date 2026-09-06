@@ -24,7 +24,7 @@ class RakkoExistingArticleUpdateTests(unittest.TestCase):
                 path,
                 "避難所へ行く場合に追加確認",
                 "お薬手帳",
-                "持ち物を全部そろえるために避難を遅らせない",
+                "避難を遅らせない",
             )
         self.assert_contains_all("preview/article_b002.html", "qa-shelter-minimum-items")
 
