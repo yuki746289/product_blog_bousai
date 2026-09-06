@@ -73,17 +73,28 @@ class RegionHistoryPilotTests(unittest.TestCase):
             self.assertTrue((ROOT / f"docs/reviews/{article_id}_CHECKLIST.md").is_file())
 
     def test_registry_loader_merges_only_the_reviewed_additions(self) -> None:
-        registry = load_registry(ROOT / "data/content_registry.json")
-        ids = [article["article_id"] for article in registry["articles"]]
-        self.assertEqual(50, len(ids))
-        self.assertEqual(50, len(set(ids)))
-        self.assertEqual(["B048", "B049", "B050"], ids[-3:])
-
+        base = json.loads((ROOT / "data/content_registry.json").read_text(encoding="utf-8"))
         additions = json.loads((ROOT / "data/content_registry_additions.json").read_text(encoding="utf-8"))
+        registry = load_registry(ROOT / "data/content_registry.json")
+
+        base_ids = [article["article_id"] for article in base["articles"]]
+        addition_ids = [article["article_id"] for article in additions["articles"]]
+        ids = [article["article_id"] for article in registry["articles"]]
+
+        self.assertEqual(len(base_ids) + len(addition_ids), len(ids))
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(base_ids + addition_ids, ids)
+
         for article in additions["articles"]:
             self.assertEqual("READY_TO_PUBLISH", article["status"])
             self.assertEqual([], article["publish_blockers"])
             self.assertEqual("APPROVED", article["manual_review_status"])
+            self.assertRegex(article["published_at"], r"^\d{4}-\d{2}-\d{2}$")
+            self.assertRegex(article["modified_at"], r"^\d{4}-\d{2}-\d{2}$")
+
+        regional = {article["article_id"]: article for article in additions["articles"] if article["article_id"] in {"B048", "B049", "B050"}}
+        self.assertEqual({"B048", "B049", "B050"}, set(regional))
+        for article in regional.values():
             self.assertEqual("2026-09-07", article["published_at"])
             self.assertEqual("2026-09-07", article["modified_at"])
 
