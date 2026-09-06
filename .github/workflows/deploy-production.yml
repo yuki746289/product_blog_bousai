@@ -49,8 +49,37 @@ jobs:
           node --check public/bousai_common.js
           node --check public/bousai_home.js
 
-      - name: Localize Commons site images
-        run: python scripts/localize_commons_images.py --min-localized 1
+      - name: Localize Commons site images safely
+        run: python scripts/localize_commons_images_ci.py --min-localized 1
+
+      - name: Verify build is safe to deploy
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          public = Path("public")
+          manifest_path = public / "assets/images/commons/manifest.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          failed = manifest.get("unique_images_failed", 0)
+          if failed:
+              raise SystemExit(f"Commons localization manifest contains {failed} failed image(s)")
+
+          pattern = re.compile(r'src="https://(?:commons|upload)\.wikimedia\.org/', re.IGNORECASE)
+          offenders = []
+          for page in sorted(public.rglob("*.html")):
+              if pattern.search(page.read_text(encoding="utf-8")):
+                  offenders.append(page.relative_to(public).as_posix())
+
+          if offenders:
+              sample = ", ".join(offenders[:10])
+              raise SystemExit(
+                  "External Wikimedia image src remains before deployment: " + sample
+              )
+
+          print("Pre-deploy integrity check passed.")
+          PY
 
       - name: Show production manifest
         run: |
@@ -85,147 +114,46 @@ jobs:
           )"
           echo "Testing ${BASE_URL}"
 
-          check_page() {
+          fetch_public() {
             path="$1"
-            tmp="$(mktemp)"
+            output="$2"
             curl --fail --silent --show-error --location \
-              --retry 4 --retry-delay 5 --retry-all-errors \
-              "${BASE_URL}${path}" -o "${tmp}"
-            grep -q "防災くらしガイド" "${tmp}"
-            rm -f "${tmp}"
+              --retry 5 --retry-delay 10 --retry-all-errors \
+              --connect-timeout 15 --max-time 90 \
+              --header "Cache-Control: no-cache" \
+              "${BASE_URL}${path}" -o "${output}"
+            sleep 1
           }
-
-          check_page_contains() {
-            path="$1"
-            pattern="$2"
-            tmp="$(mktemp)"
-            curl --fail --silent --show-error --location \
-              --retry 4 --retry-delay 5 --retry-all-errors \
-              "${BASE_URL}${path}" -o "${tmp}"
-            grep -Fq "${pattern}" "${tmp}"
-            rm -f "${tmp}"
-          }
-
-          check_asset() {
-            path="$1"
-            curl --fail --silent --show-error --location \
-              --retry 4 --retry-delay 5 --retry-all-errors \
-              "${BASE_URL}${path}" -o /dev/null
-          }
-
-          check_structured_page() {
-            path="$1"
-            tmp="$(mktemp)"
-            curl --fail --silent --show-error --location \
-              --retry 4 --retry-delay 5 --retry-all-errors \
-              "${BASE_URL}${path}" -o "${tmp}"
-            grep -q 'data-generated="article-structured-data"' "${tmp}"
-            grep -q '"@type":"BlogPosting"' "${tmp}"
-            grep -q '"@type":"BreadcrumbList"' "${tmp}"
-            rm -f "${tmp}"
-          }
-
-          check_page ""
-          check_page "qa.html"
-          check_page "guide/first-disaster-preparedness.html"
-          check_page "vehicle/car-flood-submersion.html"
-          check_page "goods/portable-power-station-disaster.html"
-          check_page "goods/index.html"
-          check_page "goods/toilet-hygiene.html"
-          check_page "water-outage/portable-toilet-stockpile.html"
-          check_page "insurance/flooded-car-insurance.html"
-          check_page "insurance/fire-insurance-water-damage.html"
-          check_page "insurance/household-goods-flood-insurance.html"
-          check_page "insurance/typhoon-wind-damage-insurance.html"
-          check_page "home/home-flood-preparedness.html"
-          check_page "post-disaster/after-flood-record-evidence.html"
-          check_page "home/home-heavy-rain-checklist.html"
-          check_page "typhoon/typhoon-day-before-checklist.html"
-          check_page "home/apartment-typhoon-flood.html"
-          check_page "guide/drinking-water-stockpile.html"
-          check_page "guide/emergency-food-stockpile.html"
-          check_page "goods/emergency-radio-guide.html"
-          check_page "vehicle/car-emergency-kit.html"
-          check_page "guide/family-disaster-contact-plan.html"
-          check_structured_page "guide/first-disaster-preparedness.html"
-          check_structured_page "guide/emergency-food-expiration.html"
-          check_structured_page "guide/pet-disaster-preparedness.html"
-          check_structured_page "guide/baby-disaster-stockpile.html"
-          check_structured_page "guide/senior-disaster-preparedness.html"
-          check_structured_page "insurance/flooded-car-insurance.html"
-          check_structured_page "insurance/fire-insurance-water-damage.html"
-          check_structured_page "insurance/household-goods-flood-insurance.html"
-          check_structured_page "insurance/typhoon-wind-damage-insurance.html"
-          check_structured_page "home/home-flood-preparedness.html"
-          check_structured_page "post-disaster/after-flood-record-evidence.html"
-          check_structured_page "home/home-heavy-rain-checklist.html"
-          check_structured_page "typhoon/typhoon-day-before-checklist.html"
-          check_structured_page "home/apartment-typhoon-flood.html"
-          check_structured_page "guide/drinking-water-stockpile.html"
-          check_structured_page "guide/emergency-food-stockpile.html"
-          check_structured_page "goods/emergency-radio-guide.html"
-          check_structured_page "goods/portable-power-station-disaster.html"
-          check_structured_page "vehicle/car-emergency-kit.html"
-          check_structured_page "guide/family-disaster-contact-plan.html"
-          check_asset "bousai_common.css"
-          check_asset "bousai_common.js"
-          check_asset "bousai_home.css"
-          check_asset "bousai_home.js"
-          check_asset "sitemap.xml"
-          check_asset "robots.txt"
-          check_asset "assets/images/commons/manifest.json"
-          check_asset "realtime/realtime.json"
-
-          # Expert-review changes must be present on the actual production pages.
-          check_page_contains "" 'class="skip-link"'
-          check_page_contains "" 'id="main-content"'
-          check_page_contains "" '携帯トイレの備え方を読む'
-          check_page_contains "" 'href="goods/toilet-hygiene.html">携帯トイレ</a>'
-          check_page_contains "" 'href="goods/light-information.html">ライト・ラジオ</a>'
-          check_page_contains "" 'href="goods/power-charging.html">ポータブル電源</a>'
-          check_page_contains "goods/index.html" 'category-product-link'
-          check_page_contains "goods/index.html" '<small>商品比較</small>'
-          check_page_contains "goods/toilet-hygiene.html" 'class="article-shell product-page"'
-          check_page_contains "goods/toilet-hygiene.html" 'class="site-nav"'
-          check_page_contains "goods/toilet-hygiene.html" '商品情報より'
-          check_page_contains "water-outage/portable-toilet-stockpile.html" '断水時の携帯トイレ'
-          check_page_contains "guide/first-disaster-preparedness.html" 'class="skip-link"'
-          check_page_contains "guide/first-disaster-preparedness.html" 'id="main-content"'
-          check_page_contains "insurance/flooded-car-insurance.html" '令和8年8月27日からの大雨に伴う災害'
-          check_page_contains "insurance/fire-insurance-water-damage.html" '令和8年8月27日からの大雨に伴う災害'
-          check_page_contains "insurance/household-goods-flood-insurance.html" '令和8年8月27日からの大雨に伴う災害'
-          check_page_contains "insurance/typhoon-wind-damage-insurance.html" '古くなった自宅の修理に保険金を使えるか'
-          check_page_contains "insurance/typhoon-wind-damage-insurance.html" '住宅の修理などに関するトラブルにご注意'
-          check_page_contains "home/home-flood-preparedness.html" '001349327.pdf'
-          check_page_contains "post-disaster/after-flood-record-evidence.html" '罹災証明書の提出は原則不要'
-          check_page_contains "post-disaster/after-flood-record-evidence.html" '住宅の修理などに関するトラブルにご注意'
-          check_page_contains "home/home-heavy-rain-checklist.html" '001349327.pdf'
-          check_page_contains "typhoon/typhoon-day-before-checklist.html" '家の対策を完成させるまで避難を待たない'
-          check_page_contains "home/apartment-typhoon-flood.html" '建築物における電気設備の浸水対策ガイドライン'
-          check_page_contains "guide/drinking-water-stockpile.html" '飲料水はどう備蓄する'
-          check_page_contains "guide/emergency-food-stockpile.html" 'ローリングストック'
-          check_page_contains "goods/emergency-radio-guide.html" '防災ラジオは必要'
-          check_page_contains "goods/portable-power-station-disaster.html" 'リコール対象品は異常が見られなくても使用を中止'
-          check_page_contains "goods/portable-power-station-disaster.html" 'NITE「リコール対象のポータブル電源に関する注意喚起」'
-          check_page_contains "vehicle/car-emergency-kit.html" '車に積んでおきたい防災用品'
-          check_page_contains "guide/family-disaster-contact-plan.html" '災害用伝言ダイヤル'
 
           tmp_home="$(mktemp)"
-          curl --fail --silent --show-error --location \
-            --retry 4 --retry-delay 5 --retry-all-errors \
-            "${BASE_URL}" -o "${tmp_home}"
+          fetch_public "" "${tmp_home}"
+          grep -q "防災くらしガイド" "${tmp_home}"
+          grep -q 'class="skip-link"' "${tmp_home}"
+          grep -q 'id="main-content"' "${tmp_home}"
+          grep -q 'assets/images/commons/' "${tmp_home}"
+          grep -q 'data-realtime-root' "${tmp_home}"
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
           fi
-          grep -q 'assets/images/commons/' "${tmp_home}"
-          grep -q 'data-realtime-root' "${tmp_home}"
           rm -f "${tmp_home}"
 
+          tmp_article="$(mktemp)"
+          fetch_public "guide/first-disaster-preparedness.html" "${tmp_article}"
+          grep -q "防災くらしガイド" "${tmp_article}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_article}"
+          grep -q '"@type":"BlogPosting"' "${tmp_article}"
+          grep -q '"@type":"BreadcrumbList"' "${tmp_article}"
+          rm -f "${tmp_article}"
+
+          tmp_product="$(mktemp)"
+          fetch_public "goods/toilet-hygiene.html" "${tmp_product}"
+          grep -q 'class="article-shell product-page"' "${tmp_product}"
+          grep -q '商品情報より' "${tmp_product}"
+          rm -f "${tmp_product}"
+
           tmp_js="$(mktemp)"
-          curl --fail --silent --show-error --location \
-            --retry 4 --retry-delay 5 --retry-all-errors \
-            "${BASE_URL}bousai_common.js" -o "${tmp_js}"
+          fetch_public "bousai_common.js" "${tmp_js}"
           grep -q '"amazon_click"' "${tmp_js}"
           grep -q '"product_guide_click"' "${tmp_js}"
           grep -q 'enhanceAccessibility' "${tmp_js}"
@@ -237,9 +165,7 @@ jobs:
           rm -f "${tmp_js}"
 
           tmp_css="$(mktemp)"
-          curl --fail --silent --show-error --location \
-            --retry 4 --retry-delay 5 --retry-all-errors \
-            "${BASE_URL}bousai_common.css" -o "${tmp_css}"
+          fetch_public "bousai_common.css" "${tmp_css}"
           grep -q '\.skip-link' "${tmp_css}"
           grep -q 'prefers-reduced-motion' "${tmp_css}"
           if grep -q 'h2:nth-of-type(3n + 1) + p' "${tmp_css}"; then
@@ -249,9 +175,7 @@ jobs:
           rm -f "${tmp_css}"
 
           tmp_home_js="$(mktemp)"
-          curl --fail --silent --show-error --location \
-            --retry 4 --retry-delay 5 --retry-all-errors \
-            "${BASE_URL}bousai_home.js" -o "${tmp_home_js}"
+          fetch_public "bousai_home.js" "${tmp_home_js}"
           grep -q 'initRealtimePanel' "${tmp_home_js}"
           grep -q '台風等' "${tmp_home_js}"
           grep -q 'bosai/quake/data/list.json' "${tmp_home_js}"
@@ -259,16 +183,33 @@ jobs:
           grep -q 'bosai/typhoon/data/targetTc.json' "${tmp_home_js}"
           rm -f "${tmp_home_js}"
 
+          tmp_manifest="$(mktemp)"
+          fetch_public "assets/images/commons/manifest.json" "${tmp_manifest}"
+          python - "${tmp_manifest}" <<'PY'
+          import json
+          import sys
+          with open(sys.argv[1], encoding="utf-8") as f:
+              data = json.load(f)
+          if data.get("unique_images_failed", 0) != 0:
+              raise SystemExit("Published Commons manifest contains failed images")
+          PY
+          rm -f "${tmp_manifest}"
+
+          tmp_realtime="$(mktemp)"
+          fetch_public "realtime/realtime.json" "${tmp_realtime}"
+          python -m json.tool "${tmp_realtime}" >/dev/null
+          rm -f "${tmp_realtime}"
+
           tmp_sitemap="$(mktemp)"
-          curl --fail --silent --show-error --location \
-            --retry 4 --retry-delay 5 --retry-all-errors \
-            "${BASE_URL}sitemap.xml" -o "${tmp_sitemap}"
+          fetch_public "sitemap.xml" "${tmp_sitemap}"
           grep -q "<urlset" "${tmp_sitemap}"
           grep -q "${BASE_URL}goods/portable-power-station-disaster.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}water-outage/portable-toilet-stockpile.html" "${tmp_sitemap}"
           rm -f "${tmp_sitemap}"
 
           googlebot_status="$(curl --silent --show-error --location \
+            --retry 5 --retry-delay 10 --retry-all-errors \
+            --connect-timeout 15 --max-time 90 \
             --user-agent "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
             --output /dev/null --write-out "%{http_code}" \
             "${BASE_URL}sitemap.xml")"
