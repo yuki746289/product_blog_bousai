@@ -34,8 +34,9 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_article_keeps_neutral_comparison_boundaries(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
+        self.assertIn("最安ランキング", source)
+        self.assertIn("総合1位〜10位のランキングではありません", preview)
         for text in (source, preview):
-            self.assertIn("最安ランキング", text)
             self.assertIn("水災", text)
             self.assertIn("支払", text)
             self.assertIn("2026年10月1日", text)
