@@ -32,17 +32,41 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         self.assertIn("支援情報から孤立しない", text)
 
     def test_b045_refrigerator_food_boundaries(self):
-        text = self.text("B045")
-        self.assertIn("○時間までなら安全", text)
-        self.assertIn("味見だけで", text)
-        self.assertIn("必要以上に開けない", text)
-        self.assertNotIn("4時間までなら安全", text)
+        source = self.text("B045")
+        preview = self.preview_text("B045")
+        self.assertIn("○時間までなら安全", source)
+        self.assertIn("○時間なら安全", preview)
+        required_content = (
+            "味見",
+            "必要以上に開けない",
+            "ドライアイスや保冷剤",
+            "二酸化炭素",
+            "article_b004.html",
+            "article_b028.html",
+            "article_b031.html",
+        )
+        for target in (source, preview):
+            for phrase in required_content:
+                self.assertIn(phrase, target)
+            self.assertNotIn("4時間までなら安全", target)
 
     def test_b046_window_tape_boundaries(self):
-        text = self.text("B046")
-        self.assertIn("養生テープだけを台風の窓対策にしない", text)
-        self.assertIn("割れなくなると考えない", text)
-        self.assertIn("強風中に外側から補修", text)
+        source = self.text("B046")
+        preview = self.preview_text("B046")
+        self.assertIn("養生テープだけを台風の窓対策にしない", source)
+        self.assertIn("養生テープだけを台風の窓対策にしません", preview)
+        required_content = (
+            "段ボール・プラダン・板",
+            "板自体が飛来物",
+            "写真・保険・修理",
+            "強風中",
+            "article_b006.html",
+            "article_b016.html",
+            "article_b022.html",
+        )
+        for target in (source, preview):
+            for phrase in required_content:
+                self.assertIn(phrase, target)
 
     def test_b047_heatstroke_boundaries(self):
         required_content = (
