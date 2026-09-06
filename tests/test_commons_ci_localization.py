@@ -1,4 +1,6 @@
 # Created: 2026-09-06T17:23+09:00
+import subprocess
+import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
@@ -18,6 +20,18 @@ from scripts.localize_commons_images_ci import (
 
 
 class CommonsCiLocalizationTests(unittest.TestCase):
+    def test_ci_wrapper_is_directly_executable(self):
+        root = Path(__file__).resolve().parents[1]
+        result = subprocess.run(
+            [sys.executable, "scripts/localize_commons_images_ci.py", "--help"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertIn("--min-localized", result.stdout)
+
     def test_download_concurrency_is_intentionally_low(self):
         self.assertLessEqual(MAX_DOWNLOAD_WORKERS, 2)
 
@@ -94,7 +108,10 @@ class CommonsCiLocalizationTests(unittest.TestCase):
                     {
                         "unique_images_failed": 1,
                         "failure_samples": [
-                            {"source_url": "https://example.invalid/image.jpg", "error": "HTTPError: 429"}
+                            {
+                                "source_url": "https://example.invalid/image.jpg",
+                                "error": "HTTPError: 429",
+                            }
                         ],
                     },
                     Path(tmp),
