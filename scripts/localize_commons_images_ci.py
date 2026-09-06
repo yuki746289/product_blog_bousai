@@ -19,6 +19,7 @@ import argparse
 import html
 import json
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -26,6 +27,10 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlparse
 from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts import localize_commons_images as localizer
 
