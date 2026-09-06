@@ -18,7 +18,7 @@ PUBLIC = ROOT / "public"
 SITE_CONFIG = ROOT / "config" / "site.json"
 
 CANONICAL_TAG_RE = re.compile(
-    r'<link\b[^>]*\brel=["\'][^"\']*\bcanonical\b[^"\']*["\'][^>]*>\s*',
+    r'<link\b(?=[^>]*\brel=["\'][^"\']*\bcanonical\b[^"\']*["\'])[^>]*>\s*',
     re.IGNORECASE,
 )
 HREF_RE = re.compile(r'\bhref=["\'](?P<href>[^"\']+)["\']', re.IGNORECASE)
