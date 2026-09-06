@@ -9,6 +9,7 @@ on:
       - "preview/**"
       - "content/**"
       - "data/content_registry.json"
+      - "data/content_registry_additions.json"
       - "config/site.json"
       - "templates/**"
       - "scripts/**"
@@ -150,6 +151,13 @@ jobs:
           grep -q '"@type":"BreadcrumbList"' "${tmp_article}"
           rm -f "${tmp_article}"
 
+          tmp_region="$(mktemp)"
+          fetch_public "region/miyagi/earthquake-tsunami-history.html" "${tmp_region}"
+          grep -q "1978年宮城県沖地震" "${tmp_region}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}region/miyagi/earthquake-tsunami-history.html\">" "${tmp_region}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_region}"
+          rm -f "${tmp_region}"
+
           tmp_product="$(mktemp)"
           fetch_public "goods/toilet-hygiene.html" "${tmp_product}"
           grep -q 'class="article-shell product-page"' "${tmp_product}"
@@ -210,6 +218,9 @@ jobs:
           grep -q "<urlset" "${tmp_sitemap}"
           grep -q "${BASE_URL}goods/portable-power-station-disaster.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}water-outage/portable-toilet-stockpile.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}region/miyagi/earthquake-tsunami-history.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}region/hiroshima/landslide-history.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}region/arakawa/flood-history.html" "${tmp_sitemap}"
           rm -f "${tmp_sitemap}"
 
           googlebot_status="$(curl --silent --show-error --location \

@@ -2,6 +2,7 @@
 """Build production static files from preview HTML.
 
 - Uses data/content_registry.json planned_public_path for article URLs.
+- Merges reviewed entries from data/content_registry_additions.json.
 - Removes preview-only noindex/workflow labels.
 - Injects Google Analytics.
 - Rewrites internal links for production paths.
@@ -20,6 +21,7 @@ from urllib.parse import urlsplit, urlunsplit
 from xml.sax.saxutils import escape as xml_escape
 
 from article_metadata import apply_article_metadata, validate_article_output
+from bousai_blog.registry import load_registry as load_content_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 PREVIEW = ROOT / "preview"
@@ -72,7 +74,7 @@ ATTR_RE = re.compile(r'(?P<attr>href|src)=["\'](?P<url>[^"\']+)["\']', re.IGNORE
 
 
 def load_registry() -> dict:
-    return json.loads(REGISTRY.read_text(encoding="utf-8"))
+    return load_content_registry(REGISTRY)
 
 
 def load_html_map(registry: dict) -> dict[str, str]:

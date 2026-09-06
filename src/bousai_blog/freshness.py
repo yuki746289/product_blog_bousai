@@ -4,10 +4,11 @@
 from __future__ import annotations
 
 import argparse
-import json
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any
+
+from .registry import load_registry
 
 VALID_STATUSES = {
     "PLANNED",
@@ -28,16 +29,6 @@ def _parse_date(value: str | None) -> date | None:
     if not value:
         return None
     return date.fromisoformat(value[:10])
-
-
-def load_registry(path: str | Path) -> dict[str, Any]:
-    with Path(path).open("r", encoding="utf-8") as handle:
-        data = json.load(handle)
-    if not isinstance(data, dict):
-        raise ValueError("registry root must be an object")
-    if not isinstance(data.get("articles"), list):
-        raise ValueError("registry.articles must be an array")
-    return data
 
 
 def inspect_registry(data: dict[str, Any], today: date | None = None) -> dict[str, list[str]]:
