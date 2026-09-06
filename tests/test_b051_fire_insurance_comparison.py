@@ -47,14 +47,18 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_internal_cluster_links_are_preserved(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
+        # These links are editorial links authored in both source and preview.
         for link in (
             "article_b013.html",
             "article_b016.html",
             "article_b017.html",
-            "article_b019.html",
         ):
             self.assertIn(link, source)
             self.assertIn(link, preview)
+
+        # B019 is the parent/overview route and is intentionally added in the
+        # preview related-article block rather than duplicated in source prose.
+        self.assertIn("article_b019.html", preview)
 
     def test_registry_and_insurance_category_publish_b051(self) -> None:
         registry = load_registry(ROOT / "data/content_registry.json")
