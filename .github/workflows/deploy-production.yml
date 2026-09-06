@@ -13,7 +13,6 @@ on:
       - "templates/**"
       - "scripts/**"
       - "pyproject.toml"
-      - "tests/**"
       - ".github/workflows/deploy-production.yml"
 
 concurrency:
