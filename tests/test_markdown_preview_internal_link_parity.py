@@ -8,11 +8,12 @@ preserving the reader's navigation paths.
 
 from __future__ import annotations
 
-import json
 import re
 import unittest
 from pathlib import Path
 from urllib.parse import urlsplit
+
+from bousai_blog.registry import load_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "content_registry.json"
@@ -108,7 +109,7 @@ def preview_internal_html_links(text: str) -> set[str]:
 
 class MarkdownPreviewInternalLinkParityTests(unittest.TestCase):
     def test_source_internal_html_links_are_preserved_in_preview(self) -> None:
-        registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        registry = load_registry(REGISTRY)
         aliases = production_to_preview_map(registry)
         failures: list[str] = []
         stale_exceptions: list[str] = []
