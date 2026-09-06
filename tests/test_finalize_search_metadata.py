@@ -27,7 +27,7 @@ class FinalizeSearchMetadataTests(unittest.TestCase):
     def test_inject_canonical_replaces_existing_tag(self) -> None:
         source = (
             "<html><head>"
-            '<link rel="canonical" href="https://old.example/page">'
+            '<link href="https://old.example/page" rel="canonical">'
             "<title>Test</title></head><body></body></html>"
         )
         expected = "https://example.test/guide/test.html"
