@@ -64,7 +64,7 @@ class B045B046PublicSyncTests(unittest.TestCase):
             "破損後は写真・保険・修理を安全確認後に",
             'href="typhoon-preparation-checklist.html"',
             'href="../insurance/typhoon-wind-damage-insurance.html"',
-            'href="apartment-typhoon-flood.html"',
+            'href="../home/apartment-typhoon-flood.html"',
         )
         for phrase in public_required:
             self.assertIn(phrase, public)
