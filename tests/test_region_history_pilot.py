@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
+
+from bousai_blog.registry import load_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -68,6 +71,35 @@ class RegionHistoryPilotTests(unittest.TestCase):
             self.assertTrue((ROOT / f"docs/research/{article_id}_REGION_BRIEF.md").is_file())
             self.assertTrue((ROOT / f"docs/research/{article_id}_IMAGES.md").is_file())
             self.assertTrue((ROOT / f"docs/reviews/{article_id}_CHECKLIST.md").is_file())
+
+    def test_registry_loader_merges_only_the_reviewed_additions(self) -> None:
+        registry = load_registry(ROOT / "data/content_registry.json")
+        ids = [article["article_id"] for article in registry["articles"]]
+        self.assertEqual(50, len(ids))
+        self.assertEqual(50, len(set(ids)))
+        self.assertEqual(["B048", "B049", "B050"], ids[-3:])
+
+        additions = json.loads((ROOT / "data/content_registry_additions.json").read_text(encoding="utf-8"))
+        for article in additions["articles"]:
+            self.assertEqual("READY_TO_PUBLISH", article["status"])
+            self.assertEqual([], article["publish_blockers"])
+            self.assertEqual("APPROVED", article["manual_review_status"])
+            self.assertEqual("2026-09-07", article["published_at"])
+            self.assertEqual("2026-09-07", article["modified_at"])
+
+    def test_category_routes_surface_region_history_without_new_top_level_category(self) -> None:
+        earthquake = self._text("preview/category_earthquake.html")
+        flood = self._text("preview/category_flood.html")
+
+        self.assertIn("地域の災害史から備えを考える", earthquake)
+        self.assertIn('href="article_b048.html"', earthquake)
+        self.assertIn('data-article-id="B048"', earthquake)
+
+        self.assertIn("地域の災害史から備えを考える", flood)
+        self.assertIn('href="article_b049.html"', flood)
+        self.assertIn('href="article_b050.html"', flood)
+        self.assertIn('data-article-id="B049"', flood)
+        self.assertIn('data-article-id="B050"', flood)
 
 
 if __name__ == "__main__":
