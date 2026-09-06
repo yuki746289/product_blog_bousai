@@ -1,0 +1,112 @@
+name: Update realtime disaster data
+
+# Realtime data is deployed independently from the static site.
+# During the September 2026 Actions-budget conservation period, the server-side
+# fallback refresh is throttled to every 6 hours. The browser still fetches JMA
+# directly and polls every 10 minutes while the page is open.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/update_realtime.py"
+      - "preview/realtime/realtime.json"
+      - ".github/workflows/update-realtime.yml"
+  schedule:
+    - cron: "3 */6 * * *"
+
+concurrency:
+  group: realtime-disaster-data
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-slim
+    timeout-minutes: 3
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch previous realtime state
+        run: |
+          mkdir -p .cache realtime_upload
+          BASE_URL="$(python3 - <<'PY'
+          import json
+          with open("config/site.json", encoding="utf-8") as f:
+              print(json.load(f)["public_base_url"].rstrip("/") + "/")
+          PY
+          )"
+          if ! curl --fail --silent --show-error --location             --connect-timeout 10 --max-time 20             "${BASE_URL}realtime/realtime.json?ts=$(date +%s)"             -o .cache/realtime.json; then
+            cp preview/realtime/realtime.json .cache/realtime.json
+          fi
+
+      - name: Fetch JMA XML and build JSON
+        run: |
+          python3 scripts/update_realtime.py             --previous .cache/realtime.json             --output realtime_upload/realtime.json
+
+      - name: Validate realtime JSON
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("realtime_upload/realtime.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          assert data["schema_version"] == "1.0"
+          assert data["status"] in {"ok", "partial", "degraded"}
+          assert "warnings" in data
+          assert "typhoons" in data
+          assert "earthquake" in data
+          assert data.get("checked_at")
+          print({
+              "status": data["status"],
+              "checked_at": data["checked_at"],
+              "warning_count": data["warnings"]["active_count"],
+              "typhoon_count": len(data["typhoons"]),
+              "has_earthquake": bool(data["earthquake"]),
+          })
+          PY
+
+      - name: Upload realtime JSON
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          for attempt in 1 2 3; do
+            if curl --fail --silent --show-error \
+              --ipv4 \
+              --ssl-reqd \
+              --ftp-pasv \
+              --disable-epsv \
+              --connect-timeout 15 \
+              --max-time 45 \
+              --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+              --upload-file realtime_upload/realtime.json \
+              "ftp://ftp.homepage.shinobi.jp/realtime/realtime.json"; then
+              echo "Realtime JSON uploaded."
+              exit 0
+            fi
+            echo "FTPS upload attempt ${attempt} failed."
+            sleep $((attempt * 3))
+          done
+          echo "Realtime JSON upload failed after 3 attempts."
+          exit 1
+
+      - name: Smoke test realtime JSON
+        run: |
+          BASE_URL="$(python3 - <<'PY'
+          import json
+          with open("config/site.json", encoding="utf-8") as f:
+              print(json.load(f)["public_base_url"].rstrip("/") + "/")
+          PY
+          )"
+          tmp="$(mktemp)"
+          curl --fail --silent --show-error --location             --retry 3 --retry-delay 4 --retry-all-errors             "${BASE_URL}realtime/realtime.json?ts=$(date +%s)" -o "${tmp}"
+          grep -q '"schema_version": "1.0"' "${tmp}"
+          grep -q '"checked_at":' "${tmp}"
+          rm -f "${tmp}"

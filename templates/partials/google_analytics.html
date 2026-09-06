@@ -1,0 +1,30 @@
+<!-- Analytics: GA4 + temporary Accaii -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('ci_audit') === '1') {
+      window.__BOUSAI_ANALYTICS_DISABLED__ = true;
+      return;
+    }
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XQVLD5HMNG';
+    document.head.appendChild(script);
+
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-XQVLD5HMNG');
+
+    // Temporary access analysis during the low-traffic launch period.
+    // Remove this loader when U11 in docs/USER_ACTION_ITEMS.md is completed.
+    var accaiiScript = document.createElement('script');
+    accaiiScript.async = true;
+    accaiiScript.src = 'https://accaii.com/bousaikun/analyze.js';
+    document.head.appendChild(accaiiScript);
+  }());
+</script>

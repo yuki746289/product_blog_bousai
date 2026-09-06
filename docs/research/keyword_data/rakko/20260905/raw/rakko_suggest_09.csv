@@ -1,0 +1,272 @@
+No,区分,単語数,キーワード,SEO難易度,月間検索数,CPC ($),競合性,出現時期
+1,＋,2,停電 冷蔵庫,null,null,null,null,null
+2,＋,3,停電 冷蔵庫 壊れる,null,null,null,null,null
+3,＋,3,停電 冷蔵庫 ポータブル電源,null,null,null,null,null
+4,＋,3,停電 冷蔵庫 何時間,null,null,null,null,null
+5,＋,3,停電 冷蔵庫 牛乳,null,null,null,null,null
+6,＋,3,停電 冷蔵庫 対策,null,null,null,null,null
+7,＋,3,停電 冷蔵庫 コンセント,null,null,null,null,null
+8,＋,5,停電 冷蔵庫 何時間 もつ 肉,null,null,null,null,null
+9,＋,3,停電 冷蔵庫 復旧,null,null,null,null,null
+10,＋,4,停電 冷蔵庫 壊れる 保険,null,null,null,null,null
+11,＋,3,停電 冷蔵庫 卵,null,null,null,null,null
+12,＋,3,停電 冷蔵庫 どうする,null,null,null,null,null
+13,＋,3,停電 冷蔵庫 7時間,null,null,null,null,null
+14,＋＋,4,停電 後 冷蔵庫 壊れる,null,null,null,null,null
+15,＋＋,3,停電 冷蔵庫 何時間持つ,null,null,null,null,null
+16,＋＋,4,停電 冷蔵庫 何時間 もつ,null,null,null,null,null
+17,＋＋,4,停電 対策 バッテリー 冷蔵庫,null,null,null,null,null
+18,＋＋,4,計画 停電 冷蔵庫 対策,null,null,null,null,null
+19,＋＋,5,業務 用 冷蔵庫 停電 対策,null,null,null,null,null
+20,＋＋,4,冷蔵庫 の 停電 対策,null,null,null,null,null
+21,＋＋,4,台風 停電 対策 冷蔵庫,null,null,null,null,null
+22,＋＋,4,停電 冷蔵庫 コンセント 抜く,null,null,null,null,null
+23,＋＋,4,停電 時 冷蔵庫 コンセント,null,null,null,null,null
+24,＋＋,4,計画 停電 冷蔵庫 コンセント,null,null,null,null,null
+25,＋＋,4,電気工事 停電 冷蔵庫 コンセント,null,null,null,null,null
+26,＋＋,4,停電 冷蔵庫 復旧 しない,null,null,null,null,null
+27,＋＋,3,停電 復旧後 冷蔵庫,null,null,null,null,null
+28,＋＋,4,停電 冷蔵庫 自動 復旧,null,null,null,null,null
+29,＋＋,4,冷蔵庫 停電 すぐ 復旧,null,null,null,null,null
+30,＋＋,4,三菱 冷蔵庫 停電 復旧,null,null,null,null,null
+31,＋＋,4,停電 したら どうする 冷蔵庫,null,null,null,null,null
+32,＋＋,4,計画 停電 冷蔵庫 どうする,null,null,null,null,null
+33,＋α,3,停電 冷蔵庫 1日,null,null,null,null,null
+34,＋α,3,停電 冷蔵庫 1時間,null,null,null,null,null
+35,＋α,3,停電 冷蔵庫 10時間,null,null,null,null,null
+36,＋α,4,停電 冷蔵庫 12 時間,null,null,null,null,null
+37,＋α,5,冷蔵庫 1 時間 半 停電,null,null,null,null,null
+38,＋α,3,冷蔵庫 停電 10分,null,null,null,null,null
+39,＋α,5,1 時間 の 停電 冷蔵庫,null,null,null,null,null
+40,＋α,3,停電 冷蔵庫 2時間,null,null,null,null,null
+41,＋α,5,停電 2 時間 程度 冷蔵庫,null,null,null,null,null
+42,＋α,5,2 時間 半 停電 冷蔵庫,null,null,null,null,null
+43,＋α,5,2 時間 の 停電 冷蔵庫,null,null,null,null,null
+44,＋α,4,冷蔵庫 停電 24 時間,null,null,null,null,null
+45,＋α,3,冷蔵庫 2日 停電,null,null,null,null,null
+46,＋α,3,停電 冷蔵庫 3時間,null,null,null,null,null
+47,＋α,4,停電 30 分 冷蔵庫,null,null,null,null,null
+48,＋α,5,停電 3 時間 冷蔵庫 大丈夫,null,null,null,null,null
+49,＋α,5,3 時間 の 停電 冷蔵庫,null,null,null,null,null
+50,＋α,4,冷蔵庫 停電 3 日,null,null,null,null,null
+51,＋α,3,停電 冷蔵庫 4時間,null,null,null,null,null
+52,＋α,3,停電 冷蔵庫 5時間,null,null,null,null,null
+53,＋α,3,停電 冷蔵庫 6時間,null,null,null,null,null
+54,＋α,3,停電 冷蔵庫 8時間,null,null,null,null,null
+55,＋α,3,停電 冷蔵庫 開けない,null,null,null,null,null
+56,＋α,6,停電 冷蔵庫 開け て しまっ た,null,null,null,null,null
+57,＋α,3,停電 冷蔵庫 アイス,null,null,null,null,null
+58,＋α,3,停電 冷蔵庫 開ける,null,null,null,null,null
+59,＋α,4,停電 冷蔵庫 ドライ アイス,null,null,null,null,null
+60,＋α,4,停電 冷蔵庫 いつまでも つ,null,null,null,null,null
+61,＋α,3,停電 冷蔵庫 ウインナー,null,null,null,null,null
+62,＋α,3,停電 冷蔵庫 ups,null,null,null,null,null
+63,＋α,3,停電 冷蔵庫 内,null,null,null,null,null
+64,＋α,6,停電 後 冷蔵庫 が 動か ない,null,null,null,null,null
+65,＋α,5,停電 時に 冷蔵庫 を 動かす,null,null,null,null,null
+66,＋α,4,冷蔵庫 停電 動か ない,null,null,null,null,null
+67,＋α,4,停電 冷蔵庫 温度 変化,null,null,null,null,null
+68,＋α,3,停電 冷蔵庫 お知らせ,null,null,null,null,null
+69,＋α,3,停電 冷蔵庫 温度,null,null,null,null,null
+70,＋α,3,冷蔵庫 停電 温度上昇,null,null,null,null,null
+71,＋α,4,オール 電化 停電 冷蔵庫,null,null,null,null,null
+72,＋α,5,停電 冷蔵庫 勝手 に つく,null,null,null,null,null
+73,＋α,4,冷蔵庫 停電 再 起動,null,null,null,null,null
+74,＋α,4,停電 冷蔵庫 製氷 機,null,null,null,null,null
+75,＋α,4,停電 冷蔵庫 発電 機,null,null,null,null,null
+76,＋α,4,急 な 停電 冷蔵庫,null,null,null,null,null
+77,＋α,3,停電 冷蔵庫 クーラーボックス,null,null,null,null,null
+78,＋α,3,停電 冷蔵庫 腐る,null,null,null,null,null
+79,＋α,3,冷蔵庫 停電 臭い,null,null,null,null,null
+80,＋α,3,計画 停電 冷蔵庫,null,null,null,null,null
+81,＋α,5,計画 停電 冷蔵庫 の 中身,null,null,null,null,null
+82,＋α,4,計画 停電 冷蔵庫 電源,null,null,null,null,null
+83,＋α,4,マンション 計画 停電 冷蔵庫,null,null,null,null,null
+84,＋α,3,停電 検査 冷蔵庫,null,null,null,null,null
+85,＋α,3,冷蔵庫 停電 結露,null,null,null,null,null
+86,＋α,3,停電 冷蔵庫 故障,null,null,null,null,null
+87,＋α,3,停電 冷蔵庫 壊れた,null,null,null,null,null
+88,＋α,4,停電 冷蔵庫 故障 保証,null,null,null,null,null
+89,＋α,3,作業 停電 冷蔵庫,null,null,null,null,null
+90,＋α,3,停電 三時間 冷蔵庫,null,null,null,null,null
+91,＋α,3,災害時 停電 冷蔵庫,null,null,null,null,null
+92,＋α,3,停電 冷蔵庫 食材,null,null,null,null,null
+93,＋α,3,停電 冷蔵庫 食品,null,null,null,null,null
+94,＋α,4,停電 した 時 冷蔵庫,null,null,null,null,null
+95,＋α,4,停電 した あと 冷蔵庫,null,null,null,null,null
+96,＋α,3,停電 した 冷蔵庫,null,null,null,null,null
+97,＋α,3,冷蔵庫 停電 したら,null,null,null,null,null
+98,＋α,3,シャープ 冷蔵庫 停電,null,null,null,null,null
+99,＋α,4,シャープ 冷蔵庫 停電 後,null,null,null,null,null
+100,＋α,4,停電 冷蔵庫 水 漏れ,null,null,null,null,null
+101,＋α,4,停電 冷蔵庫 捨てる もの,null,null,null,null,null
+102,＋α,4,停電 する 時 冷蔵庫,null,null,null,null,null
+103,＋α,3,停電 冷蔵庫 製氷機,null,null,null,null,null
+104,＋α,4,停電 冷蔵庫 損害 賠償,null,null,null,null,null
+105,＋α,4,停電 そなえ モード 冷蔵庫,null,null,null,null,null
+106,＋α,4,停電 に 備える 冷蔵庫,null,null,null,null,null
+107,＋α,5,パナソニック 冷蔵庫 停電 そなえ モード,null,null,null,null,null
+108,＋α,5,冷蔵庫 無 停電 電源 装置,null,null,null,null,null
+109,＋α,3,停電 冷蔵庫 たまご,null,null,null,null,null
+110,＋α,3,停電 冷蔵庫 対応,null,null,null,null,null
+111,＋α,3,停電 冷蔵庫 太陽光発電,null,null,null,null,null
+112,＋α,3,停電 冷蔵庫 食べ物,null,null,null,null,null
+113,＋α,4,停電 冷蔵庫 対処 法,null,null,null,null,null
+114,＋α,4,停電 冷蔵庫 壊れ た,null,null,null,null,null
+115,＋α,3,停電 冷蔵庫 調味料,null,null,null,null,null
+116,＋α,3,停電 冷蔵庫 チーズ,null,null,null,null,null
+117,＋α,3,停電 冷蔵庫 蓄電池,null,null,null,null,null
+118,＋α,3,長期 停電 冷蔵庫,null,null,null,null,null
+119,＋α,3,停電 冷蔵庫 つかない,null,null,null,null,null
+120,＋α,5,停電 後 冷蔵庫 つか ない,null,null,null,null,null
+121,＋α,4,停電 でも 使える 冷蔵庫,null,null,null,null,null
+122,＋α,6,停電 後 冷蔵庫 つか ない シャープ,null,null,null,null,null
+123,＋α,6,停電 後 冷蔵庫 つか ない 三菱,null,null,null,null,null
+124,＋α,5,停電 冷蔵庫 電気 つか ない,null,null,null,null,null
+125,＋α,4,停電 に 強い 冷蔵庫,null,null,null,null,null
+126,＋α,3,停電 点検 冷蔵庫,null,null,null,null,null
+127,＋α,4,マンション 点検 停電 冷蔵庫,null,null,null,null,null
+128,＋α,4,電気 点検 停電 冷蔵庫,null,null,null,null,null
+129,＋α,3,停電 冷蔵庫 止まる,null,null,null,null,null
+130,＋α,3,停電 冷蔵庫 豆腐,null,null,null,null,null
+131,＋α,3,停電 冷蔵庫 中身,null,null,null,null,null
+132,＋α,3,停電 冷蔵庫 納豆,null,null,null,null,null
+133,＋α,4,停電 冷蔵庫 中身 保証,null,null,null,null,null
+134,＋α,6,停電 冷蔵庫 何 時間 もつ 肉,null,null,null,null,null
+135,＋α,5,停電 冷蔵庫 何 時間 持つ,null,null,null,null,null
+136,＋α,5,停電 冷蔵庫 何 時間 大丈夫,null,null,null,null,null
+137,＋α,3,停電 冷蔵庫 夏,null,null,null,null,null
+138,＋α,5,停電 冷蔵庫 何 時間 夏,null,null,null,null,null
+139,＋α,3,停電 冷蔵庫 肉,null,null,null,null,null
+140,＋α,5,停電 冷蔵庫 に 保冷 剤,null,null,null,null,null
+141,＋α,6,停電 後 冷蔵庫 勝手 に つく,null,null,null,null,null
+142,＋α,4,停電 冷蔵庫 何時間もつ 肉,null,null,null,null,null
+143,＋α,5,停電 に なっ たら 冷蔵庫,null,null,null,null,null
+144,＋α,4,停電 二 時間 冷蔵庫,null,null,null,null,null
+145,＋α,3,冷蔵庫 停電 匂い,null,null,null,null,null
+146,＋α,5,留守 中 に 停電 冷蔵庫,null,null,null,null,null
+147,＋α,4,停電 冷蔵庫 の 中身,null,null,null,null,null
+148,＋α,6,停電 冷蔵庫 の 中身 何 時間,null,null,null,null,null
+149,＋α,4,停電 冷蔵庫 の 中,null,null,null,null,null
+150,＋α,5,停電 冷蔵庫 の 中身 保険,null,null,null,null,null
+151,＋α,4,停電 冷蔵庫 の もの,null,null,null,null,null
+152,＋α,4,停電 冷蔵庫 の 氷,null,null,null,null,null
+153,＋α,5,停電 冷蔵庫 の 中身 保証,null,null,null,null,null
+154,＋α,3,停電 後 冷蔵庫,null,null,null,null,null
+155,＋α,5,三菱 冷蔵庫 停電 後 電源が入らない,null,null,null,null,null
+156,＋α,3,停電 冷蔵庫 発電機,null,null,null,null,null
+157,＋α,3,停電 冷蔵庫 は,null,null,null,null,null
+158,＋α,3,停電 冷蔵庫 発泡スチロール,null,null,null,null,null
+159,＋α,4,停電 したら 冷蔵庫 は,null,null,null,null,null
+160,＋α,5,停電 時 冷蔵庫 発電 機,null,null,null,null,null
+161,＋α,5,停電 冷蔵庫 電源 入ら ない,null,null,null,null,null
+162,＋α,5,停電 したら 冷蔵庫 は どうなる,null,null,null,null,null
+163,＋α,3,冷蔵庫 半日 停電,null,null,null,null,null
+164,＋α,3,ハイアール 冷蔵庫 停電,null,null,null,null,null
+165,＋α,3,停電 冷蔵庫 氷,null,null,null,null,null
+166,＋α,3,停電 冷蔵庫 冷えない,null,null,null,null,null
+167,＋α,3,停電 冷蔵庫 非常用電源,null,null,null,null,null
+168,＋α,5,停電 後 冷蔵庫 冷え ない,null,null,null,null,null
+169,＋α,5,停電 後 冷蔵庫 冷える まで,null,null,null,null,null
+170,＋α,5,停電 冷蔵庫 太陽 光 発電,null,null,null,null,null
+171,＋α,4,日立 冷蔵庫 停電 後,null,null,null,null,null
+172,＋α,3,日立 冷蔵庫 停電,null,null,null,null,null
+173,＋α,4,冷蔵庫 1 日 停電,null,null,null,null,null
+174,＋α,5,冷蔵庫 停電 何 日 もつ,null,null,null,null,null
+175,＋α,3,停電 冷蔵庫 冬,null,null,null,null,null
+176,＋α,5,停電 復帰 後 冷蔵庫 の電源が入らない,null,null,null,null,null
+177,＋α,4,冷蔵庫 停電 何時間もつ 冬,null,null,null,null,null
+178,＋α,4,冷蔵庫 停電 復帰 時間,null,null,null,null,null
+179,＋α,3,停電 冷蔵庫 保冷剤,null,null,null,null,null
+180,＋α,3,停電 冷蔵庫 保証,null,null,null,null,null
+181,＋α,3,停電 冷蔵庫 保冷バッグ,null,null,null,null,null
+182,＋α,3,停電 冷蔵庫 保険,null,null,null,null,null
+183,＋α,3,停電 補償 冷蔵庫,null,null,null,null,null
+184,＋α,4,火災 保険 停電 冷蔵庫,null,null,null,null,null
+185,＋α,3,法定 停電 冷蔵庫,null,null,null,null,null
+186,＋α,3,ホシザキ 冷蔵庫 停電,null,null,null,null,null
+187,＋α,3,停電 冷蔵庫 マヨネーズ,null,null,null,null,null
+188,＋α,3,停電 前 冷蔵庫,null,null,null,null,null
+189,＋α,3,マンション 停電 冷蔵庫,null,null,null,null,null
+190,＋α,4,マンション 全館 停電 冷蔵庫,null,null,null,null,null
+191,＋α,3,真夏 停電 冷蔵庫,null,null,null,null,null
+192,＋α,3,停電 冷蔵庫 水漏れ,null,null,null,null,null
+193,＋α,3,停電 冷蔵庫 味噌,null,null,null,null,null
+194,＋α,3,停電 冷蔵庫 三菱,null,null,null,null,null
+195,＋α,3,停電 冷蔵庫 水浸し,null,null,null,null,null
+196,＋α,4,三菱 冷蔵庫 停電 後,null,null,null,null,null
+197,＋α,4,三菱 電機 冷蔵庫 停電,null,null,null,null,null
+198,＋α,4,三菱 冷蔵庫 停電 故障,null,null,null,null,null
+199,＋α,4,飲食 店 停電 冷蔵庫,null,null,null,null,null
+200,＋α,3,冷蔵庫 停電 水,null,null,null,null,null
+201,＋α,6,無 停電 電源 装置 冷蔵庫 用,null,null,null,null,null
+202,＋α,4,無 停電 装置 冷蔵庫,null,null,null,null,null
+203,＋α,4,無 停電 電源 冷蔵庫,null,null,null,null,null
+204,＋α,4,冷蔵庫 停電 何時間 もつ,null,null,null,null,null
+205,＋α,4,冷蔵庫 停電 水 漏れ,null,null,null,null,null
+206,＋α,4,冷蔵庫 停電 どれくらい もつ,null,null,null,null,null
+207,＋α,4,シャープ 冷蔵庫 停電 モード,null,null,null,null,null
+208,＋α,3,停電 冷蔵庫 野菜,null,null,null,null,null
+209,＋α,3,停電 冷蔵庫 ヨーグルト,null,null,null,null,null
+210,＋α,5,停電 冷蔵庫 非常 用 電源,null,null,null,null,null
+211,＋α,4,停電 用 バッテリー 冷蔵庫,null,null,null,null,null
+212,＋α,3,停電 用 冷蔵庫,null,null,null,null,null
+213,＋α,4,業務 用 冷蔵庫 停電,null,null,null,null,null
+214,＋α,5,業務 用 冷蔵庫 停電 後,null,null,null,null,null
+215,＋α,3,予告 停電 冷蔵庫,null,null,null,null,null
+216,＋α,3,落雷 停電 冷蔵庫,null,null,null,null,null
+217,＋α,4,停電 冷蔵庫 調味 料,null,null,null,null,null
+218,＋α,3,旅行中 停電 冷蔵庫,null,null,null,null,null
+219,＋α,3,輪番 停電 冷蔵庫,null,null,null,null,null
+220,＋α,3,留守中 停電 冷蔵庫,null,null,null,null,null
+221,＋α,3,停電 冷蔵庫 冷凍庫,null,null,null,null,null
+222,＋α,4,冷蔵庫 冷凍庫 停電 時,null,null,null,null,null
+223,＋α,5,冷蔵庫 冷凍庫 停電 何 時間,null,null,null,null,null
+224,＋α,4,冷蔵庫 停電 冷凍 食品,null,null,null,null,null
+225,＋α,3,ワクチン 冷蔵庫 停電,null,null,null,null,null
+226,＋α,6,停電 で 冷蔵庫 が 壊れ た,null,null,null,null,null
+227,＋α,6,停電 後 冷蔵庫 が 冷え ない,null,null,null,null,null
+228,＋α,5,停電 で 冷蔵庫 が 壊れる,null,null,null,null,null
+229,＋α,6,停電 後 冷蔵庫 が つか ない,null,null,null,null,null
+230,＋α,4,外出 中 停電 冷蔵庫,null,null,null,null,null
+231,＋α,4,停電 冷蔵庫 保冷 剤,null,null,null,null,null
+232,＋α,3,停電 冷蔵庫 時間,null,null,null,null,null
+233,＋α,5,停電 冷蔵庫 何 時間 もつ,null,null,null,null,null
+234,＋α,4,停電 冷蔵庫 7 時間,null,null,null,null,null
+235,＋α,4,停電 2 時間 冷蔵庫,null,null,null,null,null
+236,＋α,4,停電 冷蔵庫 4 時間,null,null,null,null,null
+237,＋α,4,停電 3 時間 冷蔵庫,null,null,null,null,null
+238,＋α,4,停電 冷蔵庫 10 時間,null,null,null,null,null
+239,＋α,4,停電 1 時間 冷蔵庫,null,null,null,null,null
+240,＋α,3,全館 停電 冷蔵庫,null,null,null,null,null
+241,＋α,3,停電 冷蔵庫 大丈夫,null,null,null,null,null
+242,＋α,3,冷蔵庫 だけ 停電,null,null,null,null,null
+243,＋α,3,停電 冷蔵庫 電気つかない,null,null,null,null,null
+244,＋α,3,停電 冷蔵庫 電源,null,null,null,null,null
+245,＋α,4,停電 冷蔵庫 ポータブル 電源,null,null,null,null,null
+246,＋α,4,停電 で 冷蔵庫 壊れる,null,null,null,null,null
+247,＋α,3,電気工事 停電 冷蔵庫,null,null,null,null,null
+248,＋α,5,東芝 冷蔵庫 停電 後 電源が入らない,null,null,null,null,null
+249,＋α,3,停電 冷蔵庫 どのくらいもつ,null,null,null,null,null
+250,＋α,3,停電 冷蔵庫 どうなる,null,null,null,null,null
+251,＋α,3,停電 冷蔵庫 ドライアイス,null,null,null,null,null
+252,＋α,3,停電 冷蔵庫 どれくらい,null,null,null,null,null
+253,＋α,3,停電 冷蔵庫 バッテリー,null,null,null,null,null
+254,＋α,3,停電 冷蔵庫 バター,null,null,null,null,null
+255,＋α,3,停電 冷蔵庫 賠償,null,null,null,null,null
+256,＋α,4,停電 時 冷蔵庫 バッテリー,null,null,null,null,null
+257,＋α,4,停電 した 場合 冷蔵庫,null,null,null,null,null
+258,＋α,4,停電 冷蔵庫 保冷 バッグ,null,null,null,null,null
+259,＋α,5,冷蔵庫 停電 開け なけれ ば,null,null,null,null,null
+260,＋α,3,停電 冷蔵庫 ブレーカー,null,null,null,null,null
+261,＋α,4,冷蔵庫 停電 何 分,null,null,null,null,null
+262,＋α,4,冷蔵庫 停電 10 分,null,null,null,null,null
+263,＋α,3,停電 冷蔵庫 弁償,null,null,null,null,null
+264,＋α,4,停電 冷蔵庫 クーラー ボックス,null,null,null,null,null
+265,＋α,4,停電 冷蔵庫 ペット ボトル,null,null,null,null,null
+266,＋α,4,パナソニック 冷蔵庫 停電 後,null,null,null,null,null
+267,＋α,3,パナソニック 冷蔵庫 停電,null,null,null,null,null
+268,＋α,4,パナソニック 冷蔵庫 停電 時,null,null,null,null,null
+269,＋α,3,停電 冷蔵庫 ペットボトル,null,null,null,null,null
+270,＋α,5,停電 時 冷蔵庫 ポータブル 電源,null,null,null,null,null
+271,＋α,4,停電 冷蔵庫 どれくらい もつ,null,null,null,null,null

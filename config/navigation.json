@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "global_navigation": [
+    {"label": "防災入門", "path": "/guide/"},
+    {"label": "台風", "path": "/typhoon/"},
+    {"label": "大雨・水害", "path": "/flood/"},
+    {"label": "地震", "path": "/earthquake/"},
+    {"label": "車と災害", "path": "/vehicle/"},
+    {"label": "住宅と災害", "path": "/home/"},
+    {"label": "保険・お金", "path": "/insurance/"},
+    {"label": "防災グッズ", "path": "/goods/"}
+  ],
+  "homepage_sections": [
+    "pickup",
+    "beginner",
+    "disaster_categories",
+    "problem_categories",
+    "goods",
+    "recent_updates",
+    "official_sources"
+  ],
+  "pickup": {
+    "hero_slots": 1,
+    "secondary_slots": 3,
+    "published_only": true,
+    "fresh_only": true
+  }
+}

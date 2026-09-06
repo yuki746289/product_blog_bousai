@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "status": "initializing",
+  "checked_at": null,
+  "attempted_at": null,
+  "last_full_sync_at": null,
+  "source": {
+    "name": "気象庁",
+    "url": "https://xml.kishou.go.jp/xmlpull.html"
+  },
+  "earthquake": null,
+  "warnings": {
+    "active_count": 0,
+    "groups": [],
+    "official_url": "https://www.jma.go.jp/bosai/map.html#contents=warning"
+  },
+  "typhoons": [],
+  "_warning_state": [],
+  "_typhoon_state": [],
+  "errors": [],
+  "note": "当サイトの表示には遅延する場合があります。避難判断には気象庁・自治体などの最新情報を確認してください。"
+}

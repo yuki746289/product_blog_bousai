@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "site_name": "防災くらしガイド",
+  "content_language": "ja-JP",
+  "amazon_associate_tag": "yukitaka83-22",
+  "affiliate_disclosure_required": true,
+  "high_risk_manual_review_required": true,
+  "deployment": {
+    "method": "ftp",
+    "ftp_host": "ftp.homepage.shinobi.jp",
+    "credentials_storage": "environment_or_github_secrets",
+    "publish_directory": "public"
+  },
+  "analytics": {
+    "provider": "google_analytics",
+    "measurement_id": "G-XQVLD5HMNG",
+    "enabled": true,
+    "required_on_all_public_pages": true
+  },
+  "public_base_url": "https://bousaikun.ashigaru.jp/"
+}

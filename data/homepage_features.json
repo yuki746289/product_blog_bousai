@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-08-31T23:50:00+09:00",
+  "active": {
+    "hero": null,
+    "secondary": []
+  },
+  "candidates": [
+    {
+      "article_id": "B008",
+      "reason": "車の冠水・水没は具体的で重要度が高い"
+    },
+    {
+      "article_id": "B013",
+      "reason": "住宅浸水と保険の検索意図が明確"
+    },
+    {
+      "article_id": "B006",
+      "reason": "台風シーズンに季節性が高い"
+    },
+    {
+      "article_id": "B001",
+      "reason": "通常期の入口として使いやすい"
+    }
+  ],
+  "rule": "PUBLISHEDかつ鮮度・必要レビューが有効な記事だけをactiveへ設定する"
+}

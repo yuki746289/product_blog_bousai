@@ -1,0 +1,137 @@
+name: Production Lighthouse audit
+
+# Manual-only while the account is close to the monthly GitHub Actions limit.
+# Run this after material layout/performance changes instead of on every push.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Wait for analytics exclusion on production
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker_file="${RUNNER_TEMP}/bousai-ci-audit-home.html"
+          for attempt in $(seq 1 30); do
+            if curl -fsS "https://bousaikun.ashigaru.jp/?ci_audit=1" -o "$marker_file"; then
+              if grep -q "__BOUSAI_ANALYTICS_DISABLED__" "$marker_file"; then
+                echo "Analytics exclusion marker is live."
+                exit 0
+              fi
+            fi
+            echo "Waiting for production deploy... attempt ${attempt}/30"
+            sleep 10
+          done
+          echo "Analytics exclusion marker did not reach production in time." >&2
+          exit 1
+
+      - name: Run Lighthouse mobile audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p lighthouse
+          URLS=(
+            "https://bousaikun.ashigaru.jp/?ci_audit=1"
+            "https://bousaikun.ashigaru.jp/guide/first-disaster-preparedness.html?ci_audit=1"
+            "https://bousaikun.ashigaru.jp/goods/portable-power-station-disaster.html?ci_audit=1"
+          )
+          i=0
+          for url in "${URLS[@]}"; do
+            i=$((i+1))
+            echo "Auditing $url"
+            npx --yes lighthouse@12.8.2 "$url" \
+              --quiet \
+              --chrome-flags="--headless --no-sandbox" \
+              --form-factor=mobile \
+              --only-categories=performance \
+              --output=json \
+              --output-path="lighthouse/report_${i}.json"
+          done
+
+      - name: Verify Lighthouse did not contact analytics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          forbidden = (
+              "googletagmanager.com/gtag/js",
+              "google-analytics.com/g/collect",
+              "google-analytics.com/j/collect",
+              "accaii.com/bousaikun/analyze",
+          )
+
+          failures = []
+          for path in sorted(Path("lighthouse").glob("report_*.json")):
+              data = json.loads(path.read_text(encoding="utf-8"))
+              requests = (((data.get("audits") or {}).get("network-requests") or {}).get("details") or {}).get("items") or []
+              bad = []
+              for request in requests:
+                  url = str(request.get("url") or "")
+                  if any(token in url for token in forbidden):
+                      bad.append(url)
+              if bad:
+                  failures.append((data.get("finalDisplayedUrl"), bad))
+
+          if failures:
+              for page, urls in failures:
+                  print(f"Analytics request detected during CI audit: {page}")
+                  for url in urls:
+                      print(f"- {url}")
+              raise SystemExit(1)
+
+          print("PASS: Lighthouse CI audits made no GA4 or Accaii requests.")
+          PY
+
+      - name: Summarize Lighthouse results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          print("| URL | Score | FCP | LCP | CLS | TBT | Speed Index |")
+          print("|---|---:|---:|---:|---:|---:|---:|")
+          for path in sorted(Path("lighthouse").glob("report_*.json")):
+              data = json.loads(path.read_text(encoding="utf-8"))
+              audits = data["audits"]
+              score = round(data["categories"]["performance"]["score"] * 100)
+              print(
+                  f'| {data["finalDisplayedUrl"]} | {score} | '
+                  f'{audits["first-contentful-paint"]["displayValue"]} | '
+                  f'{audits["largest-contentful-paint"]["displayValue"]} | '
+                  f'{audits["cumulative-layout-shift"]["displayValue"]} | '
+                  f'{audits["total-blocking-time"]["displayValue"]} | '
+                  f'{audits["speed-index"]["displayValue"]} |'
+              )
+
+              print("\nTop opportunities for", data["finalDisplayedUrl"])
+              opportunities = []
+              for audit in audits.values():
+                  details = audit.get("details") or {}
+                  savings = details.get("overallSavingsMs", 0) or 0
+                  if savings > 0:
+                      opportunities.append((savings, audit.get("title"), audit.get("displayValue")))
+              for savings, title, value in sorted(opportunities, reverse=True)[:8]:
+                  print(f"- {title}: {value or ''} (estimated savings {round(savings)} ms)")
+          PY
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-production-mobile
+          path: lighthouse/*.json
+          retention-days: 30

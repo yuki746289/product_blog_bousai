@@ -1,0 +1,249 @@
+<!doctype html>
+<!-- Updated: 2026-09-01 / category-first site layout -->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>防災ブログ｜暮らしの中で備える防災情報</title>
+  <meta name="description" content="地震・台風・大雨・浸水・停電・保険・防災用品など、暮らしの中で役立つ防災情報を分かりやすく整理します。">
+  <link rel="stylesheet" href="bousai_common.css">
+  <link rel="stylesheet" href="bousai_home.css">
+<script src="bousai_common.js" defer></script>
+<script src="bousai_home.js" defer></script></head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-top">
+      <a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a>
+    </div>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="category_guide.html">防災入門</a>
+      <a href="category_typhoon.html">台風</a>
+      <a href="category_flood.html">大雨・水害</a>
+      <a href="category_earthquake.html">地震</a>
+      <a href="category_vehicle.html">車と災害</a>
+      <a href="category_home.html">住宅と災害</a>
+      <a href="category_insurance.html">保険・お金</a>
+      <a href="category_goods.html">防災グッズ</a>
+      <a href="qa.html">Q&amp;A</a>
+    </nav>
+  </div>
+</header>
+<div class="official-bar"><div class="official-bar__inner">緊急時は、気象庁・自治体などの<a href="https://www.bousai.go.jp/" target="_blank" rel="noopener noreferrer">最新の公的情報</a>を確認してください。</div></div>
+
+<main class="page-shell">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">BOUSAI / DAILY PREPAREDNESS</p>
+      <h1>災害の前も、起きた後も。<br>暮らし目線で防災を考える。</h1>
+      <p>地震や台風の基本だけでなく、車の水没、住宅浸水、保険、停電・断水、防災用品まで。「実際に何に困るのか」から情報を整理する防災サイトです。</p>
+    </div>
+    <aside class="hero-quick">
+      <h2>はじめての方へ</h2>
+      <ul>
+        <li><a href="article_sample.html">防災は何から始める？</a></li>
+        <li><a href="article_b002.html">防災バッグの基本</a></li>
+        <li><a href="category_guide.html">水・食料・トイレの備え</a></li>
+        <li><a href="category_guide.html">家族で決めておくこと</a></li>
+      </ul>
+      <p class="hero-quick__more"><a href="category_guide.html">防災入門の記事をすべて見る →</a></p>
+    </aside>
+  </section>
+
+  <section class="realtime-section" id="realtime-info" data-realtime-root>
+    <div class="realtime-dashboard__top">
+      <div>
+        <div class="realtime-dashboard__kicker"><span class="realtime-pulse" aria-hidden="true"></span>気象庁データ</div>
+        <h2>いま確認できる防災情報</h2>
+        <p>全国の主な地震・警報・台風情報を簡潔にまとめています。<span class="realtime-updated" data-realtime-updated>最終取得を確認中</span></p>
+      </div>
+    </div>
+    <div class="realtime-grid" aria-live="polite">
+      <div class="realtime-item">
+        <div class="realtime-card__head"><span class="realtime-icon" aria-hidden="true">地震</span><h3>最新の地震</h3></div>
+        <p class="realtime-card__main" data-realtime-earthquake>情報を読み込んでいます。</p>
+        <p class="realtime-card__sub" data-realtime-earthquake-sub></p>
+        <a href="https://www.jma.go.jp/bosai/map.html#contents=earthquake_map" target="_blank" rel="noopener noreferrer">気象庁の地震情報を見る →</a>
+      </div>
+      <div class="realtime-item">
+        <div class="realtime-card__head"><span class="realtime-icon" aria-hidden="true">警報</span><h3>主な警報・特別警報</h3></div>
+        <div class="realtime-card__main" data-realtime-warnings>情報を読み込んでいます。</div>
+        <a href="https://www.jma.go.jp/bosai/map.html#contents=warning" target="_blank" rel="noopener noreferrer">気象庁の警報情報を見る →</a>
+      </div>
+      <div class="realtime-item">
+        <div class="realtime-card__head"><span class="realtime-icon" aria-hidden="true">台風</span><h3>現在の台風</h3></div>
+        <div class="realtime-card__main" data-realtime-typhoon>情報を読み込んでいます。</div>
+        <a href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener noreferrer">気象庁の台風情報を見る →</a>
+      </div>
+    </div>
+    <div class="realtime-status" data-realtime-status>
+      当サイトの表示には遅延する場合があります。避難判断には気象庁・自治体などの最新情報を確認してください。
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><div><h2>ピックアップ</h2><p>季節や災害時の困りごとに合わせて、先に確認しておきたい記事をまとめています。</p></div></div>
+    <div class="pickup-grid">
+      <article class="pickup-card pickup-card--hero">
+        <a class="pickup-card__visual pickup-card__visual--image" href="article_b008.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2018%20Western%20Japan%20flood%20damage%20Hiroshima%20prefecture%20P7096760%20(41487541540).jpg?width=960" alt="2018年西日本豪雨で損傷した自動車" loading="lazy"></a>
+        <div class="pickup-card__body">
+          <span class="label">車と水害</span>
+          <h3><a class="title-link" href="article_b008.html">車が冠水・水没しそうなときに知っておきたいこと</a></h3>
+          <p>冠水路を避ける考え方から、万一水没の危険が迫った場合まで、知っておきたいポイントを整理します。</p>
+          <a class="card-link" href="article_b008.html">車の冠水・水没対策を読む →</a>
+        </div>
+      </article>
+      <div class="pickup-secondary">
+        <article class="pickup-card"><a class="card-thumb" href="article_b013.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2018%20Western%20Japan%20flood%20damage%20Hiroshima%20prefecture%20P7096759%20(42392964415).jpg?width=960" alt="2018年西日本豪雨による被害状況" loading="lazy"></a><div class="pickup-card__body"><span class="label">保険</span><h3><a class="title-link" href="article_b013.html">火災保険の「水災補償」とは？</a></h3><p>住宅浸水との関係を分かりやすく整理。</p><a class="card-link" href="article_b013.html">火災保険の水災補償を読む →</a></div></article>
+        <article class="pickup-card"><a class="card-thumb" href="article_b006.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bavi%202026-07-05%200620Z.png?width=960" alt="ひまわり9号が捉えた台風の衛星画像" loading="lazy"></a><div class="pickup-card__body"><span class="label">台風</span><h3><a class="title-link" href="article_b006.html">台風が来る前に何を確認する？</a></h3><p>屋外・窓・停電など、事前にできる備えを確認。</p><a class="card-link" href="article_b006.html">台風前の備えを読む →</a></div></article>
+        <article class="pickup-card"><a class="card-thumb" href="article_sample.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Earthquake_Kit_in_Japan_2008.jpg/960px-Earthquake_Kit_in_Japan_2008.jpg" alt="非常持出袋や水、保存食などの防災用品" loading="lazy"></a><div class="pickup-card__body"><span class="label">防災入門</span><h3><a class="title-link" href="article_sample.html">防災は何から始める？</a></h3><p>最初から全部そろえず、優先順位から考えます。</p><a class="card-link" href="article_sample.html">防災の始め方を読む →</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><div><h2>はじめての防災</h2><p>まずは家庭で無理なく始められる基本から。</p></div><a class="text-link" href="category_guide.html">防災入門をすべて見る →</a></div>
+    <div class="card-grid">
+      <article class="content-card"><a class="card-thumb" href="article_sample.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Earthquake_Kit_in_Japan_2008.jpg/960px-Earthquake_Kit_in_Japan_2008.jpg" alt="非常持出袋や水、保存食などの防災用品" loading="lazy"></a><div class="card-body"><span class="label">入門</span><h3><a class="title-link" href="article_sample.html">防災は何から始める？</a></h3><p>自宅・家族・備蓄・避難先の4つから優先順位を整理します。</p><a class="card-link" href="article_sample.html">防災の基本を読む →</a></div></article>
+      <article class="content-card"><a class="card-thumb" href="article_b002.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Earthquake%20Survival%20Kit%20(2851285960).jpg?width=960" alt="防災用の持ち出しキット" loading="lazy"></a><div class="card-body"><span class="label">備え</span><h3><a class="title-link" href="article_b002.html">防災バッグの基本</a></h3><p>持ち出すものと、自宅に備蓄するものを分けて考えます。</p><a class="card-link" href="article_b002.html">防災バッグの基本を読む →</a></div></article>
+      <article class="content-card"><a class="card-thumb" href="article_b003.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Earthquake%20Survival%20Kit%20-%20Checklist%20(2851285426).jpg?width=960" alt="水や食品などを並べた防災用品チェックリスト" loading="lazy"></a><div class="card-body"><span class="label">備蓄</span><h3><a class="title-link" href="article_b003.html">断水に備える携帯トイレ</a></h3><p>必要数、保管場所、使い方を確認してから備えます。</p><a class="card-link" href="article_b003.html">携帯トイレの備え方を読む →</a></div></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><div><h2>災害別に備える</h2><p>カテゴリから入ることも、代表記事へ直接進むこともできます。</p></div></div>
+    <div class="topic-grid">
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_typhoon.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bavi%202026-07-05%200620Z.png?width=960" alt="台風の衛星画像" loading="lazy"></a>
+        <h3><a href="category_typhoon.html">台風</a></h3><p>強風・停電・大雨への事前準備。</p>
+        <div class="topic-card__articles">
+          <a href="article_b006.html">台風が来る前に何をする？</a>
+          <a href="article_b021.html" data-article-id="B021">台風前日に確認したいこと</a>
+        </div>
+        <a class="topic-card__more" href="category_typhoon.html">台風の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_flood.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Flood%20buried%20bridge,%20Ashida%20River%2020180706.jpg?width=960" alt="豪雨で水没した橋" loading="lazy"></a>
+        <h3><a href="category_flood.html">大雨・水害</a></h3><p>洪水、内水氾濫、浸水への備え。</p>
+        <div class="topic-card__articles">
+          <a href="article_b005.html">大雨・水害にどう備える？</a>
+          <a href="article_b008.html">車が冠水・水没しそうなとき</a>
+          <a href="article_b013.html">火災保険の水災補償とは？</a>
+        </div>
+        <a class="topic-card__more" href="category_flood.html">大雨・水害の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_earthquake.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/FEMA_-_5054_-_Photograph_by_John_Shea_taken_on_03-11-2001_in_Washington.jpg?width=800" alt="地震対策として壁に固定された家具" loading="lazy"></a>
+        <h3><a href="category_earthquake.html">地震</a></h3><p>家具、停電、断水、避難の基本。</p>
+        <div class="topic-card__articles">
+          <a href="article_b007.html">地震に備えて最初に確認したいこと</a>
+          <a href="article_b023.html" data-article-id="B023">地震の家具転倒対策</a>
+        </div>
+        <a class="topic-card__more" href="category_earthquake.html">地震の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_outage.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Powered_on_flashlight.jpg?width=960" alt="点灯した防災用ライト" loading="lazy"></a>
+        <h3><a href="category_outage.html">停電・断水</a></h3><p>電気・水・トイレをどう備えるか。</p>
+        <div class="topic-card__articles">
+          <a href="article_b004.html">停電に備えて準備しておきたいもの</a>
+          <a href="article_b003.html">断水に備える携帯トイレ</a>
+        </div>
+        <a class="topic-card__more" href="category_outage.html">停電・断水の記事をすべて見る →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading"><div><h2>困りごとから探す</h2><p>「車」「住宅」「保険」など、実際の困りごとから複数の記事を探せます。</p></div></div>
+    <div class="topic-grid">
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_vehicle.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2018%20Western%20Japan%20flood%20damage%20Hiroshima%20prefecture%20P7096760%20(41487541540).jpg?width=960" alt="水害で損傷した自動車" loading="lazy"></a>
+        <h3><a href="category_vehicle.html">車と災害</a></h3><p>冠水・駐車場所・保険・車載用品。</p>
+        <div class="topic-card__articles">
+          <a href="article_b008.html">車が冠水・水没しそうなとき</a>
+          <a href="article_b011.html" data-article-id="B011">水没した車は車両保険の対象？</a>
+          <a href="article_b029.html">車に積んでおきたい防災用品</a>
+        </div>
+        <a class="topic-card__more" href="category_vehicle.html">車と災害の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_home.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Storm-door,amado,narita-city,japan.JPG?width=960" alt="日本住宅の雨戸" loading="lazy"></a>
+        <h3><a href="category_home.html">住宅と災害</a></h3><p>浸水・台風・家具転倒など住宅の備え。</p>
+        <div class="topic-card__articles">
+          <a href="article_b012.html" data-article-id="B012">自宅の浸水にどう備える？</a>
+          <a href="article_b020.html" data-article-id="B020">大雨前の浸水対策チェック</a>
+          <a href="article_b022.html" data-article-id="B022">マンションの台風・水害対策</a>
+        </div>
+        <a class="topic-card__more" href="category_home.html">住宅と災害の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_insurance.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2018%20Western%20Japan%20flood%20damage%20Hiroshima%20prefecture%20P7096759%20(42392964415).jpg?width=960" alt="水害による住宅周辺の被害" loading="lazy"></a>
+        <h3><a href="category_insurance.html">保険・お金</a></h3><p>水災・風災・地震・車両損害。</p>
+        <div class="topic-card__articles">
+          <a href="article_b013.html">火災保険の水災補償とは？</a>
+          <a href="article_b011.html" data-article-id="B011">水没した車は車両保険の対象？</a>
+          <a href="article_b017.html" data-article-id="B017">地震保険の基本</a>
+        </div>
+        <a class="topic-card__more" href="category_insurance.html">保険・お金の記事をすべて見る →</a>
+      </article>
+      <article class="topic-card">
+        <a class="topic-card__thumb" href="category_post_disaster.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/2018%20Western%20Japan%20flood%20damage%20Hiroshima%20prefecture%20(43914434395).jpg?width=960" alt="豪雨後に残った構造物被害" loading="lazy"></a>
+        <h3><a href="category_post_disaster.html">被災後の手続き</a></h3><p>安全確保、記録、保険連絡など。</p>
+        <div class="topic-card__articles">
+          <a href="article_b015.html" data-article-id="B015">片付ける前に記録したいもの</a>
+          <a href="article_b013.html">火災保険の水災補償を確認する</a>
+        </div>
+        <a class="topic-card__more" href="category_post_disaster.html">被災後の記事をすべて見る →</a>
+      </article>
+    </div>
+  </section>
+
+  
+
+  <section class="section">
+    <div class="section-heading"><div><h2>防災グッズ</h2><p>「何を買うか」より先に、「何に備えるためか」から選びます。</p></div><a class="text-link" href="category_goods.html">防災グッズをすべて見る →</a></div>
+    <div class="card-grid">
+      <article class="goods-card"><a class="card-thumb" href="goods_toilet_hygiene.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E9%81%BF%E9%9B%A3%E7%94%A8%E5%93%81%E3%82%BB%E3%83%83%E3%83%88%20(8439158672).jpg?width=960" alt="リュックや水などをまとめた避難用品セット" loading="lazy"></a><div class="card-body"><span class="label">断水</span><h3><a class="title-link" href="goods_toilet_hygiene.html">携帯トイレ</a></h3><p>必要数、保管場所、使い方を確認してから選びます。</p><a class="card-link" href="goods_toilet_hygiene.html">携帯トイレの選び方を見る →</a></div></article>
+      <article class="goods-card"><a class="card-thumb" href="goods_light_information.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/%E9%9D%9E%E5%B8%B8%E7%94%A8%E3%83%A9%E3%82%B8%E3%82%AA%20%286775749265%29.jpg?width=960" alt="日本で撮影された手回し式非常用ラジオ" loading="lazy"></a><div class="card-body"><span class="label">情報</span><h3><a class="title-link" href="goods_light_information.html">ライト・ラジオ</a></h3><p>照明と情報収集を分けて考えます。</p><a class="card-link" href="goods_light_information.html">ライト・ラジオの選び方を見る →</a></div></article>
+      <article class="goods-card"><a class="card-thumb" href="goods_power_charging.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Portable%20solar%20power%20generator-battery%20for%20charging%20USB%20devices%20%2821286441344%29.jpg?width=960" alt="ソーラーパネルと組み合わせて使う携帯電源" loading="lazy"></a><div class="card-body"><span class="label">電源</span><h3><a class="title-link" href="goods_power_charging.html">ポータブル電源</a></h3><p>容量だけでなく、用途と安全上の注意も確認。</p><a class="card-link" href="goods_power_charging.html">電源・充電用品の選び方を見る →</a></div></article>
+    </div>
+  </section>
+
+<section class="section">
+    <div class="section-heading"><div><h2>こんなとき、どうする？</h2><p>よくある疑問は、質問をクリックするとその場で回答を確認できます。</p></div><a class="text-link" href="qa.html">Q&amp;Aをすべて見る →</a></div>
+    <div class="qa-list qa-list--home">
+      <details class="qa-item">
+        <summary>水害で車が壊れたんですが、保険はおりますか？</summary>
+<div class="qa-answer"><p><strong>一般的には、車両保険が付いていれば、台風・洪水・高潮による水没は補償対象になります。</strong> ただし契約タイプによっては対象外です。</p><p>まず「車両保険」が付いているか確認し、付いていれば自己判断で諦めず事故連絡します。地震・噴火・津波による水没は通常の車両保険では原則対象外で、別の特約を確認します。</p><div class="qa-related"><strong>関連:</strong> <a href="article_b011.html" data-article-id="B011">水没した車は車両保険の対象？</a> / <a href="article_b008.html">車の冠水・水没</a></div></div>
+      </details>
+      <details class="qa-item">
+        <summary>水没した車は、エンジンをかけて確認してもいいですか？</summary>
+<div class="qa-answer"><p><strong>いいえ。水に浸かった車は、自分でエンジンやモーターを始動しないでください。</strong> 水が引いて外見上問題がなくても、電気系統のショート、故障、車両火災のおそれがあります。</p><p>「一度だけ動くか試す」のも避け、販売店・整備工場・ロードサービスへ連絡して点検・搬送を依頼します。EV・PHEV・HVは高電圧部へ触れません。</p><div class="qa-related"><strong>関連:</strong> <a href="article_b008.html">車の冠水・水没</a></div></div>
+      </details>
+      <details class="qa-item">
+        <summary>自宅が床上浸水しました。火災保険は使えますか？</summary>
+<div class="qa-answer"><p><strong>火災保険に「水災補償」が付いていれば、洪水や豪雨による床上浸水の建物損害は一般的に補償対象になり得ます。</strong></p><p>確認するのは「建物」＋「水災」です。水災補償を外している契約では対象になりません。安全確保後に建物全体、浸水高さ、損傷箇所を撮り、保険会社・代理店へ連絡します。</p><div class="qa-related"><strong>関連:</strong> <a href="article_b013.html">火災保険の水災補償</a></div></div>
+      </details>
+      <details class="qa-item">
+        <summary>冠水した道路は何cmくらいまでなら走れますか？</summary>
+<div class="qa-answer"><p><strong>実道路で「ここまでなら安全」と使える水深はありません。冠水しているのが分かったら入らず迂回するのが基本です。</strong></p><p>JAF試験では30cmを走れた条件もありますが、車種・速度によって浸水や部品損傷があり、30cmは安全基準ではありません。流れ、穴、側溝、水位上昇も見えないため、前車が通れても追従しません。</p><div class="qa-related"><strong>関連:</strong> <a href="article_b008.html">車の冠水・水没</a> / <a href="article_b009.html" data-article-id="B009">冠水路を走る危険</a></div></div>
+      </details>
+      <details class="qa-item">
+        <summary>防災バッグは何kgまでなら大丈夫ですか？</summary>
+<div class="qa-answer"><p><strong>一律の上限はありませんが、自治体の案内には10〜15kg程度を目安例として示すものがあります。ただし、自分で安全に持って避難できる重さが優先です。</strong></p><p>完成後に実際に背負って階段を上り下りし、少し歩いてみてください。重い場合は水や1週間分の備蓄を全部入れず、持出品と自宅備蓄を分けます。</p><div class="qa-related"><strong>関連:</strong> <a href="article_b002.html">防災バッグの基本</a></div></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="public-source-box">
+    <h2>公的な災害情報について</h2>
+    <p>トップページでは気象庁の公開データを自動表示していますが、緊急速報の配信や即時性を保証するものではありません。災害発生時は、気象庁・国・自治体などの最新情報を優先してください。</p>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="footer-inner">
+  <div class="footer-links"><a href="about.html">運営方針</a><a href="disclaimer.html">免責事項</a><a href="privacy.html">プライバシーポリシー</a><a href="advertising.html">広告について</a><a href="https://www.jma.go.jp/bosai/" target="_blank" rel="noopener noreferrer">気象庁 防災情報</a></div>
+  <div class="footer-note">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</div>
+</div></footer>
+</body>
+</html>
