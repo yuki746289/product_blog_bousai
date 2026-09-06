@@ -44,6 +44,9 @@ jobs:
       - name: Build production files
         run: python scripts/build_public.py
 
+      - name: Finalize search metadata
+        run: python scripts/finalize_search_metadata.py
+
       - name: Check JavaScript syntax
         run: |
           node --check public/bousai_common.js
@@ -130,6 +133,7 @@ jobs:
           grep -q "防災くらしガイド" "${tmp_home}"
           grep -q 'class="skip-link"' "${tmp_home}"
           grep -q 'id="main-content"' "${tmp_home}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}\">" "${tmp_home}"
           grep -q 'assets/images/commons/' "${tmp_home}"
           grep -q 'data-realtime-root' "${tmp_home}"
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
@@ -141,6 +145,7 @@ jobs:
           tmp_article="$(mktemp)"
           fetch_public "guide/first-disaster-preparedness.html" "${tmp_article}"
           grep -q "防災くらしガイド" "${tmp_article}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}guide/first-disaster-preparedness.html\">" "${tmp_article}"
           grep -q 'data-generated="article-structured-data"' "${tmp_article}"
           grep -q '"@type":"BlogPosting"' "${tmp_article}"
           grep -q '"@type":"BreadcrumbList"' "${tmp_article}"
@@ -149,6 +154,7 @@ jobs:
           tmp_product="$(mktemp)"
           fetch_public "goods/toilet-hygiene.html" "${tmp_product}"
           grep -q 'class="article-shell product-page"' "${tmp_product}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}goods/toilet-hygiene.html\">" "${tmp_product}"
           grep -q '商品情報より' "${tmp_product}"
           rm -f "${tmp_product}"
 
