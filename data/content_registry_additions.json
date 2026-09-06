@@ -34,8 +34,8 @@
       "image_relevance_review_status": "PASS",
       "image_relevance_reviewed_at": "2026-09-06",
       "production_build_status": "READY_FOR_DEPLOY",
-      "published_at": "2026-09-06",
-      "modified_at": "2026-09-06"
+      "published_at": "2026-09-07",
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -71,8 +71,8 @@
       "image_relevance_review_status": "PASS",
       "image_relevance_reviewed_at": "2026-09-06",
       "production_build_status": "READY_FOR_DEPLOY",
-      "published_at": "2026-09-06",
-      "modified_at": "2026-09-06"
+      "published_at": "2026-09-07",
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -108,8 +108,8 @@
       "image_relevance_review_status": "PASS",
       "image_relevance_reviewed_at": "2026-09-06",
       "production_build_status": "READY_FOR_DEPLOY",
-      "published_at": "2026-09-06",
-      "modified_at": "2026-09-06"
+      "published_at": "2026-09-07",
+      "modified_at": "2026-09-07"
     }
   ]
 }
