@@ -1,0 +1,38 @@
+name: Sync content metrics once
+
+on:
+  push:
+    branches:
+      - fix/article-content-depth-20260907
+    paths:
+      - "scripts/sync_article_content_metrics.py"
+      - ".github/workflows/sync-content-metrics-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/article-content-depth-20260907
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Sync registry metrics
+        run: python scripts/sync_article_content_metrics.py
+      - name: Verify registry metrics
+        run: python -m unittest tests.test_article_content_registry_metrics
+      - name: Commit synced registry
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/content_registry.json data/content_registry_additions.json
+          if git diff --cached --quiet; then
+            echo "No registry changes."
+            exit 0
+          fi
+          git commit -m "Sync article content metrics in registry"
+          git push origin HEAD:fix/article-content-depth-20260907
