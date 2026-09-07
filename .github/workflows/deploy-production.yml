@@ -151,6 +151,14 @@ jobs:
           grep -q '"@type":"BreadcrumbList"' "${tmp_article}"
           rm -f "${tmp_article}"
 
+          tmp_insurance="$(mktemp)"
+          fetch_public "insurance/disaster-insurance-overview.html" "${tmp_insurance}"
+          grep -q "原因 × 被害物 × 契約" "${tmp_insurance}"
+          grep -q "ケース5：賃貸住宅" "${tmp_insurance}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}insurance/disaster-insurance-overview.html\">" "${tmp_insurance}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_insurance}"
+          rm -f "${tmp_insurance}"
+
           tmp_region="$(mktemp)"
           fetch_public "region/miyagi/earthquake-tsunami-history.html" "${tmp_region}"
           grep -q "1978年宮城県沖地震" "${tmp_region}"
