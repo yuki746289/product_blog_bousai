@@ -15,7 +15,8 @@
 - content_role: `pillar`
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
-- review_status: `PASS_AFTER_STRENGTHENING`
+- review_status: `PASS`
+- review_result: `PASS_AFTER_STRENGTHENING`
 - last_checked_at: 2026-09-07
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
@@ -128,6 +129,7 @@
 
 ## 9. 最終判定
 
-- review_status: `PASS_AFTER_STRENGTHENING`
+- review_status: `PASS`
+- review_result: `PASS_AFTER_STRENGTHENING`
 - READY_TO_PUBLISH: `YES`
 - 判定理由: 旧1,760字の短い総論から、具体ケース・判断材料・次の行動を備えたpillarへ補強。読後に自分の契約確認へ移れる状態と判断。
