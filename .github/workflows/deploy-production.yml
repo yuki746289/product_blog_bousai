@@ -1,3 +1,4 @@
+# Updated: 2026-09-08 08:16 JST
 name: Deploy production site
 
 on:
@@ -9,7 +10,7 @@ on:
       - "preview/**"
       - "content/**"
       - "data/content_registry.json"
-      - "data/content_registry_additions.json"
+      - "data/content_registry_additions*.json"
       - "config/site.json"
       - "templates/**"
       - "scripts/**"
@@ -166,6 +167,21 @@ jobs:
           grep -q 'data-generated="article-structured-data"' "${tmp_region}"
           rm -f "${tmp_region}"
 
+          tmp_mabi="$(mktemp)"
+          fetch_public "region/okayama/mabi-2018-flood-history.html" "${tmp_mabi}"
+          grep -q "倉敷市真備地区の水害史" "${tmp_mabi}"
+          grep -q "約1,200ha" "${tmp_mabi}"
+          grep -q "2024年3月" "${tmp_mabi}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}region/okayama/mabi-2018-flood-history.html\">" "${tmp_mabi}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_mabi}"
+          rm -f "${tmp_mabi}"
+
+          tmp_region_index="$(mktemp)"
+          fetch_public "region/index.html" "${tmp_region_index}"
+          grep -q "8地域・8記事" "${tmp_region_index}"
+          grep -q "倉敷市真備地区の水害史" "${tmp_region_index}"
+          rm -f "${tmp_region_index}"
+
           tmp_product="$(mktemp)"
           fetch_public "goods/toilet-hygiene.html" "${tmp_product}"
           grep -q 'class="article-shell product-page"' "${tmp_product}"
@@ -229,6 +245,7 @@ jobs:
           grep -q "${BASE_URL}region/miyagi/earthquake-tsunami-history.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/hiroshima/landslide-history.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/arakawa/flood-history.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}region/okayama/mabi-2018-flood-history.html" "${tmp_sitemap}"
           rm -f "${tmp_sitemap}"
 
           googlebot_status="$(curl --silent --show-error --location \

@@ -1,3 +1,4 @@
+# Updated: 2026-09-08 08:16 JST
 name: Content freshness check
 
 on:
@@ -6,6 +7,7 @@ on:
     paths:
       - "content/**"
       - "data/content_registry.json"
+      - "data/content_registry_additions*.json"
       - "config/site.json"
       - "scripts/**"
       - "tests/**"
