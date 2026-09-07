@@ -31,6 +31,30 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
             self.assertIn(company, source)
             self.assertIn(company, preview)
 
+    def test_individual_company_explanations_are_substantive_and_scannable(self) -> None:
+        source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
+        preview = self._text("preview/article_b051.html")
+
+        # Every insurer gets an explicit feature summary and a separate
+        # confirmation point so the detail section does not regress to
+        # one-line table duplication.
+        self.assertGreaterEqual(source.count("**特徴："), 10)
+        self.assertGreaterEqual(source.count("**確認ポイント："), 10)
+        self.assertGreaterEqual(preview.count("<strong>特徴："), 10)
+        self.assertGreaterEqual(preview.count("<strong>確認ポイント："), 10)
+
+        for token in (
+            "実損払",
+            "定率払",
+            "ワイド・ベーシック・スリム",
+            "フルサポート",
+            "特定設備水災補償特約",
+            "水災一時金特約",
+            "ベーシックI型",
+        ):
+            self.assertIn(token, source)
+            self.assertIn(token, preview)
+
     def test_article_keeps_neutral_comparison_boundaries(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
@@ -47,7 +71,6 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_internal_cluster_links_are_preserved(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
-        # These links are editorial links authored in both source and preview.
         for link in (
             "article_b013.html",
             "article_b016.html",
@@ -56,8 +79,6 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
             self.assertIn(link, source)
             self.assertIn(link, preview)
 
-        # B019 is the parent/overview route and is intentionally added in the
-        # preview related-article block rather than duplicated in source prose.
         self.assertIn("article_b019.html", preview)
 
     def test_registry_and_insurance_category_publish_b051(self) -> None:

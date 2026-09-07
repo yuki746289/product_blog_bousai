@@ -48,6 +48,7 @@ STATIC_HTML_MAP = {
     "category_goods.html": "goods/index.html",
     "category_outage.html": "outage/index.html",
     "category_post_disaster.html": "post-disaster/index.html",
+    "category_region.html": "region/index.html",
     "goods_water_food.html": "goods/water-food.html",
     "goods_toilet_hygiene.html": "goods/toilet-hygiene.html",
     "goods_light_information.html": "goods/light-information.html",
