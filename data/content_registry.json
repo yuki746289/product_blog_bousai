@@ -3,6 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B001",
+      "body_char_count_approx": 3233,
       "category": "guide",
       "content_role": "pillar",
       "image_source_count": 3,
@@ -42,11 +43,12 @@
       "image_relevance_reviewed_at": "2026-09-02",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-02",
-      "modified_at": "2026-09-03"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
       "article_id": "B002",
+      "body_char_count_approx": 4181,
       "category": "guide",
       "content_role": "practical",
       "image_source_count": 5,
@@ -819,7 +821,7 @@
       "image_relevance_reviewed_at": "2026-09-02",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-02",
-      "modified_at": "2026-09-03"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -1112,7 +1114,7 @@
       "image_relevance_reviewed_at": "2026-09-02",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-02",
-      "modified_at": "2026-09-03"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -1167,6 +1169,7 @@
     {
       "affiliate": false,
       "article_id": "B025",
+      "body_char_count_approx": 2586,
       "category": "guide",
       "content_role": "detail",
       "last_reviewed_at": "2026-09-04",
@@ -1184,7 +1187,6 @@
       "slug": "drinking-water-stockpile",
       "status": "READY_TO_PUBLISH",
       "title": "飲料水はどう備蓄する？家庭での考え方",
-      "body_char_count_approx": 2586,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1208,11 +1210,12 @@
       "image_relevance_reviewed_at": "2026-09-02",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-02",
-      "modified_at": "2026-09-02"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": true,
       "article_id": "B026",
+      "body_char_count_approx": 2585,
       "category": "guide",
       "content_role": "detail",
       "last_reviewed_at": "2026-09-04",
@@ -1230,7 +1233,6 @@
       "slug": "emergency-food-stockpile",
       "status": "READY_TO_PUBLISH",
       "title": "非常食は何日分必要？3日〜1週間の備蓄とローリングストック",
-      "body_char_count_approx": 2585,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1267,6 +1269,7 @@
     {
       "affiliate": true,
       "article_id": "B027",
+      "body_char_count_approx": 2730,
       "category": "goods",
       "content_role": "product",
       "last_reviewed_at": "2026-09-04",
@@ -1284,7 +1287,6 @@
       "slug": "emergency-radio-guide",
       "status": "READY_TO_PUBLISH",
       "title": "防災ラジオは必要？情報収集手段を比較する",
-      "body_char_count_approx": 2730,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1322,6 +1324,7 @@
     {
       "affiliate": true,
       "article_id": "B028",
+      "body_char_count_approx": 3900,
       "category": "goods",
       "content_role": "product",
       "last_reviewed_at": "2026-09-04",
@@ -1339,7 +1342,6 @@
       "slug": "portable-power-station-disaster",
       "status": "READY_TO_PUBLISH",
       "title": "ポータブル電源は防災に必要？用途と注意点",
-      "body_char_count_approx": 3900,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1379,6 +1381,7 @@
     {
       "affiliate": true,
       "article_id": "B029",
+      "body_char_count_approx": 2086,
       "category": "vehicle",
       "content_role": "product",
       "last_reviewed_at": "2026-09-04",
@@ -1396,7 +1399,6 @@
       "slug": "car-emergency-kit",
       "status": "READY_TO_PUBLISH",
       "title": "車に積んでおきたい防災用品｜車載用に考える",
-      "body_char_count_approx": 2086,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1433,6 +1435,7 @@
     {
       "affiliate": false,
       "article_id": "B030",
+      "body_char_count_approx": 2548,
       "category": "guide",
       "content_role": "practical",
       "last_reviewed_at": "2026-09-04",
@@ -1450,7 +1453,6 @@
       "slug": "family-disaster-contact-plan",
       "status": "READY_TO_PUBLISH",
       "title": "家族で決めておきたい災害時の連絡・集合ルール",
-      "body_char_count_approx": 2548,
       "content_depth_checked_at": "2026-09-01",
       "content_depth_status": "PASS",
       "source_checked_at": "2026-09-04",
@@ -1527,7 +1529,7 @@
       "image_relevance_reviewed_at": "2026-09-03",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-03",
-      "modified_at": "2026-09-03"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -1575,7 +1577,7 @@
       "image_relevance_reviewed_at": "2026-09-03",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-03",
-      "modified_at": "2026-09-03"
+      "modified_at": "2026-09-07"
     },
     {
       "affiliate": false,
@@ -2110,7 +2112,7 @@
       "image_relevance_reviewed_at": "2026-09-05",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-05",
-      "modified_at": "2026-09-05"
+      "modified_at": "2026-09-07"
     },
     {
       "content_depth_checked_at": "2026-09-05",
@@ -2137,6 +2139,7 @@
       "published_at": "2026-09-05",
       "modified_at": "2026-09-05",
       "article_id": "B044",
+      "body_char_count_approx": 3788,
       "slug": "vehicle-overnight-disaster",
       "title": "災害時の車中泊は安全？エコノミークラス症候群・一酸化炭素・暑さ寒さ",
       "category": "vehicle",
@@ -2158,8 +2161,7 @@
         "F-B044-004",
         "F-B044-005",
         "F-B044-006"
-      ],
-      "body_char_count_approx": 3788
+      ]
     },
     {
       "content_depth_checked_at": "2026-09-05",
@@ -2184,8 +2186,9 @@
       "image_relevance_reviewed_at": "2026-09-05",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-05",
-      "modified_at": "2026-09-05",
+      "modified_at": "2026-09-07",
       "article_id": "B045",
+      "body_char_count_approx": 3203,
       "slug": "blackout-refrigerator-food-safety",
       "title": "停電したら冷蔵庫の食品はいつまで？冷蔵・冷凍食品の判断と停電対策",
       "category": "blackout",
@@ -2205,8 +2208,7 @@
         "F-B045-002",
         "F-B045-003",
         "F-B045-004"
-      ],
-      "body_char_count_approx": 3203
+      ]
     },
     {
       "content_depth_checked_at": "2026-09-05",
@@ -2231,8 +2233,9 @@
       "image_relevance_reviewed_at": "2026-09-05",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-05",
-      "modified_at": "2026-09-05",
+      "modified_at": "2026-09-07",
       "article_id": "B046",
+      "body_char_count_approx": 2660,
       "slug": "typhoon-window-glass",
       "title": "台風の窓ガラス対策｜養生テープだけで大丈夫？雨戸・飛散防止・割れた後",
       "category": "typhoon",
@@ -2252,8 +2255,7 @@
         "F-B046-002",
         "F-B046-003",
         "F-B046-004"
-      ],
-      "body_char_count_approx": 2660
+      ]
     },
     {
       "content_depth_checked_at": "2026-09-05",
@@ -2278,8 +2280,9 @@
       "image_relevance_reviewed_at": "2026-09-05",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-05",
-      "modified_at": "2026-09-06",
+      "modified_at": "2026-09-07",
       "article_id": "B047",
+      "body_char_count_approx": 3386,
       "slug": "blackout-heatstroke",
       "title": "真夏に停電したらどうする？エアコンが使えないときの熱中症対策",
       "category": "blackout",
@@ -2299,8 +2302,7 @@
         "F-B047-002",
         "F-B047-003",
         "F-B047-004"
-      ],
-      "body_char_count_approx": 3386
+      ]
     }
   ],
   "schema_version": "1.1",
