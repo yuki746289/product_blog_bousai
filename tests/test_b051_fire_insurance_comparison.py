@@ -16,16 +16,8 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
         companies = (
-            "ソニー損保",
-            "SBI損保",
-            "セコム損保",
-            "SOMPOダイレクト",
-            "日新火災",
-            "三井住友海上",
-            "東京海上日動",
-            "あいおいニッセイ同和損保",
-            "AIG損保",
-            "損保ジャパン",
+            "ソニー損保", "SBI損保", "セコム損保", "SOMPOダイレクト", "日新火災",
+            "三井住友海上", "東京海上日動", "あいおいニッセイ同和損保", "AIG損保", "損保ジャパン",
         )
         for company in companies:
             self.assertIn(company, source)
@@ -34,31 +26,21 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_individual_company_explanations_are_substantive_and_scannable(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
-
-        # Every insurer gets an explicit feature summary and a separate
-        # confirmation point so the detail section does not regress to
-        # one-line table duplication.
         self.assertGreaterEqual(source.count("**特徴："), 10)
         self.assertGreaterEqual(source.count("**確認ポイント："), 10)
         self.assertGreaterEqual(preview.count("<strong>特徴："), 10)
         self.assertGreaterEqual(preview.count("<strong>確認ポイント："), 10)
-
-        # Source and preview must preserve the substantive comparison concepts.
-        for token in (
-            "実損払",
-            "定率払",
-            "ワイド・ベーシック・スリム",
-            "フルサポート",
-            "特定設備",
-            "水災一時金特約",
-            "ベーシックI型",
-        ):
+        for token in ("実損払", "定率払", "ワイド・ベーシック・スリム", "フルサポート", "特定設備", "水災一時金特約", "ベーシックI型"):
             self.assertIn(token, source)
             self.assertIn(token, preview)
-
-        # The reader-facing preview uses the current official rider name,
-        # while the Markdown source may describe the same rider generically.
         self.assertIn("特定設備水災補償特約", preview)
+
+    def test_company_details_are_single_column_after_copy_expansion(self) -> None:
+        preview = self._text("preview/article_b051.html")
+        # The comparison table stays compact, but long company explanations
+        # must not return to a multi-column layout.
+        self.assertEqual(3, preview.count('class="visual-card-grid" style="grid-template-columns:1fr"'))
+        self.assertNotIn('style="grid-template-columns:2fr', preview)
 
     def test_article_keeps_neutral_comparison_boundaries(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
@@ -76,14 +58,9 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_internal_cluster_links_are_preserved(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
-        for link in (
-            "article_b013.html",
-            "article_b016.html",
-            "article_b017.html",
-        ):
+        for link in ("article_b013.html", "article_b016.html", "article_b017.html"):
             self.assertIn(link, source)
             self.assertIn(link, preview)
-
         self.assertIn("article_b019.html", preview)
 
     def test_registry_and_insurance_category_publish_b051(self) -> None:
@@ -95,7 +72,6 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
         self.assertEqual("2026-09-07", article["published_at"])
         self.assertEqual(0, article["image_source_count"])
         self.assertEqual("APPROVED", article["image_status"])
-
         category = self._text("preview/category_insurance.html")
         self.assertIn('href="article_b051.html"', category)
         self.assertIn('data-article-id="B051"', category)
