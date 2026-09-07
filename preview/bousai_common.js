@@ -1,7 +1,9 @@
-/* Created: 2026-09-02 / Updated: 2026-09-04 / common preview behavior */
+/* Created: 2026-09-02 / Updated: 2026-09-07 / common preview behavior */
 (function () {
   var FONT_SIZE_STORAGE_KEY = "bousai-font-size";
   var MOBILE_NAV_MEDIA_QUERY = "(max-width: 720px)";
+  var CATEGORY_SUMMARY_CACHE_PREFIX = "bousai-category-summary:";
+  var CATEGORY_SUMMARY_MAX_LENGTH = 82;
   var FONT_SIZE_LEVELS = {
     normal: { label: "普通", scale: "100%" },
     large: { label: "大", scale: "112.5%" },
@@ -81,6 +83,21 @@
     document.head.appendChild(style);
   }
 
+  function ensureCategoryListingStyles() {
+    if (document.getElementById("bousai-category-listing-styles")) return;
+
+    var style = document.createElement("style");
+    style.id = "bousai-category-listing-styles";
+    style.textContent = [
+      '.category-article-link[data-article-id] { align-items: flex-start; }',
+      '.category-article-copy { display: block; min-width: 0; }',
+      '.category-article-title { display: block; color: var(--navy); font-size: .96rem; font-weight: 750; line-height: 1.55; }',
+      '.category-article-summary { display: block; margin-top: 5px; color: var(--muted); font-size: .82rem; font-weight: 500; line-height: 1.65; text-decoration: none; }',
+      '.category-article-link:hover .category-article-summary, .category-article-link:focus-visible .category-article-summary { text-decoration: none; }'
+    ].join("\n");
+    document.head.appendChild(style);
+  }
+
   function normalizeFontSizeLevel(level) {
     return Object.prototype.hasOwnProperty.call(FONT_SIZE_LEVELS, level) ? level : "normal";
   }
@@ -146,6 +163,46 @@
     });
 
     headerTop.appendChild(group);
+  }
+
+  function ensureRegionNavLink() {
+    var nav = document.querySelector(".site-nav");
+    if (!nav) return;
+
+    var links = Array.prototype.slice.call(nav.querySelectorAll("a[href]"));
+    var exists = links.some(function (link) {
+      var href = (link.getAttribute("href") || "").toLowerCase();
+      return href.indexOf("category_region.html") !== -1 || href.indexOf("region/index.html") !== -1;
+    });
+    if (exists) return;
+
+    var goodsLink = links.find(function (link) {
+      var href = (link.getAttribute("href") || "").toLowerCase();
+      return href.indexOf("category_goods.html") !== -1 || href.indexOf("goods/index.html") !== -1;
+    });
+
+    var regionHref = "category_region.html";
+    if (goodsLink) {
+      var goodsHref = goodsLink.getAttribute("href") || "";
+      if (goodsHref.indexOf("category_goods.html") !== -1) {
+        regionHref = goodsHref.replace("category_goods.html", "category_region.html");
+      } else if (goodsHref.indexOf("goods/index.html") !== -1) {
+        regionHref = goodsHref.replace("goods/index.html", "region/index.html");
+      }
+    }
+
+    var regionLink = document.createElement("a");
+    regionLink.href = regionHref;
+    regionLink.textContent = "地域別";
+
+    var qaLink = links.find(function (link) {
+      return /(?:^|\/)qa\.html(?:$|[?#])/.test(link.getAttribute("href") || "");
+    });
+    if (qaLink) {
+      nav.insertBefore(regionLink, qaLink);
+    } else {
+      nav.appendChild(regionLink);
+    }
   }
 
   function setMobileNavState(nav, button, expanded) {
@@ -293,6 +350,96 @@
     }
   }
 
+  function shortenCategorySummary(text) {
+    var normalized = (text || "").replace(/\s+/g, " ").trim();
+    if (normalized.length <= CATEGORY_SUMMARY_MAX_LENGTH) return normalized;
+    return normalized.slice(0, CATEGORY_SUMMARY_MAX_LENGTH - 1).replace(/[、。・\s]+$/, "") + "…";
+  }
+
+  function readCategorySummaryCache(key) {
+    try {
+      return window.sessionStorage.getItem(CATEGORY_SUMMARY_CACHE_PREFIX + key) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function saveCategorySummaryCache(key, value) {
+    try {
+      window.sessionStorage.setItem(CATEGORY_SUMMARY_CACHE_PREFIX + key, value);
+    } catch (error) {
+      /* Storage can be unavailable in privacy-restricted environments. */
+    }
+  }
+
+  function applyCategoryArticleSummary(link, summary) {
+    if (!link || !summary || link.querySelector(".category-article-summary")) return;
+
+    var copy = link.querySelector("span");
+    if (!copy) return;
+
+    var titleText = (copy.textContent || "").replace(/\s+/g, " ").trim();
+    if (!titleText) return;
+
+    copy.textContent = "";
+    copy.classList.add("category-article-copy");
+
+    var title = document.createElement("strong");
+    title.className = "category-article-title";
+    title.textContent = titleText;
+
+    var description = document.createElement("span");
+    description.className = "category-article-summary";
+    description.textContent = shortenCategorySummary(summary);
+
+    copy.appendChild(title);
+    copy.appendChild(description);
+  }
+
+  function loadCategoryArticleSummary(link) {
+    var href = link.getAttribute("href") || "";
+    if (!href || link.querySelector(".category-article-summary")) return;
+
+    var cacheKey;
+    try {
+      cacheKey = new URL(href, window.location.href).pathname;
+    } catch (error) {
+      cacheKey = href;
+    }
+
+    var cached = readCategorySummaryCache(cacheKey);
+    if (cached) {
+      applyCategoryArticleSummary(link, cached);
+      return;
+    }
+
+    fetch(href, { credentials: "same-origin" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("summary source unavailable");
+        return response.text();
+      })
+      .then(function (html) {
+        var parsed = new DOMParser().parseFromString(html, "text/html");
+        var meta = parsed.querySelector('meta[name="description"]');
+        var summary = meta ? shortenCategorySummary(meta.getAttribute("content") || "") : "";
+        if (!summary) return;
+        saveCategorySummaryCache(cacheKey, summary);
+        applyCategoryArticleSummary(link, summary);
+      })
+      .catch(function () {
+        /* Keep the original title-only list when the linked page cannot be loaded. */
+      });
+  }
+
+  function enhanceCategoryArticleListings() {
+    if (!document.querySelector(".category-page")) return;
+    ensureCategoryListingStyles();
+
+    document.querySelectorAll("a.category-article-link[data-article-id]").forEach(function (link) {
+      loadCategoryArticleSummary(link);
+    });
+  }
+
   function bindImageFallbacks() {
     document.querySelectorAll("img").forEach(function (img) {
       img.addEventListener("error", function () {
@@ -358,9 +505,11 @@
   }
 
   function init() {
+    ensureRegionNavLink();
     enhanceFontSizeControl();
     enhanceMobileNavigation();
     enhanceAccessibility();
+    enhanceCategoryArticleListings();
     bindImageFallbacks();
     bindTrackedLinks();
   }
