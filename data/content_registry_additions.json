@@ -3,6 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B048",
+"body_char_count_approx": 3588,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 1,
@@ -40,6 +41,7 @@
     {
       "affiliate": false,
       "article_id": "B049",
+"body_char_count_approx": 4024,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 1,
@@ -77,6 +79,7 @@
     {
       "affiliate": false,
       "article_id": "B050",
+"body_char_count_approx": 4274,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 1,
@@ -114,6 +117,7 @@
     {
       "affiliate": false,
       "article_id": "B051",
+"body_char_count_approx": 6125,
       "category": "insurance",
       "content_role": "comparison",
       "image_source_count": 0,
@@ -151,6 +155,7 @@
     {
       "affiliate": false,
       "article_id": "B052",
+"body_char_count_approx": 3653,
       "category": "insurance",
       "content_role": "detail",
       "image_source_count": 0,
@@ -188,6 +193,7 @@
     {
       "affiliate": false,
       "article_id": "B053",
+"body_char_count_approx": 2524,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -225,6 +231,7 @@
     {
       "affiliate": false,
       "article_id": "B054",
+"body_char_count_approx": 2530,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 0,
@@ -262,6 +269,7 @@
     {
       "affiliate": false,
       "article_id": "B055",
+"body_char_count_approx": 3015,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 0,
@@ -299,6 +307,7 @@
     {
       "affiliate": false,
       "article_id": "B056",
+"body_char_count_approx": 2637,
       "category": "guide",
       "content_role": "detail",
       "image_source_count": 1,
@@ -336,6 +345,7 @@
     {
       "affiliate": false,
       "article_id": "B057",
+"body_char_count_approx": 2140,
       "category": "earthquake",
       "content_role": "action",
       "image_source_count": 0,
@@ -373,6 +383,7 @@
     {
       "affiliate": false,
       "article_id": "B058",
+"body_char_count_approx": 2339,
       "category": "guide",
       "content_role": "action",
       "image_source_count": 0,

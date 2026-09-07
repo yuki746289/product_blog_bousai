@@ -79,3 +79,13 @@
 - review_status: `PASS`
 - READY_TO_PUBLISH: `YES`
 - 判定理由: 2026-09-04時点の公的情報、安全表現、記事役割、内部導線、サイト固有チェックを再監査し、公開正本とレビュー状態を同期。
+
+<!-- content-depth-20260907:metric -->
+## 2026-09-07 本文量・読者満足度の再確認
+
+- reader_visible_char_count: **3,305字**
+- guideline_minimum: **2,500字**
+- length_status: **PASS**
+- counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
+- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+<!-- /content-depth-20260907:metric -->
