@@ -6,6 +6,7 @@ on:
       - fix/article-content-depth-20260907
     paths:
       - "scripts/apply_article_content_depth_fixes_20260907.py"
+      - "scripts/apply_article_content_depth_fixes_v2_20260907.py"
       - ".github/workflows/apply-content-depth-fixes.yml"
 
 permissions:
@@ -26,7 +27,7 @@ jobs:
           python-version: "3.11"
 
       - name: Apply content depth fixes
-        run: python scripts/apply_article_content_depth_fixes_20260907.py
+        run: python scripts/apply_article_content_depth_fixes_v2_20260907.py
 
       - name: Verify article metrics
         run: python scripts/audit_article_content_metrics.py --format markdown --fail-under-minimum
