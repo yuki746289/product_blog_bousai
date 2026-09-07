@@ -5,7 +5,7 @@ title: 土砂災害はいつ避難する？土砂キキクルと避難判断の�
 category: flood
 content_role: practical
 risk_level: high
-status: REVIEW_REQUIRED
+status: READY_TO_PUBLISH
 source_checked_at: 2026-09-04
 next_review_at: 2027-03-04
 affiliate: false
