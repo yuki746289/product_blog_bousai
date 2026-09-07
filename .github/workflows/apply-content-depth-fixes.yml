@@ -1,0 +1,44 @@
+name: Apply content depth fixes
+
+on:
+  push:
+    branches:
+      - fix/article-content-depth-20260907
+    paths:
+      - "scripts/apply_article_content_depth_fixes_20260907.py"
+      - ".github/workflows/apply-content-depth-fixes.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/article-content-depth-20260907
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Apply content depth fixes
+        run: python scripts/apply_article_content_depth_fixes_20260907.py
+
+      - name: Verify article metrics
+        run: python scripts/audit_article_content_metrics.py --format markdown --fail-under-minimum
+
+      - name: Commit generated changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content preview data docs/reviews
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "Strengthen articles below content depth guidelines"
+          git push origin HEAD:fix/article-content-depth-20260907
