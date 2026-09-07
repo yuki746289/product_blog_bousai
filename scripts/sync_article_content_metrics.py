@@ -1,3 +1,4 @@
+# Updated: 2026-09-08 08:16 JST
 from __future__ import annotations
 
 import json
@@ -9,7 +10,7 @@ from audit_article_content_metrics import audit
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATHS = [
     ROOT / "data" / "content_registry.json",
-    ROOT / "data" / "content_registry_additions.json",
+    *sorted((ROOT / "data").glob("content_registry_additions*.json")),
 ]
 MODIFIED_ARTICLES_20260907 = {
     "B001", "B017", "B023", "B025", "B031", "B032", "B043",
