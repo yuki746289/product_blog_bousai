@@ -1,3 +1,4 @@
+# Updated: 2026-09-08 08:16 JST
 from __future__ import annotations
 
 import unittest
@@ -95,15 +96,16 @@ class RegionHistoryBatch2Tests(unittest.TestCase):
             self.assertIn("review_status: PASS", review)
             self.assertIn("READY_TO_PUBLISH: YES", review)
 
-    def test_region_category_has_seven_populated_regions_without_empty_placeholders(self) -> None:
+    def test_region_category_has_eight_populated_regions_without_empty_placeholders(self) -> None:
         region = self.text("preview/category_region.html")
-        self.assertIn("7地域・7記事", region)
+        self.assertIn("8地域・8記事", region)
         for heading in ("北海道・東北", "関東", "中部", "近畿", "中国", "四国", "九州・沖縄"):
             self.assertIn(f"<h2>{heading}</h2>", region)
         for article_id in range(48, 57):
             if article_id in (51, 52):
                 continue
             self.assertIn(f'article_b{article_id:03d}.html', region)
+        self.assertIn('article_b059.html', region)
         self.assertNotIn("準備中", region)
 
     def test_disaster_categories_surface_new_regional_articles(self) -> None:
@@ -111,6 +113,7 @@ class RegionHistoryBatch2Tests(unittest.TestCase):
         earthquake = self.text("preview/category_earthquake.html")
         guide = self.text("preview/category_guide.html")
         self.assertIn('href="article_b053.html"', flood)
+        self.assertIn('href="article_b059.html"', flood)
         self.assertIn('href="article_b054.html"', earthquake)
         self.assertIn('href="article_b055.html"', earthquake)
         self.assertIn('href="article_b056.html"', guide)

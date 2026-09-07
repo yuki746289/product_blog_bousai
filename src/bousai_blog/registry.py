@@ -1,7 +1,8 @@
+# Updated: 2026-09-08 08:16 JST
 """Load the base content registry plus small reviewed additions.
 
 The original registry is intentionally kept stable. New article batches can be
-reviewed as a small adjacent JSON file instead of replacing the entire large
+reviewed as small adjacent JSON files instead of replacing the entire large
 registry document in one commit.
 """
 
@@ -12,7 +13,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
-ADDITIONS_FILENAME = "content_registry_additions.json"
+ADDITIONS_GLOB = "content_registry_additions*.json"
 
 
 def _read_registry_file(path: Path) -> dict[str, Any]:
@@ -26,17 +27,14 @@ def _read_registry_file(path: Path) -> dict[str, Any]:
 
 
 def load_registry(path: str | Path, *, include_additions: bool = True) -> dict[str, Any]:
-    """Load a registry and append an adjacent reviewed additions file when present."""
+    """Load a registry and append adjacent reviewed addition batches when present."""
     registry_path = Path(path)
     data = deepcopy(_read_registry_file(registry_path))
 
     if not include_additions or registry_path.name != "content_registry.json":
         return data
 
-    additions_path = registry_path.with_name(ADDITIONS_FILENAME)
-    if not additions_path.is_file():
-        return data
-
-    additions = _read_registry_file(additions_path)
-    data["articles"].extend(deepcopy(additions["articles"]))
+    for additions_path in sorted(registry_path.parent.glob(ADDITIONS_GLOB)):
+        additions = _read_registry_file(additions_path)
+        data["articles"].extend(deepcopy(additions["articles"]))
     return data

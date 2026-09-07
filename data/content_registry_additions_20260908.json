@@ -1,0 +1,49 @@
+{
+  "articles": [
+    {
+      "affiliate": false,
+      "article_id": "B059",
+      "body_char_count_approx": 3828,
+      "category": "flood",
+      "content_role": "detail",
+      "image_source_count": 0,
+      "image_source_path": "docs/research/B059_IMAGES.md",
+      "image_status": "APPROVED",
+      "last_reviewed_at": "2026-09-08",
+      "manual_review_required": true,
+      "manual_review_status": "APPROVED",
+      "next_review_at": "2027-03-08",
+      "parent_article_id": "B042",
+      "pickup_candidate": false,
+      "planned_public_path": "region/okayama/mabi-2018-flood-history.html",
+      "preview_path": "preview/article_b059.html",
+      "priority": "high",
+      "publish_blockers": [],
+      "review_checklist_last_checked_at": "2026-09-08",
+      "review_checklist_path": "docs/reviews/B059_CHECKLIST.md",
+      "review_checklist_status": "PASS",
+      "risk_level": "elevated",
+      "slug": "mabi-2018-flood-history",
+      "source_checked_at": "2026-09-08",
+      "source_count": 6,
+      "source_ids": [
+        "F-B059-001",
+        "F-B059-002",
+        "F-B059-003",
+        "F-B059-004",
+        "F-B059-005",
+        "F-B059-006"
+      ],
+      "source_path": "content/articles/B059_mabi_2018_flood_history.md",
+      "status": "READY_TO_PUBLISH",
+      "title": "倉敷市真備地区の水害史｜平成30年7月豪雨の浸水・堤防決壊から考える洪水対策",
+      "readability_review_status": "PASS",
+      "readability_reviewed_at": "2026-09-08",
+      "image_relevance_review_status": "PASS",
+      "image_relevance_reviewed_at": "2026-09-08",
+      "production_build_status": "READY_FOR_DEPLOY",
+      "published_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    }
+  ]
+}
