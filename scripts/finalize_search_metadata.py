@@ -42,6 +42,10 @@ SITE_NAV_RE = re.compile(
     r'(?P<close></nav>)',
     re.IGNORECASE | re.DOTALL,
 )
+CATEGORY_PAGE_RE = re.compile(
+    r'<main\b(?=[^>]*\bclass=["\'][^"\']*\bcategory-page\b[^"\']*["\'])[^>]*>',
+    re.IGNORECASE,
+)
 QA_ANCHOR_RE = re.compile(
     r'<a\b[^>]*\bhref=["\'][^"\']*qa\.html[^"\']*["\'][^>]*>.*?</a>',
     re.IGNORECASE | re.DOTALL,
@@ -114,6 +118,10 @@ def validate_canonical(html: str, expected: str, relative_output_path: str) -> l
             f"{href_match.group('href')} != {expected}"
         )
     return errors
+
+
+def is_category_page(html: str) -> bool:
+    return CATEGORY_PAGE_RE.search(html) is not None
 
 
 def extract_meta_description(html: str) -> str:
@@ -243,7 +251,7 @@ def validate_category_enhancements(html: str, relative_output_path: str) -> list
                 f"{relative_output_path}: regional navigation count != 1 ({len(region_links)})"
             )
 
-    if 'class="category-page"' not in html and "class='category-page'" not in html:
+    if not is_category_page(html):
         return errors
 
     article_link_count = 0
@@ -282,7 +290,7 @@ def finalize_public() -> None:
         html = path.read_text(encoding="utf-8")
 
         enhanced = inject_region_navigation(html, relative)
-        if 'class="category-page"' in enhanced or "class='category-page'" in enhanced:
+        if is_category_page(enhanced):
             enhanced = inject_category_article_summaries(enhanced, article_summaries)
             enhanced = inject_category_listing_styles(enhanced)
 

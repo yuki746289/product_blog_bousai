@@ -1,4 +1,4 @@
-# Created: 2026-09-07 23:40 JST
+# Created: 2026-09-07 23:40 JST / Updated: 2026-09-07
 import re
 import subprocess
 import sys
@@ -8,6 +8,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
+CATEGORY_PAGE_RE = re.compile(
+    r'<main\b(?=[^>]*\bclass=["\'][^"\']*\bcategory-page\b[^"\']*["\'])[^>]*>',
+    re.IGNORECASE,
+)
 CATEGORY_LINK_RE = re.compile(
     r'<a\b[^>]*\bclass=["\'][^"\']*\bcategory-article-link\b[^"\']*["\'][^>]*'
     r'\bdata-article-id=["\']B\d{3}["\'][^>]*>',
@@ -30,14 +34,22 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         )
 
     def test_region_link_is_static_and_unique_in_navigation(self):
+        earthquake_articles = sorted(
+            page
+            for page in (PUBLIC / "earthquake").glob("*.html")
+            if page.name != "index.html"
+        )
+        self.assertTrue(earthquake_articles)
+
         pages = [
             PUBLIC / "index.html",
             PUBLIC / "guide" / "index.html",
-            PUBLIC / "earthquake" / "earthquake-preparedness.html",
+            earthquake_articles[0],
             PUBLIC / "region" / "index.html",
             PUBLIC / "region" / "miyagi" / "earthquake-tsunami-history.html",
         ]
         for page in pages:
+            self.assertTrue(page.exists(), page)
             html = page.read_text(encoding="utf-8")
             nav_match = re.search(
                 r'<nav\b[^>]*\bclass=["\'][^"\']*\bsite-nav\b[^"\']*["\'][^>]*>'
@@ -54,7 +66,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         checked_pages = 0
         for page in sorted(PUBLIC.glob("*/index.html")):
             html = page.read_text(encoding="utf-8")
-            if 'class="category-page"' not in html:
+            if CATEGORY_PAGE_RE.search(html) is None:
                 continue
 
             article_links = CATEGORY_LINK_RE.findall(html)
@@ -79,6 +91,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         before = guide.read_text(encoding="utf-8")
         before_region_count = len(re.findall(r'>\s*地域別\s*</a>', before))
         before_summary_count = before.count('class="category-article-summary"')
+        self.assertGreater(before_summary_count, 0)
 
         subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "finalize_search_metadata.py")],
