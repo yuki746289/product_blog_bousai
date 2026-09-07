@@ -40,3 +40,13 @@
 - READY_TO_PUBLISH: YES
 - 公開前残作業: 通常のテスト、変更レビュー、main反映、必要なデプロイ、本番HTTP確認
 - 判定理由: 既知の原稿・公開HTML不整合を解消し、安全条件・準備・内部リンクが最終生成HTMLまで残る回帰検査を追加したため
+
+<!-- content-depth-20260907:metric -->
+## 2026-09-07 本文量・読者満足度の再確認
+
+- reader_visible_char_count: **3,386字**
+- guideline_minimum: **3,000字**
+- length_status: **PASS**
+- counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
+- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+<!-- /content-depth-20260907:metric -->

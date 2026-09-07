@@ -3,6 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B048",
+      "body_char_count_approx": 3588,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 1,
@@ -25,7 +26,15 @@
       "slug": "miyagi-earthquake-tsunami-history",
       "source_checked_at": "2026-09-06",
       "source_count": 7,
-      "source_ids": ["F-B048-001", "F-B048-002", "F-B048-003", "F-B048-004", "F-B048-005", "F-B048-006", "F-B048-007"],
+      "source_ids": [
+        "F-B048-001",
+        "F-B048-002",
+        "F-B048-003",
+        "F-B048-004",
+        "F-B048-005",
+        "F-B048-006",
+        "F-B048-007"
+      ],
       "source_path": "content/articles/B048_miyagi_earthquake_tsunami_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "宮城県ではどんな地震・津波が起きた？1978年宮城県沖地震と東日本大震災から考える備え",
@@ -40,6 +49,7 @@
     {
       "affiliate": false,
       "article_id": "B049",
+      "body_char_count_approx": 4024,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 1,
@@ -62,7 +72,14 @@
       "slug": "hiroshima-landslide-history",
       "source_checked_at": "2026-09-06",
       "source_count": 6,
-      "source_ids": ["F-B049-001", "F-B049-002", "F-B049-003", "F-B049-004", "F-B049-005", "F-B049-006"],
+      "source_ids": [
+        "F-B049-001",
+        "F-B049-002",
+        "F-B049-003",
+        "F-B049-004",
+        "F-B049-005",
+        "F-B049-006"
+      ],
       "source_path": "content/articles/B049_hiroshima_landslide_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "広島市の土砂災害史｜1999年・2014年・2018年の豪雨から考える備え",
@@ -77,6 +94,7 @@
     {
       "affiliate": false,
       "article_id": "B050",
+      "body_char_count_approx": 4274,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 1,
@@ -99,7 +117,15 @@
       "slug": "arakawa-flood-history",
       "source_checked_at": "2026-09-06",
       "source_count": 7,
-      "source_ids": ["F-B050-001", "F-B050-002", "F-B050-003", "F-B050-004", "F-B050-005", "F-B050-006", "F-B050-007"],
+      "source_ids": [
+        "F-B050-001",
+        "F-B050-002",
+        "F-B050-003",
+        "F-B050-004",
+        "F-B050-005",
+        "F-B050-006",
+        "F-B050-007"
+      ],
       "source_path": "content/articles/B050_arakawa_flood_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "荒川下流の洪水史｜明治43年洪水・カスリーン台風と東京東部低地の水害リスク",
@@ -114,6 +140,7 @@
     {
       "affiliate": false,
       "article_id": "B051",
+      "body_char_count_approx": 6125,
       "category": "insurance",
       "content_role": "comparison",
       "image_source_count": 0,
@@ -136,7 +163,20 @@
       "slug": "fire-insurance-10-company-comparison",
       "source_checked_at": "2026-09-07",
       "source_count": 12,
-      "source_ids": ["F-B051-001", "F-B051-002", "F-B051-003", "F-B051-004", "F-B051-005", "F-B051-006", "F-B051-007", "F-B051-008", "F-B051-009", "F-B051-010", "F-B051-011", "F-B051-012"],
+      "source_ids": [
+        "F-B051-001",
+        "F-B051-002",
+        "F-B051-003",
+        "F-B051-004",
+        "F-B051-005",
+        "F-B051-006",
+        "F-B051-007",
+        "F-B051-008",
+        "F-B051-009",
+        "F-B051-010",
+        "F-B051-011",
+        "F-B051-012"
+      ],
       "source_path": "content/articles/B051_fire_insurance_10_company_comparison.md",
       "status": "READY_TO_PUBLISH",
       "title": "火災保険10社を比較｜水災・風災・補償の選び方・申込方法【2026年9月確認】",
@@ -151,6 +191,7 @@
     {
       "affiliate": false,
       "article_id": "B052",
+      "body_char_count_approx": 3653,
       "category": "insurance",
       "content_role": "detail",
       "image_source_count": 0,
@@ -173,7 +214,14 @@
       "slug": "earthquake-insurance-company-differences",
       "source_checked_at": "2026-09-07",
       "source_count": 6,
-      "source_ids": ["F-B052-001", "F-B052-002", "F-B052-003", "F-B052-004", "F-B052-005", "F-B052-006"],
+      "source_ids": [
+        "F-B052-001",
+        "F-B052-002",
+        "F-B052-003",
+        "F-B052-004",
+        "F-B052-005",
+        "F-B052-006"
+      ],
       "source_path": "content/articles/B052_earthquake_insurance_company_differences.md",
       "status": "READY_TO_PUBLISH",
       "title": "地震保険は保険会社で違う？補償・保険料が同じ点と火災保険側で違う点",
@@ -188,6 +236,7 @@
     {
       "affiliate": false,
       "article_id": "B053",
+      "body_char_count_approx": 2524,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -210,7 +259,14 @@
       "slug": "nagoya-flood-storm-surge-history",
       "source_checked_at": "2026-09-07",
       "source_count": 6,
-      "source_ids": ["F-B053-001", "F-B053-002", "F-B053-003", "F-B053-004", "F-B053-005", "F-B053-006"],
+      "source_ids": [
+        "F-B053-001",
+        "F-B053-002",
+        "F-B053-003",
+        "F-B053-004",
+        "F-B053-005",
+        "F-B053-006"
+      ],
       "source_path": "content/articles/B053_nagoya_flood_storm_surge_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "名古屋市の水害史｜伊勢湾台風と東海豪雨のデータから考える高潮・浸水対策",
@@ -225,6 +281,7 @@
     {
       "affiliate": false,
       "article_id": "B054",
+      "body_char_count_approx": 2530,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 0,
@@ -247,7 +304,11 @@
       "slug": "kobe-earthquake-history",
       "source_checked_at": "2026-09-07",
       "source_count": 3,
-      "source_ids": ["F-B054-001", "F-B054-002", "F-B054-003"],
+      "source_ids": [
+        "F-B054-001",
+        "F-B054-002",
+        "F-B054-003"
+      ],
       "source_path": "content/articles/B054_kobe_earthquake_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "神戸市の地震災害史｜阪神・淡路大震災の倒壊・火災データから考える備え",
@@ -262,6 +323,7 @@
     {
       "affiliate": false,
       "article_id": "B055",
+      "body_char_count_approx": 3015,
       "category": "earthquake",
       "content_role": "detail",
       "image_source_count": 0,
@@ -284,7 +346,13 @@
       "slug": "kochi-nankai-earthquake-tsunami-history",
       "source_checked_at": "2026-09-07",
       "source_count": 5,
-      "source_ids": ["F-B055-001", "F-B055-002", "F-B055-003", "F-B055-004", "F-B055-005"],
+      "source_ids": [
+        "F-B055-001",
+        "F-B055-002",
+        "F-B055-003",
+        "F-B055-004",
+        "F-B055-005"
+      ],
       "source_path": "content/articles/B055_kochi_nankai_earthquake_tsunami_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "高知の南海地震・津波史｜昭和南海地震と最新ハザードから考える避難",
@@ -299,6 +367,7 @@
     {
       "affiliate": false,
       "article_id": "B056",
+      "body_char_count_approx": 2637,
       "category": "guide",
       "content_role": "detail",
       "image_source_count": 1,
@@ -321,7 +390,13 @@
       "slug": "kagoshima-sakurajima-eruption-ash-history",
       "source_checked_at": "2026-09-07",
       "source_count": 5,
-      "source_ids": ["F-B056-001", "F-B056-002", "F-B056-003", "F-B056-004", "F-B056-005"],
+      "source_ids": [
+        "F-B056-001",
+        "F-B056-002",
+        "F-B056-003",
+        "F-B056-004",
+        "F-B056-005"
+      ],
       "source_path": "content/articles/B056_kagoshima_sakurajima_eruption_ash_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "鹿児島市・桜島の噴火史｜大正噴火と降灰データから考える火山灰対策",
@@ -336,6 +411,7 @@
     {
       "affiliate": false,
       "article_id": "B057",
+      "body_char_count_approx": 2140,
       "category": "earthquake",
       "content_role": "action",
       "image_source_count": 0,
@@ -358,7 +434,12 @@
       "slug": "earthquake-immediate-actions",
       "source_checked_at": "2026-09-07",
       "source_count": 4,
-      "source_ids": ["F-B057-001", "F-B057-002", "F-B057-003", "F-B057-004"],
+      "source_ids": [
+        "F-B057-001",
+        "F-B057-002",
+        "F-B057-003",
+        "F-B057-004"
+      ],
       "source_path": "content/articles/B057_earthquake_immediate_actions.md",
       "status": "READY_TO_PUBLISH",
       "title": "地震が起きたらまず何をする？揺れている間・揺れが収まった直後の行動",
@@ -373,6 +454,7 @@
     {
       "affiliate": false,
       "article_id": "B058",
+      "body_char_count_approx": 2339,
       "category": "guide",
       "content_role": "action",
       "image_source_count": 0,
@@ -395,7 +477,13 @@
       "slug": "volcano-eruption-ash-immediate-actions",
       "source_checked_at": "2026-09-07",
       "source_count": 5,
-      "source_ids": ["F-B058-001", "F-B058-002", "F-B058-003", "F-B058-004", "F-B058-005"],
+      "source_ids": [
+        "F-B058-001",
+        "F-B058-002",
+        "F-B058-003",
+        "F-B058-004",
+        "F-B058-005"
+      ],
       "source_path": "content/articles/B058_volcano_eruption_ash_immediate_actions.md",
       "status": "READY_TO_PUBLISH",
       "title": "火山が噴火・降灰したらどうする？噴石・火山灰・避難の初動",

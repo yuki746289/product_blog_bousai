@@ -68,3 +68,13 @@
 - 公開前残作業: preview、registry、カテゴリ導線、回帰テスト、本番反映
 
 判定理由: **公的制度として同一の地震保険と、民間火災保険側の差を明確に分離し、会社ランキングを作るより正確で実用的な回答になっている。**
+
+<!-- content-depth-20260907:metric -->
+## 2026-09-07 本文量・読者満足度の再確認
+
+- reader_visible_char_count: **3,653字**
+- guideline_minimum: **2,500字**
+- length_status: **PASS**
+- counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
+- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+<!-- /content-depth-20260907:metric -->
