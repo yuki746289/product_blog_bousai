@@ -98,19 +98,30 @@ class RegionHistoryPilotTests(unittest.TestCase):
             self.assertEqual("2026-09-07", article["published_at"])
             self.assertEqual("2026-09-07", article["modified_at"])
 
-    def test_category_routes_surface_region_history_without_new_top_level_category(self) -> None:
+    def test_dedicated_region_category_groups_current_articles_by_area(self) -> None:
+        region = self._text("preview/category_region.html")
         earthquake = self._text("preview/category_earthquake.html")
         flood = self._text("preview/category_flood.html")
 
+        for heading in ("北海道・東北", "関東", "中国"):
+            self.assertIn(heading, region)
+        for article_id, link in (
+            ("B048", "article_b048.html"),
+            ("B049", "article_b049.html"),
+            ("B050", "article_b050.html"),
+        ):
+            self.assertIn(f'href="{link}"', region)
+            self.assertIn(f'data-article-id="{article_id}"', region)
+
+        self.assertIn("過去の被害範囲は、現在の危険区域そのものではありません", region)
+        self.assertIn('href="category_region.html"', earthquake)
+        self.assertIn('href="category_region.html"', flood)
+
         self.assertIn("地域の災害史から備えを考える", earthquake)
         self.assertIn('href="article_b048.html"', earthquake)
-        self.assertIn('data-article-id="B048"', earthquake)
-
         self.assertIn("地域の災害史から備えを考える", flood)
         self.assertIn('href="article_b049.html"', flood)
         self.assertIn('href="article_b050.html"', flood)
-        self.assertIn('data-article-id="B049"', flood)
-        self.assertIn('data-article-id="B050"', flood)
 
 
 if __name__ == "__main__":
