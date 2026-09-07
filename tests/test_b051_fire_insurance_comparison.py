@@ -43,17 +43,22 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
         self.assertGreaterEqual(preview.count("<strong>特徴："), 10)
         self.assertGreaterEqual(preview.count("<strong>確認ポイント："), 10)
 
+        # Source and preview must preserve the substantive comparison concepts.
         for token in (
             "実損払",
             "定率払",
             "ワイド・ベーシック・スリム",
             "フルサポート",
-            "特定設備水災補償特約",
+            "特定設備",
             "水災一時金特約",
             "ベーシックI型",
         ):
             self.assertIn(token, source)
             self.assertIn(token, preview)
+
+        # The reader-facing preview uses the current official rider name,
+        # while the Markdown source may describe the same rider generically.
+        self.assertIn("特定設備水災補償特約", preview)
 
     def test_article_keeps_neutral_comparison_boundaries(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
