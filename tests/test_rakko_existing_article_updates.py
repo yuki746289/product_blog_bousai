@@ -1,3 +1,4 @@
+# Updated: 2026-09-09 06:17 JST
 from pathlib import Path
 import unittest
 
@@ -22,7 +23,8 @@ class RakkoExistingArticleUpdateTests(unittest.TestCase):
         ):
             self.assert_contains_all(
                 path,
-                "避難所へ行く場合に追加確認",
+                "避難所へ行く場合",
+                "代替しにくい物",
                 "お薬手帳",
                 "避難を遅らせない",
             )
