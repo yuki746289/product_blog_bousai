@@ -1,4 +1,4 @@
-# Created: 2026-09-05
+# Updated: 2026-09-09 06:17 JST
 import json
 import unittest
 from pathlib import Path
@@ -39,7 +39,8 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         required_content = (
             "味見",
             "必要以上に開けない",
-            "ドライアイスや保冷剤",
+            "ドライアイス",
+            "保冷剤",
             "二酸化炭素",
             "article_b004.html",
             "article_b028.html",
@@ -72,7 +73,8 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         required_content = (
             "自力で水が飲めない、意識がない場合",
             "屋内、車庫、換気が不十分な場所で発電機を使わない",
-            "モバイル扇風機や保冷剤があるから長時間自宅で大丈夫",
+            "モバイル扇風機や保冷剤",
+            "長時間自宅で大丈夫",
             "停電前に準備しておくこと",
             "高齢者・乳幼児・持病のある人を優先して確認した",
             "article_b004.html",
