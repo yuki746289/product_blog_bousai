@@ -1,4 +1,4 @@
-# Updated: 2026-09-08 08:16 JST
+# Updated: 2026-09-08 11:38 JST
 name: Deploy production site
 
 on:
@@ -189,6 +189,23 @@ jobs:
           grep -q '商品情報より' "${tmp_product}"
           rm -f "${tmp_product}"
 
+          tmp_volcanic_goods="$(mktemp)"
+          fetch_public "goods/volcanic-ash-protection.html" "${tmp_volcanic_goods}"
+          grep -q "火山灰対策グッズの選び方" "${tmp_volcanic_goods}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}goods/volcanic-ash-protection.html\">" "${tmp_volcanic_goods}"
+          grep -q 'B081YKHRLB' "${tmp_volcanic_goods}"
+          grep -q 'B079BNC5XQ' "${tmp_volcanic_goods}"
+          grep -q 'B08NT64H61' "${tmp_volcanic_goods}"
+          grep -q '2AQ1UZ6-products_ja_mainimage.png' "${tmp_volcanic_goods}"
+          grep -q '2AQ1UZ5-products_ja_mainimage.png' "${tmp_volcanic_goods}"
+          grep -q '2AQ1V59-products_ja_mainimage.png' "${tmp_volcanic_goods}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_volcanic_goods}"
+          if grep -q 'amazon.co.jp/s?k=' "${tmp_volcanic_goods}"; then
+            echo "B060 must use direct Amazon product links, but a search link remains."
+            exit 1
+          fi
+          rm -f "${tmp_volcanic_goods}"
+
           tmp_js="$(mktemp)"
           fetch_public "bousai_common.js" "${tmp_js}"
           grep -q '"amazon_click"' "${tmp_js}"
@@ -241,6 +258,7 @@ jobs:
           fetch_public "sitemap.xml" "${tmp_sitemap}"
           grep -q "<urlset" "${tmp_sitemap}"
           grep -q "${BASE_URL}goods/portable-power-station-disaster.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}goods/volcanic-ash-protection.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}water-outage/portable-toilet-stockpile.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/miyagi/earthquake-tsunami-history.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/hiroshima/landslide-history.html" "${tmp_sitemap}"
