@@ -33,6 +33,7 @@
 
 ## Amazon・アフィリエイト
 
+- PASS: `docs/AMAZON_WORK_PREFLIGHT.md`、`docs/AFFILIATE_POLICY.md`、`docs/AMAZON_PRODUCT_AVAILABILITY_POLICY.md` を確認。
 - PASS: アソシエイト開示あり。
 - PASS: 3商品のAmazon商品詳細ページと型番一致を確認し、ASINを記録。
 - PASS: DD02-S2-2K = `B081YKHRLB`、DD02V-S2-2K = `B079BNC5XQ`、LX-22 = `B08NT64H61`。
@@ -40,6 +41,16 @@
 - PASS: 画像クリック先もCTAと同じAmazon商品詳細ページに統一。
 - PASS: アソシエイトタグは `config/site.json` の `yukitaka83-22` と一致。
 - PASS: 商品購入を安全保証・避難行動の代替として表現していない。
+
+### Amazonプレフライト証跡
+
+- amazon_preflight: PASS
+- amazon_preflight_checked_at: 2026-09-08
+- amazon_policy_refs:
+  - `docs/AMAZON_WORK_PREFLIGHT.md`
+  - `docs/AFFILIATE_POLICY.md`
+  - `docs/AMAZON_PRODUCT_AVAILABILITY_POLICY.md`
+- amazon_scope: `asin_update / image_update / product_link_update`
 
 ## 画像
 
