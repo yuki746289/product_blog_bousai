@@ -32,13 +32,29 @@ B056は桜島の地域災害史、B058は噴火・降灰時の行動が主検索
 
 ## Amazonリンク方針
 
-2026-09-08調査時点で、Amazon上の正確なASINを一次的に確定できなかった。誤った類似商品への直リンクを避け、AFFILIATE_POLICYに従い型番固定のAmazon検索リンクを使う。
+2026-09-08にAmazonの商品詳細ページと型番の一致を確認したため、AFFILIATE_POLICYに従い検索リンクからASIN固定の直接リンクへ変更する。アソシエイトタグは `config/site.json` を正とする。
 
-- DD02-S2-2K: `https://www.amazon.co.jp/s?k=DD02-S2-2K&tag=yukitaka83-22`
-- DD02V-S2-2K: `https://www.amazon.co.jp/s?k=DD02V-S2-2K&tag=yukitaka83-22`
-- LX-22: `https://www.amazon.co.jp/s?k=%E9%87%8D%E6%9D%BE+LX-22&tag=yukitaka83-22`
+| 製品 | ASIN | Amazon直接リンク |
+|---|---|---|
+| DD02-S2-2K | `B081YKHRLB` | `https://www.amazon.co.jp/dp/B081YKHRLB/ref=nosim?tag=yukitaka83-22` |
+| DD02V-S2-2K | `B079BNC5XQ` | `https://www.amazon.co.jp/dp/B079BNC5XQ/ref=nosim?tag=yukitaka83-22` |
+| LX-22 | `B08NT64H61` | `https://www.amazon.co.jp/dp/B08NT64H61/ref=nosim?tag=yukitaka83-22` |
 
 Amazon現在価格は静的表示しない。本文の参考価格はモノタロウの2026-09-08確認価格として出典を分離する。
+
+## 商品画像
+
+既存商品記事と同じく、商品カードの画像はメーカー公式製品ページが配信する製品画像を参照し、画像クリック先は対応するAmazon商品詳細ページとする。画像は自サイトへ再ホストしない。
+
+| 製品 | 画像配信元 | 画像URL |
+|---|---|---|
+| DD02-S2-2K | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1UZ6-products_ja_mainimage.png` |
+| DD02V-S2-2K | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1UZ5-products_ja_mainimage.png` |
+| LX-22 | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1V59-products_ja_mainimage.png` |
+
+- 商品名・型番とメーカー製品ページの画像を照合。
+- `alt` は型番と商品種別が分かる文言にする。
+- 既存商品カードと同じ `onerror` フォールバックを維持する。
 
 ## 主要一次・製品資料
 
@@ -48,13 +64,16 @@ Amazon現在価格は静的表示しない。本文の参考価格はモノタ�
 | F-B060-002 | 気象庁 | 降灰予報の説明 | 降灰量階級・行動 |
 | F-B060-003 | 鹿児島市 | 降灰除去対策 / 克灰袋 | 地域の灰回収 |
 | F-B060-004 | 鹿児島市 | 施設保全マネジメントガイドブック | 水で流さない、柔らかい箒等 |
-| F-B060-005 | 重松製作所 | DD02-S2-2K | 火山灰用途・DS2・仕様 |
-| F-B060-006 | 重松製作所 | DD02V-S2-2K | 火山灰用途・DS2・排気弁 |
-| F-B060-007 | 重松製作所 | LX-22 | 火山灰用途・換気口なし・規格 |
+| F-B060-005 | 重松製作所 | DD02-S2-2K | 火山灰用途・DS2・仕様・画像 |
+| F-B060-006 | 重松製作所 | DD02V-S2-2K | 火山灰用途・DS2・排気弁・画像 |
+| F-B060-007 | 重松製作所 | LX-22 | 火山灰用途・換気口なし・規格・画像 |
 | F-B060-008 | 重松製作所 | マスク装着・シールチェック | 密着確認 |
 | F-B060-009 | モノタロウ | DD02-S2-2K | 参考価格・販売継続 |
 | F-B060-010 | モノタロウ | DD02V-S2-2K | 参考価格・販売継続 |
 | F-B060-011 | モノタロウ | LX-22 | 参考価格・販売継続 |
+| F-B060-012 | Amazon.co.jp | DD02-S2-2K 商品詳細 | ASIN・型番一致 |
+| F-B060-013 | Amazon.co.jp | DD02V-S2-2K 商品詳細 | ASIN・型番一致 |
+| F-B060-014 | Amazon.co.jp | LX-22 商品詳細 | ASIN・型番一致 |
 
 ## 内部リンク
 
@@ -70,5 +89,6 @@ Amazon現在価格は静的表示しない。本文の参考価格はモノタ�
 - 既存記事との役割分離: PASS
 - 公的安全根拠: PASS
 - 具体商品根拠: PASS
-- Amazon誤リンク回避: PASS（型番固定検索リンク）
+- Amazon商品一致: PASS（3商品ともASIN固定直リンク）
+- 商品画像: PASS（メーカー公式配信画像＋既存フォールバック）
 - 最終判定: **NEW PRODUCT ARTICLE**
