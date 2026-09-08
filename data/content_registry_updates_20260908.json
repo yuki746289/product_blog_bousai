@@ -1,8 +1,43 @@
 {
   "articles": [
     {
+      "article_id": "B001",
+      "body_char_count_approx": 4310,
+      "last_reviewed_at": "2026-09-08",
+      "review_checklist_last_checked_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    },
+    {
+      "article_id": "B012",
+      "body_char_count_approx": 5088,
+      "last_reviewed_at": "2026-09-08",
+      "review_checklist_last_checked_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    },
+    {
+      "article_id": "B019",
+      "body_char_count_approx": 4765,
+      "last_reviewed_at": "2026-09-08",
+      "review_checklist_last_checked_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    },
+    {
+      "article_id": "B021",
+      "body_char_count_approx": 4487,
+      "last_reviewed_at": "2026-09-08",
+      "review_checklist_last_checked_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    },
+    {
       "article_id": "B022",
       "body_char_count_approx": 4576,
+      "last_reviewed_at": "2026-09-08",
+      "review_checklist_last_checked_at": "2026-09-08",
+      "modified_at": "2026-09-08"
+    },
+    {
+      "article_id": "B030",
+      "body_char_count_approx": 3137,
       "last_reviewed_at": "2026-09-08",
       "review_checklist_last_checked_at": "2026-09-08",
       "modified_at": "2026-09-08"
