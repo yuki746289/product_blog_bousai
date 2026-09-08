@@ -1,32 +1,60 @@
 # B060 画像調査
 
 - article_id: B060
-- image_source_count: 0
+- image_source_count: 3
 - image_status: APPROVED
 - checked_at: 2026-09-08
 
 ## 判定
 
-商品画像は本来、商品カードで表示する方が購入判断に有用。ただし本記事の3製品について、今回の作業環境では以下を満たす画像URLを確認できなかった。
+既存の商品記事と同じ商品カード方式に合わせ、3商品の実商品画像を表示する。
 
-- Amazonが正規に提供する画像URLまたはリンク機能
-- メーカーが第三者サイトでの転載を明確に許可した画像
-- 商品名・型番と完全一致し、ホットリンク可否まで確認できる配信元
+- 画像は重松製作所の公式製品ページが配信する製品画像を直接参照する。
+- 画像クリック先は、型番一致を確認したAmazon商品詳細ページへ統一する。
+- Amazonの検索結果ページではなく、ASIN固定の `/dp/ASIN` へ遷移させる。
+- 商品画像は自サイトへダウンロード・再ホストしない。
+- 画像取得失敗時は既存商品カードと同じ `onerror` フォールバックを使用する。
 
-AFFILIATE_POLICYに従い、ASINから画像URLを推測したり、メーカー・第三者通販画像を無断転載したりしない。
+## 採用画像
 
-そのため公開初版では、商品カードの画像領域からAmazon型番検索へ遷移できるテキスト表示を採用し、実商品画像の代用となるAI画像も使わない。正規のAmazon提供画像または利用許諾済みメーカー画像を取得できた時点で差し替える。
+| 製品 | Amazon ASIN | 画像配信元 | 画像URL |
+|---|---|---|---|
+| DD02-S2-2K | `B081YKHRLB` | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1UZ6-products_ja_mainimage.png` |
+| DD02V-S2-2K | `B079BNC5XQ` | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1UZ5-products_ja_mainimage.png` |
+| LX-22 | `B08NT64H61` | 重松製作所 | `https://www.sts-japan.com/upload/products_ja/2AQ1V59-products_ja_mainimage.png` |
 
-本文の視覚要素は、用途比較表、商品カード、購入後チェックリスト、危険行動の注意ボックスで確保する。
+## 照合
 
-## 将来の差し替え条件
+### DD02-S2-2K
 
-画像を追加する場合は、
+- メーカー製品ページ: `https://www.sts-japan.com/products/dd/dd02_s2_2k.php`
+- メーカー製品ページ上のメイン画像と型番を照合。
+- Amazon商品詳細ページの型番: DD02-S2-2K
+- ASIN: `B081YKHRLB`
 
-1. 型番一致
-2. 配信・転載条件確認
-3. 404/403/ホットリンク確認
-4. スマートフォン表示確認
-5. 商品情報確認日更新
+### DD02V-S2-2K
 
-を行う。
+- メーカー製品ページ: `https://www.sts-japan.com/products/dd/dd02v_s2_2k.php`
+- メーカー製品ページ上のメイン画像と型番を照合。
+- Amazon商品詳細ページの型番: DD02V-S2-2K
+- ASIN: `B079BNC5XQ`
+
+### LX-22
+
+- メーカー製品ページ: `https://www.sts-japan.com/products/eye_protector/lx-22.php`
+- メーカー製品ページ上のメイン画像と型番を照合。
+- Amazon商品詳細ページの型番: LX-22
+- ASIN: `B08NT64H61`
+
+## 表示仕様
+
+各商品カードは次を満たす。
+
+1. 商品画像をカード左側に表示
+2. 画像クリックで対応するAmazon商品詳細ページへ遷移
+3. CTAも同じAmazon商品詳細ページへ遷移
+4. `rel="nofollow sponsored noopener"` を維持
+5. `alt` に商品名・型番を含める
+6. `loading="lazy"` と既存の画像エラーフォールバックを維持
+
+商品画像は本文画像数へ加算しない。
