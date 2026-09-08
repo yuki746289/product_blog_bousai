@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-09-09T06:17:00+09:00",
+  "policy": "Article length thresholds are warning thresholds, not quotas. An article below the numeric guideline may pass only after explicit manual final-quality review confirms that the search intent, reasons, methods, exceptions, safety conditions, and next actions are complete without padding.",
+  "articles": [
+    {
+      "article_id": "B009",
+      "body_char_count": 2714,
+      "minimum_char_count": 3000,
+      "final_review_status": "PASS",
+      "rationale": "High-risk action article is intentionally concise. It already explains why flooded roads must not be entered, the decision sequence, common misjudgments, stop conditions, and what to do instead; adding prose only to reach 3000 characters would reduce action clarity."
+    },
+    {
+      "article_id": "B017",
+      "body_char_count": 2789,
+      "minimum_char_count": 3000,
+      "final_review_status": "PASS",
+      "rationale": "The article covers the earthquake-insurance system, insured property, insured amount, damage categories, policy-check sequence, enrollment judgment, and post-disaster action without a material explanation gap."
+    },
+    {
+      "article_id": "B025",
+      "body_char_count": 2343,
+      "minimum_char_count": 2500,
+      "final_review_status": "PASS",
+      "rationale": "The drinking-water article answers quantity calculation, storage, household differences, rolling stock, expiry management, and review triggers. The remaining gap to the guideline is not a reader-information gap."
+    },
+    {
+      "article_id": "B026",
+      "body_char_count": 2480,
+      "minimum_char_count": 2500,
+      "final_review_status": "PASS",
+      "rationale": "The food-stockpile article is only slightly below the guideline and already covers quantity, food selection, no-cook constraints, family conditions, rolling stock, and product-guide routing. Padding is not justified."
+    },
+    {
+      "article_id": "B045",
+      "body_char_count": 2958,
+      "minimum_char_count": 3000,
+      "final_review_status": "PASS",
+      "rationale": "The high-risk refrigerator article already gives the safety boundary, time/temperature-based judgment, food categories, dry-ice/cold-pack cautions, disposal judgment, and outage preparation. Extra filler would weaken the emergency-use structure."
+    }
+  ]
+}
