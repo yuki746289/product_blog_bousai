@@ -1,14 +1,17 @@
 # Created: 2026-09-09 06:17 JST
-"""Synchronize reviewed Markdown article content into preview HTML shells.
+# Updated: 2026-09-09 06:42 JST
+"""Synchronize reviewed Markdown article text into preview HTML shells.
 
-The public builder consumes preview/*.html, while editorial review is performed
-against content/articles/*.md. This script keeps the reviewed Markdown as the
-text source of truth without discarding the existing preview shell, feature
-image, or inline editorial images.
+Production is built from ``preview/*.html`` while editorial review is performed
+against ``content/articles/*.md``. This script keeps reviewed Markdown as the
+text source of truth without discarding the existing page shell or editorial
+images.
 
-Only the explicitly reviewed final-quality batch is synchronized here. B060 is
-a product page with bespoke product-card HTML, so it uses targeted text
-replacements instead of generic body rendering.
+For ordinary articles the ``article-body`` content is regenerated from
+Markdown. Existing inline figures are preserved. Existing rich product cards
+inside a regenerated body are preserved by Amazon ASIN and reinserted where the
+corresponding Markdown Amazon link occurs. B060 remains a targeted update
+because its bespoke product page should not be generically regenerated.
 """
 
 from __future__ import annotations
@@ -24,8 +27,6 @@ from bousai_blog.registry import load_registry
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "content_registry.json"
 
-# Articles whose reviewed Markdown changed materially in the final-quality pass,
-# plus articles whose source links were newer than their preview HTML.
 SYNC_ARTICLE_IDS = {
     "B001", "B002", "B004", "B005", "B006", "B007", "B009", "B011",
     "B012", "B014", "B015", "B016", "B017", "B018", "B020", "B023",
@@ -33,8 +34,6 @@ SYNC_ARTICLE_IDS = {
     "B043", "B045", "B046", "B047",
 }
 
-# Product page B060 is intentionally not body-rendered because its preview
-# contains verified manufacturer images and bespoke Amazon product cards.
 TARGETED_PREVIEW_REPLACEMENTS = {
     "B060": (
         ("商品情報は定期見直し", "商品情報は棚卸し日・使用後・買い替え時に見直し"),
@@ -63,12 +62,24 @@ STATIC_PRODUCTION_TO_PREVIEW = {
     "goods/power-charging.html": "goods_power_charging.html",
 }
 
+HEADING_ALIASES = {
+    "B028": {
+        "まず「停電中に何を残したいか」を決める": "1.まず「必要な家庭」と「優先度が低い家庭」を分ける",
+        "ソーラーは補充手段": "7.ソーラーパネルは補充手段の一つとして考える",
+    },
+}
+
 FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n", re.DOTALL)
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
-ARTICLE_BODY_RE = re.compile(
-    r'(?P<open><div\s+class=["\']article-body["\'][^>]*>)(?P<body>.*?)(?P<close></div>\s*</article>)',
-    re.DOTALL | re.IGNORECASE,
+ARTICLE_BODY_OPEN_RE = re.compile(
+    r'<div\s+class=["\'][^"\']*\barticle-body\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
 )
+PRODUCT_OPEN_RE = re.compile(
+    r'<div\s+class=["\'][^"\']*\bproduct-recommendation\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
+)
+DIV_TOKEN_RE = re.compile(r"<div\b[^>]*>|</div\s*>", re.IGNORECASE | re.DOTALL)
 LEAD_RE = re.compile(
     r'(?P<open><p\s+class=["\']article-lead["\'][^>]*>).*?(?P<close></p>)',
     re.DOTALL | re.IGNORECASE,
@@ -77,7 +88,10 @@ INLINE_FIGURE_RE = re.compile(
     r'<figure\b[^>]*class=["\'][^"\']*article-inline-image[^"\']*["\'][^>]*>.*?</figure>',
     re.DOTALL | re.IGNORECASE,
 )
-HEADING_HTML_RE = re.compile(r"<h(?P<level>[23])[^>]*>(?P<text>.*?)</h(?P=level)>", re.DOTALL | re.IGNORECASE)
+HEADING_HTML_RE = re.compile(
+    r"<h(?P<level>[23])[^>]*>(?P<text>.*?)</h(?P=level)>",
+    re.DOTALL | re.IGNORECASE,
+)
 TAG_RE = re.compile(r"<[^>]+>")
 H2_RE = re.compile(r"^##\s+(.+?)\s*$")
 H3_RE = re.compile(r"^###\s+(.+?)\s*$")
@@ -87,6 +101,7 @@ TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?(?:\s*:?-{3,}:?\s*\|)+\s*$")
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
+ASIN_RE = re.compile(r"amazon\.co\.jp/dp/([A-Z0-9]{8,16})", re.IGNORECASE)
 
 
 def preview_aliases(registry: dict) -> dict[str, str]:
@@ -113,47 +128,44 @@ def rewrite_preview_target(raw: str, aliases: dict[str, str]) -> str:
 
 def inline_markup(text: str, aliases: dict[str, str]) -> str:
     escaped = html.escape(text, quote=False)
-
-    # Protect Markdown links before applying other inline replacements.
-    link_placeholders: list[str] = []
+    links: list[str] = []
 
     def link_repl(match: re.Match[str]) -> str:
-        label = match.group(1)
+        label = html.escape(html.unescape(match.group(1)), quote=False)
         raw_target = html.unescape(match.group(2))
         target = rewrite_preview_target(raw_target, aliases)
-        safe_label = html.escape(html.unescape(label), quote=False)
         safe_target = html.escape(target, quote=True)
         attrs = ""
-        parts = urlsplit(target)
-        if parts.scheme in {"http", "https"}:
+        if urlsplit(target).scheme in {"http", "https"}:
             attrs = ' target="_blank" rel="noopener noreferrer"'
-        token = f"@@LINK{len(link_placeholders)}@@"
-        link_placeholders.append(f'<a href="{safe_target}"{attrs}>{safe_label}</a>')
+        token = f"@@LINK{len(links)}@@"
+        links.append(f'<a href="{safe_target}"{attrs}>{label}</a>')
         return token
 
     escaped = MARKDOWN_LINK_RE.sub(link_repl, escaped)
     escaped = INLINE_CODE_RE.sub(r"<code>\1</code>", escaped)
     escaped = BOLD_RE.sub(r"<strong>\1</strong>", escaped)
     escaped = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", escaped)
-
-    for index, value in enumerate(link_placeholders):
+    for index, value in enumerate(links):
         escaped = escaped.replace(f"@@LINK{index}@@", value)
     return escaped
 
 
 def split_cells(line: str) -> list[str]:
-    stripped = line.strip()
-    if stripped.startswith("|"):
-        stripped = stripped[1:]
-    if stripped.endswith("|"):
-        stripped = stripped[:-1]
-    return [cell.strip() for cell in stripped.split("|")]
+    value = line.strip()
+    if value.startswith("|"):
+        value = value[1:]
+    if value.endswith("|"):
+        value = value[:-1]
+    return [cell.strip() for cell in value.split("|")]
 
 
 def is_table_start(lines: list[str], index: int) -> bool:
-    if index + 1 >= len(lines):
-        return False
-    return "|" in lines[index] and bool(TABLE_SEPARATOR_RE.match(lines[index + 1]))
+    return (
+        index + 1 < len(lines)
+        and "|" in lines[index]
+        and bool(TABLE_SEPARATOR_RE.match(lines[index + 1]))
+    )
 
 
 def is_block_start(lines: list[str], index: int) -> bool:
@@ -165,15 +177,12 @@ def is_block_start(lines: list[str], index: int) -> bool:
         return True
     if stripped.startswith(">"):
         return True
-    if is_table_start(lines, index):
-        return True
-    return False
+    return is_table_start(lines, index)
 
 
 def normalize_heading_text(value: str) -> str:
     value = html.unescape(TAG_RE.sub("", value))
-    value = re.sub(r"\s+", "", value)
-    return value.strip()
+    return re.sub(r"\s+", "", value).strip()
 
 
 def render_markdown_blocks(lines: list[str], aliases: dict[str, str]) -> str:
@@ -234,15 +243,13 @@ def render_markdown_blocks(lines: list[str], aliases: dict[str, str]) -> str:
             out.append("</tbody></table></div>")
             continue
 
-        ul = UL_RE.match(raw)
-        if ul:
+        if UL_RE.match(raw):
             items: list[str] = []
             while i < len(lines):
                 match = UL_RE.match(lines[i])
                 if not match:
                     break
-                item = match.group(1).strip()
-                item = re.sub(r"^\[ \]\s*", "☐ ", item)
+                item = re.sub(r"^\[ \]\s*", "☐ ", match.group(1).strip())
                 item = re.sub(r"^\[[xX]\]\s*", "☑ ", item)
                 items.append(item)
                 i += 1
@@ -251,9 +258,8 @@ def render_markdown_blocks(lines: list[str], aliases: dict[str, str]) -> str:
             out.append("</ul>")
             continue
 
-        ol = OL_RE.match(raw)
-        if ol:
-            items = []
+        if OL_RE.match(raw):
+            items: list[str] = []
             while i < len(lines):
                 match = OL_RE.match(lines[i])
                 if not match:
@@ -274,7 +280,7 @@ def render_markdown_blocks(lines: list[str], aliases: dict[str, str]) -> str:
             out.append(f"<blockquote><p>{inline_markup(quote_text, aliases)}</p></blockquote>")
             continue
 
-        paragraph: list[str] = [stripped]
+        paragraph = [stripped]
         i += 1
         while i < len(lines) and not is_block_start(lines, i):
             paragraph.append(lines[i].strip())
@@ -289,7 +295,6 @@ def parse_source(markdown: str) -> tuple[str, list[str]]:
     text = FRONTMATTER_RE.sub("", markdown, count=1)
     text = COMMENT_RE.sub("", text)
     lines = text.splitlines()
-
     h1_index = next((i for i, line in enumerate(lines) if re.match(r"^#\s+", line)), -1)
     start = h1_index + 1 if h1_index >= 0 else 0
     h2_index = next((i for i in range(start, len(lines)) if H2_RE.match(lines[i])), len(lines))
@@ -305,23 +310,39 @@ def parse_source(markdown: str) -> tuple[str, list[str]]:
         current.append(line.strip())
     if current:
         intro_parts.append(" ".join(current))
+    return " ".join(intro_parts), lines[h2_index:]
 
-    intro = " ".join(intro_parts)
-    return intro, lines[h2_index:]
+
+def balanced_div_bounds(text: str, open_match: re.Match[str]) -> tuple[int, int, int, int]:
+    """Return open-start/open-end/close-start/close-end for a balanced div."""
+    depth = 1
+    for token in DIV_TOKEN_RE.finditer(text, open_match.end()):
+        if token.group(0).lower().startswith("</div"):
+            depth -= 1
+            if depth == 0:
+                return open_match.start(), open_match.end(), token.start(), token.end()
+        else:
+            depth += 1
+    raise ValueError("unclosed div block")
+
+
+def article_body_bounds(preview: str, preview_path: Path) -> tuple[int, int, int, int]:
+    match = ARTICLE_BODY_OPEN_RE.search(preview)
+    if not match:
+        raise ValueError(f"article-body not found: {preview_path}")
+    return balanced_div_bounds(preview, match)
 
 
 def extract_figures(old_body: str) -> list[tuple[int, str, str]]:
     figures: list[tuple[int, str, str]] = []
     for match in INLINE_FIGURE_RE.finditer(old_body):
-        before = old_body[: match.start()]
-        headings = list(HEADING_HTML_RE.finditer(before))
+        headings = list(HEADING_HTML_RE.finditer(old_body[: match.start()]))
         if headings:
             heading = headings[-1]
             level = int(heading.group("level"))
             anchor = normalize_heading_text(heading.group("text"))
         else:
-            level = 2
-            anchor = ""
+            level, anchor = 2, ""
         figures.append((level, anchor, match.group(0)))
     return figures
 
@@ -330,23 +351,53 @@ def insert_one_figure(body: str, level: int, anchor: str, figure: str) -> tuple[
     pattern = re.compile(rf"<h{level}[^>]*>(.*?)</h{level}>", re.DOTALL | re.IGNORECASE)
     for match in pattern.finditer(body):
         if normalize_heading_text(match.group(1)) == anchor:
-            pos = match.end()
-            return body[:pos] + "\n" + figure + body[pos:], True
+            return body[: match.end()] + "\n" + figure + body[match.end() :], True
     return body, False
 
 
-def insert_preserved_figures(new_body: str, figures: list[tuple[int, str, str]]) -> str:
+def insert_preserved_figures(article_id: str, new_body: str, figures: list[tuple[int, str, str]]) -> str:
     unmatched: list[str] = []
+    aliases = HEADING_ALIASES.get(article_id, {})
     for level, anchor, figure in figures:
-        new_body, inserted = insert_one_figure(new_body, level, anchor, figure)
+        target_anchor = aliases.get(anchor, anchor)
+        new_body, inserted = insert_one_figure(new_body, level, target_anchor, figure)
         if not inserted:
             unmatched.append(figure)
-
     if unmatched:
         related = re.search(r"<h2[^>]*>関連記事</h2>", new_body, re.IGNORECASE)
         pos = related.start() if related else len(new_body)
-        block = "\n".join(unmatched) + "\n"
-        new_body = new_body[:pos] + block + new_body[pos:]
+        new_body = new_body[:pos] + "\n".join(unmatched) + "\n" + new_body[pos:]
+    return new_body
+
+
+def extract_product_cards(old_body: str) -> list[tuple[str, str]]:
+    cards: list[tuple[str, str]] = []
+    cursor = 0
+    while True:
+        match = PRODUCT_OPEN_RE.search(old_body, cursor)
+        if not match:
+            break
+        start, _, _, end = balanced_div_bounds(old_body, match)
+        block = old_body[start:end]
+        asin = ASIN_RE.search(block)
+        if not asin:
+            raise ValueError("product recommendation without Amazon ASIN")
+        cards.append((asin.group(1).upper(), block))
+        cursor = end
+    return cards
+
+
+def insert_preserved_product_cards(new_body: str, cards: list[tuple[str, str]]) -> str:
+    inserted = 0
+    for asin, card in cards:
+        paragraph = re.compile(
+            rf'<p>(?:(?!</p>).)*amazon\.co\.jp/dp/{re.escape(asin)}(?:(?!</p>).)*</p>',
+            re.IGNORECASE | re.DOTALL,
+        )
+        new_body, count = paragraph.subn(card, new_body, count=1)
+        inserted += count
+    if inserted != len(cards):
+        raise ValueError(f"preserved product card mismatch: expected {len(cards)}, inserted {inserted}")
     return new_body
 
 
@@ -356,24 +407,18 @@ def sync_generic(article: dict, aliases: dict[str, str]) -> bool:
     markdown = source_path.read_text(encoding="utf-8")
     preview = preview_path.read_text(encoding="utf-8")
 
-    body_match = ARTICLE_BODY_RE.search(preview)
-    if not body_match:
-        raise ValueError(f"article-body not found: {preview_path}")
+    open_start, open_end, close_start, close_end = article_body_bounds(preview, preview_path)
+    old_body = preview[open_end:close_start]
 
     intro, content_lines = parse_source(markdown)
     rendered = render_markdown_blocks(content_lines, aliases)
-    figures = extract_figures(body_match.group("body"))
-    rendered = insert_preserved_figures(rendered, figures)
+    rendered = insert_preserved_figures(article["article_id"], rendered, extract_figures(old_body))
 
-    updated = (
-        preview[: body_match.start()]
-        + body_match.group("open")
-        + "\n"
-        + rendered
-        + "\n"
-        + body_match.group("close")
-        + preview[body_match.end() :]
-    )
+    cards = extract_product_cards(old_body)
+    if cards:
+        rendered = insert_preserved_product_cards(rendered, cards)
+
+    updated = preview[:open_end] + "\n" + rendered + "\n" + preview[close_start:]
 
     lead_match = LEAD_RE.search(updated)
     if lead_match and intro:
@@ -412,15 +457,12 @@ def sync() -> list[str]:
     changed: list[str] = []
 
     for article_id in sorted(SYNC_ARTICLE_IDS):
-        article = by_id[article_id]
-        if sync_generic(article, aliases):
+        if sync_generic(by_id[article_id], aliases):
             changed.append(article_id)
 
     for article_id in sorted(TARGETED_PREVIEW_REPLACEMENTS):
-        article = by_id[article_id]
-        if sync_targeted(article):
+        if sync_targeted(by_id[article_id]):
             changed.append(article_id)
-
     return changed
 
 
@@ -433,19 +475,20 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    before: dict[Path, str] = {}
+    originals: dict[Path, str] = {}
     if args.check:
         registry = load_registry(REGISTRY)
         by_id = {article["article_id"]: article for article in registry["articles"]}
-        for article_id in sorted(SYNC_ARTICLE_IDS | set(TARGETED_PREVIEW_REPLACEMENTS)):
+        ids = SYNC_ARTICLE_IDS | set(TARGETED_PREVIEW_REPLACEMENTS)
+        for article_id in sorted(ids):
             path = ROOT / by_id[article_id]["preview_path"]
-            before[path] = path.read_text(encoding="utf-8")
+            originals[path] = path.read_text(encoding="utf-8")
 
     changed = sync()
     print("Synchronized preview articles: " + (", ".join(changed) if changed else "none"))
 
     if args.check and changed:
-        for path, original in before.items():
+        for path, original in originals.items():
             path.write_text(original, encoding="utf-8")
         return 1
     return 0
