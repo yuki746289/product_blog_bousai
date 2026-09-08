@@ -10,6 +10,8 @@
 >
 > 防災サイト固有チェック: `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`
 >
+> Amazon関連作業プレフライト: `docs/AMAZON_WORK_PREFLIGHT.md`
+>
 > 本ファイルには共通ルール本文をコピーせず、**判定結果・根拠・記事固有事項だけ**を記録する。
 
 - article_id: `Bxxx`
@@ -29,6 +31,8 @@
 | 防災サイトプロファイル確認 | TODO | `docs/BOUSAI_SITE_REVIEW_PROFILE.md` |
 | 必須専門家ロール選定 | TODO | ページ種別に応じてE01〜E14を適用 |
 | 条件付き専門家ロール判定 | TODO | 商品・計測・数値分析等 |
+| Amazon関連作業の適用判定 | TODO | 商品記事、Amazonリンク、ASIN、商品画像、価格、商品差し替え等を扱う場合は必須 |
+| Amazonプレフライト | N/A | 該当時は `docs/AMAZON_WORK_PREFLIGHT.md` を先に実行し、未完了なら商品調査・実装へ進まない |
 | 詳細架空ペルソナ | N/A | 防災サイトは状況ベース読者設定を使用 |
 | N/A項目の理由確認 | TODO | サイトプロファイルと整合すること |
 
@@ -41,7 +45,7 @@
 | C03 画像・視覚要素 | TODO | |
 | C04 読みやすさ・UI | TODO | |
 | C05 内部リンク | TODO | |
-| C06 商品導線・商品記事 | N/A | |
+| C06 商品導線・商品記事 | N/A | Amazon関連作業では `AMAZON_WORK_PREFLIGHT.md` → `AFFILIATE_POLICY.md` → `AMAZON_PRODUCT_AVAILABILITY_POLICY.md` を先に確認 |
 | C07 Q&A | N/A | |
 | C08 同期・公開前 | TODO | |
 | C09 日付・構造化データ | TODO | |
@@ -73,7 +77,9 @@
 | 条件 | 状態 | 根拠・備考 |
 |---|---|---|
 | 高リスク記事の追加安全レビュー | N/A | |
-| 商品記事: `docs/AFFILIATE_POLICY.md` | N/A | |
+| Amazon作業プレフライト: `docs/AMAZON_WORK_PREFLIGHT.md` | N/A | 該当時は作業開始時にPASS必須 |
+| 商品記事: `docs/AFFILIATE_POLICY.md` | N/A | Amazon関連作業では必須 |
+| 商品在庫・販売終了: `docs/AMAZON_PRODUCT_AVAILABILITY_POLICY.md` | N/A | ASIN・商品差し替え・在庫確認時に必須 |
 | 情報鮮度: `docs/FRESHNESS_POLICY.md` | TODO | |
 | pillar/detail構造: `docs/PICKUP_AND_DEEP_DIVE_POLICY.md` | N/A | |
 | キーワード調査・検索意図: `docs/KEYWORD_RESEARCH_POLICY.md` | N/A | |
@@ -129,6 +135,10 @@
 - cannibalization_check:
 - seo_metadata:
 - production_check:
+- amazon_preflight:
+- amazon_preflight_checked_at:
+- amazon_policy_refs:
+- amazon_scope:
 
 ## 8. 最終横断チェック
 
@@ -137,7 +147,7 @@
 - X01〜X05: `docs/ARTICLE_REVIEW_CHECKLIST.md`
 - SX01〜SX07: `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`
 
-未判定の専門家視点や、理由のない `N/A` がある場合は公開準備完了としない。
+Amazon関連作業で `amazon_preflight` が未記録、または未判定の専門家視点や理由のない `N/A` がある場合は公開準備完了としない。
 
 ## 9. 残課題
 
