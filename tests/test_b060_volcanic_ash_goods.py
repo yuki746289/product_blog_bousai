@@ -1,3 +1,4 @@
+# Updated: 2026-09-09 06:17 JST
 from __future__ import annotations
 
 import unittest
@@ -26,9 +27,11 @@ class B060VolcanicAshGoodsTests(unittest.TestCase):
         self.assertEqual("2026-12-08", item["next_review_at"])
 
     def test_b060_current_metric_matches_registry(self) -> None:
+        registry = load_registry(ROOT / "data/content_registry.json")
+        by_id = {item["article_id"]: item for item in registry["articles"]}
         metrics = {row.article_id: row for row in audit()}
         row = metrics["B060"]
-        self.assertEqual(3602, row.body_char_count)
+        self.assertEqual(by_id["B060"]["body_char_count_approx"], row.body_char_count)
         self.assertEqual("PASS_NO_NUMERIC_RULE", row.length_status)
 
     def test_product_page_keeps_safety_before_commerce(self) -> None:

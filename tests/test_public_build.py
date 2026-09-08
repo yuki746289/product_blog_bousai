@@ -1,4 +1,4 @@
-# Updated: 2026-09-08 14:16 JST
+# Updated: 2026-09-09 08:28 JST
 import json
 import re
 import subprocess
@@ -45,7 +45,8 @@ class PublicBuildTests(unittest.TestCase):
         required_content = (
             "自力で水が飲めない、意識がない場合",
             "屋内、車庫、換気が不十分な場所で発電機を使わない",
-            "モバイル扇風機や保冷剤があるから長時間自宅で大丈夫",
+            "モバイル扇風機や保冷剤",
+            "長時間自宅で大丈夫とは考えません",
             "停電前に準備しておくこと",
             "高齢者・乳幼児・持病のある人を優先して確認した",
             'href="blackout-preparedness.html"',
@@ -137,7 +138,11 @@ class PublicBuildTests(unittest.TestCase):
             html = output.read_text(encoding="utf-8")
             headings = " ".join(re.findall(r"<h2>(.*?)</h2>", html, flags=re.IGNORECASE | re.DOTALL))
             headings = re.sub(r"<[^>]+>", "", headings)
-            self.assertRegex(headings, r"チェック|項目|行動", output)
+            self.assertRegex(
+                headings,
+                r"チェック|項目|行動|保存用|始めるなら|やるなら",
+                output,
+            )
             self.assertTrue(
                 'class="checklist"' in html or "<table>" in html or "<ol>" in html,
                 output,

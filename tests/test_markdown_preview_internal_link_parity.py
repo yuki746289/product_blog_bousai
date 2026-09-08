@@ -1,4 +1,5 @@
 # Created: 2026-09-06
+# Updated: 2026-09-09 08:26 JST
 """Guard against internal article links being dropped between Markdown and preview HTML.
 
 This intentionally checks only local HTML links. It does not require prose,
@@ -40,23 +41,10 @@ STATIC_PRODUCTION_TO_PREVIEW = {
     "goods/power-charging.html": "goods_power_charging.html",
 }
 
-# These are reviewed editorial omissions, not accidental link loss. Keeping the
-# list explicit prevents a broad escape hatch. If preview later restores one of
-# these links, the test fails until the stale exception is removed.
-INTENTIONAL_OMISSIONS = {
-    "B026": {
-        "article_b002.html": (
-            "The preview keeps more topic-specific related routes (B025/B024 and "
-            "the water-food guide); the generic emergency-bag backlink is omitted."
-        ),
-    },
-    "B028": {
-        "article_b002.html": (
-            "The preview keeps more topic-specific related routes (B004/B024/B027); "
-            "the generic emergency-bag backlink is omitted."
-        ),
-    },
-}
+# Reviewed editorial omissions, if any, must stay explicit. The Markdown ->
+# preview synchronization now preserves the previously omitted B026/B028
+# emergency-bag links, so there are currently no intentional omissions.
+INTENTIONAL_OMISSIONS: dict[str, dict[str, str]] = {}
 
 
 def production_to_preview_map(registry: dict) -> dict[str, str]:
