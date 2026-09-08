@@ -1,4 +1,5 @@
 # Created: 2026-09-06
+# Updated: 2026-09-09 08:26 JST
 import subprocess
 import sys
 import unittest
@@ -21,8 +22,11 @@ class B045B046PublicSyncTests(unittest.TestCase):
         preview = (ROOT / "preview" / "article_b045.html").read_text(encoding="utf-8")
         public = (PUBLIC / "blackout" / "blackout-refrigerator-food-safety.html").read_text(encoding="utf-8")
 
+        # Assert the safety concepts independently rather than freezing one
+        # punctuation/order variant such as "ドライアイスや保冷剤".
         preview_required = (
-            "ドライアイスや保冷剤",
+            "ドライアイス",
+            "保冷剤",
             "密閉空間での二酸化炭素濃度上昇",
             "肉汁等の漏れによる交差汚染",
             'href="article_b004.html"',
@@ -33,7 +37,8 @@ class B045B046PublicSyncTests(unittest.TestCase):
             self.assertIn(phrase, preview)
 
         public_required = (
-            "ドライアイスや保冷剤",
+            "ドライアイス",
+            "保冷剤",
             "密閉空間での二酸化炭素濃度上昇",
             "肉汁等の漏れによる交差汚染",
             'href="blackout-preparedness.html"',
