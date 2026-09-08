@@ -1,98 +1,116 @@
 # 防災くらしガイド 全60記事 最終品質レビュー
 
-作成日時: 2026-09-08 16:35 JST
-対象: B001〜B060
+作成日時: 2026-09-08 16:35 JST  
+最終更新: 2026-09-09 06:17 JST  
+対象: B001〜B060  
 基準: `docs/FINAL_ARTICLE_REVIEW_CHECKLIST.md`
 
 ## 判定の意味
 
-- `PASS`: 最終チェックリスト観点で目視済み。現時点で必須修正なし。
-- `FIX`: 目視済みで修正点を確認済み。修正後の再レビューが必要。
-- `REVIEW_PENDING`: 機械監査は実施済みだが、最終チェックリストによる人間目視をまだ完了扱いにしない。
-- `visual_support=ADD`: 図解・写真を追加すると理解が明確に向上する候補。画像追加前でも本文自体が安全に成立するかは別途判定する。
+- `PASS`: 最終チェックリスト観点で本文を目視し、必須修正を完了した状態。
+- `FIX`: 必須修正あり。修正後の再レビューが必要。
+- `HOLD`: 外部条件・事実確認等により公開判断を保留。
+- `visual_support=ADD`: 図解・写真を追加すると理解が明確に向上する候補。画像未追加でも本文が安全かつ完結している場合は本文判定をPASSにできる。
 
 > 短いH2や機械監査スコアだけではFIXにしない。文字数を増やすための修正は禁止し、理由・方法・生活場面・操作完了・読者の判断に不足がある場合だけ修正する。
 
-## 現在のレビュー台帳
+## 最終レビュー台帳
 
 | ID | 最終判定 | 説明品質 | 生活者リアリティ | 公開衛生 | 画像/図解 | 内部リンク | 主な判断 |
 |---|---|---|---|---|---|---|---|
-| B001 | PASS | PASS | PASS | PASS | ADD | PASS | ハザード種別の自分ごと化、地図の開き方、避難先の探し方まで修正済み。ハザードマップ操作フロー図が有効。 |
-| B002 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B003 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B004 | FIX | FIX | PASS | PASS | ADD | PASS | 「最初の3点」と「5つの役割」の関係を明示すると理解しやすい。停電役割分担図も候補。 |
-| B005 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B006 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B007 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B008 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B009 | PASS | PASS | PASS | PASS | N/A | PASS | 冠水路へ入らない理由、判断手順、誤解、出発前ルールまで具体的。短章の水増し不要。 |
-| B010 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
+| B001 | PASS | PASS | PASS | PASS | ADD | PASS | ハザード種別の自分ごと化、住所検索から自治体版確認までの操作を具体化済み。操作フロー図が有効。 |
+| B002 | PASS | PASS | PASS | PASS | N/A | PASS | 自宅備蓄と持出品を分け、用途・重さ・個別用品・置き場所まで一連で判断できる。 |
+| B003 | PASS | PASS | PASS | PASS | ADD | PASS | 携帯トイレと簡易トイレ、使用手順、必要数計算、衛生、処分まで完結。両者の形状比較図が有効。 |
+| B004 | PASS | PASS | PASS | PASS | ADD | PASS | 「最初の3つ＝優先順位」「5役割＝漏れ防止」の関係を明示済み。役割分担図が有効。 |
+| B005 | PASS | PASS | PASS | PASS | N/A | PASS | 自宅リスク→情報→避難→屋外/屋内準備→家族条件の順が明確。 |
+| B006 | PASS | PASS | PASS | PASS | N/A | PASS | 台風前の準備を3段階化し、外作業の締切と地域別ハザードを具体化。 |
+| B007 | PASS | PASS | PASS | PASS | N/A | PASS | 寝室・出口→揺れ中→揺れ後→ライフライン→避難→家族連絡の優先順が明確。 |
+| B008 | PASS | PASS | PASS | PASS | N/A | PASS | 冠水路へ入らない理由、水没時脱出、ハンマー、浸水後始動禁止まで安全行動が完結。 |
+| B009 | PASS | PASS | PASS | PASS | N/A | PASS | 冠水路へ入らない理由、判断手順、誤解、出発前ルールまで具体的。 |
+| B010 | PASS | PASS | PASS | PASS | N/A | PASS | 駐車場所→管理側→移動期限→中止条件→浸水後まで一本化。個人と管理者の役割も明確。 |
 | B011 | PASS | PASS | PASS | PASS | N/A | PASS | 契約4点→安全→記録→連絡の順が明確。水没後実務も具体的。 |
-| B012 | PASS | PASS | PASS | PASS | ADD | PASS | 土のう数量例・置き方・排水逆流を具体化。制作コメントを削除済み。土のう配置図が有効。 |
-| B013 | REVIEW_PENDING | - | - | PASS | REVIEW | - | Search Console意図強化とは別に最終品質レビューが必要。 |
-| B014 | PASS | PASS | PASS | PASS | N/A | PASS | 家財対象・水災・記録・賃貸等が具体化済み。細かい章は役割があり水増し不要。 |
-| B015 | PASS | PASS | PASS | PASS | ADD | PASS | 遠景・中景・近景、浸水高さ、時系列が具体的。撮影順の簡易図は追加候補。 |
-| B016 | FIX | FIX | PASS | PASS | N/A | PASS | 論点が分散。安全→記録→契約確認→連絡→修理の読者行動順へ再構成する。 |
-| B017 | FIX | FIX | PASS | PASS | N/A | PASS | 加入・補償・証券確認の重複を整理し、読者の確認順を明確化する。 |
-| B018 | FIX | FIX | PASS | PASS | N/A | PASS | 特約説明が分散。平常時の契約確認と被災後行動を明確に分ける。 |
-| B019 | PASS | PASS | PASS | PASS | N/A | PASS | 5段階に分ける理由と具体例を追加済み。 |
-| B020 | PASS | PASS | PASS | PASS | N/A | PASS | 時間軸、中止条件、線状降水帯の位置づけが具体的。 |
-| B021 | PASS | PASS | PASS | PASS | ADD | PASS | 停電3分類の理由と当日の停止ルールを追加済み。24h/12h/6hの流れ図が有効。 |
-| B022 | PASS | PASS | PASS | PASS | ADD | PASS | 窓・ベランダ排水・共用部・避難判断を具体化済み。マンション配置図が有効。 |
-| B023 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B024 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B025 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B026 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B027 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 商品語・電源導線も含め最終目視継続。 |
-| B028 | FIX | FIX | FIX | PASS | ADD | PASS | 15連番H2を再構成し、「半年に1回」を記憶依存ではなくカレンダー等の更新トリガーへ変更する。容量/出力図も候補。 |
-| B029 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 商品導線を含め最終目視継続。 |
-| B030 | PASS | PASS | PASS | PASS | N/A | PASS | 半年ごとを記憶させず、カレンダー・生活イベントで見直す仕組みに修正済み。 |
-| B031 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B032 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B033 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B034 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B035 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B036 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。最終目視継続。 |
-| B037 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。清掃手順と保護具の具体性を最終確認する。 |
-| B038 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B039 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。最終目視継続。 |
-| B040 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 最終目視継続。 |
-| B041 | PASS | PASS | PASS | PASS | ADD | PASS | 警報待ち禁止、津波対応避難先、徒歩原則、家族を迎えに戻らない等の判断単位が明確。高低差の模式図は有効。 |
-| B042 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。2026年線状降水帯情報強化とは別に最終目視が必要。 |
-| B043 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。最終目視継続。 |
-| B044 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。車中泊の条件分岐を最終確認する。 |
-| B045 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク。最終目視継続。 |
-| B046 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 養生テープ・飛散防止フィルムの商品導線と説明を最終確認する。 |
-| B047 | PASS | PASS | PASS | PASS | N/A | PASS | 涼しい場所への移動、水分・冷却、移動できない時間帯、救急条件まで具体的。 |
-| B048 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。最終目視継続。 |
-| B049 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。最終目視継続。 |
-| B050 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。最終目視継続。 |
-| B051 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 比較記事。会社別説明と判断軸を最終確認する。 |
-| B052 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 保険記事。最終目視継続。 |
-| B053 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。最終目視継続。 |
-| B054 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。最終目視継続。 |
-| B055 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 高リスク地域記事。最終目視継続。 |
-| B056 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 地域記事。B058/B060への導線も最終確認する。 |
-| B057 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 即時行動記事。短さではなく安全行動の完結性を確認する。 |
-| B058 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 即時行動記事。B060導線・商品語も最終確認する。 |
-| B059 | REVIEW_PENDING | - | - | PASS | REVIEW | - | 直近制作済みだが、新しい最終チェックリストで再確認する。 |
-| B060 | REVIEW_PENDING | - | - | PASS | REVIEW | PASS | 直近の商品記事。Amazonプレフライト済みだが、新しい最終チェックリストで再確認する。 |
+| B012 | PASS | PASS | PASS | PASS | ADD | PASS | リスク→開口部→家財/電気→止水→排水→住宅条件→避難→保険→最終チェックへ再構成。土のう配置図が有効。 |
+| B013 | PASS | PASS | PASS | PASS | N/A | PASS | 水災→風災との切分け→建物/家財→ハザード→証券→被災後対応まで一連で確認できる。 |
+| B014 | PASS | PASS | PASS | PASS | N/A | PASS | 家財契約→水災→対象→原因→記録→処分/修理→賃貸等の例外へ再構成済み。 |
+| B015 | PASS | PASS | PASS | PASS | ADD | PASS | 安全→全景→浸水高さ→個別損害→時系列→片付け前後→連絡・書類保存へ整理。撮影順図が有効。 |
+| B016 | PASS | PASS | PASS | PASS | N/A | PASS | 風災/水災→契約→原因→被害後の安全→記録→契約確認→連絡→修理へ再構成済み。 |
+| B017 | PASS | PASS | PASS | PASS | N/A | PASS | 制度→対象→金額→損害区分→証券確認順→加入判断→被災後行動が明確。 |
+| B018 | PASS | PASS | PASS | PASS | N/A | PASS | 平常時の契約確認6段階と被災後行動5段階へ分離し、特約説明の重複を統合済み。 |
+| B019 | PASS | PASS | PASS | PASS | N/A | PASS | 原因→被害物→契約対象→原因の補償→支払条件の5段階と理由が明確。 |
+| B020 | PASS | PASS | PASS | PASS | N/A | PASS | 主要説明を最終チェック前へ移し、数日前→前日→当日→中止条件→最終チェックへ再構成済み。 |
+| B021 | PASS | PASS | PASS | PASS | ADD | PASS | 24h/12h/6hを目安として説明し、停電3分類の理由と当日の停止ルールを明示。時間軸図が有効。 |
+| B022 | PASS | PASS | PASS | PASS | ADD | PASS | 窓・ベランダ排水・専有/共用部・避難判断を具体化済み。マンション配置図が有効。 |
+| B023 | PASS | PASS | PASS | PASS | N/A | PASS | 家具配置・固定の優先順位を整理し、後付け重複章を統合済み。 |
+| B024 | PASS | PASS | PASS | PASS | N/A | PASS | 水・トイレ・照明・充電・通電火災・集合住宅を一組で説明。充電点検をカレンダー/季節トリガーへ修正。 |
+| B025 | PASS | PASS | PASS | PASS | N/A | PASS | 必要水量、保管、ローリングストック、期限管理を統合し、見直しを生活トリガーへ接続。 |
+| B026 | PASS | PASS | PASS | PASS | N/A | PASS | 備蓄量・食品選択・ローリングストックを整理。情報記事からAmazon直リンクを外し商品記事へ集約。 |
+| B027 | PASS | PASS | PASS | PASS | N/A | PASS | ラジオの必要性・電源方式・受信・保管・点検を用途ベースで整理。 |
+| B028 | PASS | PASS | PASS | PASS | ADD | PASS | 15連番H2を8章へ再構成し、Wh/W・用途・容量帯・安全・保管・点検を整理。点検はカレンダー/生活イベント化。 |
+| B029 | PASS | PASS | PASS | PASS | N/A | PASS | 車載品を用途・季節・車内温度・脱出装備で整理し、車載特有の条件に沿う。 |
+| B030 | PASS | PASS | PASS | PASS | N/A | PASS | 連絡・集合ルールを実行条件まで具体化。見直しはカレンダーと生活イベントへ変更済み。 |
+| B031 | PASS | PASS | PASS | PASS | N/A | PASS | 賞味期限・消費・補充を一つの運用へ統合し、後付け重複を除去。 |
+| B032 | PASS | PASS | PASS | PASS | N/A | PASS | 容量だけでなく重量・運搬者・取り出し順まで含めてバッグ容量を判断できる。 |
+| B033 | PASS | PASS | PASS | PASS | N/A | PASS | 同行避難、避難先ルール、餌・薬・識別・ケージ等を飼育条件別に整理。 |
+| B034 | PASS | PASS | PASS | PASS | N/A | PASS | 乳幼児用品を代替困難性から整理し、月齢・サイズ変更・買物・カレンダーを更新トリガー化。 |
+| B035 | PASS | PASS | PASS | PASS | N/A | PASS | 薬・移動・情報・温度・支援者等、高齢者固有の条件を生活行動へ落とし込めている。 |
+| B036 | PASS | PASS | PASS | PASS | N/A | PASS | 土砂キキクル・避難情報・地形・前兆の位置づけと、見に行かない中止条件が明確。 |
+| B037 | PASS | PASS | PASS | PASS | N/A | PASS | 安全確認→記録→泥除去→洗浄→乾燥→必要な消毒の順で、保護具・衛生条件も具体的。 |
+| B038 | PASS | PASS | PASS | PASS | N/A | PASS | 一斉帰宅を避ける理由、勤務先待機、徒歩判断、家族連絡を時系列で整理。 |
+| B039 | PASS | PASS | PASS | PASS | N/A | PASS | 建物・火災・津波・ライフライン・家族条件から在宅/避難所を判断できる。 |
+| B040 | PASS | PASS | PASS | PASS | N/A | PASS | 感震ブレーカーの種類・停電影響・復電・医療機器等の例外を具体化。 |
+| B041 | PASS | PASS | PASS | PASS | ADD | PASS | 警報待ち禁止、津波対応避難先、徒歩原則、家族を迎えに戻らない等の判断が明確。高低差図が有効。 |
+| B042 | PASS | PASS | PASS | PASS | N/A | PASS | 洪水キキクル・河川情報・避難情報の役割と、線状降水帯を単独スイッチにしない判断が明確。 |
+| B043 | PASS | PASS | PASS | PASS | N/A | PASS | 高潮と暴風の時間差を本体へ統合し、雨が弱い段階から逆算する理由が明確。 |
+| B044 | PASS | PASS | PASS | PASS | N/A | PASS | 車中泊の可否を浸水・一酸化炭素・温度・血栓・避難情報等の条件分岐で判断できる。 |
+| B045 | PASS | PASS | PASS | PASS | N/A | PASS | 冷蔵/冷凍食品の判断を時間・温度・食品状態で整理し、制作側のキーワード調査記述を除去済み。 |
+| B046 | PASS | PASS | PASS | PASS | N/A | PASS | 窓破損原因、雨戸・フィルム・テープの役割と限界を整理し、後付け説明を統合済み。 |
+| B047 | PASS | PASS | PASS | PASS | N/A | PASS | 涼しい場所への移動、水分・冷却、移動不能時間帯、家族条件、救急条件まで統合済み。 |
+| B048 | PASS | PASS | PASS | PASS | N/A | PASS | 1978/2011の歴史→現在の津波指定→家庭の揺れ・津波・生活継続へ読み替えられる。 |
+| B049 | PASS | PASS | PASS | PASS | N/A | PASS | 1999/2014/2018の違い→土砂・洪水・夜間避難→現在の公的情報へ接続。 |
+| B050 | PASS | PASS | PASS | PASS | N/A | PASS | 洪水史→放水路/治水→現在の浸水深・継続時間→低地生活条件へつながる。 |
+| B051 | PASS | PASS | PASS | PASS | N/A | PASS | 最安ランキングではなく比較条件を先に定義し、10社の申込方式・補償設計を同軸で比較。 |
+| B052 | PASS | PASS | PASS | PASS | N/A | PASS | 地震保険の共通部分と火災保険側の会社差を分け、比較すべき対象を誤解なく示す。 |
+| B053 | PASS | PASS | PASS | PASS | N/A | PASS | 伊勢湾台風/東海豪雨→高潮・洪水・内水・長期浸水→生活圏の行動へ接続。内部マーカー除去済み。 |
+| B054 | PASS | PASS | PASS | PASS | N/A | PASS | 阪神・淡路大震災データを建物・室内・火災・ライフラインの別対策へ変換。内部マーカー除去済み。 |
+| B055 | PASS | PASS | PASS | PASS | N/A | PASS | 昭和南海地震→最新想定→避難ビル→自宅/職場/外出先の経路・代替先へ具体化。内部マーカー除去済み。 |
+| B056 | PASS | PASS | PASS | PASS | N/A | PASS | 大正噴火・日常降灰・大規模噴火を分離し、外出/車/家の中へ具体化。内部マーカー除去済み。 |
+| B057 | PASS | PASS | PASS | PASS | N/A | PASS | 揺れ中→直後→津波/火災/建物→情報の順で即時行動が完結。 |
+| B058 | PASS | PASS | PASS | PASS | N/A | PASS | 噴石・火砕流と降灰を分離し、警戒区域・降灰量・外出・運転・避難の初動が明確。 |
+| B059 | PASS | PASS | PASS | PASS | N/A | PASS | 2018年被害→バックウォーター→2024年治水後→現在のL1/L2/内水ハザードへ読み替えられる。 |
+| B060 | PASS | PASS | PASS | PASS | N/A | PASS | 用途→選び方→具体商品→清掃→購入後確認→装備の限界へ流れる。点検をカレンダー・使用後・買替時トリガーへ変更。 |
 
 ## 進捗集計
 
-- `PASS`: 13記事
-- `FIX`: 5記事
-- `REVIEW_PENDING`: 42記事
-- P0公開衛生: 全記事CIスキャン導入済み。高信頼の禁止語は現時点0件。
+- `PASS`: **60記事**
+- `FIX`: **0記事**
+- `HOLD`: **0記事**
+- `REVIEW_PENDING`: **0記事**
+- 本文目視レビュー: **B001〜B060完了**
 
-## 画像追加の初期優先候補
+### リリース前ゲート
+
+この台帳の `PASS` は本文目視レビューの完了判定。公開確定には、PR上で次を再確認する。
+
+1. publication hygiene CI：内部メモ・禁止語・仮リンク等が0件
+2. build / metadata / JS / deploy integrity 等の既存CI
+3. 内部リンク・生成HTMLの整合性
+4. マージ後の本番デプロイ
+5. 公開サイトの最終スモークテスト
+
+CIで問題が出た記事は、該当行を `FIX` に戻して修正する。
+
+## 画像追加の優先候補
+
+画像は「本文が成立しないから追加する」のではなく、文章だけより誤解を減らせる箇所へ追加する。
 
 1. **B012**: 土のうの1段/2段配置、重ねしろ、継ぎ目をずらす模式図
 2. **B001**: ハザードマップを開いて住所→災害種別→凡例→自治体版へ進むフロー図
-3. **B022**: マンションの窓・ベランダ排水・専有部/共用部の役割図
-4. **B021**: 24時間前→12時間前→6時間前→当日の作業切替図
-5. **B004**: 停電の照明・情報・連絡・充電・生活維持の役割図
-6. **B041**: 津波避難で水平距離だけでなく「より高い安全な場所」へ移る模式図
-7. **B028**: Wh（容量）とW（出力）の違いを示す図
+3. **B003**: 携帯トイレ（既存便器＋袋）と簡易トイレ（便座/箱＋袋）の違い
+4. **B022**: マンションの窓・ベランダ排水・専有部/共用部の役割図
+5. **B021**: 24時間前→12時間前→6時間前→当日の作業切替図
+6. **B004**: 停電の照明・情報・連絡・充電・生活維持の役割図
+7. **B041**: 津波避難で水平距離だけでなく「より高い安全な場所」へ移る模式図
+8. **B028**: Wh（容量）とW（出力）の違いを示す図
+9. **B015**: 被害写真の全景→中景→近景と浸水高さを残す撮影順図
 
-画像は公式図が適切なら公式一次資料を優先し、独自説明の方が分かりやすい場合はAI/独自図解を使う。AI画像を実在商品・歴史写真・現在の被災写真・公式画面の代用には使わない。
+画像は公式図が適切なら一次資料を優先し、独自説明の方が分かりやすい場合は独自図解/AI図解を使う。AI画像を実在商品・歴史写真・現在の被災写真・公式画面の代用には使わない。
