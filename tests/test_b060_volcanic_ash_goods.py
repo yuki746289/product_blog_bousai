@@ -40,7 +40,7 @@ class B060VolcanicAshGoodsTests(unittest.TestCase):
         self.assertIn('class="article-shell product-page"', preview)
         self.assertIn("Amazonのアソシエイトとして", preview)
 
-    def test_three_products_have_traceable_specs_and_search_links(self) -> None:
+    def test_three_products_have_traceable_specs_and_direct_links(self) -> None:
         source = self.text("content/articles/B060_volcanic_ash_protection_goods.md")
         preview = self.text("preview/article_b060.html")
         for token in (
@@ -50,23 +50,33 @@ class B060VolcanicAshGoodsTests(unittest.TestCase):
         ):
             self.assertIn(token, source)
             self.assertIn(token, preview)
-        for query in (
-            "s?k=DD02-S2-2K&tag=yukitaka83-22",
-            "s?k=DD02V-S2-2K&tag=yukitaka83-22",
-            "s?k=%E9%87%8D%E6%9D%BE+LX-22&tag=yukitaka83-22",
-        ):
-            self.assertIn(query, source)
-            self.assertIn(query.replace("&", "&"), preview)
-        self.assertNotIn("m.media-amazon.com", preview)
-        self.assertNotIn("/dp/", preview)
 
-    def test_image_exception_is_explicit_and_no_fake_product_image_is_used(self) -> None:
+        expected_links = (
+            "https://www.amazon.co.jp/dp/B081YKHRLB/ref=nosim?tag=yukitaka83-22",
+            "https://www.amazon.co.jp/dp/B079BNC5XQ/ref=nosim?tag=yukitaka83-22",
+            "https://www.amazon.co.jp/dp/B08NT64H61/ref=nosim?tag=yukitaka83-22",
+        )
+        for link in expected_links:
+            self.assertIn(link, source)
+            self.assertGreaterEqual(preview.count(link), 2)
+
+        self.assertNotIn("amazon.co.jp/s?k=", source)
+        self.assertNotIn("amazon.co.jp/s?k=", preview)
+
+    def test_three_verified_manufacturer_images_are_used(self) -> None:
         record = self.text("docs/research/B060_IMAGES.md")
         preview = self.text("preview/article_b060.html")
-        self.assertIn("Amazonが正規に提供する画像URL", record)
-        self.assertIn("ASINから画像URLを推測", record)
-        self.assertIn("実商品画像の代用となるAI画像も使わない", record)
-        self.assertNotIn("<img", preview.lower())
+        expected_images = (
+            "https://www.sts-japan.com/upload/products_ja/2AQ1UZ6-products_ja_mainimage.png",
+            "https://www.sts-japan.com/upload/products_ja/2AQ1UZ5-products_ja_mainimage.png",
+            "https://www.sts-japan.com/upload/products_ja/2AQ1V59-products_ja_mainimage.png",
+        )
+        for image_url in expected_images:
+            self.assertIn(image_url, record)
+            self.assertIn(image_url, preview)
+        self.assertEqual(3, preview.lower().count("<img "))
+        self.assertEqual(3, preview.count("is-image-error"))
+        self.assertNotIn("m.media-amazon.com", preview)
 
     def test_b056_b058_and_goods_category_link_to_b060(self) -> None:
         for path in (
@@ -85,7 +95,8 @@ class B060VolcanicAshGoodsTests(unittest.TestCase):
         review = self.text("docs/reviews/B060_CHECKLIST.md")
         self.assertIn("review_status: PASS", review)
         self.assertIn("READY_TO_PUBLISH: YES", review)
-        self.assertIn("PASS WITH DOCUMENTED EXCEPTION", review)
+        self.assertIn("3商品のAmazon商品詳細ページと型番一致を確認", review)
+        self.assertIn("重松製作所の公式製品ページが配信する製品画像", review)
 
 
 if __name__ == "__main__":
