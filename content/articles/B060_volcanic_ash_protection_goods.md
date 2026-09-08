@@ -60,7 +60,7 @@ affiliate: true
 
 **参考価格：2,198円（税込）**（モノタロウ販売価格、2026年9月8日確認）。Amazonの現在価格・在庫はリンク先で確認してください。
 
-[AmazonでDD02-S2-2Kを探す](https://www.amazon.co.jp/s?k=DD02-S2-2K&tag=yukitaka83-22)
+[AmazonでDD02-S2-2Kを見る](https://www.amazon.co.jp/dp/B081YKHRLB/ref=nosim?tag=yukitaka83-22)
 
 注意したいのは、メーカー記載の14時間が「どの環境でも14時間安全に使える保証」ではないことです。取扱説明書に従い、正しく装着し、使用前に密着性を確認します。
 
@@ -84,7 +84,7 @@ affiliate: true
 
 **参考価格：3,188円（税込）**（モノタロウ販売価格、2026年9月8日確認）。Amazonの現在価格・在庫はリンク先で確認してください。
 
-[AmazonでDD02V-S2-2Kを探す](https://www.amazon.co.jp/s?k=DD02V-S2-2K&tag=yukitaka83-22)
+[AmazonでDD02V-S2-2Kを見る](https://www.amazon.co.jp/dp/B079BNC5XQ/ref=nosim?tag=yukitaka83-22)
 
 排気弁付きでも、顔との隙間があれば本来の性能を活かせません。メーカー案内に従って、装着時のシールチェックを行います。
 
@@ -108,7 +108,7 @@ affiliate: true
 
 **参考価格：3,850円（税込）**（モノタロウ販売価格、2026年9月8日確認）。Amazonの現在価格・在庫はリンク先で確認してください。
 
-[Amazonでシゲマツ LX-22を探す](https://www.amazon.co.jp/s?k=%E9%87%8D%E6%9D%BE+LX-22&tag=yukitaka83-22)
+[Amazonでシゲマツ LX-22を見る](https://www.amazon.co.jp/dp/B08NT64H61/ref=nosim?tag=yukitaka83-22)
 
 ## 帽子・フード・手袋は「火山専用品」でなくても役割を果たせる
 
