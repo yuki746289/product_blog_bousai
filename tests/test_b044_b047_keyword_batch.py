@@ -34,39 +34,35 @@ class KeywordBatchSafetyTests(unittest.TestCase):
     def test_b045_refrigerator_food_boundaries(self):
         source = self.text("B045")
         preview = self.preview_text("B045")
-        self.assertIn("○時間までなら安全", source)
-        self.assertIn("○時間なら安全", preview)
-        required_content = (
-            "味見",
-            "必要以上に開けない",
-            "ドライアイス",
-            "保冷剤",
-            "二酸化炭素",
-            "article_b004.html",
-            "article_b028.html",
-            "article_b031.html",
-        )
         for target in (source, preview):
-            for phrase in required_content:
+            self.assertIn("○時間までなら安全", target)
+            for phrase in (
+                "味見",
+                "必要以上に開けない",
+                "ドライアイス",
+                "保冷剤",
+                "二酸化炭素",
+                "article_b004.html",
+                "article_b028.html",
+                "article_b031.html",
+            ):
                 self.assertIn(phrase, target)
             self.assertNotIn("4時間までなら安全", target)
 
     def test_b046_window_tape_boundaries(self):
         source = self.text("B046")
         preview = self.preview_text("B046")
-        self.assertIn("養生テープだけを台風の窓対策にしない", source)
-        self.assertIn("養生テープだけを台風の窓対策にしません", preview)
-        required_content = (
-            "段ボール・プラダン・板",
-            "板自体が飛来物",
-            "写真・保険・修理",
-            "強風中",
-            "article_b006.html",
-            "article_b016.html",
-            "article_b022.html",
-        )
         for target in (source, preview):
-            for phrase in required_content:
+            self.assertIn("養生テープだけを台風の窓対策にしない", target)
+            for phrase in (
+                "段ボール・プラダン・板",
+                "板自体が飛来物",
+                "写真・保険・修理",
+                "強風中",
+                "article_b006.html",
+                "article_b016.html",
+                "article_b022.html",
+            ):
                 self.assertIn(phrase, target)
 
     def test_b047_heatstroke_boundaries(self):
