@@ -22,6 +22,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue((PUBLIC / "vehicle" / "car-flood-submersion.html").exists())
         self.assertTrue((PUBLIC / "goods" / "portable-power-station-disaster.html").exists())
         self.assertTrue((PUBLIC / "goods" / "water-food.html").exists())
+        self.assertTrue((PUBLIC / "goods" / "volcanic-ash-protection.html").exists())
         self.assertTrue((PUBLIC / "flood" / "landslide-evacuation-kikikuru.html").exists())
         self.assertTrue((PUBLIC / "post-disaster" / "flood-cleanup-dry-disinfect.html").exists())
         self.assertTrue((PUBLIC / "earthquake" / "earthquake-stranded-commuter.html").exists())
@@ -241,8 +242,8 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIn('href="water-outage/portable-toilet-stockpile.html">携帯トイレの備え方を読む', home)
 
         goods_index = (PUBLIC / "goods" / "index.html").read_text(encoding="utf-8")
-        self.assertEqual(4, goods_index.count("category-product-link"))
-        self.assertEqual(4, goods_index.count("<small>商品比較</small>"))
+        self.assertEqual(5, goods_index.count("category-product-link"))
+        self.assertEqual(5, goods_index.count("<small>商品比較</small>"))
 
     def test_product_pages_have_navigation_safety_context_and_product_role(self):
         pages = [
@@ -301,6 +302,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertEqual(len(list(PUBLIC.rglob("*.html"))), sitemap.count("<url>"))
         self.assertIn("https://bousaikun.ashigaru.jp/", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/goods/portable-power-station-disaster.html", sitemap)
+        self.assertIn("https://bousaikun.ashigaru.jp/goods/volcanic-ash-protection.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/guide/emergency-food-expiration.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/guide/emergency-bag-capacity.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/flood/landslide-evacuation-kikikuru.html", sitemap)
