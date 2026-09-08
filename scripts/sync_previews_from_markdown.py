@@ -1,5 +1,5 @@
 # Created: 2026-09-09 06:17 JST
-# Updated: 2026-09-09 06:42 JST
+# Updated: 2026-09-09 08:23 JST
 """Synchronize reviewed Markdown article text into preview HTML shells.
 
 Production is built from ``preview/*.html`` while editorial review is performed
@@ -388,16 +388,28 @@ def extract_product_cards(old_body: str) -> list[tuple[str, str]]:
 
 
 def insert_preserved_product_cards(new_body: str, cards: list[tuple[str, str]]) -> str:
+    # A previous preview can contain a retired recommendation that is no longer
+    # present in the reviewed Markdown. Preserve only cards whose ASIN remains
+    # explicitly linked from the current source of truth.
+    eligible = [
+        (asin, card)
+        for asin, card in cards
+        if re.search(rf"amazon\.co\.jp/dp/{re.escape(asin)}", new_body, re.IGNORECASE)
+    ]
+
     inserted = 0
-    for asin, card in cards:
+    for asin, card in eligible:
         paragraph = re.compile(
             rf'<p>(?:(?!</p>).)*amazon\.co\.jp/dp/{re.escape(asin)}(?:(?!</p>).)*</p>',
             re.IGNORECASE | re.DOTALL,
         )
         new_body, count = paragraph.subn(card, new_body, count=1)
         inserted += count
-    if inserted != len(cards):
-        raise ValueError(f"preserved product card mismatch: expected {len(cards)}, inserted {inserted}")
+
+    if inserted != len(eligible):
+        raise ValueError(
+            f"preserved product card mismatch: expected {len(eligible)}, inserted {inserted}"
+        )
     return new_body
 
 
