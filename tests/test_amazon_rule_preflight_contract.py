@@ -3,6 +3,7 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
+# Contract: every Amazon-related work unit must start from the documented preflight.
 ROOT = Path(__file__).resolve().parents[1]
 
 
