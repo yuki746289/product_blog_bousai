@@ -1,4 +1,4 @@
-# Updated: 2026-09-08 14:12 JST
+# Updated: 2026-09-08 16:05 JST
 name: Deploy production site
 
 on:
@@ -155,7 +155,8 @@ jobs:
 
           tmp_insurance="$(mktemp)"
           fetch_public "insurance/disaster-insurance-overview.html" "${tmp_insurance}"
-          grep -q "原因 × 被害物 × 契約" "${tmp_insurance}"
+          grep -q "なぜ5段階に分けるのか" "${tmp_insurance}"
+          grep -q "原因 → 被害物 → 契約対象 → 原因の補償 → 支払条件" "${tmp_insurance}"
           grep -q "ケース5：賃貸住宅" "${tmp_insurance}"
           grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}insurance/disaster-insurance-overview.html\">" "${tmp_insurance}"
           grep -q 'data-generated="article-structured-data"' "${tmp_insurance}"
