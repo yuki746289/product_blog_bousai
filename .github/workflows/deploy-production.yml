@@ -1,4 +1,4 @@
-# Updated: 2026-09-08 11:38 JST
+# Updated: 2026-09-08 14:12 JST
 name: Deploy production site
 
 on:
@@ -11,6 +11,7 @@ on:
       - "content/**"
       - "data/content_registry.json"
       - "data/content_registry_additions*.json"
+      - "data/content_registry_updates*.json"
       - "config/site.json"
       - "templates/**"
       - "scripts/**"

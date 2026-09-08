@@ -1,4 +1,4 @@
-# Created: 2026-09-02
+# Updated: 2026-09-08 14:16 JST
 import json
 import re
 import subprocess
@@ -6,8 +6,11 @@ import sys
 import unittest
 from pathlib import Path
 
+from bousai_blog.registry import load_registry
+
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
+REGISTRY = ROOT / "data" / "content_registry.json"
 
 
 class PublicBuildTests(unittest.TestCase):
@@ -95,9 +98,9 @@ class PublicBuildTests(unittest.TestCase):
             descriptions[description] = path
 
     def test_article_dates_and_structured_data(self):
-        registry = json.loads((ROOT / "data" / "content_registry.json").read_text(encoding="utf-8"))
+        registry = load_registry(REGISTRY)
         articles = registry["articles"]
-        self.assertEqual(47, len([a for a in articles if a.get("article_id", "").startswith("B")]))
+        self.assertEqual(60, len([a for a in articles if a.get("article_id", "").startswith("B")]))
 
         for article in articles:
             output = PUBLIC / article["planned_public_path"]
@@ -125,7 +128,7 @@ class PublicBuildTests(unittest.TestCase):
             self.assertEqual(article["title"], breadcrumb["itemListElement"][-1]["name"], output)
 
     def test_practical_articles_have_saveable_action_check(self):
-        registry = json.loads((ROOT / "data" / "content_registry.json").read_text(encoding="utf-8"))
+        registry = load_registry(REGISTRY)
         practical = [a for a in registry["articles"] if a.get("content_role") == "practical"]
         self.assertGreater(len(practical), 0)
 
