@@ -1,16 +1,23 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-09 16:13 JST
+# Updated: 2026-09-09 17:00 JST
 """Compatibility wrapper around the preview synchronizer.
 
-B003/B008/B010/B058 were omitted from the original synchronization set even
-though Markdown is the editorial source of truth. Keep the reviewed core
-unchanged and extend its target set here so CI, local deploy and production
-deploy all use the same correction without duplicating the large renderer
-implementation.
+Markdown is the editorial source of truth. The reviewed core regenerates full
+article bodies only for pages where that is safe. Some preview pages retain
+bespoke hand-built bodies, but their public ``article-lead`` must still follow
+the reviewed source rather than drift as a separate copy.
 
-A small number of bespoke preview pages intentionally keep their hand-built
-article bodies. For those pages, concise article-map leads are synchronized
-here without regenerating the bespoke body layout.
+This wrapper therefore:
+
+1. extends full-body synchronization for reviewed articles omitted from the
+   original core set;
+2. synchronizes the lead for every B001-B060 page from its Markdown intro;
+3. applies five previously reviewed compact lead summaries where the Markdown
+   intro is intentionally broader than the public article-map lead.
+
+The third step is retained for compatibility. It is covered by regression tests
+and must remain a summary of the corresponding article body, not an independent
+piece of marketing copy.
 """
 
 from __future__ import annotations
@@ -28,10 +35,13 @@ except ImportError:  # direct script execution: python scripts/...
 EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"}
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
+ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
 
-# These articles use bespoke preview bodies that should not be generically
-# regenerated. The lead is the public article map, so keep it concise and make
-# it summarize the main chapter flow reviewed on 2026-09-09.
+# These five summaries were manually reviewed against their full article bodies
+# before the all-article source synchronization was introduced. Keep them as
+# explicit compatibility exceptions until their Markdown introductions are
+# consolidated in a future editorial pass. They must never be used for other
+# articles and are checked separately below.
 LEAD_OVERRIDES = {
     "B013": (
         "水災補償の有無だけでなく、風災との違い、建物・家財・賃貸の対象、"
@@ -57,6 +67,47 @@ LEAD_OVERRIDES = {
 }
 
 
+def _replace_lead(preview: str, rendered: str, article_id: str, preview_path: Path) -> str:
+    match = _core.LEAD_RE.search(preview)
+    if not match:
+        raise ValueError(f"article-lead not found for {article_id}: {preview_path}")
+    return (
+        preview[: match.start()]
+        + match.group("open")
+        + rendered
+        + match.group("close")
+        + preview[match.end() :]
+    )
+
+
+def apply_markdown_leads() -> list[str]:
+    """Synchronize every B001-B060 public lead from its Markdown introduction."""
+    registry = _core.load_registry(_core.REGISTRY)
+    aliases = _core.preview_aliases(registry)
+    by_id = {article["article_id"]: article for article in registry["articles"]}
+    missing = ALL_ARTICLE_IDS - set(by_id)
+    if missing:
+        raise ValueError(f"registry missing article ids: {sorted(missing)}")
+
+    changed: list[str] = []
+    for article_id in sorted(ALL_ARTICLE_IDS):
+        article = by_id[article_id]
+        source_path = _core.ROOT / article["source_path"]
+        preview_path = _core.ROOT / article["preview_path"]
+        markdown = source_path.read_text(encoding="utf-8")
+        intro, _ = _core.parse_source(markdown)
+        if not intro:
+            raise ValueError(f"Markdown introduction is empty for {article_id}: {source_path}")
+
+        preview = preview_path.read_text(encoding="utf-8")
+        rendered = _core.inline_markup(intro, aliases)
+        updated = _replace_lead(preview, rendered, article_id, preview_path)
+        if updated != preview:
+            preview_path.write_text(updated, encoding="utf-8")
+            changed.append(article_id)
+    return changed
+
+
 def apply_lead_overrides() -> list[str]:
     registry = _core.load_registry(_core.REGISTRY)
     aliases = _core.preview_aliases(registry)
@@ -67,27 +118,17 @@ def apply_lead_overrides() -> list[str]:
         article = by_id[article_id]
         preview_path = _core.ROOT / article["preview_path"]
         preview = preview_path.read_text(encoding="utf-8")
-        match = _core.LEAD_RE.search(preview)
-        if not match:
-            raise ValueError(f"article-lead not found for {article_id}: {preview_path}")
-
         rendered = _core.inline_markup(LEAD_OVERRIDES[article_id], aliases)
-        updated = (
-            preview[: match.start()]
-            + match.group("open")
-            + rendered
-            + match.group("close")
-            + preview[match.end() :]
-        )
+        updated = _replace_lead(preview, rendered, article_id, preview_path)
         if updated != preview:
             preview_path.write_text(updated, encoding="utf-8")
             changed.append(article_id)
-
     return changed
 
 
 def sync() -> list[str]:
     changed = _core.sync()
+    changed.extend(apply_markdown_leads())
     changed.extend(apply_lead_overrides())
     return sorted(set(changed))
 
@@ -105,12 +146,7 @@ def main() -> int:
     if args.check:
         registry = _core.load_registry(_core.REGISTRY)
         by_id = {article["article_id"]: article for article in registry["articles"]}
-        ids = (
-            set(SYNC_ARTICLE_IDS)
-            | set(_core.TARGETED_PREVIEW_REPLACEMENTS)
-            | set(LEAD_OVERRIDES)
-        )
-        for article_id in sorted(ids):
+        for article_id in sorted(ALL_ARTICLE_IDS):
             path = _core.ROOT / by_id[article_id]["preview_path"]
             originals[path] = path.read_text(encoding="utf-8")
 
