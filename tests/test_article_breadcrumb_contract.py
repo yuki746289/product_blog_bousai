@@ -1,4 +1,5 @@
 # Created: 2026-09-09 19:02 JST
+# Updated: 2026-09-09 19:31 JST
 """Regression tests for visible and structured article breadcrumbs."""
 
 import re
@@ -7,7 +8,6 @@ from pathlib import Path
 
 from scripts import sync_previews_core as _core
 from scripts.article_metadata import CATEGORY_BREADCRUMBS
-from scripts.build_public import STATIC_HTML_MAP
 from scripts.sync_previews_from_markdown import (
     ALL_ARTICLE_IDS,
     CATEGORY_PREVIEW_BREADCRUMBS,
@@ -18,6 +18,22 @@ BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>(?P<body>.*?)</nav>',
     re.IGNORECASE | re.DOTALL,
 )
+
+# Keep the route contract explicit here instead of importing build_public.py,
+# which is a direct-execution script with sibling imports rather than a package
+# module. This table is intentionally small and covers only article categories.
+CATEGORY_PREVIEW_TO_PUBLIC = {
+    "category_guide.html": "guide/index.html",
+    "category_outage.html": "outage/index.html",
+    "category_flood.html": "flood/index.html",
+    "category_typhoon.html": "typhoon/index.html",
+    "category_earthquake.html": "earthquake/index.html",
+    "category_vehicle.html": "vehicle/index.html",
+    "category_insurance.html": "insurance/index.html",
+    "category_home.html": "home/index.html",
+    "category_post_disaster.html": "post-disaster/index.html",
+    "category_goods.html": "goods/index.html",
+}
 
 
 class ArticleBreadcrumbContractTests(unittest.TestCase):
@@ -37,8 +53,8 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
                 visible_name, preview_category = CATEGORY_PREVIEW_BREADCRUMBS[category]
                 structured_name, public_category = CATEGORY_BREADCRUMBS[category]
                 self.assertEqual(visible_name, structured_name)
-                self.assertIn(preview_category, STATIC_HTML_MAP)
-                self.assertEqual(public_category, STATIC_HTML_MAP[preview_category])
+                self.assertIn(preview_category, CATEGORY_PREVIEW_TO_PUBLIC)
+                self.assertEqual(public_category, CATEGORY_PREVIEW_TO_PUBLIC[preview_category])
                 self.assertTrue((ROOT / "preview" / preview_category).exists())
 
     def test_all_sixty_visible_breadcrumbs_link_the_category(self):
@@ -63,7 +79,7 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
             category_name, preview_category = CATEGORY_PREVIEW_BREADCRUMBS[article["category"]]
             self.assertEqual("停電・断水", category_name)
             self.assertEqual("category_outage.html", preview_category)
-            self.assertEqual("outage/index.html", STATIC_HTML_MAP[preview_category])
+            self.assertEqual("outage/index.html", CATEGORY_PREVIEW_TO_PUBLIC[preview_category])
 
     def test_post_disaster_category_name_is_consistent(self):
         self.assertEqual(
