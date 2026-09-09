@@ -8,8 +8,6 @@ PREVIEW = ROOT / "preview"
 
 CATEGORY_FILES = [
     "category_guide.html",
-    "category_disaster_situations.html",
-    "category_life.html",
     "category_typhoon.html",
     "category_flood.html",
     "category_earthquake.html",
@@ -19,6 +17,7 @@ CATEGORY_FILES = [
     "category_goods.html",
     "category_outage.html",
     "category_post_disaster.html",
+    "category_region.html",
 ]
 POLICY_FILES = ["about.html", "disclaimer.html", "privacy.html", "advertising.html"]
 PRODUCT_FILES = [
@@ -27,7 +26,20 @@ PRODUCT_FILES = [
     "goods_light_information.html",
     "goods_power_charging.html",
 ]
-PRIMARY_NAV_LABELS = ["防災入門", "災害・状況別", "暮らし別", "地域別", "Q&A"]
+PRIMARY_NAV_LABELS = [
+    "防災入門",
+    "台風",
+    "大雨・水害",
+    "地震",
+    "停電・断水",
+    "被災後・復旧",
+    "住宅",
+    "車",
+    "保険",
+    "防災グッズ",
+    "地域別",
+    "Q&A",
+]
 
 
 def read(name: str) -> str:
@@ -71,34 +83,42 @@ class NonArticlePageReviewTest(unittest.TestCase):
                 self.assertGreaterEqual(html.count('class="category-article-link'), 1)
                 self.assertIn('class="related-category-grid"', html)
 
-    def test_primary_navigation_has_five_clear_entry_points(self):
+    def test_primary_navigation_exposes_all_categories_directly(self):
         for name in ["index.html", "category_outage.html", "category_post_disaster.html", "article_b003.html"]:
             with self.subTest(name=name):
                 labels = nav_labels(read(name))
                 self.assertEqual(PRIMARY_NAV_LABELS, labels)
-                self.assertNotIn("停電・断水", labels)
-                self.assertNotIn("被災後・復旧", labels)
+                self.assertIn("停電・断水", labels)
+                self.assertIn("被災後・復旧", labels)
+                self.assertNotIn("災害・状況別", labels)
+                self.assertNotIn("暮らし別", labels)
 
-    def test_group_hubs_expose_former_auxiliary_categories(self):
-        disaster = read("category_disaster_situations.html")
-        life = read("category_life.html")
-        for label, href in [
-            ("台風", "category_typhoon.html"),
-            ("大雨・水害", "category_flood.html"),
-            ("地震", "category_earthquake.html"),
-            ("停電・断水", "category_outage.html"),
-            ("被災後・復旧", "category_post_disaster.html"),
+    def test_navigation_has_no_intermediate_category_group_routes(self):
+        html = read("index.html")
+        nav_match = re.search(
+            r'<nav\b[^>]*\bclass=["\'][^"\']*\bsite-nav\b[^"\']*["\'][^>]*>(.*?)</nav>',
+            html,
+            flags=re.I | re.S,
+        )
+        self.assertIsNotNone(nav_match)
+        nav = nav_match.group(1)
+        for href in [
+            "category_guide.html",
+            "category_typhoon.html",
+            "category_flood.html",
+            "category_earthquake.html",
+            "category_outage.html",
+            "category_post_disaster.html",
+            "category_home.html",
+            "category_vehicle.html",
+            "category_insurance.html",
+            "category_goods.html",
+            "category_region.html",
+            "qa.html",
         ]:
-            self.assertIn(f'href="{href}"', disaster)
-            self.assertIn(label, disaster)
-        for label, href in [
-            ("住宅と災害", "category_home.html"),
-            ("車と災害", "category_vehicle.html"),
-            ("保険・お金", "category_insurance.html"),
-            ("防災グッズ", "category_goods.html"),
-        ]:
-            self.assertIn(f'href="{href}"', life)
-            self.assertIn(label, life)
+            self.assertIn(f'href="{href}"', nav)
+        self.assertNotIn("category_disaster_situations.html", nav)
+        self.assertNotIn("category_life.html", nav)
 
     def test_product_pages_keep_information_before_commerce_scaffolding(self):
         forbidden_producer_labels = ["商品候補", "当サイトが選定", "採用理由"]
