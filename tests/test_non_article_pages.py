@@ -1,5 +1,6 @@
 import re
 import unittest
+from html import unescape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +43,7 @@ def nav_labels(html: str) -> list[str]:
     if not match:
         return []
     return [
-        re.sub(r"<[^>]+>", "", text).strip()
+        unescape(re.sub(r"<[^>]+>", "", text).strip())
         for text in re.findall(r"<a\b[^>]*>(.*?)</a>", match.group(1), flags=re.I | re.S)
     ]
 
@@ -188,7 +189,7 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertIn('min-width: 44px', js)
         self.assertIn('.site-nav.mobile-nav-enhanced.is-open', js)
         for label in PRIMARY_NAV_LABELS:
-            self.assertIn(label, home)
+            self.assertIn(label if label != "Q&A" else "Q&amp;A", home)
 
 
 if __name__ == "__main__":
