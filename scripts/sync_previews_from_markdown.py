@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-09 19:25 JST
+# Updated: 2026-09-09 19:27 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -13,7 +13,8 @@ This wrapper therefore:
    original core set;
 2. synchronizes the lead for every B001-B060 page from its Markdown intro;
 3. normalizes every article breadcrumb so its category is a real, clickable
-   published category rather than an unlinked display-only label.
+   published category rather than an unlinked display-only label;
+4. inserts a breadcrumb when an older bespoke preview omitted it entirely.
 
 There are no article-specific lead overrides. If an article lead needs editorial
 improvement, update the Markdown introduction itself so source, review and public
@@ -59,6 +60,7 @@ BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>(?P<body>.*?)</nav>',
     re.IGNORECASE | re.DOTALL,
 )
+MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
 TAG_RE = re.compile(r"<[^>]+>")
 
 
@@ -112,8 +114,17 @@ def _current_breadcrumb_label(match: re.Match[str], article: dict) -> str:
     return article["title"]
 
 
+def _breadcrumb_markup(category_name: str, category_preview: str, current_label: str) -> str:
+    return (
+        '<nav class="breadcrumb" aria-label="パンくずリスト">'
+        '<a href="index.html">トップ</a> &gt; '
+        f'<a href="{category_preview}">{html_lib.escape(category_name)}</a> &gt; '
+        f"{html_lib.escape(current_label)}</nav>"
+    )
+
+
 def apply_article_breadcrumbs() -> list[str]:
-    """Link every article breadcrumb to its canonical published category."""
+    """Link or insert every article breadcrumb to its canonical published category."""
     registry = _core.load_registry(_core.REGISTRY)
     by_id = {article["article_id"]: article for article in registry["articles"]}
     missing = ALL_ARTICLE_IDS - set(by_id)
@@ -137,17 +148,17 @@ def apply_article_breadcrumbs() -> list[str]:
         preview_path = _core.ROOT / article["preview_path"]
         preview = preview_path.read_text(encoding="utf-8")
         match = BREADCRUMB_RE.search(preview)
-        if not match:
-            raise ValueError(f"breadcrumb not found for {article_id}: {preview_path}")
+        if match:
+            current_label = _current_breadcrumb_label(match, article)
+            replacement = _breadcrumb_markup(category_name, category_preview, current_label)
+            updated = preview[: match.start()] + replacement + preview[match.end() :]
+        else:
+            main_match = MAIN_OPEN_RE.search(preview)
+            if not main_match:
+                raise ValueError(f"main element not found for {article_id}: {preview_path}")
+            replacement = _breadcrumb_markup(category_name, category_preview, article["title"])
+            updated = preview[: main_match.end()] + replacement + preview[main_match.end() :]
 
-        current_label = html_lib.escape(_current_breadcrumb_label(match, article))
-        replacement = (
-            '<nav class="breadcrumb" aria-label="パンくずリスト">'
-            '<a href="index.html">トップ</a> &gt; '
-            f'<a href="{category_preview}">{html_lib.escape(category_name)}</a> &gt; '
-            f"{current_label}</nav>"
-        )
-        updated = preview[: match.start()] + replacement + preview[match.end() :]
         if updated != preview:
             preview_path.write_text(updated, encoding="utf-8")
             changed.append(article_id)
