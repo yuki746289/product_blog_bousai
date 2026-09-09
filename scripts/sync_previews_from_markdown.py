@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-09 19:27 JST
+# Updated: 2026-09-09 20:08 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -14,7 +14,9 @@ This wrapper therefore:
 2. synchronizes the lead for every B001-B060 page from its Markdown intro;
 3. normalizes every article breadcrumb so its category is a real, clickable
    published category rather than an unlinked display-only label;
-4. inserts a breadcrumb when an older bespoke preview omitted it entirely.
+4. inserts a breadcrumb when an older bespoke preview omitted it entirely;
+5. normalizes site navigation to five clear user-facing entry points;
+6. groups category pages under explicit ``災害・状況別`` / ``暮らし別`` hubs.
 
 There are no article-specific lead overrides. If an article lead needs editorial
 improvement, update the Markdown introduction itself so source, review and public
@@ -40,6 +42,17 @@ _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
 
+# User-facing navigation is intentionally smaller than the article taxonomy.
+# Detailed categories remain available, but users enter them through one of
+# these five stable choices rather than discovering hidden/auxiliary categories.
+SITE_NAV_LINKS = (
+    ("防災入門", "category_guide.html"),
+    ("災害・状況別", "category_disaster_situations.html"),
+    ("暮らし別", "category_life.html"),
+    ("地域別", "category_region.html"),
+    ("Q&A", "qa.html"),
+)
+
 # Canonical visible article-category destinations in preview. build_public.py
 # rewrites these flat preview links to the nested production category paths.
 CATEGORY_PREVIEW_BREADCRUMBS = {
@@ -56,8 +69,31 @@ CATEGORY_PREVIEW_BREADCRUMBS = {
     "goods": ("防災グッズ", "category_goods.html"),
 }
 
+# Category pages are grouped for navigation clarity. The tuple is
+# (parent label, parent preview path, current category label). A null parent
+# means the page itself is one of the five top-level entry points.
+CATEGORY_PAGE_HIERARCHY = {
+    "category_guide.html": (None, None, "防災入門"),
+    "category_disaster_situations.html": (None, None, "災害・状況別"),
+    "category_typhoon.html": ("災害・状況別", "category_disaster_situations.html", "台風"),
+    "category_flood.html": ("災害・状況別", "category_disaster_situations.html", "大雨・水害"),
+    "category_earthquake.html": ("災害・状況別", "category_disaster_situations.html", "地震"),
+    "category_outage.html": ("災害・状況別", "category_disaster_situations.html", "停電・断水"),
+    "category_post_disaster.html": ("災害・状況別", "category_disaster_situations.html", "被災後・復旧"),
+    "category_life.html": (None, None, "暮らし別"),
+    "category_vehicle.html": ("暮らし別", "category_life.html", "車と災害"),
+    "category_home.html": ("暮らし別", "category_life.html", "住宅と災害"),
+    "category_insurance.html": ("暮らし別", "category_life.html", "保険・お金"),
+    "category_goods.html": ("暮らし別", "category_life.html", "防災グッズ"),
+    "category_region.html": (None, None, "地域別"),
+}
+
 BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>(?P<body>.*?)</nav>',
+    re.IGNORECASE | re.DOTALL,
+)
+SITE_NAV_RE = re.compile(
+    r'<nav\s+class=["\']site-nav["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
 )
 MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
@@ -165,10 +201,66 @@ def apply_article_breadcrumbs() -> list[str]:
     return changed
 
 
+def _site_nav_markup() -> str:
+    anchors = "".join(
+        f'<a href="{href}">{html_lib.escape(label)}</a>'
+        for label, href in SITE_NAV_LINKS
+    )
+    return f'<nav class="site-nav" aria-label="メインナビゲーション">{anchors}</nav>'
+
+
+def apply_site_navigation() -> list[str]:
+    """Replace sprawling/partial navigation with five stable entry points."""
+    preview_dir = _core.ROOT / "preview"
+    replacement = _site_nav_markup()
+    changed: list[str] = []
+
+    for path in sorted(preview_dir.glob("*.html")):
+        html = path.read_text(encoding="utf-8")
+        if not SITE_NAV_RE.search(html):
+            continue
+        updated = SITE_NAV_RE.sub(replacement, html, count=1)
+        if updated != html:
+            path.write_text(updated, encoding="utf-8")
+            changed.append(f"NAV:{path.name}")
+    return changed
+
+
+def _category_page_breadcrumb(parent_label: str | None, parent_href: str | None, current_label: str) -> str:
+    parts = ['<a href="index.html">トップ</a>']
+    if parent_label and parent_href:
+        parts.append(f'<a href="{parent_href}">{html_lib.escape(parent_label)}</a>')
+    parts.append(html_lib.escape(current_label))
+    return '<nav class="breadcrumb" aria-label="パンくずリスト">' + " &gt; ".join(parts) + "</nav>"
+
+
+def apply_category_page_breadcrumbs() -> list[str]:
+    """Make every category's parent group visible instead of relying on hidden hierarchy."""
+    preview_dir = _core.ROOT / "preview"
+    changed: list[str] = []
+
+    for filename, (parent_label, parent_href, current_label) in CATEGORY_PAGE_HIERARCHY.items():
+        path = preview_dir / filename
+        if not path.exists():
+            raise FileNotFoundError(f"category hierarchy page missing: {path}")
+        html = path.read_text(encoding="utf-8")
+        match = BREADCRUMB_RE.search(html)
+        if not match:
+            raise ValueError(f"category breadcrumb missing: {path}")
+        replacement = _category_page_breadcrumb(parent_label, parent_href, current_label)
+        updated = html[: match.start()] + replacement + html[match.end() :]
+        if updated != html:
+            path.write_text(updated, encoding="utf-8")
+            changed.append(f"CATEGORY:{filename}")
+    return changed
+
+
 def sync() -> list[str]:
     changed = _core.sync()
     changed.extend(apply_markdown_leads())
     changed.extend(apply_article_breadcrumbs())
+    changed.extend(apply_site_navigation())
+    changed.extend(apply_category_page_breadcrumbs())
     return sorted(set(changed))
 
 
@@ -183,14 +275,12 @@ def main() -> int:
 
     originals: dict[Path, str] = {}
     if args.check:
-        registry = _core.load_registry(_core.REGISTRY)
-        by_id = {article["article_id"]: article for article in registry["articles"]}
-        for article_id in sorted(ALL_ARTICLE_IDS):
-            path = _core.ROOT / by_id[article_id]["preview_path"]
+        preview_dir = _core.ROOT / "preview"
+        for path in sorted(preview_dir.glob("*.html")):
             originals[path] = path.read_text(encoding="utf-8")
 
     changed = sync()
-    print("Synchronized preview articles: " + (", ".join(changed) if changed else "none"))
+    print("Synchronized preview content: " + (", ".join(changed) if changed else "none"))
 
     if args.check and changed:
         for path, original in originals.items():
