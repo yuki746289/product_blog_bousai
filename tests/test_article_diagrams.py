@@ -1,45 +1,43 @@
 # Created: 2026-09-09 09:12 JST
-from pathlib import Path
+# Updated: 2026-09-09 09:38 JST
 import unittest
 
-ROOT = Path(__file__).resolve().parents[1]
+from scripts.article_diagrams import DIAGRAMS, inject_article_diagram
 
-EXPECTED = {
-    'B001': 'ai_b001_hazardmap_flow_20260909.webp',
-    'B003': 'ai_b003_toilet_difference_20260909.webp',
-    'B004': 'ai_b004_outage_five_roles_20260909.webp',
-    'B012': 'ai_b012_sandbag_placement_20260909.webp',
-    'B015': 'ai_b015_damage_photo_steps_20260909.webp',
-    'B021': 'ai_b021_typhoon_timeline_20260909.webp',
-    'B022': 'ai_b022_apartment_flood_points_20260909.webp',
-    'B028': 'ai_b028_wh_w_guide_20260909.webp',
-    'B041': 'ai_b041_tsunami_evacuation_20260909.webp',
-}
+EXPECTED_IDS = {"B001", "B003", "B004", "B012", "B015", "B021", "B022", "B028", "B041"}
 
 
 class ArticleDiagramTests(unittest.TestCase):
-    def test_shared_head_loads_article_diagram_script(self):
-        partial = (ROOT / 'templates/partials/google_analytics.html').read_text(encoding='utf-8')
-        self.assertIn('/assets/article_diagrams.js', partial)
+    def test_nine_reviewed_diagrams_are_configured(self):
+        self.assertEqual(9, len(DIAGRAMS))
+        self.assertEqual(EXPECTED_IDS, {spec["article_id"] for spec in DIAGRAMS.values()})
 
-    def test_diagram_script_contains_all_article_routes_and_accessibility_text(self):
-        script = (ROOT / 'preview/assets/article_diagrams.js').read_text(encoding='utf-8')
-        for article_id, filename in EXPECTED.items():
-            with self.subTest(article_id=article_id):
-                self.assertIn("id: '%s'" % article_id, script)
-                self.assertIn(filename, script)
-        self.assertIn('image.alt = config.alt', script)
-        self.assertIn('figcaption', script)
-        self.assertIn('data-article-diagram', script)
+    def test_each_diagram_has_explanatory_caption_and_accessible_group_label(self):
+        for output_path, spec in DIAGRAMS.items():
+            with self.subTest(output_path=output_path):
+                figure = spec["figure"]
+                self.assertIn(f'data-article-diagram="{spec["article_id"]}"', figure)
+                self.assertIn('role="group"', figure)
+                self.assertIn('aria-label=', figure)
+                self.assertIn('<figcaption>', figure)
+                self.assertIn('article-explainer__title', figure)
 
-    def test_all_diagram_assets_exist_and_are_reasonably_sized(self):
-        image_dir = ROOT / 'preview/assets/images'
-        for article_id, filename in EXPECTED.items():
+    def test_injection_is_static_idempotent_and_heading_scoped(self):
+        path, spec = next(iter(DIAGRAMS.items()))
+        source = f"<html><head></head><body><article><h2>{spec['heading']}</h2><p>本文</p></article></body></html>"
+        once = inject_article_diagram(source, path)
+        twice = inject_article_diagram(once, path)
+        marker = f'data-article-diagram="{spec["article_id"]}"'
+        self.assertEqual(1, once.count(marker))
+        self.assertEqual(once, twice)
+        self.assertIn('data-article-diagram-style', once)
+        self.assertLess(once.index('</h2>'), once.index(marker))
+
+    def test_high_risk_diagrams_include_caution_text(self):
+        for article_id in ("B003", "B012", "B015", "B021", "B022", "B041"):
+            spec = next(item for item in DIAGRAMS.values() if item["article_id"] == article_id)
             with self.subTest(article_id=article_id):
-                path = image_dir / filename
-                self.assertTrue(path.is_file(), filename)
-                self.assertGreater(path.stat().st_size, 50_000, filename)
-                self.assertLess(path.stat().st_size, 500_000, filename)
+                self.assertIn('article-explainer__warning', spec["figure"])
 
 
 if __name__ == '__main__':
