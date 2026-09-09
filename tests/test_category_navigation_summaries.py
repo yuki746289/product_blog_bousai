@@ -1,9 +1,10 @@
 # Created: 2026-09-07 23:40 JST
-# Updated: 2026-09-09 20:14 JST
+# Updated: 2026-09-09 20:16 JST
 import re
 import subprocess
 import sys
 import unittest
+from html import unescape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,7 +34,7 @@ def extract_nav(html: str) -> str:
 
 def extract_nav_labels(nav: str) -> list[str]:
     return [
-        re.sub(r"<[^>]+>", "", body).strip()
+        unescape(re.sub(r"<[^>]+>", "", body).strip())
         for body in re.findall(r"<a\b[^>]*>(.*?)</a>", nav, flags=re.I | re.S)
     ]
 
