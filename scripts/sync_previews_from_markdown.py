@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-09 20:08 JST
+# Updated: 2026-09-09 21:23 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -15,8 +15,9 @@ This wrapper therefore:
 3. normalizes every article breadcrumb so its category is a real, clickable
    published category rather than an unlinked display-only label;
 4. inserts a breadcrumb when an older bespoke preview omitted it entirely;
-5. normalizes site navigation to five clear user-facing entry points;
-6. groups category pages under explicit ``災害・状況別`` / ``暮らし別`` hubs.
+5. exposes every user-facing category directly in the site navigation;
+6. keeps category pages flat so reaching an article never requires an
+   intermediate category-group page.
 
 There are no article-specific lead overrides. If an article lead needs editorial
 improvement, update the Markdown introduction itself so source, review and public
@@ -42,13 +43,19 @@ _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
 
-# User-facing navigation is intentionally smaller than the article taxonomy.
-# Detailed categories remain available, but users enter them through one of
-# these five stable choices rather than discovering hidden/auxiliary categories.
+# User-facing categories are intentionally flat. Every category is reachable
+# directly from the global navigation; no intermediate grouping page is needed.
 SITE_NAV_LINKS = (
     ("防災入門", "category_guide.html"),
-    ("災害・状況別", "category_disaster_situations.html"),
-    ("暮らし別", "category_life.html"),
+    ("台風", "category_typhoon.html"),
+    ("大雨・水害", "category_flood.html"),
+    ("地震", "category_earthquake.html"),
+    ("停電・断水", "category_outage.html"),
+    ("被災後・復旧", "category_post_disaster.html"),
+    ("住宅", "category_home.html"),
+    ("車", "category_vehicle.html"),
+    ("保険", "category_insurance.html"),
+    ("防災グッズ", "category_goods.html"),
     ("地域別", "category_region.html"),
     ("Q&A", "qa.html"),
 )
@@ -69,22 +76,20 @@ CATEGORY_PREVIEW_BREADCRUMBS = {
     "goods": ("防災グッズ", "category_goods.html"),
 }
 
-# Category pages are grouped for navigation clarity. The tuple is
-# (parent label, parent preview path, current category label). A null parent
-# means the page itself is one of the five top-level entry points.
+# Category pages themselves are top-level user destinations. The tuple is
+# (parent label, parent preview path, current category label). Parents are null
+# by design so the public information architecture remains one category deep.
 CATEGORY_PAGE_HIERARCHY = {
     "category_guide.html": (None, None, "防災入門"),
-    "category_disaster_situations.html": (None, None, "災害・状況別"),
-    "category_typhoon.html": ("災害・状況別", "category_disaster_situations.html", "台風"),
-    "category_flood.html": ("災害・状況別", "category_disaster_situations.html", "大雨・水害"),
-    "category_earthquake.html": ("災害・状況別", "category_disaster_situations.html", "地震"),
-    "category_outage.html": ("災害・状況別", "category_disaster_situations.html", "停電・断水"),
-    "category_post_disaster.html": ("災害・状況別", "category_disaster_situations.html", "被災後・復旧"),
-    "category_life.html": (None, None, "暮らし別"),
-    "category_vehicle.html": ("暮らし別", "category_life.html", "車と災害"),
-    "category_home.html": ("暮らし別", "category_life.html", "住宅と災害"),
-    "category_insurance.html": ("暮らし別", "category_life.html", "保険・お金"),
-    "category_goods.html": ("暮らし別", "category_life.html", "防災グッズ"),
+    "category_typhoon.html": (None, None, "台風"),
+    "category_flood.html": (None, None, "大雨・水害"),
+    "category_earthquake.html": (None, None, "地震"),
+    "category_outage.html": (None, None, "停電・断水"),
+    "category_post_disaster.html": (None, None, "被災後・復旧"),
+    "category_vehicle.html": (None, None, "車と災害"),
+    "category_home.html": (None, None, "住宅と災害"),
+    "category_insurance.html": (None, None, "保険・お金"),
+    "category_goods.html": (None, None, "防災グッズ"),
     "category_region.html": (None, None, "地域別"),
 }
 
@@ -210,7 +215,7 @@ def _site_nav_markup() -> str:
 
 
 def apply_site_navigation() -> list[str]:
-    """Replace sprawling/partial navigation with five stable entry points."""
+    """Expose every user-facing category directly from the global navigation."""
     preview_dir = _core.ROOT / "preview"
     replacement = _site_nav_markup()
     changed: list[str] = []
@@ -235,7 +240,7 @@ def _category_page_breadcrumb(parent_label: str | None, parent_href: str | None,
 
 
 def apply_category_page_breadcrumbs() -> list[str]:
-    """Make every category's parent group visible instead of relying on hidden hierarchy."""
+    """Keep category breadcrumbs flat: top -> category."""
     preview_dir = _core.ROOT / "preview"
     changed: list[str] = []
 
