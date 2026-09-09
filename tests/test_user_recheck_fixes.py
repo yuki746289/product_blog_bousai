@@ -1,8 +1,12 @@
 # Created: 2026-09-09 14:58 JST
+# Updated: 2026-09-09 15:05 JST
 import unittest
+from pathlib import Path
 
 from scripts.article_diagrams import DIAGRAMS, inject_article_diagram, inject_article_image_zoom
 from scripts.sync_previews_from_markdown import EXTRA_SYNC_ARTICLE_IDS, SYNC_ARTICLE_IDS
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class UserRecheckFixTests(unittest.TestCase):
@@ -46,6 +50,21 @@ class UserRecheckFixTests(unittest.TestCase):
         self.assertIn(f'data-article-diagram="{spec["article_id"]}"', result)
         self.assertIn("data-article-image-zoom-script", result)
         self.assertIn("data-article-image-zoom-style", result)
+
+    def test_b020_intro_contains_concrete_time_and_action_map(self):
+        text = (ROOT / "content/articles/B020_home_heavy_rain_checklist.md").read_text(encoding="utf-8")
+        self.assertIn("3〜7日前にハザードマップ・排水口・1階の家財を確認", text)
+        self.assertIn("①浸水リスクの確認", text)
+        self.assertIn("⑤当日の中止条件と避難判断", text)
+        self.assertIn("家の対策が未完成でも、危険が高まったら中止する", text)
+
+    def test_b034_has_contextual_internal_product_guides(self):
+        text = (ROOT / "content/articles/B034_baby_disaster_stockpile.md").read_text(encoding="utf-8")
+        self.assertIn("調乳用の水や、家族全体の保存水・非常食を追加する場合", text)
+        self.assertIn("[水・非常食の選び方と商品紹介](goods_water_food.html)", text)
+        self.assertIn("家族共通で使う衛生用品", text)
+        self.assertIn("[携帯トイレ・衛生用品の商品例を見る](goods_toilet_hygiene.html)", text)
+        self.assertIn("紙おむつや乳児専用品の選択はこの商品記事の対象外", text)
 
 
 if __name__ == "__main__":
