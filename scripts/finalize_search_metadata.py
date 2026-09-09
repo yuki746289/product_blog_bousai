@@ -1,8 +1,9 @@
-# Created: 2026-09-06 / Updated: 2026-09-07 23:40 JST
-"""Finalize production-only metadata and category navigation after static build.
+# Created: 2026-09-06 / Updated: 2026-09-09 09:38 JST
+"""Finalize production-only metadata, article infographics and category navigation.
 
 The preview tree intentionally uses preview-only metadata such as noindex.
 This production-only step:
+- injects reviewed explanatory infographics into selected article sections,
 - adds a self-referencing canonical URL to every published HTML page,
 - adds the regional category link to the static top navigation,
 - renders category article summaries from each article's meta description,
@@ -19,12 +20,13 @@ from html import unescape as html_unescape
 from pathlib import Path
 from urllib.parse import urljoin
 
+from article_diagrams import inject_article_diagram
 from bousai_blog.registry import load_registry as load_content_registry
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
-REGISTRY = ROOT / "data" / "content_registry.json"
-SITE_CONFIG = ROOT / "config" / "site.json"
+REGISTRY = ROOT / "data/content_registry.json"
+SITE_CONFIG = ROOT / "config/site.json"
 CATEGORY_SUMMARY_MAX_LENGTH = 82
 
 CANONICAL_TAG_RE = re.compile(
@@ -283,13 +285,17 @@ def finalize_public() -> None:
 
     article_summaries = load_article_summaries()
     errors: list[str] = []
+    diagram_count = 0
 
     for path in html_files:
         relative = path.relative_to(PUBLIC).as_posix()
         expected = canonical_url(base_url, relative)
         html = path.read_text(encoding="utf-8")
 
-        enhanced = inject_region_navigation(html, relative)
+        enhanced = inject_article_diagram(html, relative)
+        if 'data-article-diagram=' in enhanced and 'data-article-diagram=' not in html:
+            diagram_count += 1
+        enhanced = inject_region_navigation(enhanced, relative)
         if is_category_page(enhanced):
             enhanced = inject_category_article_summaries(enhanced, article_summaries)
             enhanced = inject_category_listing_styles(enhanced)
@@ -299,12 +305,16 @@ def finalize_public() -> None:
         errors.extend(validate_canonical(finalized, expected, relative))
         errors.extend(validate_category_enhancements(finalized, relative))
 
+    if diagram_count != 9:
+        errors.append(f"article infographic injection count mismatch: {diagram_count}/9")
+
     if errors:
         raise ValueError("Production metadata/category validation failed:\n" + "\n".join(errors))
 
     print(
         f"Production metadata/category navigation finalized for {len(html_files)} HTML files; "
-        f"article summaries available: {len(article_summaries)}."
+        f"article summaries available: {len(article_summaries)}; "
+        f"article infographics injected: {diagram_count}."
     )
 
 
