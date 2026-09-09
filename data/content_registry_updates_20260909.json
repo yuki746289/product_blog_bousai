@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T15:15:00+09:00",
+  "updated_at": "2026-09-09T15:14:00+09:00",
   "articles": [
     {"article_id": "B001", "body_char_count_approx": 5232},
     {"article_id": "B002", "body_char_count_approx": 5145},
@@ -58,7 +58,7 @@
     {"article_id": "B055", "body_char_count_approx": 3015},
     {"article_id": "B056", "body_char_count_approx": 2637},
     {"article_id": "B057", "body_char_count_approx": 2140},
-    {"article_id": "B058", "body_char_count_approx": 2339},
+    {"article_id": "B058", "body_char_count_approx": 2510},
     {"article_id": "B059", "body_char_count_approx": 3828},
     {"article_id": "B060", "body_char_count_approx": 3627}
   ]
