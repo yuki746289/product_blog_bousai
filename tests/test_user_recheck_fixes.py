@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:58 JST
-# Updated: 2026-09-09 15:05 JST
+# Updated: 2026-09-09 15:10 JST
 import unittest
 from pathlib import Path
 
@@ -50,6 +50,13 @@ class UserRecheckFixTests(unittest.TestCase):
         self.assertIn(f'data-article-diagram="{spec["article_id"]}"', result)
         self.assertIn("data-article-image-zoom-script", result)
         self.assertIn("data-article-image-zoom-style", result)
+
+    def test_b008_intro_maps_the_main_decisions(self):
+        text = (ROOT / "content/articles/B008_car_flood_submersion.md").read_text(encoding="utf-8")
+        self.assertIn("①冠水路へ入らない判断", text)
+        self.assertIn("③脱出用ハンマーと破砕できるガラス", text)
+        self.assertIn("④水が引いた後にやってはいけないこと", text)
+        self.assertIn("冠水を見つけた段階で停止・迂回できるなら、それが最優先", text)
 
     def test_b020_intro_contains_concrete_time_and_action_map(self):
         text = (ROOT / "content/articles/B020_home_heavy_rain_checklist.md").read_text(encoding="utf-8")
