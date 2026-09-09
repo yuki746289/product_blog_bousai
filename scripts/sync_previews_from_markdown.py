@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-09 19:00 JST
+# Updated: 2026-09-09 19:25 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -128,7 +128,7 @@ def apply_article_breadcrumbs() -> list[str]:
         if not category_info:
             raise ValueError(f"breadcrumb category mapping missing for {article_id}: {category!r}")
         category_name, category_preview = category_info
-        category_path = _core.PREVIEW / category_preview
+        category_path = _core.ROOT / "preview" / category_preview
         if not category_path.exists():
             raise FileNotFoundError(
                 f"breadcrumb category page missing for {article_id}: {category_path}"
