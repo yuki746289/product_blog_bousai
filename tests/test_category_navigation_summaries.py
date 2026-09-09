@@ -1,11 +1,16 @@
 # Created: 2026-09-07 23:40 JST
-# Updated: 2026-09-09 20:16 JST
+# Updated: 2026-09-09 20:20 JST
 import re
 import subprocess
 import sys
 import unittest
 from html import unescape
 from pathlib import Path
+
+from scripts.sync_previews_from_markdown import (
+    apply_category_page_breadcrumbs,
+    apply_site_navigation,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -42,11 +47,12 @@ def extract_nav_labels(nav: str) -> list[str]:
 class CategoryNavigationSummaryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        subprocess.run(
-            [sys.executable, str(ROOT / "scripts" / "sync_previews_from_markdown.py")],
-            cwd=ROOT,
-            check=True,
-        )
+        # The CI workflow already performs the full article synchronization.
+        # For isolated test execution, only apply the navigation transforms
+        # under test; re-running the legacy targeted article synchronizer can
+        # consume one-time replacement markers such as B060's product note.
+        apply_site_navigation()
+        apply_category_page_breadcrumbs()
         subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "build_public.py")],
             cwd=ROOT,
