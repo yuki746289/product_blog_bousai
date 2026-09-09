@@ -1,4 +1,5 @@
 # Created: 2026-09-03
+# Updated: 2026-09-09 19:00 JST
 """Article date display and JSON-LD generation for production builds."""
 
 from __future__ import annotations
@@ -39,7 +40,7 @@ CATEGORY_BREADCRUMBS = {
     "vehicle": ("車と災害", "vehicle/index.html"),
     "insurance": ("保険・お金", "insurance/index.html"),
     "home": ("住宅と災害", "home/index.html"),
-    "post-disaster": ("被災後", "post-disaster/index.html"),
+    "post-disaster": ("被災後・復旧", "post-disaster/index.html"),
     "goods": ("防災グッズ", "goods/index.html"),
 }
 
