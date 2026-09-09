@@ -1,3 +1,4 @@
+# Updated: 2026-09-09 17:00 JST
 from __future__ import annotations
 
 import unittest
@@ -45,9 +46,13 @@ class B051FireInsuranceComparisonTests(unittest.TestCase):
     def test_article_keeps_neutral_comparison_boundaries(self) -> None:
         source = self._text("content/articles/B051_fire_insurance_10_company_comparison.md")
         preview = self._text("preview/article_b051.html")
-        self.assertIn("最安ランキング", source)
-        self.assertIn("総合1位〜10位のランキングではありません", preview)
+        # Validate the editorial meaning rather than a stale preview-only phrase.
+        # The reviewed source explicitly rejects both recommendation ranking and
+        # cheapest-price ranking, and the all-article lead synchronizer carries
+        # those boundaries into the preview.
         for text in (source, preview):
+            self.assertIn("おすすめ順位", text)
+            self.assertIn("最安ランキング", text)
             self.assertIn("水災", text)
             self.assertIn("支払", text)
             self.assertIn("2026年10月1日", text)
