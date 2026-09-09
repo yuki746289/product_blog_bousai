@@ -1,14 +1,14 @@
 # Created: 2026-09-09 16:13 JST
-import json
+# Updated: 2026-09-09 16:17 JST
 import re
 import unittest
 from html import unescape
 from pathlib import Path
 
+from scripts import sync_previews_core as _core
 from scripts.sync_previews_from_markdown import LEAD_OVERRIDES
 
 ROOT = Path(__file__).resolve().parents[1]
-REGISTRY = ROOT / "data/content_registry.json"
 LEDGER = ROOT / "docs/reviews/ARTICLE_INTRO_MAP_REVIEW_20260909.md"
 LEAD_RE = re.compile(
     r'<p\s+class=["\']article-lead["\'][^>]*>(.*?)</p>',
@@ -32,7 +32,7 @@ class ArticleIntroMapReviewTests(unittest.TestCase):
         self.assertEqual({"B013", "B021", "B024", "B029", "B057"}, set(LEAD_OVERRIDES))
 
     def test_reviewed_lead_overrides_are_present_in_preview(self):
-        registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+        registry = _core.load_registry(_core.REGISTRY)
         by_id = {article["article_id"]: article for article in registry["articles"]}
 
         for article_id, expected in LEAD_OVERRIDES.items():
