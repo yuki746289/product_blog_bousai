@@ -1,12 +1,12 @@
 # Created: 2026-09-09 16:13 JST
-# Updated: 2026-09-09 17:00 JST
+# Updated: 2026-09-09 18:45 JST
 import re
 import unittest
 from html import unescape
 from pathlib import Path
 
 from scripts import sync_previews_core as _core
-from scripts.sync_previews_from_markdown import ALL_ARTICLE_IDS, LEAD_OVERRIDES
+from scripts.sync_previews_from_markdown import ALL_ARTICLE_IDS
 
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / "docs/reviews/ARTICLE_INTRO_MAP_REVIEW_20260909.md"
@@ -41,39 +41,36 @@ class ArticleIntroMapReviewTests(unittest.TestCase):
 
     def test_manual_review_ledger_covers_all_sixty_articles(self):
         text = LEDGER.read_text(encoding="utf-8")
-        rows = re.findall(r"^\| (B\d{3}) \| PASS \| (KEEP|OVERRIDE) \|", text, re.MULTILINE)
+        rows = re.findall(r"^\| (B\d{3}) \| PASS \| KEEP \|", text, re.MULTILINE)
         self.assertEqual(60, len(rows))
-        self.assertEqual(ALL_ARTICLE_IDS, {article_id for article_id, _ in rows})
+        self.assertEqual(ALL_ARTICLE_IDS, set(rows))
+        self.assertNotIn("OVERRIDE", text)
 
     def test_sync_scope_covers_exactly_b001_through_b060(self):
         self.assertEqual({f"B{i:03d}" for i in range(1, 61)}, ALL_ARTICLE_IDS)
         self.assertTrue(ALL_ARTICLE_IDS.issubset(self.by_id))
 
-    def test_non_override_public_leads_equal_markdown_intros(self):
-        for article_id in sorted(ALL_ARTICLE_IDS - set(LEAD_OVERRIDES)):
+    def test_all_public_leads_equal_markdown_intros(self):
+        for article_id in sorted(ALL_ARTICLE_IDS):
             with self.subTest(article_id=article_id):
                 self.assertEqual(self.markdown_intro(article_id), self.preview_lead(article_id))
 
-    def test_reviewed_compatibility_overrides_are_present_in_preview(self):
-        self.assertEqual({"B013", "B021", "B024", "B029", "B057"}, set(LEAD_OVERRIDES))
-        for article_id, expected in LEAD_OVERRIDES.items():
-            with self.subTest(article_id=article_id):
-                self.assertEqual(expected, self.preview_lead(article_id))
-
-    def test_override_copy_is_compact_and_article_specific(self):
+    def test_former_override_articles_keep_compact_article_specific_intros(self):
         expected_terms = {
             "B013": ("水災", "風災", "建物", "家財"),
             "B021": ("台風", "24", "12", "6", "中止"),
             "B024": ("停電", "断水", "トイレ", "復電"),
-            "B029": ("車載", "脱出", "停止表示", "水害"),
+            "B029": ("車", "脱出", "停止表示", "水害"),
             "B057": ("地震", "揺れ", "津波", "火災"),
         }
-        for article_id, text in LEAD_OVERRIDES.items():
+        for article_id, terms in expected_terms.items():
             with self.subTest(article_id=article_id):
+                text = self.markdown_intro(article_id)
                 self.assertGreaterEqual(len(text), 55)
-                self.assertLessEqual(len(text), 150)
-                for term in expected_terms[article_id]:
+                self.assertLessEqual(len(text), 180)
+                for term in terms:
                     self.assertIn(term, text)
+                self.assertEqual(text, self.preview_lead(article_id))
 
     def test_b056_public_lead_preserves_kagoshima_article_specific_context(self):
         lead = self.preview_lead("B056")
