@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:58 JST
-# Updated: 2026-09-09 15:10 JST
+# Updated: 2026-09-09 15:14 JST
 import unittest
 from pathlib import Path
 
@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class UserRecheckFixTests(unittest.TestCase):
     def test_missing_markdown_articles_are_now_synchronized(self):
-        self.assertEqual({"B003", "B008", "B010"}, EXTRA_SYNC_ARTICLE_IDS)
+        self.assertEqual({"B003", "B008", "B010", "B058"}, EXTRA_SYNC_ARTICLE_IDS)
         self.assertTrue(EXTRA_SYNC_ARTICLE_IDS.issubset(SYNC_ARTICLE_IDS))
 
     def test_article_images_receive_one_accessible_zoom_behavior(self):
@@ -72,6 +72,16 @@ class UserRecheckFixTests(unittest.TestCase):
         self.assertIn("家族共通で使う衛生用品", text)
         self.assertIn("[携帯トイレ・衛生用品の商品例を見る](goods_toilet_hygiene.html)", text)
         self.assertIn("紙おむつや乳児専用品の選択はこの商品記事の対象外", text)
+
+    def test_b058_intro_summarizes_the_article_route(self):
+        text = (ROOT / "content/articles/B058_volcano_eruption_ash_immediate_actions.md").read_text(encoding="utf-8")
+        self.assertIn("①警戒範囲・避難対象の確認", text)
+        self.assertIn("②火山近くでの退避", text)
+        self.assertIn("③降灰量ごとの外出・防護", text)
+        self.assertIn("④車を運転するかの判断", text)
+        self.assertIn("⑤大量降灰による停電・断水への備え", text)
+        self.assertIn("⑥降灰後の雨による土石流等への注意", text)
+        self.assertIn("今いる場所と危険の種類に合わせて行動を切り替える", text)
 
 
 if __name__ == "__main__":
