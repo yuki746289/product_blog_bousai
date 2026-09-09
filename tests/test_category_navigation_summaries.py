@@ -1,5 +1,5 @@
 # Created: 2026-09-07 23:40 JST
-# Updated: 2026-09-09 20:20 JST
+# Updated: 2026-09-09 21:25 JST
 import re
 import subprocess
 import sys
@@ -24,7 +24,20 @@ CATEGORY_LINK_RE = re.compile(
     r'\bdata-article-id=["\']B\d{3}["\'][^>]*>',
     re.IGNORECASE,
 )
-PRIMARY_NAV_LABELS = ["防災入門", "災害・状況別", "暮らし別", "地域別", "Q&A"]
+PRIMARY_NAV_LABELS = [
+    "防災入門",
+    "台風",
+    "大雨・水害",
+    "地震",
+    "停電・断水",
+    "被災後・復旧",
+    "住宅",
+    "車",
+    "保険",
+    "防災グッズ",
+    "地域別",
+    "Q&A",
+]
 
 
 def extract_nav(html: str) -> str:
@@ -64,7 +77,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             check=True,
         )
 
-    def test_primary_navigation_is_static_clear_and_unique(self):
+    def test_primary_navigation_links_directly_to_categories(self):
         earthquake_articles = sorted(
             page
             for page in (PUBLIC / "earthquake").glob("*.html")
@@ -76,10 +89,10 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             PUBLIC / "index.html",
             PUBLIC / "guide" / "index.html",
             earthquake_articles[0],
+            PUBLIC / "outage" / "index.html",
+            PUBLIC / "post-disaster" / "index.html",
             PUBLIC / "region" / "index.html",
             PUBLIC / "region" / "miyagi" / "earthquake-tsunami-history.html",
-            PUBLIC / "topics" / "disaster-situations" / "index.html",
-            PUBLIC / "topics" / "life" / "index.html",
         ]
         for page in pages:
             self.assertTrue(page.exists(), page)
@@ -88,11 +101,25 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertTrue(nav, page)
             self.assertEqual(PRIMARY_NAV_LABELS, extract_nav_labels(nav), page)
             self.assertEqual(1, len(re.findall(r'>\s*地域別\s*</a>', nav)), page)
+            self.assertNotIn("災害・状況別", nav, page)
+            self.assertNotIn("暮らし別", nav, page)
 
         homepage_nav = extract_nav((PUBLIC / "index.html").read_text(encoding="utf-8"))
-        self.assertIn('href="topics/disaster-situations/index.html"', homepage_nav)
-        self.assertIn('href="topics/life/index.html"', homepage_nav)
-        self.assertIn('href="region/index.html"', homepage_nav)
+        for href in [
+            "guide/index.html",
+            "typhoon/index.html",
+            "flood/index.html",
+            "earthquake/index.html",
+            "outage/index.html",
+            "post-disaster/index.html",
+            "home/index.html",
+            "vehicle/index.html",
+            "insurance/index.html",
+            "goods/index.html",
+            "region/index.html",
+            "qa.html",
+        ]:
+            self.assertIn(f'href="{href}"', homepage_nav)
 
     def test_category_article_summaries_are_in_static_html(self):
         checked_pages = 0
