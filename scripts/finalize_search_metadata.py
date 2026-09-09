@@ -1,4 +1,4 @@
-# Created: 2026-09-06 / Updated: 2026-09-09 09:38 JST
+# Created: 2026-09-06 / Updated: 2026-09-09 09:55 JST
 """Finalize production-only metadata, article infographics and category navigation.
 
 The preview tree intentionally uses preview-only metadata such as noindex.
@@ -20,7 +20,7 @@ from html import unescape as html_unescape
 from pathlib import Path
 from urllib.parse import urljoin
 
-from article_diagrams import inject_article_diagram
+from article_diagrams import DIAGRAMS, inject_article_diagram
 from bousai_blog.registry import load_registry as load_content_registry
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -293,8 +293,18 @@ def finalize_public() -> None:
         html = path.read_text(encoding="utf-8")
 
         enhanced = inject_article_diagram(html, relative)
-        if 'data-article-diagram=' in enhanced and 'data-article-diagram=' not in html:
-            diagram_count += 1
+        diagram_spec = DIAGRAMS.get(relative)
+        if diagram_spec:
+            marker = f'data-article-diagram="{diagram_spec["article_id"]}"'
+            marker_count = enhanced.count(marker)
+            if marker_count != 1:
+                errors.append(
+                    f"{relative}: article infographic marker count != 1 "
+                    f"for {diagram_spec['article_id']} ({marker_count})"
+                )
+            else:
+                diagram_count += 1
+
         enhanced = inject_region_navigation(enhanced, relative)
         if is_category_page(enhanced):
             enhanced = inject_category_article_summaries(enhanced, article_summaries)
@@ -305,8 +315,11 @@ def finalize_public() -> None:
         errors.extend(validate_canonical(finalized, expected, relative))
         errors.extend(validate_category_enhancements(finalized, relative))
 
-    if diagram_count != 9:
-        errors.append(f"article infographic injection count mismatch: {diagram_count}/9")
+    if diagram_count != len(DIAGRAMS):
+        errors.append(
+            f"article infographic presence count mismatch: "
+            f"{diagram_count}/{len(DIAGRAMS)}"
+        )
 
     if errors:
         raise ValueError("Production metadata/category validation failed:\n" + "\n".join(errors))
@@ -314,7 +327,7 @@ def finalize_public() -> None:
     print(
         f"Production metadata/category navigation finalized for {len(html_files)} HTML files; "
         f"article summaries available: {len(article_summaries)}; "
-        f"article infographics injected: {diagram_count}."
+        f"article infographics present: {diagram_count}."
     )
 
 
