@@ -1,4 +1,4 @@
-# Updated: 2026-09-10 09:04 JST
+# Updated: 2026-09-10 10:26 JST
 import re
 import unittest
 from html import unescape
@@ -19,6 +19,11 @@ CATEGORY_FILES = [
     "category_post_disaster.html",
     "category_region.html",
 ]
+HUB_FILES = [
+    "category_disaster_situations.html",
+    "category_life.html",
+    "category_region_qa.html",
+]
 LEGACY_CATEGORY_FILES = ["category_typhoon.html"]
 POLICY_FILES = ["about.html", "disclaimer.html", "privacy.html", "advertising.html"]
 PRODUCT_FILES = [
@@ -27,19 +32,24 @@ PRODUCT_FILES = [
     "goods_light_information.html",
     "goods_power_charging.html",
 ]
-PRIMARY_NAV_LABELS = [
-    "防災入門",
-    "台風・水害",
-    "地震",
-    "停電・断水",
-    "被災後・復旧",
-    "車と災害",
-    "住宅と災害",
-    "保険・お金",
-    "防災グッズ",
-    "地域別",
-    "Q&A",
+MEGA_NAV_LABELS = [
+    "災害から探す",
+    "暮らし・備えから探す",
+    "地域・疑問から探す",
 ]
+CHILD_NAV_LINKS = {
+    "category_flood.html": "台風・水害",
+    "category_earthquake.html": "地震",
+    "category_outage.html": "停電・断水",
+    "category_post_disaster.html": "被災後・復旧",
+    "category_guide.html": "防災入門",
+    "category_vehicle.html": "車と災害",
+    "category_home.html": "住宅と災害",
+    "category_insurance.html": "保険・お金",
+    "category_goods.html": "防災グッズ",
+    "category_region.html": "地域別",
+    "qa.html": "Q&A",
+}
 
 
 def read(name: str) -> str:
@@ -55,17 +65,21 @@ def nav_html(html: str) -> str:
     return match.group(1) if match else ""
 
 
-def nav_labels(html: str) -> list[str]:
+def mega_nav_labels(html: str) -> list[str]:
     nav = nav_html(html)
     return [
         unescape(re.sub(r"<[^>]+>", "", text).strip())
-        for text in re.findall(r"<a\b[^>]*>(.*?)</a>", nav, flags=re.I | re.S)
+        for text in re.findall(
+            r'<a\b[^>]*class=["\'][^"\']*\bsite-nav__mega-link\b[^"\']*["\'][^>]*>(.*?)</a>',
+            nav,
+            flags=re.I | re.S,
+        )
     ]
 
 
 class NonArticlePageReviewTest(unittest.TestCase):
     def test_static_pages_have_basic_information_architecture(self):
-        for name in ["qa.html", *CATEGORY_FILES, *LEGACY_CATEGORY_FILES, *POLICY_FILES, *PRODUCT_FILES]:
+        for name in ["qa.html", *CATEGORY_FILES, *HUB_FILES, *LEGACY_CATEGORY_FILES, *POLICY_FILES, *PRODUCT_FILES]:
             with self.subTest(name=name):
                 html = read(name)
                 self.assertRegex(html, r"<title>.+?</title>")
@@ -86,42 +100,58 @@ class NonArticlePageReviewTest(unittest.TestCase):
                 self.assertGreaterEqual(html.count('class="category-article-link'), 1)
                 self.assertIn('class="related-category-grid"', html)
 
-    def test_primary_navigation_is_grouped_without_adding_page_depth(self):
-        for name in ["index.html", "category_flood.html", "category_outage.html", "article_b003.html"]:
+    def test_primary_navigation_has_three_clickable_hubs(self):
+        expected_hrefs = [
+            "category_disaster_situations.html",
+            "category_life.html",
+            "category_region_qa.html",
+        ]
+        for name in ["index.html", "category_flood.html", "category_outage.html", "article_b003.html", *HUB_FILES]:
             with self.subTest(name=name):
                 html = read(name)
-                labels = nav_labels(html)
                 nav = nav_html(html)
-                self.assertEqual(PRIMARY_NAV_LABELS, labels)
-                self.assertEqual(2, nav.count('class="site-nav__divider"'))
-                for group in ["災害・基本", "暮らし", "探す"]:
-                    self.assertIn(f'aria-label="{group}"', nav)
-                    self.assertIn(f'>{group}</span>', nav)
-                self.assertNotIn("災害・状況別", labels)
-                self.assertNotIn("暮らし別", labels)
-                self.assertNotIn("台風", labels)
-                self.assertNotIn("大雨・水害", labels)
+                self.assertEqual(MEGA_NAV_LABELS, mega_nav_labels(html))
+                self.assertEqual(3, nav.count('class="site-nav__mega-group"'))
+                self.assertEqual(3, nav.count('class="site-nav__submenu-toggle"'))
+                for href, label in zip(expected_hrefs, MEGA_NAV_LABELS):
+                    self.assertIn(f'class="site-nav__mega-link" href="{href}">{label}</a>', nav)
 
-    def test_navigation_links_directly_to_each_visible_category(self):
+    def test_dropdowns_keep_every_individual_category_directly_accessible(self):
         nav = nav_html(read("index.html"))
-        for href in [
-            "category_guide.html",
-            "category_flood.html",
-            "category_earthquake.html",
-            "category_outage.html",
-            "category_post_disaster.html",
-            "category_vehicle.html",
-            "category_home.html",
-            "category_insurance.html",
-            "category_goods.html",
-            "category_region.html",
-            "qa.html",
-        ]:
-            self.assertIn(f'href="{href}"', nav)
+        self.assertEqual(3, nav.count('class="site-nav__submenu"'))
+        for href, label in CHILD_NAV_LINKS.items():
+            display = label if label != "Q&A" else "Q&amp;A"
+            self.assertIn(f'href="{href}">{display}</a>', nav)
         self.assertNotIn('href="category_typhoon.html"', nav)
-        self.assertNotIn("category_disaster_situations.html", nav)
-        self.assertNotIn("category_life.html", nav)
         self.assertLess(nav.index("category_goods.html"), nav.index("category_region.html"))
+
+    def test_hub_pages_preview_representative_articles_and_all_article_links(self):
+        disaster = read("category_disaster_situations.html")
+        life = read("category_life.html")
+        region_qa = read("category_region_qa.html")
+
+        self.assertIn("<h1>災害から探す</h1>", disaster)
+        for category in ["typhoon-flood", "earthquake", "outage", "post-disaster"]:
+            self.assertIn(f'data-hub-category="{category}"', disaster)
+        for href in ["category_flood.html", "category_earthquake.html", "category_outage.html", "category_post_disaster.html"]:
+            self.assertRegex(disaster, rf'href="{re.escape(href)}">[^<]*すべての記事を見る')
+        self.assertGreaterEqual(disaster.count('class="category-article-link"'), 12)
+
+        self.assertIn("<h1>暮らし・備えから探す</h1>", life)
+        for category in ["guide", "vehicle", "home", "insurance", "goods"]:
+            self.assertIn(f'data-hub-category="{category}"', life)
+        for href in ["category_guide.html", "category_vehicle.html", "category_home.html", "category_insurance.html", "category_goods.html"]:
+            self.assertRegex(life, rf'href="{re.escape(href)}">[^<]*すべての記事を見る')
+        self.assertGreaterEqual(life.count('class="category-article-link"'), 15)
+
+        self.assertIn("<h1>地域・疑問から探す</h1>", region_qa)
+        self.assertIn('data-hub-category="region"', region_qa)
+        self.assertIn('data-hub-category="qa"', region_qa)
+        self.assertIn("地域別のすべての記事を見る", region_qa)
+        self.assertIn("Q&amp;Aをすべて見る", region_qa)
+        self.assertGreaterEqual(region_qa.count('class="category-article-link"'), 4)
+        self.assertIn("qa.html#qa-car-insurance", region_qa)
+        self.assertIn("qa.html#qa-home-fire-insurance", region_qa)
 
     def test_typhoon_flood_category_contains_22_unique_articles(self):
         html = read("category_flood.html")
@@ -228,7 +258,7 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertIn("window.localStorage.setItem", js)
         self.assertIn('headerTop.appendChild(group)', js)
 
-    def test_mobile_navigation_is_accessible_hamburger_on_small_screens(self):
+    def test_mobile_navigation_is_accessible_hamburger_with_category_accordions(self):
         js = read("bousai_common.js")
         home = read("index.html")
         self.assertIn('MOBILE_NAV_MEDIA_QUERY = "(max-width: 720px)"', js)
@@ -241,10 +271,16 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertIn('event.key !== "Escape"', js)
         self.assertIn('min-width: 44px', js)
         self.assertIn('.site-nav.mobile-nav-enhanced.is-open', js)
+
         self.assertIn("bousai-nav-group-styles", home)
-        self.assertIn(".site-nav.mobile-nav-enhanced .site-nav__group-label", home)
-        for label in PRIMARY_NAV_LABELS:
-            self.assertIn(label if label != "Q&A" else "Q&amp;A", home)
+        self.assertIn("bousai-mega-nav-script", home)
+        self.assertIn('.site-nav.mobile-nav-enhanced .site-nav__submenu', home)
+        self.assertIn('.site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu', home)
+        self.assertIn("setGroupState", home)
+        self.assertIn("closeOtherGroups", home)
+        self.assertEqual(3, home.count('class="site-nav__submenu-toggle"'))
+        for label in MEGA_NAV_LABELS:
+            self.assertIn(label, home)
 
 
 if __name__ == "__main__":
