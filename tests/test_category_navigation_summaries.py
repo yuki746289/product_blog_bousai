@@ -1,5 +1,5 @@
 # Created: 2026-09-07 23:40 JST
-# Updated: 2026-09-10 10:29 JST
+# Updated: 2026-09-10 12:05 JST
 import re
 import subprocess
 import sys
@@ -103,9 +103,23 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertEqual(MEGA_NAV_LABELS, extract_mega_nav_labels(nav), page)
             self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
             self.assertEqual(3, nav.count('class="site-nav__submenu-toggle"'), page)
+            self.assertEqual(11, nav.count('class="site-nav__submenu-card"'), page)
+            self.assertEqual(11, nav.count('class="site-nav__submenu-caption"'), page)
+            self.assertIn('data-items="4"', nav, page)
+            self.assertIn('data-items="5"', nav, page)
+            self.assertIn('data-items="2"', nav, page)
             self.assertNotIn('href="typhoon/index.html"', nav, page)
 
         homepage_nav = extract_nav((PUBLIC / "index.html").read_text(encoding="utf-8"))
+        for text in [
+            "強風・大雨・洪水・高潮",
+            "揺れ・津波・家具転倒",
+            "備蓄・持ち出し・家族の備え",
+            "冠水・車中泊・車載用品",
+            "地域の災害史と備え",
+            "よくある疑問から素早く確認",
+        ]:
+            self.assertIn(text, homepage_nav)
         for href in [
             "topics/disaster-situations/index.html",
             "topics/life/index.html",
@@ -131,15 +145,30 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
 
         self.assertIn("<h1>災害から探す</h1>", disaster)
         self.assertGreaterEqual(disaster.count('class="category-article-link'), 12)
+        self.assertIn('class="hub-category-jump" data-items="4"', disaster)
+        self.assertEqual(4, disaster.count('class="hub-category-jump__card"'))
+        for anchor in ["#hub-typhoon-flood", "#hub-earthquake", "#hub-outage", "#hub-post-disaster"]:
+            self.assertIn(f'href="{anchor}"', disaster)
+            self.assertIn(f'id="{anchor[1:]}"', disaster)
         for href in ["../../flood/index.html", "../../earthquake/index.html", "../../outage/index.html", "../../post-disaster/index.html"]:
             self.assertIn(href, disaster)
 
         self.assertIn("<h1>暮らし・備えから探す</h1>", life)
         self.assertGreaterEqual(life.count('class="category-article-link'), 15)
+        self.assertIn('class="hub-category-jump" data-items="5"', life)
+        self.assertEqual(5, life.count('class="hub-category-jump__card"'))
+        for anchor in ["#hub-guide", "#hub-vehicle", "#hub-home", "#hub-insurance", "#hub-goods"]:
+            self.assertIn(f'href="{anchor}"', life)
+            self.assertIn(f'id="{anchor[1:]}"', life)
         for href in ["../../guide/index.html", "../../vehicle/index.html", "../../home/index.html", "../../insurance/index.html", "../../goods/index.html"]:
             self.assertIn(href, life)
 
         self.assertIn("<h1>地域・疑問から探す</h1>", region_qa)
+        self.assertIn('class="hub-category-jump" data-items="2"', region_qa)
+        self.assertEqual(2, region_qa.count('class="hub-category-jump__card"'))
+        for anchor in ["#hub-region", "#hub-qa"]:
+            self.assertIn(f'href="{anchor}"', region_qa)
+            self.assertIn(f'id="{anchor[1:]}"', region_qa)
         self.assertIn("地域別のすべての記事を見る", region_qa)
         self.assertIn("Q&amp;Aをすべて見る", region_qa)
         self.assertIn("../../region/index.html", region_qa)
