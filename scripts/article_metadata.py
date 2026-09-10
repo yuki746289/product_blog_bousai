@@ -1,5 +1,5 @@
 # Created: 2026-09-03
-# Updated: 2026-09-09 19:00 JST
+# Updated: 2026-09-10 09:04 JST
 """Article date display and JSON-LD generation for production builds."""
 
 from __future__ import annotations
@@ -34,8 +34,8 @@ CATEGORY_BREADCRUMBS = {
     "guide": ("防災入門", "guide/index.html"),
     "water-outage": ("停電・断水", "outage/index.html"),
     "blackout": ("停電・断水", "outage/index.html"),
-    "flood": ("大雨・水害", "flood/index.html"),
-    "typhoon": ("台風", "typhoon/index.html"),
+    "flood": ("台風・水害", "flood/index.html"),
+    "typhoon": ("台風・水害", "flood/index.html"),
     "earthquake": ("地震", "earthquake/index.html"),
     "vehicle": ("車と災害", "vehicle/index.html"),
     "insurance": ("保険・お金", "insurance/index.html"),
