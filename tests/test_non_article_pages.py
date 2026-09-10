@@ -1,4 +1,4 @@
-# Updated: 2026-09-10 10:26 JST
+# Updated: 2026-09-10 12:08 JST
 import re
 import unittest
 from html import unescape
@@ -119,9 +119,15 @@ class NonArticlePageReviewTest(unittest.TestCase):
     def test_dropdowns_keep_every_individual_category_directly_accessible(self):
         nav = nav_html(read("index.html"))
         self.assertEqual(3, nav.count('class="site-nav__submenu"'))
+        self.assertEqual(11, nav.count('class="site-nav__submenu-card"'))
         for href, label in CHILD_NAV_LINKS.items():
             display = label if label != "Q&A" else "Q&amp;A"
-            self.assertIn(f'href="{href}">{display}</a>', nav)
+            pattern = (
+                r'<a\b[^>]*class="site-nav__submenu-card"[^>]*'
+                rf'href="{re.escape(href)}"[^>]*>\s*'
+                rf'<strong>{re.escape(display)}</strong>.*?</a>'
+            )
+            self.assertRegex(nav, pattern)
         self.assertNotIn('href="category_typhoon.html"', nav)
         self.assertLess(nav.index("category_goods.html"), nav.index("category_region.html"))
 
