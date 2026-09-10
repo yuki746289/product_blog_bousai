@@ -28,7 +28,7 @@
 
 | 優先 | 記事 | GSC確認 | 検索語 | 上位SERP | ニッチ | 3方向比較 | A/B/C/D/E | 修正案 | 状態 |
 |---:|---|---|---|---|---|---|---|---|---|
-| 1 | B008 車の冠水・水没 | 済 | 済 | 未 | 未 | 未 | 未 | 未 | `QUERY_READY` |
+| 1 | B008 車の冠水・水没 | 済 | 済 | 済 | 済 | 済 | 済 | 済 | `DONE` |
 | 2 | B019 水害・台風・地震と保険 | 済 | 済 | 未 | 未 | 未 | 未 | 未 | `QUERY_READY` |
 | 3 | B010 地下駐車場×大雨 | 済 | 済 | 未 | 未 | 未 | 未 | 未 | `QUERY_READY` |
 | 4 | B022 マンション×台風・水害 | 済 | 済 | 未 | 未 | 未 | 未 | 未 | `QUERY_READY` |
@@ -39,10 +39,12 @@
 
 | 記事 | 公開ページ | 表示回数目安 | 平均順位目安 | Click | 初期判断 |
 |---|---|---:|---:|---:|---|
-| B008 | `/vehicle/car-flood-submersion.html` | 約100 | 約5.2 | 0 | 最優先。高順位・表示ありのためSERP差分確認 |
+| B008 | `/vehicle/car-flood-submersion.html` | 約100（CSV側） / GSC finalizedでは14 | 約5.2〜6.6 | 0 | 最優先。高順位・表示ありのためSERP差分確認 |
 | B019 | `/insurance/disaster-insurance-overview.html` | 約46 | 約6.8 | 0 | 検索意図と保険子記事との役割分担を確認 |
 | B010 | `/vehicle/underground-parking-heavy-rain.html` | 約26 | 約7.7 | 0 | ケース特化型として有望か確認 |
 | B022 | `/home/apartment-typhoon-flood.html` | 約13 | 約5.2 | 0 | マンション特化のニッチ性を確認 |
+
+※GSC APIの確定データは約3日遅延するため、ユーザー提供CSVと時点差がある。
 
 ## 調査ファイル
 
@@ -52,10 +54,11 @@
   - 実際に検索するワード一覧
 - `docs/research/COMPETITOR_RESEARCH_PROGRESS.md`
   - 本ファイル。進捗正本
+- `docs/research/competitor/B008_COMPETITOR_RESEARCH.md`
+  - B008の調査結果
 
 今後、記事ごとの調査結果は以下の形式で追加する。
 
-- `docs/research/competitor/B008_COMPETITOR_RESEARCH.md`
 - `docs/research/competitor/B019_COMPETITOR_RESEARCH.md`
 - `docs/research/competitor/B010_COMPETITOR_RESEARCH.md`
 - `docs/research/competitor/B022_COMPETITOR_RESEARCH.md`
@@ -63,20 +66,43 @@
 ## 優先1: B008 車の冠水・水没
 
 - source: `content/articles/B008_car_flood_submersion.md`
-- 状態: `QUERY_READY`
+- 状態: `DONE`
 - Search Console初期確認: 完了
 - 検索語セット: 完了
-- 上位SERP: 未着手
-- 上位主要ページ詳細: 未着手
-- ニッチサイト探索: 未着手
-- 上位 vs 自サイト: 未着手
-- 上位 vs ニッチ: 未着手
-- ニッチ vs 自サイト: 未着手
-- カニバリ確認: B009 / B011を重点確認予定
-- A/B/C/D/E判定: 未着手
-- 修正候補一覧: 未着手
+- 上位SERP: 完了
+- 上位主要ページ詳細: 完了
+- ニッチサイト探索: 完了
+- 上位 vs 自サイト: 完了
+- 上位 vs ニッチ: 完了
+- ニッチ vs 自サイト: 完了
+- カニバリ確認: B009 / B011との役割分担を整理済み
+- A/B/C/D/E判定: 完了
+- 修正候補一覧: 完了
 
-次の作業: `COMPETITOR_SEARCH_QUERIES.md` のB008検索語を使ってSERP調査を開始する。
+### B008 調査結論
+
+B008は、安全情報（冠水路へ入らない、脱出、ハンマー、合わせガラス、始動禁止）については上位サイトと比較しても十分強い。
+
+不足候補は「水没後の実務フロー」。特に以下を改善候補とした。
+
+- ロードサービス / 搬送
+- 点検・見積
+- 修理か廃車かを判断するまでの流れ
+- 後から出る可能性のある電装・腐食・内装等の問題
+
+一方、B009の領域である「冠水道路へ入る前・走行中の判断」はB008内でやや厚いため、今後修正する場合はB009へ役割を寄せる。
+
+B011は保険詳細の主ページとして維持し、B008では連絡導線までに留める。
+
+### B008 判定
+
+- A: 水没後の時系列フロー、レッカー、点検、修理/廃車判断を補強
+- B: `水没車 修理 できる`、`車 水没 廃車`、`車 水没 レッカー`、`車 水没 後から 故障` 等はニッチ需要候補
+- C: 個別事例の修理費用や「何cmなら廃車」等の固定基準は採用しない
+- D: 安全優先、公的一次情報、脱出・始動禁止、EV/PHEV/HV注意は維持・強化
+- E: title / descriptionの変更はGSCデータ不足のため保留
+
+詳細: `docs/research/competitor/B008_COMPETITOR_RESEARCH.md`
 
 ## 優先2: B019 水害・台風・地震と保険
 
@@ -141,3 +167,5 @@
 - 3方向比較チェックリストを作成。
 - GSC連動型の検索ワード一覧を作成。
 - 進捗管理を本ファイルに一本化。
+- B008「車の冠水・水没」の競合・ニッチサイト比較を完了。
+- B008は安全情報を維持し、水没後の実務フローを主な改善候補と判定。
