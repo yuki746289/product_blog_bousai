@@ -1,5 +1,5 @@
 # Created: 2026-09-09 19:02 JST
-# Updated: 2026-09-09 19:31 JST
+# Updated: 2026-09-10 09:04 JST
 """Regression tests for visible and structured article breadcrumbs."""
 
 import re
@@ -19,14 +19,12 @@ BREADCRUMB_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
-# Keep the route contract explicit here instead of importing build_public.py,
-# which is a direct-execution script with sibling imports rather than a package
-# module. This table is intentionally small and covers only article categories.
+# Public article-category destinations. Typhoon and flood intentionally share
+# the same visible category route after the navigation merge.
 CATEGORY_PREVIEW_TO_PUBLIC = {
     "category_guide.html": "guide/index.html",
     "category_outage.html": "outage/index.html",
     "category_flood.html": "flood/index.html",
-    "category_typhoon.html": "typhoon/index.html",
     "category_earthquake.html": "earthquake/index.html",
     "category_vehicle.html": "vehicle/index.html",
     "category_insurance.html": "insurance/index.html",
@@ -72,6 +70,17 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
                     f'<a href="{preview_category}">{category_name}</a>',
                     match.group(0),
                 )
+
+    def test_typhoon_and_flood_articles_share_one_visible_category(self):
+        for internal_category in ("typhoon", "flood"):
+            self.assertEqual(
+                ("台風・水害", "category_flood.html"),
+                CATEGORY_PREVIEW_BREADCRUMBS[internal_category],
+            )
+            self.assertEqual(
+                ("台風・水害", "flood/index.html"),
+                CATEGORY_BREADCRUMBS[internal_category],
+            )
 
     def test_outage_articles_use_the_existing_outage_category(self):
         for article_id in ("B003", "B004"):

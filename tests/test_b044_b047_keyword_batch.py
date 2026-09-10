@@ -1,4 +1,4 @@
-# Updated: 2026-09-09 06:17 JST
+# Updated: 2026-09-10 09:04 JST
 import json
 import unittest
 from pathlib import Path
@@ -86,7 +86,9 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         outage = (ROOT / "preview/category_outage.html").read_text(encoding="utf-8")
         self.assertIn("article_b045.html", outage)
         self.assertIn("article_b047.html", outage)
-        self.assertIn("article_b046.html", (ROOT / "preview/category_typhoon.html").read_text(encoding="utf-8"))
+        merged_typhoon_flood = (ROOT / "preview/category_flood.html").read_text(encoding="utf-8")
+        self.assertIn("<h1>台風・水害</h1>", merged_typhoon_flood)
+        self.assertIn("article_b046.html", merged_typhoon_flood)
         self.assertIn("article_b044.html", (ROOT / "preview/article_b029.html").read_text(encoding="utf-8"))
 
 
