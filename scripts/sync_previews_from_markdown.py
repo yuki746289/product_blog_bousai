@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-10 09:04 JST
+# Updated: 2026-09-10 10:12 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -15,11 +15,11 @@ This wrapper therefore:
 3. normalizes every article breadcrumb so its category is a real, clickable
    published category rather than an unlinked display-only label;
 4. inserts a breadcrumb when an older bespoke preview omitted it entirely;
-5. exposes every user-facing category directly while visually grouping the
-   global navigation without adding intermediate pages;
+5. presents three clickable top-level discovery hubs and exposes their child
+   categories through desktop hover/focus and mobile accordion controls;
 6. merges the user-facing 台風 / 大雨・水害 routes into one 台風・水害 category;
-7. keeps category pages flat so reaching an article never requires an
-   intermediate category-group page.
+7. keeps article breadcrumbs flat so users can still move directly between
+   individual categories and articles without a mandatory hub-page layer.
 
 There are no article-specific lead overrides. If an article lead needs editorial
 improvement, update the Markdown introduction itself so source, review and public
@@ -45,13 +45,14 @@ _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
 
-# Categories stay one click away. Groups are visual/semantic only; they are not
-# pages and therefore do not add another navigation layer.
+# Three discovery hubs keep the always-visible header compact. Each hub is a
+# normal clickable page; its child categories are also reachable directly from
+# the dropdown/accordion, so the hub layer is never mandatory.
 SITE_NAV_GROUPS = (
     (
-        "災害・基本",
+        "災害から探す",
+        "category_disaster_situations.html",
         (
-            ("防災入門", "category_guide.html"),
             ("台風・水害", "category_flood.html"),
             ("地震", "category_earthquake.html"),
             ("停電・断水", "category_outage.html"),
@@ -59,8 +60,10 @@ SITE_NAV_GROUPS = (
         ),
     ),
     (
-        "暮らし",
+        "暮らし・備えから探す",
+        "category_life.html",
         (
+            ("防災入門", "category_guide.html"),
             ("車と災害", "category_vehicle.html"),
             ("住宅と災害", "category_home.html"),
             ("保険・お金", "category_insurance.html"),
@@ -68,14 +71,15 @@ SITE_NAV_GROUPS = (
         ),
     ),
     (
-        "探す",
+        "地域・疑問から探す",
+        "category_region_qa.html",
         (
             ("地域別", "category_region.html"),
             ("Q&A", "qa.html"),
         ),
     ),
 )
-SITE_NAV_LINKS = tuple(link for _group, links in SITE_NAV_GROUPS for link in links)
+SITE_NAV_LINKS = tuple(link for _label, _hub, links in SITE_NAV_GROUPS for link in links)
 
 # Canonical visible article-category destinations in preview. Both internal
 # typhoon/flood taxonomies now resolve to the same user-facing category.
@@ -93,8 +97,10 @@ CATEGORY_PREVIEW_BREADCRUMBS = {
     "goods": ("防災グッズ", "category_goods.html"),
 }
 
-# Category pages themselves remain top-level destinations. category_typhoon is
-# retained only as a compatibility landing page for the historical /typhoon/ URL.
+# Individual category pages remain top-level article destinations.
+# category_typhoon is retained only as a compatibility landing page for the
+# historical /typhoon/ URL. Hub pages intentionally do not become article
+# breadcrumb parents.
 CATEGORY_PAGE_HIERARCHY = {
     "category_guide.html": (None, None, "防災入門"),
     "category_typhoon.html": (None, None, "台風"),
@@ -121,6 +127,10 @@ NAV_STYLE_RE = re.compile(
     r'<style\s+id=["\']bousai-nav-group-styles["\']>.*?</style>',
     re.IGNORECASE | re.DOTALL,
 )
+NAV_SCRIPT_RE = re.compile(
+    r'<script\s+id=["\']bousai-mega-nav-script["\']>.*?</script>',
+    re.IGNORECASE | re.DOTALL,
+)
 HOME_TY_FLOOD_CARDS_RE = re.compile(
     r'<article class="topic-card">\s*'
     r'<a class="topic-card__thumb" href="category_typhoon\.html".*?</article>\s*'
@@ -132,31 +142,179 @@ MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
 TAG_RE = re.compile(r"<[^>]+>")
 
 NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
-.site-nav__group { display: contents; }
-.site-nav__group-label { display: none; }
-.site-nav__divider {
+.site-nav { overflow: visible; gap: 10px; }
+.site-nav__mega-group { position: relative; display: inline-block; }
+.site-nav__mega-head { display: flex; align-items: center; gap: 2px; }
+.site-nav__mega-link {
   display: inline-flex;
   min-height: 40px;
   align-items: center;
-  color: #aab4b9;
-  font-weight: 500;
+  padding: 7px 8px;
+  border-radius: 8px;
 }
+.site-nav__mega-link:hover,
+.site-nav__mega-link:focus-visible,
+.site-nav__mega-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav__submenu-toggle:hover,
+.site-nav__submenu-toggle:focus-visible,
+.site-nav__submenu-toggle[aria-expanded="true"] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle:focus-visible { outline: 3px solid rgba(23,107,104,.24); outline-offset: 2px; }
+.site-nav__submenu-toggle span { transition: transform .16s ease; }
+.site-nav__submenu-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.site-nav__submenu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 4px);
+  left: 0;
+  display: none;
+  min-width: 225px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(31,42,48,.14);
+  white-space: normal;
+}
+.site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; }
+.site-nav__submenu a {
+  display: block;
+  padding: 10px 11px;
+  border-radius: 8px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.site-nav__submenu a:hover,
+.site-nav__submenu a:focus-visible,
+.site-nav__submenu a[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__mega-group:hover > .site-nav__submenu,
+.site-nav__mega-group:focus-within > .site-nav__submenu,
+.site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: block; }
 @media (max-width: 720px) {
-  .site-nav.mobile-nav-enhanced .site-nav__group {
+  .site-nav.mobile-nav-enhanced { overflow: visible; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group {
     display: block;
     width: 100%;
+    border-bottom: 1px solid var(--line);
   }
-  .site-nav.mobile-nav-enhanced .site-nav__divider { display: none; }
-  .site-nav.mobile-nav-enhanced .site-nav__group-label {
-    display: block;
-    padding: 11px 10px 5px;
-    color: var(--muted);
-    font-size: .74rem;
+  .site-nav.mobile-nav-enhanced .site-nav__mega-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-link {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-bottom: 0;
+    border-radius: 0;
     font-weight: 800;
-    letter-spacing: .04em;
   }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-toggle {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu {
+    position: static;
+    display: none;
+    min-width: 0;
+    padding: 4px 8px 9px 18px;
+    background: #f8fafb;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: block; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu a {
+    min-height: 44px;
+    padding: 10px 9px;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu a:last-child { border-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__submenu-toggle span { transition: none; }
 }
 </style>"""
+
+NAV_GROUP_SCRIPT = """<script id="bousai-mega-nav-script">
+(function () {
+  function setGroupState(group, expanded) {
+    if (!group) return;
+    var button = group.querySelector('.site-nav__submenu-toggle');
+    var isExpanded = Boolean(expanded);
+    group.classList.toggle('is-submenu-open', isExpanded);
+    if (button) {
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      var label = group.getAttribute('data-group-label') || 'カテゴリ';
+      button.setAttribute('aria-label', label + (isExpanded ? 'のカテゴリを閉じる' : 'のカテゴリを開く'));
+    }
+  }
+
+  function closeOtherGroups(current) {
+    document.querySelectorAll('.site-nav__mega-group.is-submenu-open').forEach(function (group) {
+      if (group !== current) setGroupState(group, false);
+    });
+  }
+
+  function initMegaNavigation() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.site-nav__mega-group'));
+    groups.forEach(function (group) {
+      var button = group.querySelector('.site-nav__submenu-toggle');
+      if (!button || button.dataset.megaNavBound === '1') return;
+      button.dataset.megaNavBound = '1';
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        closeOtherGroups(group);
+        setGroupState(group, !expanded);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      groups.forEach(function (group) {
+        if (!group.contains(event.target)) setGroupState(group, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var active = document.activeElement;
+      var activeGroup = active && active.closest ? active.closest('.site-nav__mega-group') : null;
+      groups.forEach(function (group) { setGroupState(group, false); });
+      if (activeGroup) {
+        var button = activeGroup.querySelector('.site-nav__submenu-toggle');
+        if (button) button.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaNavigation);
+  } else {
+    initMegaNavigation();
+  }
+})();
+</script>"""
 
 HOME_TY_FLOOD_CARD = """<article class="topic-card" data-category="typhoon-flood">
         <a class="topic-card__thumb" href="category_flood.html"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Bavi%202026-07-05%200620Z.png?width=960" alt="台風の衛星画像" loading="lazy"></a>
@@ -273,32 +431,43 @@ def apply_article_breadcrumbs() -> list[str]:
 
 def _site_nav_markup() -> str:
     chunks: list[str] = []
-    for index, (group_label, links) in enumerate(SITE_NAV_GROUPS):
-        if index:
-            chunks.append('<span class="site-nav__divider" aria-hidden="true">｜</span>')
-        anchors = "".join(
+    for index, (group_label, group_href, links) in enumerate(SITE_NAV_GROUPS, start=1):
+        submenu_id = f"site-nav-submenu-{index}"
+        child_links = "".join(
             f'<a href="{href}">{html_lib.escape(label)}</a>'
             for label, href in links
         )
         chunks.append(
-            f'<span class="site-nav__group" role="group" aria-label="{html_lib.escape(group_label)}">'
-            f'<span class="site-nav__group-label" aria-hidden="true">{html_lib.escape(group_label)}</span>'
-            + anchors
-            + "</span>"
+            f'<div class="site-nav__mega-group" data-group-label="{html_lib.escape(group_label)}">'
+            '<div class="site-nav__mega-head">'
+            f'<a class="site-nav__mega-link" href="{group_href}">{html_lib.escape(group_label)}</a>'
+            f'<button class="site-nav__submenu-toggle" type="button" aria-expanded="false" '
+            f'aria-controls="{submenu_id}" aria-label="{html_lib.escape(group_label)}のカテゴリを開く">'
+            '<span aria-hidden="true">⌄</span></button>'
+            '</div>'
+            f'<div class="site-nav__submenu" id="{submenu_id}">{child_links}</div>'
+            '</div>'
         )
     return '<nav class="site-nav" aria-label="メインナビゲーション">' + "".join(chunks) + "</nav>"
 
 
-def _apply_nav_style(html: str) -> str:
+def _apply_nav_assets(html: str) -> str:
     if NAV_STYLE_RE.search(html):
-        return NAV_STYLE_RE.sub(NAV_GROUP_STYLE, html, count=1)
+        html = NAV_STYLE_RE.sub(NAV_GROUP_STYLE, html, count=1)
+    elif "</head>" in html:
+        html = html.replace("</head>", NAV_GROUP_STYLE + "\n</head>", 1)
+    else:
+        raise ValueError("missing </head> while adding mega navigation styles")
+
+    if NAV_SCRIPT_RE.search(html):
+        return NAV_SCRIPT_RE.sub(NAV_GROUP_SCRIPT, html, count=1)
     if "</head>" not in html:
-        raise ValueError("missing </head> while adding grouped navigation styles")
-    return html.replace("</head>", NAV_GROUP_STYLE + "\n</head>", 1)
+        raise ValueError("missing </head> while adding mega navigation behavior")
+    return html.replace("</head>", NAV_GROUP_SCRIPT + "\n</head>", 1)
 
 
 def apply_site_navigation() -> list[str]:
-    """Expose categories directly while visually grouping a long navigation row."""
+    """Render three clickable hubs with direct child-category dropdowns."""
     preview_dir = _core.ROOT / "preview"
     replacement = _site_nav_markup()
     changed: list[str] = []
@@ -308,7 +477,7 @@ def apply_site_navigation() -> list[str]:
         if not SITE_NAV_RE.search(html):
             continue
         updated = SITE_NAV_RE.sub(replacement, html, count=1)
-        updated = _apply_nav_style(updated)
+        updated = _apply_nav_assets(updated)
         if updated != html:
             path.write_text(updated, encoding="utf-8")
             changed.append(f"NAV:{path.name}")
@@ -354,7 +523,7 @@ def _category_page_breadcrumb(parent_label: str | None, parent_href: str | None,
 
 
 def apply_category_page_breadcrumbs() -> list[str]:
-    """Keep category breadcrumbs flat: top -> category."""
+    """Keep individual category breadcrumbs flat: top -> category."""
     preview_dir = _core.ROOT / "preview"
     changed: list[str] = []
 
