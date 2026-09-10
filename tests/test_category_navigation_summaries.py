@@ -1,5 +1,5 @@
 # Created: 2026-09-07 23:40 JST
-# Updated: 2026-09-10 09:04 JST
+# Updated: 2026-09-10 10:29 JST
 import re
 import subprocess
 import sys
@@ -26,18 +26,10 @@ CATEGORY_LINK_RE = re.compile(
     r'\bdata-article-id=["\']B\d{3}["\'][^>]*>',
     re.IGNORECASE,
 )
-PRIMARY_NAV_LABELS = [
-    "防災入門",
-    "台風・水害",
-    "地震",
-    "停電・断水",
-    "被災後・復旧",
-    "車と災害",
-    "住宅と災害",
-    "保険・お金",
-    "防災グッズ",
-    "地域別",
-    "Q&A",
+MEGA_NAV_LABELS = [
+    "災害から探す",
+    "暮らし・備えから探す",
+    "地域・疑問から探す",
 ]
 
 
@@ -51,10 +43,14 @@ def extract_nav(html: str) -> str:
     return nav_match.group(1) if nav_match else ""
 
 
-def extract_nav_labels(nav: str) -> list[str]:
+def extract_mega_nav_labels(nav: str) -> list[str]:
     return [
         unescape(re.sub(r"<[^>]+>", "", body).strip())
-        for body in re.findall(r"<a\b[^>]*>(.*?)</a>", nav, flags=re.I | re.S)
+        for body in re.findall(
+            r'<a\b[^>]*class=["\'][^"\']*\bsite-nav__mega-link\b[^"\']*["\'][^>]*>(.*?)</a>',
+            nav,
+            flags=re.I | re.S,
+        )
     ]
 
 
@@ -79,7 +75,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             check=True,
         )
 
-    def test_primary_navigation_is_grouped_and_direct(self):
+    def test_primary_navigation_uses_three_clickable_hubs_with_direct_children(self):
         earthquake_articles = sorted(
             page
             for page in (PUBLIC / "earthquake").glob("*.html")
@@ -95,22 +91,25 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             PUBLIC / "outage" / "index.html",
             PUBLIC / "post-disaster" / "index.html",
             PUBLIC / "region" / "index.html",
-            PUBLIC / "region" / "miyagi" / "earthquake-tsunami-history.html",
+            PUBLIC / "topics" / "disaster-situations" / "index.html",
+            PUBLIC / "topics" / "life" / "index.html",
+            PUBLIC / "topics" / "region-qa" / "index.html",
         ]
         for page in pages:
             self.assertTrue(page.exists(), page)
             html = page.read_text(encoding="utf-8")
             nav = extract_nav(html)
             self.assertTrue(nav, page)
-            self.assertEqual(PRIMARY_NAV_LABELS, extract_nav_labels(nav), page)
-            self.assertEqual(2, nav.count('class="site-nav__divider"'), page)
-            self.assertEqual(1, len(re.findall(r'>\s*地域別\s*</a>', nav)), page)
+            self.assertEqual(MEGA_NAV_LABELS, extract_mega_nav_labels(nav), page)
+            self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
+            self.assertEqual(3, nav.count('class="site-nav__submenu-toggle"'), page)
             self.assertNotIn('href="typhoon/index.html"', nav, page)
-            self.assertNotIn("災害・状況別", nav, page)
-            self.assertNotIn("暮らし別", nav, page)
 
         homepage_nav = extract_nav((PUBLIC / "index.html").read_text(encoding="utf-8"))
         for href in [
+            "topics/disaster-situations/index.html",
+            "topics/life/index.html",
+            "topics/region-qa/index.html",
             "guide/index.html",
             "flood/index.html",
             "earthquake/index.html",
@@ -124,7 +123,27 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             "qa.html",
         ]:
             self.assertIn(f'href="{href}"', homepage_nav)
-        self.assertLess(homepage_nav.index("goods/index.html"), homepage_nav.index("region/index.html"))
+
+    def test_hub_pages_publish_representative_articles_and_all_article_routes(self):
+        disaster = (PUBLIC / "topics" / "disaster-situations" / "index.html").read_text(encoding="utf-8")
+        life = (PUBLIC / "topics" / "life" / "index.html").read_text(encoding="utf-8")
+        region_qa = (PUBLIC / "topics" / "region-qa" / "index.html").read_text(encoding="utf-8")
+
+        self.assertIn("<h1>災害から探す</h1>", disaster)
+        self.assertGreaterEqual(disaster.count('class="category-article-link'), 12)
+        for href in ["../../flood/index.html", "../../earthquake/index.html", "../../outage/index.html", "../../post-disaster/index.html"]:
+            self.assertIn(href, disaster)
+
+        self.assertIn("<h1>暮らし・備えから探す</h1>", life)
+        self.assertGreaterEqual(life.count('class="category-article-link'), 15)
+        for href in ["../../guide/index.html", "../../vehicle/index.html", "../../home/index.html", "../../insurance/index.html", "../../goods/index.html"]:
+            self.assertIn(href, life)
+
+        self.assertIn("<h1>地域・疑問から探す</h1>", region_qa)
+        self.assertIn("地域別のすべての記事を見る", region_qa)
+        self.assertIn("Q&amp;Aをすべて見る", region_qa)
+        self.assertIn("../../region/index.html", region_qa)
+        self.assertIn("../../qa.html#qa-car-insurance", region_qa)
 
     def test_combined_typhoon_flood_page_is_single_normal_entry(self):
         page = PUBLIC / "flood" / "index.html"
@@ -166,7 +185,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
                 self.assertTrue(text, page)
                 self.assertLessEqual(len(text), 82, page)
 
-        self.assertGreaterEqual(checked_pages, 7)
+        self.assertGreaterEqual(checked_pages, 10)
 
     def test_finalize_is_idempotent_for_category_enhancements(self):
         guide = PUBLIC / "guide" / "index.html"
