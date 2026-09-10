@@ -1,5 +1,5 @@
 # Created: 2026-09-02
-# Updated: 2026-09-09 20:12 JST
+# Updated: 2026-09-10 10:14 JST
 """Build production static files from preview HTML.
 
 - Uses data/content_registry.json planned_public_path for article URLs.
@@ -42,6 +42,7 @@ STATIC_HTML_MAP = {
     "category_guide.html": "guide/index.html",
     "category_disaster_situations.html": "topics/disaster-situations/index.html",
     "category_life.html": "topics/life/index.html",
+    "category_region_qa.html": "topics/region-qa/index.html",
     "category_typhoon.html": "typhoon/index.html",
     "category_flood.html": "flood/index.html",
     "category_earthquake.html": "earthquake/index.html",
