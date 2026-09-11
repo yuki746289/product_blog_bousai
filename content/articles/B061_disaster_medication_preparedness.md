@@ -5,7 +5,7 @@ title: 災害時の常用薬はどう備える？お薬手帳・予備薬・薬�
 category: guide
 content_role: practical
 risk_level: high
-status: REVIEW_REQUIRED
+status: READY_TO_PUBLISH
 source_checked_at: 2026-09-12
 next_review_at: 2027-03-12
 affiliate: false
