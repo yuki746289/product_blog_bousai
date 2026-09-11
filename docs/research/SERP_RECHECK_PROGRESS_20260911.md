@@ -3,8 +3,8 @@
 更新日: 2026-09-11
 作業ブランチ: `research/competitor-seo-20260910`
 
-新しいSERP表示品質ルールを、既存のDONE/RESEARCH_DONE対象へ再適用する。
-記事本文は調査中に変更しない。
+新しいSERP表示品質ルールを、既存のDONE/RESEARCH_DONE対象へ再適用した。
+記事本文は調査中に変更していない。
 
 ## 初期4記事
 
@@ -39,15 +39,18 @@
 - `docs/research/competitor/B010_SERP_RECHECK_20260911.md`
 - `docs/research/competitor/B022_SERP_RECHECK_20260911.md`
 
-サイト全体クラスターの新基準メモ（保存済み分）:
+サイト全体クラスター:
 - `docs/research/serp/B045_SERP_RECHECK_20260911.md`
 - `docs/research/serp/NEW_DISASTER_MEDICATION_SERP_RECHECK_20260911.md`
+- `docs/research/serp/B003_SERP_RECHECK_20260911.md`
 - `docs/research/serp/B047_SERP_RECHECK_20260911.md`
+- `docs/research/serp/B039_SERP_RECHECK_20260911.md`
 - `docs/research/serp/B042_SERP_RECHECK_20260911.md`
 - `docs/research/serp/B044_SERP_RECHECK_20260911.md`
+- B022停電×マンションはB022本体再調査と既存キーワード調査へ統合
+- `docs/research/serp/B035_SERP_RECHECK_20260911.md`
+- B033ペット×同行避難は既存キーワード調査へ統合
 - `docs/research/serp/NEW_MATERNAL_DISASTER_SERP_RECHECK_20260911.md`
-
-B003 / B039 / B035 は再調査自体は完了。個別ファイル保存時にコネクタ側チェックで失敗したため、主判断を本台帳へ記録済み。必要に応じて簡略版メモとして再保存する。
 
 ## 今回の共通確認項目
 
@@ -64,7 +67,8 @@ B003 / B039 / B035 は再調査自体は完了。個別ファイル保存時に�
 
 ## 次フェーズ
 
-再調査は一巡したため、次は記事修正を始める前に優先順位を確定する。
+新基準での再調査は一巡した。
+次は記事修正を始める前に実装優先順位を確定し、局所修正から進める。
 
 暫定優先度:
 1. B045 一次情報の鮮度更新
