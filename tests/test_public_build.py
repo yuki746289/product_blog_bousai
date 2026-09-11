@@ -1,4 +1,4 @@
-# Updated: 2026-09-09 08:28 JST
+# Updated: 2026-09-12 08:55 JST
 import json
 import re
 import subprocess
@@ -101,7 +101,16 @@ class PublicBuildTests(unittest.TestCase):
     def test_article_dates_and_structured_data(self):
         registry = load_registry(REGISTRY)
         articles = registry["articles"]
-        self.assertEqual(60, len([a for a in articles if a.get("article_id", "").startswith("B")]))
+        registered_ids = {
+            article["article_id"]
+            for article in articles
+            if article.get("article_id", "").startswith("B")
+        }
+        source_ids = {
+            path.name.split("_", 1)[0]
+            for path in (ROOT / "content" / "articles").glob("B*.md")
+        }
+        self.assertEqual(source_ids, registered_ids)
 
         for article in articles:
             output = PUBLIC / article["planned_public_path"]
