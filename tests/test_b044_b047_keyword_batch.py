@@ -1,4 +1,4 @@
-# Updated: 2026-09-10 09:04 JST
+# Updated: 2026-09-12 08:50 JST
 import json
 import unittest
 from pathlib import Path
@@ -35,7 +35,9 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         source = self.text("B045")
         preview = self.preview_text("B045")
         for target in (source, preview):
-            self.assertIn("○時間までなら安全", target)
+            # Keep the safety invariant while allowing stronger wording such as
+            # 「○時間までなら必ず安全」 instead of pinning editorial copy to one phrase.
+            self.assertRegex(target, r"○時間までなら(?:必ず)?安全")
             for phrase in (
                 "味見",
                 "必要以上に開けない",

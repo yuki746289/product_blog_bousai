@@ -1,0 +1,39 @@
+{
+  "articles": [
+    {
+      "article_id": "B039",
+      "body_char_count_approx": 4238,
+      "source_checked_at": "2026-09-12",
+      "next_review_at": "2027-03-12",
+      "modified_at": "2026-09-12"
+    },
+    {
+      "article_id": "B042",
+      "body_char_count_approx": 5106,
+      "source_checked_at": "2026-09-12",
+      "next_review_at": "2027-03-12",
+      "modified_at": "2026-09-12"
+    },
+    {
+      "article_id": "B044",
+      "body_char_count_approx": 4224,
+      "source_checked_at": "2026-09-12",
+      "next_review_at": "2027-03-12",
+      "modified_at": "2026-09-12"
+    },
+    {
+      "article_id": "B045",
+      "body_char_count_approx": 3728,
+      "source_checked_at": "2026-09-12",
+      "next_review_at": "2027-03-12",
+      "modified_at": "2026-09-12"
+    },
+    {
+      "article_id": "B047",
+      "body_char_count_approx": 3570,
+      "source_checked_at": "2026-09-12",
+      "next_review_at": "2027-03-12",
+      "modified_at": "2026-09-12"
+    }
+  ]
+}

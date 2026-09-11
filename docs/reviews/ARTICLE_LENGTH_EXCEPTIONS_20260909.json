@@ -29,13 +29,6 @@
       "minimum_char_count": 2500,
       "final_review_status": "PASS",
       "rationale": "The food-stockpile article is only slightly below the guideline and already covers quantity, food selection, no-cook constraints, family conditions, rolling stock, and product-guide routing. Padding is not justified."
-    },
-    {
-      "article_id": "B045",
-      "body_char_count": 2958,
-      "minimum_char_count": 3000,
-      "final_review_status": "PASS",
-      "rationale": "The high-risk refrigerator article already gives the safety boundary, time/temperature-based judgment, food categories, dry-ice/cold-pack cautions, disposal judgment, and outage preparation. Extra filler would weaken the emergency-use structure."
     }
   ]
 }
