@@ -1,0 +1,48 @@
+{
+  "articles": [
+    {
+      "affiliate": false,
+      "article_id": "B061",
+      "body_char_count_approx": 5200,
+      "category": "guide",
+      "content_role": "practical",
+      "image_source_count": 0,
+      "image_status": "PENDING",
+      "last_reviewed_at": null,
+      "manual_review_required": true,
+      "manual_review_status": "PENDING",
+      "next_review_at": "2027-03-12",
+      "parent_article_id": "B001",
+      "pickup_candidate": false,
+      "planned_public_path": "guide/disaster-medication-preparedness.html",
+      "preview_path": "preview/article_b061.html",
+      "priority": "high",
+      "publish_blockers": [
+        "manual_review",
+        "image_review"
+      ],
+      "review_checklist_last_checked_at": null,
+      "review_checklist_path": "docs/reviews/B061_CHECKLIST.md",
+      "review_checklist_status": "NOT_STARTED",
+      "risk_level": "high",
+      "slug": "disaster-medication-preparedness",
+      "source_checked_at": "2026-09-12",
+      "source_count": 6,
+      "source_ids": [
+        "F-B061-001",
+        "F-B061-002",
+        "F-B061-003",
+        "F-B061-004",
+        "F-B061-005",
+        "F-B061-006"
+      ],
+      "source_path": "content/articles/B061_disaster_medication_preparedness.md",
+      "status": "REVIEW_REQUIRED",
+      "title": "災害時の常用薬はどう備える？お薬手帳・予備薬・薬が切れたときの相談先",
+      "readability_review_status": "PENDING",
+      "image_relevance_review_status": "PENDING",
+      "production_build_status": "NOT_READY",
+      "modified_at": "2026-09-12"
+    }
+  ]
+}
