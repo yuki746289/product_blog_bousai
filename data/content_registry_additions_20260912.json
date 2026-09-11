@@ -41,6 +41,7 @@
       "image_relevance_review_status": "PASS",
       "image_relevance_reviewed_at": "2026-09-12",
       "production_build_status": "READY_FOR_DEPLOY",
+      "published_at": "2026-09-12",
       "modified_at": "2026-09-12"
     }
   ]
