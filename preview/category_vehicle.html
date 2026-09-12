@@ -5,18 +5,248 @@
 <meta name="robots" content="noindex">
 <title>車と災害｜防災くらしガイド</title>
 <link rel="stylesheet" href="bousai_common.css">
-<script src="bousai_common.js" defer></script></head>
+<script src="bousai_common.js" defer></script><style id="bousai-nav-group-styles">
+.site-nav { overflow: visible; gap: 10px; }
+.site-nav__mega-group { position: relative; display: inline-block; }
+.site-nav__mega-head { display: flex; align-items: center; gap: 2px; }
+.site-nav__mega-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 7px 8px;
+  border-radius: 8px;
+}
+.site-nav__mega-link:hover,
+.site-nav__mega-link:focus-visible,
+.site-nav__mega-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav__submenu-toggle:hover,
+.site-nav__submenu-toggle:focus-visible,
+.site-nav__submenu-toggle[aria-expanded="true"] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle:focus-visible { outline: 3px solid rgba(23,107,104,.24); outline-offset: 2px; }
+.site-nav__submenu-toggle span { transition: transform .16s ease; }
+.site-nav__submenu-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.site-nav__submenu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 2px);
+  left: 0;
+  display: none;
+  width: min(720px, calc(100vw - 32px));
+  padding: 12px;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(31,42,48,.15);
+  white-space: normal;
+}
+.site-nav__mega-group[data-items="2"] .site-nav__submenu {
+  width: min(460px, calc(100vw - 32px));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="4"] .site-nav__submenu {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="5"] .site-nav__submenu {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.site-nav__mega-group:nth-child(2) .site-nav__submenu { left: 50%; transform: translateX(-50%); }
+.site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; transform: none; }
+.site-nav__submenu-card {
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  line-height: 1.4;
+}
+.site-nav__submenu-card strong { font-size: .94rem; color: var(--primary-dark); }
+.site-nav__submenu-caption { display: block; font-size: .78rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
+.site-nav__submenu-card:hover,
+.site-nav__submenu-card:focus-visible,
+.site-nav__submenu-card[aria-current] { background: var(--primary-soft); border-color: rgba(23,107,104,.28); color: var(--primary-dark); }
+.site-nav__mega-group:hover > .site-nav__submenu,
+.site-nav__mega-group:focus-within > .site-nav__submenu,
+.site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+.hub-category-jump {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+.hub-category-jump[data-items="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hub-category-jump[data-items="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hub-category-jump[data-items="5"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hub-category-jump__card {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31,42,48,.05);
+  color: var(--text);
+}
+.hub-category-jump__card strong { color: var(--primary-dark); font-size: 1rem; }
+.hub-category-jump__card span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.hub-category-jump__card:hover,
+.hub-category-jump__card:focus-visible { background: var(--primary-soft); border-color: rgba(23,107,104,.3); }
+.category-hub .category-section[id] { scroll-margin-top: 105px; }
+@media (min-width: 721px) and (max-width: 920px) {
+  .site-nav__mega-group[data-items] .site-nav__submenu {
+    width: min(620px, calc(100vw - 28px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hub-category-jump[data-items="4"],
+  .hub-category-jump[data-items="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .site-nav.mobile-nav-enhanced { overflow: visible; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-link {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-bottom: 0;
+    border-radius: 0;
+    font-weight: 800;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-toggle {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group[data-items] .site-nav__submenu {
+    position: static;
+    display: none;
+    width: auto;
+    min-width: 0;
+    padding: 6px 8px 9px 18px;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    background: #f8fafb;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
+    min-height: 54px;
+    padding: 9px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card:last-child { border-bottom: 0; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-caption { font-size: .76rem; }
+  .hub-category-jump[data-items] { grid-template-columns: 1fr; }
+  .hub-category-jump__card { min-height: 76px; padding: 12px 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__submenu-toggle span { transition: none; }
+}
+</style>
+<script id="bousai-mega-nav-script">
+(function () {
+  function setGroupState(group, expanded) {
+    if (!group) return;
+    var button = group.querySelector('.site-nav__submenu-toggle');
+    var isExpanded = Boolean(expanded);
+    group.classList.toggle('is-submenu-open', isExpanded);
+    if (button) {
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      var label = group.getAttribute('data-group-label') || 'カテゴリ';
+      button.setAttribute('aria-label', label + (isExpanded ? 'のカテゴリを閉じる' : 'のカテゴリを開く'));
+    }
+  }
+
+  function closeOtherGroups(current) {
+    document.querySelectorAll('.site-nav__mega-group.is-submenu-open').forEach(function (group) {
+      if (group !== current) setGroupState(group, false);
+    });
+  }
+
+  function initMegaNavigation() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.site-nav__mega-group'));
+    groups.forEach(function (group) {
+      var button = group.querySelector('.site-nav__submenu-toggle');
+      if (!button || button.dataset.megaNavBound === '1') return;
+      button.dataset.megaNavBound = '1';
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        closeOtherGroups(group);
+        setGroupState(group, !expanded);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      groups.forEach(function (group) {
+        if (!group.contains(event.target)) setGroupState(group, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var active = document.activeElement;
+      var activeGroup = active && active.closest ? active.closest('.site-nav__mega-group') : null;
+      groups.forEach(function (group) { setGroupState(group, false); });
+      if (activeGroup) {
+        var button = activeGroup.querySelector('.site-nav__submenu-toggle');
+        if (button) button.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaNavigation);
+  } else {
+    initMegaNavigation();
+  }
+})();
+</script>
+</head>
 <body>
-<header class="site-header"><div class="header-inner"><div class="header-top"><a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a></div><nav class="site-nav" aria-label="メインナビゲーション">
-<a href="category_guide.html">防災入門</a>
-<a href="category_typhoon.html">台風</a>
-<a href="category_flood.html">大雨・水害</a>
-<a href="category_earthquake.html">地震</a>
-<a href="category_vehicle.html">車と災害</a>
-<a href="category_home.html">住宅と災害</a>
-<a href="category_insurance.html">保険・お金</a>
-<a href="category_goods.html">防災グッズ</a>
-<a href="qa.html">Q&amp;A</a></nav></div></header>
+<header class="site-header"><div class="header-inner"><div class="header-top"><a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a></div><nav class="site-nav" aria-label="メインナビゲーション"><div class="site-nav__mega-group" data-group-label="災害から探す" data-items="4"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_disaster_situations.html">災害から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-1" aria-label="災害から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-1"><a class="site-nav__submenu-card" href="category_flood.html"><strong>台風・水害</strong><span class="site-nav__submenu-caption">強風・大雨・洪水・高潮</span></a><a class="site-nav__submenu-card" href="category_earthquake.html"><strong>地震</strong><span class="site-nav__submenu-caption">揺れ・津波・家具転倒</span></a><a class="site-nav__submenu-card" href="category_outage.html"><strong>停電・断水</strong><span class="site-nav__submenu-caption">電源・飲料水・携帯トイレ</span></a><a class="site-nav__submenu-card" href="category_post_disaster.html"><strong>被災後・復旧</strong><span class="site-nav__submenu-caption">記録・片付け・保険確認</span></a></div></div><div class="site-nav__mega-group" data-group-label="暮らし・備えから探す" data-items="5"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_life.html">暮らし・備えから探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-2" aria-label="暮らし・備えから探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-2"><a class="site-nav__submenu-card" href="category_guide.html"><strong>防災入門</strong><span class="site-nav__submenu-caption">備蓄・持ち出し・家族の備え</span></a><a class="site-nav__submenu-card" href="category_vehicle.html"><strong>車と災害</strong><span class="site-nav__submenu-caption">冠水・車中泊・車載用品</span></a><a class="site-nav__submenu-card" href="category_home.html"><strong>住宅と災害</strong><span class="site-nav__submenu-caption">浸水・マンション・家具</span></a><a class="site-nav__submenu-card" href="category_insurance.html"><strong>保険・お金</strong><span class="site-nav__submenu-caption">火災保険・地震保険・補償</span></a><a class="site-nav__submenu-card" href="category_goods.html"><strong>防災グッズ</strong><span class="site-nav__submenu-caption">電源・ラジオ・衛生用品</span></a></div></div><div class="site-nav__mega-group" data-group-label="地域・疑問から探す" data-items="2"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_region_qa.html">地域・疑問から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-3" aria-label="地域・疑問から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-3"><a class="site-nav__submenu-card" href="category_region.html"><strong>地域別</strong><span class="site-nav__submenu-caption">地域の災害史と備え</span></a><a class="site-nav__submenu-card" href="qa.html"><strong>Q&amp;A</strong><span class="site-nav__submenu-caption">よくある疑問から素早く確認</span></a></div></div></nav></div></header>
 <div class="official-bar"><div class="official-bar__inner">緊急時は、気象庁・自治体などの<a href="https://www.bousai.go.jp/" target="_blank" rel="noopener noreferrer">最新の公的情報</a>を優先してください。</div></div>
 <main class="page-shell category-page">
 <nav class="breadcrumb" aria-label="パンくずリスト"><a href="index.html">トップ</a> &gt; 車と災害</nav>
