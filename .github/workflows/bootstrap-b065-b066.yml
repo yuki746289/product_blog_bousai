@@ -1,0 +1,40 @@
+name: Bootstrap B065 B066 previews
+
+on:
+  pull_request:
+    paths:
+      - "content/articles/B065_womens_disaster_preparedness.md"
+      - "content/articles/B066_dementia_disaster_preparedness.md"
+      - "data/content_registry_additions_20260912_p2.json"
+      - "scripts/bootstrap_b065_b066.py"
+      - ".github/workflows/bootstrap-b065-b066.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e .
+      - name: Generate only B065/B066 previews and guide links
+        run: python scripts/bootstrap_b065_b066.py
+      - name: Commit generated previews
+        run: |
+          if git diff --quiet -- preview/article_b065.html preview/article_b066.html preview/category_guide.html; then
+            echo "Generated previews already synchronized."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add preview/article_b065.html preview/article_b066.html preview/category_guide.html
+          git commit -m "Generate B065 B066 previews"
+          git push origin HEAD:${{ github.head_ref }}
