@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="認知症の人と家族向けに、災害前の避難準備、持ち物、本人情報の共有、避難所で伝えたいこと、福祉・介護の相談先を整理します。">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>認知症の人の防災｜避難前の準備・持ち物・避難所で伝えたいこと｜防災くらしガイド</title>
+<link rel="stylesheet" href="bousai_common.css"><script src="bousai_common.js" defer></script>
+<style id="bousai-nav-group-styles">
+.site-nav { overflow: visible; gap: 10px; }
+.site-nav__mega-group { position: relative; display: inline-block; }
+.site-nav__mega-head { display: flex; align-items: center; gap: 2px; }
+.site-nav__mega-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 7px 8px;
+  border-radius: 8px;
+}
+.site-nav__mega-link:hover,
+.site-nav__mega-link:focus-visible,
+.site-nav__mega-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav__submenu-toggle:hover,
+.site-nav__submenu-toggle:focus-visible,
+.site-nav__submenu-toggle[aria-expanded="true"] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle:focus-visible { outline: 3px solid rgba(23,107,104,.24); outline-offset: 2px; }
+.site-nav__submenu-toggle span { transition: transform .16s ease; }
+.site-nav__submenu-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.site-nav__submenu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 2px);
+  left: 0;
+  display: none;
+  width: min(720px, calc(100vw - 32px));
+  padding: 12px;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(31,42,48,.15);
+  white-space: normal;
+}
+.site-nav__mega-group[data-items="2"] .site-nav__submenu {
+  width: min(460px, calc(100vw - 32px));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="4"] .site-nav__submenu {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="5"] .site-nav__submenu {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.site-nav__mega-group:nth-child(2) .site-nav__submenu { left: 50%; transform: translateX(-50%); }
+.site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; transform: none; }
+.site-nav__submenu-card {
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  line-height: 1.4;
+}
+.site-nav__submenu-card strong { font-size: .94rem; color: var(--primary-dark); }
+.site-nav__submenu-caption { display: block; font-size: .78rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
+.site-nav__submenu-card:hover,
+.site-nav__submenu-card:focus-visible,
+.site-nav__submenu-card[aria-current] { background: var(--primary-soft); border-color: rgba(23,107,104,.28); color: var(--primary-dark); }
+.site-nav__mega-group:hover > .site-nav__submenu,
+.site-nav__mega-group:focus-within > .site-nav__submenu,
+.site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+.hub-category-jump {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+.hub-category-jump[data-items="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hub-category-jump[data-items="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hub-category-jump[data-items="5"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hub-category-jump__card {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31,42,48,.05);
+  color: var(--text);
+}
+.hub-category-jump__card strong { color: var(--primary-dark); font-size: 1rem; }
+.hub-category-jump__card span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.hub-category-jump__card:hover,
+.hub-category-jump__card:focus-visible { background: var(--primary-soft); border-color: rgba(23,107,104,.3); }
+.category-hub .category-section[id] { scroll-margin-top: 105px; }
+@media (min-width: 721px) and (max-width: 920px) {
+  .site-nav__mega-group[data-items] .site-nav__submenu {
+    width: min(620px, calc(100vw - 28px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hub-category-jump[data-items="4"],
+  .hub-category-jump[data-items="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .site-nav.mobile-nav-enhanced { overflow: visible; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-link {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-bottom: 0;
+    border-radius: 0;
+    font-weight: 800;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-toggle {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group[data-items] .site-nav__submenu {
+    position: static;
+    display: none;
+    width: auto;
+    min-width: 0;
+    padding: 6px 8px 9px 18px;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    background: #f8fafb;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
+    min-height: 54px;
+    padding: 9px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card:last-child { border-bottom: 0; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-caption { font-size: .76rem; }
+  .hub-category-jump[data-items] { grid-template-columns: 1fr; }
+  .hub-category-jump__card { min-height: 76px; padding: 12px 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__submenu-toggle span { transition: none; }
+}
+</style>
+<script id="bousai-mega-nav-script">
+(function () {
+  function setGroupState(group, expanded) {
+    if (!group) return;
+    var button = group.querySelector('.site-nav__submenu-toggle');
+    var isExpanded = Boolean(expanded);
+    group.classList.toggle('is-submenu-open', isExpanded);
+    if (button) {
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      var label = group.getAttribute('data-group-label') || 'カテゴリ';
+      button.setAttribute('aria-label', label + (isExpanded ? 'のカテゴリを閉じる' : 'のカテゴリを開く'));
+    }
+  }
+
+  function closeOtherGroups(current) {
+    document.querySelectorAll('.site-nav__mega-group.is-submenu-open').forEach(function (group) {
+      if (group !== current) setGroupState(group, false);
+    });
+  }
+
+  function initMegaNavigation() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.site-nav__mega-group'));
+    groups.forEach(function (group) {
+      var button = group.querySelector('.site-nav__submenu-toggle');
+      if (!button || button.dataset.megaNavBound === '1') return;
+      button.dataset.megaNavBound = '1';
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        closeOtherGroups(group);
+        setGroupState(group, !expanded);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      groups.forEach(function (group) {
+        if (!group.contains(event.target)) setGroupState(group, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var active = document.activeElement;
+      var activeGroup = active && active.closest ? active.closest('.site-nav__mega-group') : null;
+      groups.forEach(function (group) { setGroupState(group, false); });
+      if (activeGroup) {
+        var button = activeGroup.querySelector('.site-nav__submenu-toggle');
+        if (button) button.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaNavigation);
+  } else {
+    initMegaNavigation();
+  }
+})();
+</script>
+</head><body>
+<header class="site-header"><div class="header-inner"><div class="header-top"><a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a></div><nav class="site-nav" aria-label="メインナビゲーション"><div class="site-nav__mega-group" data-group-label="災害から探す" data-items="4"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_disaster_situations.html">災害から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-1" aria-label="災害から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-1"><a class="site-nav__submenu-card" href="category_flood.html"><strong>台風・水害</strong><span class="site-nav__submenu-caption">強風・大雨・洪水・高潮</span></a><a class="site-nav__submenu-card" href="category_earthquake.html"><strong>地震</strong><span class="site-nav__submenu-caption">揺れ・津波・家具転倒</span></a><a class="site-nav__submenu-card" href="category_outage.html"><strong>停電・断水</strong><span class="site-nav__submenu-caption">電源・飲料水・携帯トイレ</span></a><a class="site-nav__submenu-card" href="category_post_disaster.html"><strong>被災後・復旧</strong><span class="site-nav__submenu-caption">記録・片付け・保険確認</span></a></div></div><div class="site-nav__mega-group" data-group-label="暮らし・備えから探す" data-items="5"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_life.html">暮らし・備えから探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-2" aria-label="暮らし・備えから探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-2"><a class="site-nav__submenu-card" href="category_guide.html"><strong>防災入門</strong><span class="site-nav__submenu-caption">備蓄・持ち出し・家族の備え</span></a><a class="site-nav__submenu-card" href="category_vehicle.html"><strong>車と災害</strong><span class="site-nav__submenu-caption">冠水・車中泊・車載用品</span></a><a class="site-nav__submenu-card" href="category_home.html"><strong>住宅と災害</strong><span class="site-nav__submenu-caption">浸水・マンション・家具</span></a><a class="site-nav__submenu-card" href="category_insurance.html"><strong>保険・お金</strong><span class="site-nav__submenu-caption">火災保険・地震保険・補償</span></a><a class="site-nav__submenu-card" href="category_goods.html"><strong>防災グッズ</strong><span class="site-nav__submenu-caption">電源・ラジオ・衛生用品</span></a></div></div><div class="site-nav__mega-group" data-group-label="地域・疑問から探す" data-items="2"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_region_qa.html">地域・疑問から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-3" aria-label="地域・疑問から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-3"><a class="site-nav__submenu-card" href="category_region.html"><strong>地域別</strong><span class="site-nav__submenu-caption">地域の災害史と備え</span></a><a class="site-nav__submenu-card" href="qa.html"><strong>Q&amp;A</strong><span class="site-nav__submenu-caption">よくある疑問から素早く確認</span></a></div></div></nav></div></header>
+<div class="official-bar"><div class="official-bar__inner">認知症の人の医療・介護上の個別対応は、平時から関わる医療・介護職、自治体等の案内を優先してください。</div></div>
+<main class="article-shell" id="main-content"><nav class="breadcrumb" aria-label="パンくずリスト"><a href="index.html">トップ</a> &gt; <a href="category_guide.html">防災入門</a> &gt; 認知症の人の防災</nav><article>
+<header class="article-header"><span class="label">防災入門 / 認知症</span><h1>認知症の人の防災｜避難前の準備・持ち物・避難所で伝えたいこと</h1><p class="article-lead">認知症の人と暮らす家庭の防災では、水・食料・避難先を決めるだけでなく、<strong>本人が自分で説明しにくい情報を家族や支援者が共有できる状態にすること、移動に時間がかかる前提で早めに避難すること、避難先で必要な配慮を伝えること</strong>が重要です。 厚生労働省は「被災時の支援（認知症関係）」として専用情報をまとめ、日本認知症学会等も被災した認知症の人と家族向けの支援マニュアルを公開しています。 この記事では、<strong>平常時の準備 → 早めの避難 → 持ち物・情報 → 避難所で伝えること → 支援先へつながる方法</strong>の順で、家庭側が確認しておきたいことを整理します。</p><div class="article-meta"><span>記事ID: B066</span><span>公的情報確認: 2026年9月12日</span><span>要安全確認</span></div></header>
+<div class="article-body">
+<section class="key-points"><h2>結論：本人の「いつもの情報」を持ち、家族だけで抱え込まない準備をする</h2>
+<p>最初に確認したいのは次の7点です。</p>
+<ol>
+<li>自宅の災害リスクと避難先・避難経路を確認する</li>
+<li>移動や準備に時間がかかる場合は、危険が高まる前に動けるようにする</li>
+<li>常用薬・お薬手帳、眼鏡・補聴器、排泄用品等の個人用品を確認する</li>
+<li>本人の呼ばれ方、生活リズム、医療・介護情報、連絡先を1枚にまとめる</li>
+<li>避難所では認知症があることと、普段必要な支援を早めに伝える</li>
+<li>福祉避難所や介護サービスの災害時運用を自治体・事業所へ平時に確認する</li>
+<li>避難先で対応に困った場合は、家族だけで抱え込まず自治体・医療・介護職等へ相談する</li>
+</ol>
+<p><strong>認知症だから必ず特定の避難所へ行く、特定の対応をする、という全国一律のルールはありません。</strong> 本人の状態、家族の支援状況、災害の種類、自治体の受入体制によって変わります。</p>
+</section>
+<h2>1. 平常時に「どこへ、誰と、どう避難するか」を決める</h2>
+<p>認知症の人がいる家庭では、避難開始後に本人へすべて説明して初めて動くのではなく、平常時から家族・支援者で避難計画を共有します。</p>
+<p>確認したいのは、</p>
+<ul class="checklist">
+<li>自宅のハザードマップ</li>
+<li>災害種別ごとの避難先</li>
+<li>避難経路</li>
+<li>誰が本人と一緒に動くか</li>
+<li>家族が不在の場合の連絡先</li>
+<li>利用中の介護サービス事業所</li>
+<li>地域包括支援センター等の相談先</li>
+<li>車を使えない場合の移動方法</li>
+</ul>
+<p>です。</p>
+<p>本人が通い慣れている場所、日頃支援している人、地域の見守り関係者等がいる場合は、災害時に誰へ連絡するかも決めます。</p>
+<p>高齢者全般の避難準備は<a href="article_b035.html">高齢者の防災は何を準備する？</a>で整理しています。</p>
+<h2>2. 移動に時間がかかる場合は早めの避難を前提にする</h2>
+<p>認知症介護研究・研修センター等の災害支援ガイドでは、認知症の人を含む<strong>避難に時間を要する人は、警戒レベル3「高齢者等避難」等の段階から早めに避難する</strong>考え方が示されています。</p>
+<p>ただし、「認知症がある人は全員必ずレベル3で同じ行動」という意味ではありません。自宅の災害リスク、自治体の避難情報、本人の移動能力、支援者の状況を確認します。</p>
+<p>平常時に、</p>
+<ul class="checklist">
+<li>荷物をそろえるのにどの程度時間がかかるか</li>
+<li>本人が落ち着いて移動できる時間帯か</li>
+<li>階段や長距離歩行が必要か</li>
+<li>雨・暗闇で使いにくくなる経路がないか</li>
+<li>家族1人で介助できない場合に誰へ連絡するか</li>
+</ul>
+<p>を確認しておくと、避難情報が出てから迷う時間を減らせます。</p>
+<h2>3. 持ち物は一般用品＋本人に代替しにくい物を優先する</h2>
+<p>認知症の人向けだから特別な防災用品を大量にそろえるのではなく、本人が普段の生活で必要としている物を優先します。</p>
+<div class="table-wrap"><table><thead><tr>
+<th>分類</th>
+<th>確認するもの</th>
+<th>理由</th>
+</tr></thead><tbody>
+<tr>
+<td>薬・医療情報</td>
+<td>常用薬、お薬手帳、薬名・用量が分かる情報</td>
+<td>本人が説明しにくい場合に備える</td>
+</tr>
+<tr>
+<td>視覚・聴覚</td>
+<td>眼鏡、補聴器、必要な予備電池等</td>
+<td>情報理解や移動に影響する</td>
+</tr>
+<tr>
+<td>排泄</td>
+<td>おむつ、パッド等、普段使う用品</td>
+<td>避難先ですぐ同じ物が入手できるとは限らない</td>
+</tr>
+<tr>
+<td>身元・連絡</td>
+<td>本人確認に使うもの、家族・支援者の連絡先</td>
+<td>家族と離れた場合にも確認できるようにする</td>
+</tr>
+<tr>
+<td>日常用品</td>
+<td>普段使っている小物、着替え等</td>
+<td>慣れない環境で本人が必要とする物を確認する</td>
+</tr>
+<tr>
+<td>一般防災</td>
+<td>水、食品、ライト、充電手段、携帯トイレ等</td>
+<td>家庭共通の備え</td>
+</tr>
+</tbody></table></div>
+<p>薬については、災害用に余らせるため自己判断で服用量を変えたり中止したりしません。平時に医師・薬剤師等へ備え方を確認します。</p>
+<p>常用薬の情報整理は<a href="article_b061.html">災害時の常用薬はどう備える？</a>で詳しく整理しています。</p>
+<h2>4. 「本人のことが分かる1枚」を作る</h2>
+<p>避難先では、普段本人を知っている家族・介護職が常にそばにいられるとは限りません。</p>
+<p>そこで、紙1枚程度に次をまとめておくと情報共有に使えます。</p>
+<div class="table-wrap"><table><thead><tr>
+<th>項目</th>
+<th>例</th>
+</tr></thead><tbody>
+<tr>
+<td>呼ばれ方</td>
+<td>普段安心しやすい名前・呼び方</td>
+</tr>
+<tr>
+<td>家族連絡先</td>
+<td>優先順に複数</td>
+</tr>
+<tr>
+<td>医療情報</td>
+<td>かかりつけ、服薬情報、お薬手帳の有無</td>
+</tr>
+<tr>
+<td>介護情報</td>
+<td>利用サービス、担当事業所・ケアマネジャー等</td>
+</tr>
+<tr>
+<td>補助用品</td>
+<td>眼鏡、補聴器、歩行補助、排泄用品等</td>
+</tr>
+<tr>
+<td>普段の生活</td>
+<td>食事、睡眠、トイレ等で特に伝える必要があること</td>
+</tr>
+<tr>
+<td>困りやすい場面</td>
+<td>大きな音、人混み、急な環境変化等、家族が把握している範囲</td>
+</tr>
+<tr>
+<td>安心しやすいこと</td>
+<td>普段の関わりで家族が知っていること</td>
+</tr>
+</tbody></table></div>
+<p>これは診断書や専門的な介護計画の代わりではありません。<strong>避難先の人へ「この人は普段どう生活しているか」を短時間で伝える補助</strong>として使います。</p>
+<p>個人情報が含まれるため、誰でも見える場所へ掲示するのではなく、家族・必要な支援者が確認できるよう管理します。</p>
+<h2>5. 避難所では「認知症があること」と普段の支援を早めに伝える</h2>
+<p>避難所では、多くの人が同じ空間で生活し、音・照明・人の出入り・寝る場所等が普段と大きく変わる場合があります。</p>
+<p>受付や保健・福祉担当者等へ、必要に応じて、</p>
+<ul class="checklist">
+<li>認知症があること</li>
+<li>家族が同行しているか</li>
+<li>普段必要な介助</li>
+<li>服薬・医療情報</li>
+<li>眼鏡・補聴器等の使用</li>
+<li>排泄・食事等で必要な支援</li>
+<li>家族が対応に困っていること</li>
+</ul>
+<p>を伝えます。</p>
+<p>「周囲へ迷惑をかけたくない」と考えて家族だけで抱え込むと、本人にも介護者にも負担が大きくなる可能性があります。<strong>早い段階で避難所運営者や保健・福祉担当へ相談</strong>します。</p>
+<h2>6. 避難先で様子が変わったら、家族だけで原因を決めない</h2>
+<p>慣れない環境では、不安、睡眠の乱れ、落ち着かなさ、食事や排泄の変化等が起こる場合があります。</p>
+<p>一方で、体調不良、脱水、感染症、薬の問題、痛み等、認知症以外の原因が関係することもあります。</p>
+<p>そのため、</p>
+<ul class="checklist">
+<li>「認知症だから仕方ない」と決めつけない</li>
+<li>新しい症状や普段と違う状態を記録する</li>
+<li>本人の安全を確保する</li>
+<li>避難所の医療・保健・介護担当等へ相談する</li>
+</ul>
+<p>という流れを基本にします。</p>
+<p>この記事では、興奮、不眠、幻覚等への個別の治療方法や薬の変更方法は扱いません。専門的な対応は厚生労働省が案内する認知症支援マニュアルや医療・介護職の判断を確認してください。</p>
+<h2>7. 福祉避難所は「認知症なら自動的に利用できる」と考えない</h2>
+<p>福祉避難所は、高齢者、障害のある人、妊産婦等を含む要配慮者の受入先として整備されますが、<strong>対象者、開設時期、直接避難の可否、受入方法は自治体によって異なります。</strong></p>
+<p>平時に自治体へ、</p>
+<ul class="checklist">
+<li>自宅地域の福祉避難所</li>
+<li>誰が対象になるか</li>
+<li>一般避難所を経由するのか</li>
+<li>事前調整された人が直接避難できる制度があるか</li>
+<li>開設情報をどこで確認するか</li>
+</ul>
+<p>を確認します。</p>
+<p>福祉避難所の基本は<a href="qa.html#qa-welfare-shelter-who">防災Q&amp;A</a>で整理しています。</p>
+<h2>8. 介護サービス・地域の支援者と災害時の連絡方法を確認する</h2>
+<p>在宅介護でデイサービス、訪問介護、訪問看護等を利用している場合、災害時に通常どおりサービスを受けられるとは限りません。</p>
+<p>平時に、</p>
+<ul class="checklist">
+<li>災害時の連絡方法</li>
+<li>休業・変更情報の確認方法</li>
+<li>緊急時の代替連絡先</li>
+<li>ケアマネジャー等へ伝えておく情報</li>
+</ul>
+<p>を事業所へ確認します。</p>
+<p>また、地域包括支援センター、自治体の高齢者・福祉担当、民生委員等と普段からつながりがある場合は、<strong>災害時にどの窓口へ相談するか</strong>を家族内で共有します。</p>
+<h2>9. 行方不明への備えは地域の制度を平時に確認する</h2>
+<p>認知症の人が外へ出て道に迷う可能性がある家庭では、災害時だけ別の対策を作るのではなく、日頃の見守り・行方不明対策を防災計画にもつなげます。</p>
+<p>自治体によって、</p>
+<ul class="checklist">
+<li>見守りネットワーク</li>
+<li>事前登録制度</li>
+<li>SOS情報の配信</li>
+<li>個人識別に使う用品・サービス</li>
+</ul>
+<p>等があります。</p>
+<p>制度の名称・利用条件は地域で異なるため、自治体や地域包括支援センターへ確認します。</p>
+<p>実際に行方が分からなくなった場合は、家族だけで長時間捜し続ける前提にせず、<strong>警察等へ早く相談すること</strong>を優先します。</p>
+<h2>10. 介護する家族自身の持ち物と休息も計画に入れる</h2>
+<p>認知症の人の用品だけを準備しても、介護する家族が休めなければ避難生活を続けにくくなります。</p>
+<ul class="checklist">
+<li>家族自身の水・食料・薬</li>
+<li>スマートフォンの充電</li>
+<li>着替え・衛生用品</li>
+<li>交代できる支援者の連絡先</li>
+<li>相談窓口</li>
+</ul>
+<p>も同時に確認します。</p>
+<p><strong>「家族が全部対応する」ことを前提にしない</strong>ことが重要です。避難所や地域の支援につながることも防災準備の一部です。</p>
+<h2>保存用チェックリスト</h2>
+<ul class="checklist">
+<li>☐ 自宅の災害リスクと避難先を確認した</li>
+<li>☐ 本人の移動に必要な時間を考えた</li>
+<li>☐ 誰が一緒に避難するか決めた</li>
+<li>☐ 常用薬・お薬手帳・眼鏡・補聴器等を確認した</li>
+<li>☐ 排泄用品等、本人に代替しにくい物を準備した</li>
+<li>☐ 本人情報を1枚にまとめた</li>
+<li>☐ 家族・医療・介護・自治体の連絡先を共有した</li>
+<li>☐ 避難所で伝える内容を家族で確認した</li>
+<li>☐ 福祉避難所の地域ルールを確認した</li>
+<li>☐ 介護サービスの災害時連絡方法を確認した</li>
+<li>☐ 見守り・行方不明時の地域制度を確認した</li>
+<li>☐ 介護する家族の備えと交代手段も確認した</li>
+</ul>
+<h2>まとめ</h2>
+<p>認知症の人の防災で重要なのは、特別な用品を大量にそろえることだけではありません。</p>
+<p><strong>避難に時間がかかる前提で早めに動ける計画を作り、本人が自分で説明しにくい情報を家族・支援者が共有できるようにし、避難先では家族だけで抱え込まず支援につながる</strong>ことが中心です。</p>
+<p>本人の状態や必要な介助は一人ひとり違います。医療・介護上の個別対応は、平時から関わっている医療・介護職、自治体等へ確認してください。</p>
+<h2>関連記事</h2>
+<ul class="checklist">
+<li><a href="article_b035.html">高齢者の防災は何を準備する？</a></li>
+<li><a href="article_b061.html">災害時の常用薬はどう備える？</a></li>
+<li><a href="article_b003.html">断水時の携帯トイレ</a></li>
+<li><a href="article_b039.html">地震後、自宅に残る？避難所へ行く？</a></li>
+<li><a href="qa.html#qa-welfare-shelter-who">防災Q&amp;A：福祉避難所</a></li>
+</ul>
+<h2>公的・専門情報</h2>
+<ul class="checklist">
+<li>厚生労働省「被災時の支援（認知症関係）」: https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/hukushi_kaigo/kaigo_koureisha/ninchi/hisai_dementia.html</li>
+<li>認知症介護情報ネットワーク「災害関連情報」: https://www.dcnet.gr.jp/earthquake/</li>
+<li>日本認知症学会「被災した認知症の人と家族への支援」: https://dementia-japan.org/support/</li>
+</ul>
+</div></article></main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-links"><a href="about.html">運営方針</a><a href="disclaimer.html">免責事項</a><a href="privacy.html">プライバシーポリシー</a><a href="advertising.html">広告について</a></div></div></footer>
+</body></html>
