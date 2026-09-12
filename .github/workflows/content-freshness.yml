@@ -1,4 +1,4 @@
-# Updated: 2026-09-09 06:17 JST
+# Updated: 2026-09-12 19:25 JST
 name: Content freshness check
 
 on:
@@ -18,17 +18,41 @@ on:
   schedule:
     - cron: "0 21 * * 0"
 
+permissions:
+  contents: write
+
 jobs:
   freshness:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
       - name: Install
         run: pip install -e .
-      - name: Synchronize reviewed Markdown into preview HTML
+      - name: Synchronize tracked navigation only
+        run: |
+          python - <<'PY'
+          from scripts.sync_previews_from_markdown import apply_site_navigation
+          changed = apply_site_navigation()
+          print("Navigation updates:", ", ".join(changed) if changed else "none")
+          PY
+      - name: Commit navigation synchronization on same-repository PR
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          if git diff --quiet -- preview; then
+            echo "Navigation already synchronized."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add preview
+            git commit -m "Sync tracked site navigation"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
+      - name: Synchronize reviewed Markdown into preview HTML for tests
         run: python scripts/sync_previews_from_markdown.py
       - name: Run tests
         run: python -m unittest discover -s tests -v
