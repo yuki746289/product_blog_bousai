@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
-from scripts import sync_previews_core as core
+import sync_previews_core as core
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "content_registry.json"
