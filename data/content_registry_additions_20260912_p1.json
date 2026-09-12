@@ -3,7 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B063",
-      "body_char_count_approx": 3900,
+      "body_char_count_approx": 3150,
       "category": "blackout",
       "content_role": "practical",
       "image_source_count": 0,
@@ -40,9 +40,10 @@
     {
       "affiliate": false,
       "article_id": "B064",
-      "body_char_count_approx": 3500,
+      "body_char_count_approx": 3209,
       "category": "guide",
       "content_role": "practical",
+      "risk_level": "high",
       "image_source_count": 0,
       "image_status": "APPROVED",
       "last_reviewed_at": "2026-09-12",
@@ -58,7 +59,6 @@
       "review_checklist_last_checked_at": "2026-09-12",
       "review_checklist_path": "docs/reviews/B064_CHECKLIST.md",
       "review_checklist_status": "PASS",
-      "risk_level": "high",
       "slug": "food-allergy-disaster-stockpile",
       "source_checked_at": "2026-09-12",
       "source_count": 4,
