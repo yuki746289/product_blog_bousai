@@ -1,4 +1,4 @@
-# Updated: 2026-09-09 06:17 JST
+# Updated: 2026-09-14 22:40 JST
 name: Deploy production site
 
 on:
@@ -281,3 +281,6 @@ jobs:
           test "${googlebot_status}" = "200"
 
           echo "Public smoke test passed."
+
+      - name: Audit live sitemap indexability
+        run: python scripts/check_live_indexability.py --workers 4
