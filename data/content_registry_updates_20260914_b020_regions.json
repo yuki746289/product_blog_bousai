@@ -1,0 +1,20 @@
+{
+  "updated_at": "2026-09-14T23:30:00+09:00",
+  "articles": [
+    {
+      "article_id": "B020",
+      "body_char_count_approx": 0,
+      "source_checked_at": "2026-09-14",
+      "next_review_at": "2027-03-14",
+      "last_reviewed_at": "2026-09-14",
+      "review_checklist_last_checked_at": "2026-09-14"
+    },
+    {
+      "article_id": "B070",
+      "body_char_count_approx": 0,
+      "last_reviewed_at": "2026-09-14",
+      "review_checklist_last_checked_at": "2026-09-14",
+      "modified_at": "2026-09-14"
+    }
+  ]
+}
