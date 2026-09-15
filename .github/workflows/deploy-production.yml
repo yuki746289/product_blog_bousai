@@ -1,4 +1,4 @@
-# Updated: 2026-09-14 22:40 JST
+# Updated: 2026-09-15 09:20 JST
 name: Deploy production site
 
 on:
@@ -42,6 +42,9 @@ jobs:
 
       - name: Synchronize reviewed Markdown into preview HTML
         run: python scripts/sync_previews_from_markdown.py
+
+      - name: Enhance linear-rainband feature navigation
+        run: python scripts/enhance_linear_rainband_feature.py
 
       - name: Run tests
         run: python -m unittest discover -s tests -v
@@ -181,10 +184,34 @@ jobs:
           grep -q 'data-generated="article-structured-data"' "${tmp_mabi}"
           rm -f "${tmp_mabi}"
 
+          tmp_linear="$(mktemp)"
+          fetch_public "special/linear-rainband/index.html" "${tmp_linear}"
+          grep -q "線状降水帯とは？" "${tmp_linear}"
+          grep -q "地域から線状降水帯を見る" "${tmp_linear}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_linear}"
+          rm -f "${tmp_linear}"
+
+          tmp_linear_region="$(mktemp)"
+          fetch_public "special/linear-rainband/regions.html" "${tmp_linear_region}"
+          grep -q "地域から線状降水帯を見る" "${tmp_linear_region}"
+          grep -q "九州" "${tmp_linear_region}"
+          grep -q "関東甲信" "${tmp_linear_region}"
+          grep -q "中国地方" "${tmp_linear_region}"
+          grep -q "四国" "${tmp_linear_region}"
+          grep -q "東海" "${tmp_linear_region}"
+          rm -f "${tmp_linear_region}"
+
+          tmp_flood_index="$(mktemp)"
+          fetch_public "flood/index.html" "${tmp_flood_index}"
+          grep -q "注目特集：線状降水帯" "${tmp_flood_index}"
+          rm -f "${tmp_flood_index}"
+
           tmp_region_index="$(mktemp)"
           fetch_public "region/index.html" "${tmp_region_index}"
           grep -q "8地域・8記事" "${tmp_region_index}"
           grep -q "倉敷市真備地区の水害史" "${tmp_region_index}"
+          grep -q "線状降水帯を地域から見る" "${tmp_region_index}"
           rm -f "${tmp_region_index}"
 
           tmp_product="$(mktemp)"
@@ -269,6 +296,8 @@ jobs:
           grep -q "${BASE_URL}region/hiroshima/landslide-history.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/arakawa/flood-history.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}region/okayama/mabi-2018-flood-history.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}special/linear-rainband/index.html" "${tmp_sitemap}"
+          grep -q "${BASE_URL}special/linear-rainband/regions.html" "${tmp_sitemap}"
           rm -f "${tmp_sitemap}"
 
           googlebot_status="$(curl --silent --show-error --location \
