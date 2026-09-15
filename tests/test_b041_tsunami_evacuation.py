@@ -42,6 +42,18 @@ class B041TsunamiEvacuationTests(unittest.TestCase):
         self.assertIn("海の中にいる人はただちに海から上がり、海岸から離れる", article)
         self.assertIn("注意報・警報の発表内容を待たず", article)
 
+    def test_b041_distinguishes_emergency_refuge_from_shelter(self):
+        article = (ROOT / "content" / "articles" / "B041_tsunami_evacuation.md").read_text(encoding="utf-8")
+        self.assertIn("指定緊急避難場所", article)
+        self.assertIn("指定避難所", article)
+        self.assertIn("津波に対応した指定緊急避難場所か", article)
+
+    def test_b041_long_stay_measures_never_delay_initial_evacuation(self):
+        article = (ROOT / "content" / "articles" / "B041_tsunami_evacuation.md").read_text(encoding="utf-8")
+        self.assertIn("暑さ・寒さ対策", article)
+        self.assertIn("避難を遅らせない", article)
+        self.assertIn("取りに自宅へ戻りません", article)
+
     def test_b041_preview_keeps_emergency_copy_and_japanese_image(self):
         preview = (ROOT / "preview" / "article_b041.html").read_text(encoding="utf-8")
         self.assertIn("津波警報等を待たず高い安全な場所へ避難", preview)
