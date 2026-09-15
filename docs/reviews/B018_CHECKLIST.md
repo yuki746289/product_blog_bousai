@@ -16,7 +16,7 @@
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-15
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -25,18 +25,18 @@
 | 共通チェック | 状態 | 根拠・備考 |
 |---|---|---|
 | C01 内容・情報量 | PASS | 原因区分、通常車両保険、地震等特約、安全確保、記録、ローン/リースまで整理 |
-| C02 出典・安全性 | PASS | 日本損害保険協会の現行自動車保険Q&A・自然災害情報・2026年熊本地震案内を再確認 |
+| C02 出典・安全性 | PASS | 日本損害保険協会の現行自動車保険Q&A・自然災害情報を再確認 |
 | C03 画像・視覚要素 | PASS | 国内津波被災車画像の用途を関連章に限定し、補償・修理可否の根拠にしない |
-| C04 読みやすさ・UI | PASS | 原因別表、平常時確認、時系列記録で手続きを整理 |
+| C04 読みやすさ・UI | PASS | 原因別の違い、被災直後、請求時、更新時の判断単位で整理 |
 | C05 内部リンク | PASS | B017/B008/B011へ接続し、住宅地震保険・水没安全・洪水車両保険と分離 |
 | C06 商品導線・商品記事 | N/A | 保険商品販売・比較・見積もり導線なし |
 | C07 Q&A | N/A | 本文と業界情報で主要疑問を完結 |
-| C08 同期・公開前 | PASS | source/article/registryを2026-09-04監査へ同期 |
-| C09 日付・構造化データ | PASS | registryのsource_checked_atと既存生成機構を使用 |
-| C10 デザイン・UX | PASS | 既存共通UI、表・画像・リスト中心。新規独自UIなし |
+| C08 同期・公開前 | PASS | source/preview/registryを2026-09-15再レビューへ同期 |
+| C09 日付・構造化データ | PASS | registryのレビュー日を更新対象化 |
+| C10 デザイン・UX | PASS | 既存共通UI、見出し・リスト中心。新規独自UIなし |
 | C11 読者・マーケティング | PASS | 特約加入を煽らず「車を失った時の家計影響」で判断軸を提示 |
-| C12 アクセシビリティ | PASS | 画像に依存せず本文・表・見出しで判断可能 |
-| C13 技術品質・信頼性 | PASS | 正本同期ワークフロー内unittest PASS。通常CIでも再検証対象 |
+| C12 アクセシビリティ | PASS | 画像に依存せず本文・見出しで判断可能 |
+| C13 技術品質・信頼性 | PASS | CI回帰テスト対象 |
 | C14 計測・グロース | N/A | 計測変更なし |
 
 ## 2. 防災サイト固有チェック
@@ -47,8 +47,8 @@
 | S02 情報設計 | PASS | B018=地震由来車損害、B011=台風/洪水水没、B017=住宅/家財地震保険と明確に分離 |
 | S03 法務・権利等 | PASS | 一般的な免責・特約を説明し、個別契約の支払可否を断定しない |
 | S04 ブランド・トーン | PASS | 車両保全より人の避難を優先し、特約を万能補償と見せない |
-| S05 日本向け文脈 | PASS | 日本損害保険協会の現行商品体系・2026年災害案内に準拠 |
-| S06 運用・ガバナンス | PASS | 古いREVIEW_REQUIREDとsource_checked_atを同期 |
+| S05 日本向け文脈 | PASS | 日本損害保険協会等の国内制度を前提に記述 |
+| S06 運用・ガバナンス | PASS | source_checked_at / review日 / registry実測値を同期 |
 | S07 セキュリティ・外部依存 | PASS | 業界リンクのみ。新規外部機能なし |
 | S08 数値 | PASS | 特約の金額・条件を商品共通の一律値にせず、約款確認を促す |
 
@@ -61,7 +61,6 @@
 - PASS: 津波警報後に車を守るため低地・海側へ戻らせない。
 - PASS: 津波・浸水車を点検前に始動させない。
 - PASS: EV/PHEV/HVの高電圧系統へ自己判断で触れさせない。
-- PASS: 2026年熊本地震に関する損保協会案内の存在・時点を再確認。
 
 ## 4. 読者・ページ設計
 
@@ -78,7 +77,7 @@
 - article: `content/articles/B018_earthquake_car_insurance.md`
 - preview: `preview/article_b018.html`
 - public_path: `insurance/earthquake-car-insurance.html`
-- registry: 2026-09-04同期
+- registry: 2026-09-15同期
 
 ## 6. 最終判定
 
@@ -93,5 +92,16 @@
 - guideline_minimum: **2,500字**
 - length_status: **PASS**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
-- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+- editorial_note: 当時点の履歴として保持。
 <!-- /content-depth-20260907:metric -->
+
+## 2026-09-15 説明品質再レビュー
+
+- reader_visible_char_count: **2,822字**
+- guideline_minimum: **2,500字**
+- length_status: **PASS**
+- explanation_quality_priority: **48**（自動品質点ではなく、次回レビュー優先度）
+- PASS: 「車両保険あり」だけで判断せず、地震等特約の有無・支払条件を最初に確認する構成へ整理。
+- PASS: 洪水・高潮と地震津波の原因区分を明確化。
+- PASS: 被災直後は車より人の安全を優先し、浸水車を始動しない境界を維持。
+- editorial_note: 文字数を増やすこと自体を目的にせず、検索意図と判断順を優先して再構成。
