@@ -102,7 +102,7 @@ affiliate: false
 
 - [線状降水帯が多い地域はどこ？](special/linear-rainband/regions.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
-- [広島市の土砂災害史](region/hiroshima-landslide-history.html)
+- [広島市の土砂災害史](region/hiroshima/landslide-history.html)
 - [土砂キキクルと避難判断](flood/landslide-evacuation-kikikuru.html)
 - [大雨・水害の基本](flood/flood-preparedness-basics.html)
 
