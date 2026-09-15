@@ -1,4 +1,4 @@
-# Updated: 2026-09-09 06:17 JST
+# Updated: 2026-09-15 09:20 JST
 name: Content freshness check
 
 on:
@@ -30,6 +30,8 @@ jobs:
         run: pip install -e .
       - name: Synchronize reviewed Markdown into preview HTML
         run: python scripts/sync_previews_from_markdown.py
+      - name: Enhance linear-rainband feature navigation
+        run: python scripts/enhance_linear_rainband_feature.py
       - name: Run tests
         run: python -m unittest discover -s tests -v
       - name: Check content registry
