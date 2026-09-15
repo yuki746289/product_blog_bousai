@@ -4,42 +4,43 @@
 - risk_level: high
 - article_status: READY_TO_PUBLISH
 - review_status: PASS
-- last_checked_at: 2026-09-06
-- target_commit: 作業ブランチ `fix/b047-content-sync-20260906`
+- last_checked_at: 2026-09-15
+- target_branch: `content/explanation-quality-b018-b024-b040-b043-b047-b052-b058-20260915`
 - persona_mode: SITUATIONAL_SEGMENT
 
 ## 1. 今回の確認範囲
 
-原稿 `content/articles/B047_blackout_heatstroke.md` と公開元 `preview/article_b047.html` を照合し、`scripts/build_public.py` が生成した `public/blackout/blackout-heatstroke.html` まで確認した。
+原稿 `content/articles/B047_blackout_heatstroke.md` と公開元 `preview/article_b047.html`、生成される `public/blackout/blackout-heatstroke.html` の安全境界を確認した。
 
 | 項目 | 状態 | 根拠・確認箇所 |
 |---|---|---|
-| 検索意図・カニバリ | PASS | B004は停電全般、B047は真夏の停電中の熱中症判断。原稿・HTMLのtitle/H1/本文で役割を確認 |
-| 一次情報・医療境界 | PASS | `docs/research/B047_SOURCES.md`、原稿、preview、公的情報リンクを確認。独自の一律水分量を示していない |
-| 救急判断 | PASS | 原稿・preview・生成publicに「自力で水が飲めない、意識がない場合」の救急要請を確認 |
-| 移動判断 | PASS | 原稿・preview・生成publicに、室温上昇時の早期移動と他災害の移動リスクを確認 |
-| 発電機 | PASS | 原稿・preview・生成publicに、屋内・車庫・換気不十分な場所で使わない旨を確認 |
-| 扇風機の限界 | PASS | 原稿・preview・生成publicに、長時間自宅で大丈夫とは考えない旨を確認 |
-| 停電前の準備 | PASS | 原稿の第9章をpreviewへ反映し、生成publicで確認 |
-| 内部リンク | PASS | B004・B028・B044への文脈リンクと関連記事をpreview・生成publicで確認 |
-| 保存用チェック | PASS | 原稿の9項目をpreviewへ反映し、生成publicで確認 |
+| 検索意図・カニバリ | PASS | B004は停電全般、B047は真夏の停電中の熱中症判断として役割分離 |
+| 一次情報・医療境界 | PASS | 厚生労働省の災害時熱中症対策・応急処置、環境省のクーリングシェルター情報を再確認 |
+| 救急判断 | PASS | 「自力で水が飲めない、意識がない場合」の救急要請を維持 |
+| 移動判断 | PASS | 室温上昇・体調悪化を待たず、冷房のある場所へ移れるうちに移る判断を前面化 |
+| 要配慮者 | PASS | 高齢者・乳幼児・持病のある人を本人の申告待ちにしない |
+| クーリングシェルター | PASS | 全国一律に自動開設されるとは扱わず、開設状況・移動安全性を確認 |
+| 発電機 | PASS | 屋内・車庫・換気不十分な場所で使わない旨を維持 |
+| 扇風機の限界 | PASS | 「長時間自宅で大丈夫とは考えません」を生成publicまで回帰確認 |
+| 停電前の準備 | PASS | 冷房のある移動先を複数候補化し、移動条件まで平時に確認 |
+| 内部リンク | PASS | B004・B025・B028・B044へ文脈リンク |
+| 保存用チェック | PASS | 移動・要配慮者・救急・発電機の判断を保存用チェックへ反映 |
 | 商品導線 | N/A | 直接Amazon導線なし。安全行動が主目的 |
-| 画像 | PASS | `docs/research/B047_IMAGES.md` の0枚とする理由を確認。要点、箇条書き、チェックリストで長文を分節 |
+| 画像 | PASS | 画像0枚の既存判断を維持。見出し・リスト・チェックリストで分節 |
 
 ## 2. 専門家・技術確認
 
 - E01〜E08: PASS。文章構成、安全性、検索意図、導線、可読性、アクセシビリティ、トーンを確認。
 - E09: N/A。商品記事・直接購入CTAではない。
-- E10: N/A。計測施策・独自集計・数値比較を追加していない。
-- E11〜E14: PASS。内部リンク変換、外部リンク属性、日本向け表現、日付・台帳を確認。
+- E10: N/A。独自の安全温度・一律水分量を追加していない。
+- E11〜E14: PASS。内部リンク、外部一次情報、日本向け表現、日付・台帳を確認。
 - 最終HTML回帰検査: `tests/test_public_build.py::PublicBuildTests::test_b047_public_output_keeps_safety_and_preparation_content`。
 - 原稿・preview同期検査: `tests/test_b044_b047_keyword_batch.py::KeywordBatchSafetyTests::test_b047_heatstroke_boundaries`。
 
 ## 3. 最終判定
 
 - READY_TO_PUBLISH: YES
-- 公開前残作業: 通常のテスト、変更レビュー、main反映、必要なデプロイ、本番HTTP確認
-- 判定理由: 既知の原稿・公開HTML不整合を解消し、安全条件・準備・内部リンクが最終生成HTMLまで残る回帰検査を追加したため
+- 判定理由: 停電時に家で耐える前提を外し、冷却・飲水・移動・救急判断の順を明確化しつつ、発電機・他災害時の移動リスクも維持したため。
 
 <!-- content-depth-20260907:metric -->
 ## 2026-09-07 本文量・読者満足度の再確認
@@ -48,5 +49,18 @@
 - guideline_minimum: **3,000字**
 - length_status: **PASS**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
-- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+- editorial_note: 当時点の履歴として保持。
 <!-- /content-depth-20260907:metric -->
+
+## 2026-09-15 説明品質再レビュー
+
+- reader_visible_char_count: **3,034字**
+- guideline_minimum: **3,000字**
+- length_status: **PASS**
+- explanation_quality_priority: **29**（自動品質点ではなく、次回レビュー優先度）
+- PASS: 「家で耐える」から、冷房のある場所へ移れるうちに移る判断へ再構成。
+- PASS: 高齢者・乳幼児・持病のある人を先に確認する流れを明確化。
+- PASS: 自力飲水不可・意識異常時の救急要請を維持。
+- PASS: クーリングシェルターは開設状況を確認し、暴風・冠水等がある場合は移動安全性を別に判断。
+- PASS: 発電機の一酸化炭素中毒境界を維持。
+- editorial_note: 文字数を満たすための水増しではなく、移動先を複数持つことと移動判断の前倒しを実用情報として補足した。

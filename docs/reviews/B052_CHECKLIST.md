@@ -5,7 +5,7 @@
 - risk_level: elevated
 - article_status: READY_TO_PUBLISH
 - review_status: PASS
-- last_checked_at: 2026-09-07
+- last_checked_at: 2026-09-15
 - persona_mode: SITUATIONAL_SEGMENT
 - site checklist: BOUSAI_SITE_REVIEW_CHECKLIST.md
 
@@ -40,11 +40,11 @@
 
 ## 4. 構成・UX
 
-- PASS: 冒頭で「同じ／違う」の結論を提示。
-- PASS: 共通ルール表を配置。
-- PASS: 違いを4分類（火災保険、周辺補償、窓口、払込等）で整理。
-- PASS: FAQ型の疑問（別会社、金額差）にも回答。
-- PASS: 比較チェック表・手順で次行動を提示。
+- PASS: 冒頭で「地震保険本体は共通、差が出るのは主にセットする火災保険側」と直接回答。
+- PASS: 法定地震保険と火災保険側の違いを章単位で分離。
+- PASS: 「地震火災費用」を法定地震保険と別枠で確認する構成。
+- PASS: 比較時は保険対象・補償範囲・免責等を同条件へそろえる。
+- PASS: 会社ランキングではなく相談・契約全体の確認しやすさを実務判断軸にする。
 
 ## 5. 画像
 
@@ -56,7 +56,7 @@
 - PASS: B017 地震保険の基本
 - PASS: B051 火災保険10社比較
 - PASS: B019 災害別保険の整理
-- PASS: 保険カテゴリ「地震と保険」からB052へ導線追加予定。
+- PASS: 保険カテゴリとの役割分離を維持
 
 ## 7. 最終判定
 
@@ -65,9 +65,8 @@
 - E10 独自ランキング・統計: N/A
 - E11〜E14: PASS
 - READY_TO_PUBLISH: YES
-- 公開前残作業: preview、registry、カテゴリ導線、回帰テスト、本番反映
 
-判定理由: **公的制度として同一の地震保険と、民間火災保険側の差を明確に分離し、会社ランキングを作るより正確で実用的な回答になっている。**
+判定理由: **公的制度として同一の地震保険と、民間火災保険側の差を明確に分離し、会社ランキングではなく同条件比較へ誘導している。**
 
 <!-- content-depth-20260907:metric -->
 ## 2026-09-07 本文量・読者満足度の再確認
@@ -76,5 +75,17 @@
 - guideline_minimum: **2,500字**
 - length_status: **PASS**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
-- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+- editorial_note: 当時点の履歴として保持。
 <!-- /content-depth-20260907:metric -->
+
+## 2026-09-15 説明品質再レビュー
+
+- reader_visible_char_count: **2,659字**
+- guideline_minimum: **2,500字**
+- length_status: **PASS**
+- explanation_quality_priority: **44**（自動品質点ではなく、次回レビュー優先度）
+- PASS: 地震保険本体の共通ルールと、セットする火災保険側の会社差を明確に分離。
+- PASS: 地震火災費用保険金・周辺特約を法定地震保険と混同しない。
+- PASS: 見積り比較では条件をそろえる必要性を明示。
+- PASS: 地震保険単体の無意味な会社ランキングを作らない。
+- editorial_note: 重複する制度説明を圧縮し、検索意図への直接回答と比較実務を優先したため旧版より短いがPASS。
