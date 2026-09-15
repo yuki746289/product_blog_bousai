@@ -51,7 +51,7 @@ class B021TyphoonTimeAxisTests(unittest.TestCase):
             "大雨が降る前、風が強くなる前",
             "自宅対策が途中でも危険が高まったら中止する",
             "屋根・雨どい・ベランダ作業",
-            "海・川・用水路の確認",
+            "海・川・用水路の様子を見に行く",
             "冠水した道路へ車で入る",
         ]
         for phrase in required:
