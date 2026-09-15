@@ -16,7 +16,7 @@
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-15
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -33,14 +33,14 @@
 
 | ID | 状態 | 根拠 |
 |---|---|---|
-| C01 | PASS | 定義→種類→停电影響→避難→復電→点検まで独立意図を完結 |
+| C01 | PASS | 効果→タイプ選び→停電影響→避難→復電→点検まで判断単位で再構成 |
 | C02 | PASS | 内閣府・政府広報・消防庁・消費者庁・経産省を一次根拠化 |
 | C03 | PASS | 誤認しやすい製品写真を避け、比較表・フロー・安全ボックスで視覚化 |
 | C04 | PASS | 上部結論、タイプ比較、NG行動、保存チェックリスト |
 | C05 | PASS | B007/B024/B023/B039/B004へ役割別導線 |
 | C06 | N/A | 商品比較・Amazon直リンクなし |
 | C07 | N/A | Q&A重複を追加しない |
-| C08 | PASS | article / preview / sources / brief / images / checklist / registry / category / parent導線同期 |
+| C08 | PASS | article / preview / sources / checklist / registryを2026-09-15再レビューへ同期 |
 | C09 | PASS | registryから公開日・更新日・BlogPosting/BreadcrumbList生成対象 |
 | C10 | PASS | 「有効だが停電する設備」というトレードオフを上部で理解可能 |
 | C11 | PASS | 不安や焼失試算を購入圧力に使わない |
@@ -112,5 +112,16 @@
 - guideline_minimum: **2,500字**
 - length_status: **PASS**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
-- editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
+- editorial_note: 当時点の履歴として保持。
 <!-- /content-depth-20260907:metric -->
+
+## 2026-09-15 説明品質再レビュー
+
+- reader_visible_char_count: **2,964字**
+- guideline_minimum: **2,500字**
+- length_status: **PASS**
+- explanation_quality_priority: **33**（自動品質点ではなく、次回レビュー優先度）
+- PASS: 火災低減効果と「電気が止まる影響」を同時に判断する構成へ整理。
+- PASS: 夜間避難・医療機器は一律判断せず、個別条件と専門家確認を優先。
+- PASS: 感震ブレーカーがあっても避難を遅らせず、損傷機器へ安易に再通電しない境界を維持。
+- editorial_note: 重複説明を集約したため旧版より短いが、判断条件を削らず、文字数水増しを行っていない。
