@@ -83,7 +83,7 @@ affiliate: false
 
 東海地方には2000年東海豪雨など、線状降水帯という現在の情報制度だけでは説明しきれない重要な豪雨史があります。
 
-名古屋・愛知の水害リスクを考える際は、線状降水帯の有無だけでなく、河川洪水、内水、低地、高潮なども確認する必要があります。過去の名古屋の水害は[名古屋市の水害史](region/nagoya-flood-history.html)で整理しています。
+名古屋・愛知の水害リスクを考える際は、線状降水帯の有無だけでなく、河川洪水、内水、低地、高潮なども確認する必要があります。過去の名古屋の水害は[名古屋市の水害史](region/nagoya/flood-storm-surge-history.html)で整理しています。
 
 **「線状降水帯が出ていない＝浸水しない」ではありません。** 強い雨が長く続く場合や、上流域で雨が降る場合も河川・内水の危険は高まります。
 
@@ -123,8 +123,8 @@ affiliate: false
 - [線状降水帯が多い地域はどこ？](special/linear-rainband/regions.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
 - [雨量記録を比較](special/linear-rainband/rainfall-records.html)
-- [名古屋市の水害史](region/nagoya-flood-history.html)
-- [洪水キキクル・河川氾濫はいつ避難する？](flood/river-flood-evacuation.html)
+- [名古屋市の水害史](region/nagoya/flood-storm-surge-history.html)
+- [洪水キキクル・河川氾濫はいつ避難する？](flood/flood-river-evacuation.html)
 
 ## 公的情報・参考資料
 
