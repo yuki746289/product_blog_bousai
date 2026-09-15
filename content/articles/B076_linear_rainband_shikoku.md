@@ -111,7 +111,7 @@ affiliate: false
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
 - [雨量記録を比較](special/linear-rainband/rainfall-records.html)
 - [土砂キキクルと避難判断](flood/landslide-evacuation-kikikuru.html)
-- [洪水キキクル・河川氾濫はいつ避難する？](flood/river-flood-evacuation.html)
+- [洪水キキクル・河川氾濫はいつ避難する？](flood/flood-river-evacuation.html)
 
 ## 公的情報・参考資料
 
