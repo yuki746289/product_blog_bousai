@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T18:55:00+09:00",
+  "updated_at": "2026-09-15T10:28:00+09:00",
   "articles": [
     {"article_id": "B001", "body_char_count_approx": 5232},
     {"article_id": "B002", "body_char_count_approx": 5145},
@@ -21,7 +21,7 @@
     {"article_id": "B018", "body_char_count_approx": 2937},
     {"article_id": "B019", "body_char_count_approx": 4765},
     {"article_id": "B020", "body_char_count_approx": 3618},
-    {"article_id": "B021", "body_char_count_approx": 4540},
+    {"article_id": "B021", "body_char_count_approx": 3968},
     {"article_id": "B022", "body_char_count_approx": 4576},
     {"article_id": "B023", "body_char_count_approx": 2726},
     {"article_id": "B024", "body_char_count_approx": 2977},
@@ -41,7 +41,7 @@
     {"article_id": "B038", "body_char_count_approx": 4340},
     {"article_id": "B039", "body_char_count_approx": 3708},
     {"article_id": "B040", "body_char_count_approx": 4075},
-    {"article_id": "B041", "body_char_count_approx": 4082},
+    {"article_id": "B041", "body_char_count_approx": 4086},
     {"article_id": "B042", "body_char_count_approx": 4392},
     {"article_id": "B043", "body_char_count_approx": 3020},
     {"article_id": "B044", "body_char_count_approx": 3788},
