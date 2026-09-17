@@ -1,4 +1,4 @@
-# Updated: 2026-09-12 08:55 JST
+# Updated: 2026-09-17 JST
 import json
 import re
 import subprocess
@@ -44,7 +44,9 @@ class PublicBuildTests(unittest.TestCase):
         html = page.read_text(encoding="utf-8")
         required_content = (
             "自力で水が飲めない、意識がない場合",
-            "屋内、車庫、換気が不十分な場所で発電機を使わない",
+            "屋内では絶対に使用しない",
+            "自動車内やテント内では使用しません",
+            "出入口・窓などの開口部から離し",
             "モバイル扇風機や保冷剤",
             "長時間自宅で大丈夫とは考えません",
             "停電前に準備しておくこと",
@@ -55,6 +57,7 @@ class PublicBuildTests(unittest.TestCase):
         )
         for phrase in required_content:
             self.assertIn(phrase, html, page)
+        self.assertNotIn("発電機は換気すれば屋内で使える", html, page)
 
     def test_contact_is_not_published(self):
         self.assertFalse((PUBLIC / "contact.html").exists())
