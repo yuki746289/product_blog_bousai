@@ -1,4 +1,4 @@
-/* Created: 2026-09-02 / Updated: 2026-09-07 / common preview behavior */
+/* Created: 2026-09-02 / Updated: 2026-09-17 / common preview behavior */
 (function () {
   var FONT_SIZE_STORAGE_KEY = "bousai-font-size";
   var MOBILE_NAV_MEDIA_QUERY = "(max-width: 720px)";
@@ -169,6 +169,10 @@
     var nav = document.querySelector(".site-nav");
     if (!nav) return;
 
+    /* The current three-group mega navigation already owns the region entry.
+       Keep this function only as a fallback for older flat navigation markup. */
+    if (nav.querySelector(".site-nav__mega-group")) return;
+
     var links = Array.prototype.slice.call(nav.querySelectorAll("a[href]"));
     var exists = links.some(function (link) {
       var href = (link.getAttribute("href") || "").toLowerCase();
@@ -287,6 +291,16 @@
     }
   }
 
+  function normalizedNavigationPath(href) {
+    try {
+      var path = new URL(href, window.location.href).pathname;
+      if (path.charAt(path.length - 1) === "/") path += "index.html";
+      return path.toLowerCase();
+    } catch (error) {
+      return "";
+    }
+  }
+
   function enhanceAccessibility() {
     var main = document.querySelector("main");
     if (main) {
@@ -324,29 +338,36 @@
       }
     });
 
-    var currentFile = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+    var currentPath = normalizedNavigationPath(window.location.href);
     var navLinks = Array.prototype.slice.call(document.querySelectorAll(".site-nav a[href]"));
     var currentMarked = false;
 
     navLinks.forEach(function (link) {
-      var href = (link.getAttribute("href") || "").split("#")[0].split("?")[0].toLowerCase();
-      if (href === currentFile) {
+      if (normalizedNavigationPath(link.getAttribute("href") || "") === currentPath) {
         link.setAttribute("aria-current", "page");
         currentMarked = true;
       }
     });
 
     if (!currentMarked) {
-      var categoryCrumb = document.querySelector('.breadcrumb a[href^="category_"]');
-      if (categoryCrumb) {
-        var categoryHref = (categoryCrumb.getAttribute("href") || "").split("#")[0].split("?")[0].toLowerCase();
-        navLinks.forEach(function (link) {
-          var href = (link.getAttribute("href") || "").split("#")[0].split("?")[0].toLowerCase();
-          if (href === categoryHref) {
-            link.setAttribute("aria-current", "location");
-          }
+      var breadcrumbLinks = Array.prototype.slice.call(
+        document.querySelectorAll(".breadcrumb a[href]")
+      ).reverse();
+
+      breadcrumbLinks.some(function (crumb) {
+        var crumbPath = normalizedNavigationPath(crumb.getAttribute("href") || "");
+        if (!crumbPath || crumbPath === currentPath) return false;
+
+        var matches = navLinks.filter(function (link) {
+          return normalizedNavigationPath(link.getAttribute("href") || "") === crumbPath;
         });
-      }
+        if (!matches.length) return false;
+
+        matches.forEach(function (link) {
+          link.setAttribute("aria-current", "location");
+        });
+        return true;
+      });
     }
   }
 

@@ -1,4 +1,5 @@
 # Created: 2026-09-15 09:20 JST
+# Updated: 2026-09-17 JST
 """Normalize the linear-rainband special feature's UX, navigation and discovery.
 
 The special pages are bespoke preview HTML, so the general Markdown preview
@@ -9,7 +10,9 @@ scalable as regional child pages grow:
 - put regional pages in a separate navigation/grid;
 - make feature breadcrumbs clickable and hierarchical;
 - expose the special from flood and region category hubs;
-- align the B067 pillar metadata with its broad "what is it?" search intent.
+- align the B067 pillar metadata with its broad "what is it?" search intent;
+- normalize the bespoke feature header to the site's shared mega navigation;
+- load the shared runtime so mobile navigation and accessibility stay consistent.
 
 The transform is idempotent and is run after the normal preview synchronizer.
 """
@@ -18,6 +21,11 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+
+try:  # package import used by tests
+    from .sync_previews_from_markdown import apply_site_navigation
+except ImportError:  # direct script execution: python scripts/...
+    from sync_previews_from_markdown import apply_site_navigation
 
 ROOT = Path(__file__).resolve().parents[1]
 PREVIEW = ROOT / "preview"
@@ -83,6 +91,18 @@ NAV_RE = re.compile(
     r'<nav\s+class=["\']feature-nav["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
 )
+FEATURE_GLOBAL_NAV_RE = re.compile(
+    r'<nav\s+class=["\']feature-global-nav["\'][^>]*>.*?</nav>',
+    re.IGNORECASE | re.DOTALL,
+)
+SITE_NAV_RE = re.compile(
+    r'<nav\s+class=["\'][^"\']*\bsite-nav\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
+)
+SITE_HEADER_RE = re.compile(
+    r'<header\s+class=["\'][^"\']*\bsite-header\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
+)
 BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
@@ -91,12 +111,39 @@ CATEGORY_HERO_RE = re.compile(
     r'(<header\s+class=["\']category-hero["\'][^>]*>.*?</header>)',
     re.IGNORECASE | re.DOTALL,
 )
+COMMON_JS_RE = re.compile(
+    r'<script\b[^>]*\bsrc=["\'][^"\']*bousai_common\.js["\'][^>]*></script>',
+    re.IGNORECASE,
+)
 
 
 def _with_style(html: str) -> str:
     if 'id="linear-rainband-feature-review-styles"' in html:
         return html
     return html.replace("</head>", FEATURE_STYLE + "\n</head>", 1)
+
+
+def _with_common_runtime(html: str) -> str:
+    """Move complete feature pages onto the site's shared header/runtime contract."""
+    placeholder = '<nav class="site-nav" aria-label="メインナビゲーション"></nav>'
+    if FEATURE_GLOBAL_NAV_RE.search(html):
+        html = FEATURE_GLOBAL_NAV_RE.sub(placeholder, html, count=1)
+    elif SITE_HEADER_RE.search(html) and not SITE_NAV_RE.search(html):
+        # B073-B077 were created with a branded header but no global nav at all.
+        # Only complete pages get structural header repair; unit-test HTML
+        # fragments without site-header continue through the content transform.
+        marker = "</div></header>"
+        if marker not in html:
+            raise ValueError("site header missing expected closing marker")
+        html = html.replace(marker, placeholder + marker, 1)
+
+    if not COMMON_JS_RE.search(html) and "</head>" in html:
+        html = html.replace(
+            "</head>",
+            '<script src="bousai_common.js" defer></script>\n</head>',
+            1,
+        )
+    return html
 
 
 def _link(href: str, label: str, active: bool = False) -> str:
@@ -176,7 +223,7 @@ def breadcrumb(article_id: str) -> str:
 
 
 def enhance_feature_page(html: str, article_id: str) -> str:
-    html = _with_style(html)
+    html = _with_common_runtime(_with_style(html))
     html = BREADCRUMB_RE.sub(breadcrumb(article_id), html, count=1)
 
     if article_id in {"B073", "B074", "B075", "B076", "B077"}:
@@ -304,6 +351,14 @@ def enhance() -> list[str]:
     region = region_path.read_text(encoding="utf-8")
     if _write_if_changed(region_path, enhance_category_region(region)):
         changed.append(region_path.name)
+
+    # The feature's old global nav is converted to a site-nav placeholder above.
+    # Regional children that had no global nav receive the same placeholder.
+    # Render the same three-hub mega navigation and assets used everywhere else.
+    for nav_change in apply_site_navigation():
+        filename = nav_change.removeprefix("NAV:")
+        if filename not in changed:
+            changed.append(filename)
 
     return changed
 
