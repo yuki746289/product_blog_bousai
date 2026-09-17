@@ -1,4 +1,4 @@
-# Updated: 2026-09-12 08:50 JST
+# Updated: 2026-09-17 JST
 import json
 import unittest
 from pathlib import Path
@@ -70,7 +70,13 @@ class KeywordBatchSafetyTests(unittest.TestCase):
     def test_b047_heatstroke_boundaries(self):
         required_content = (
             "自力で水が飲めない、意識がない場合",
-            "屋内、車庫、換気が不十分な場所で発電機を使わない",
+            "意識がはっきりしない",
+            "119番へ連絡",
+            "熱中症特別警戒情報",
+            "停電したら全国のクーリングシェルターが自動的に開く制度ではありません",
+            "屋内では絶対に使用しない",
+            "自動車内やテント内では使用しません",
+            "出入口・窓などの開口部から離し",
             "モバイル扇風機や保冷剤",
             "長時間自宅で大丈夫",
             "停電前に準備しておくこと",
@@ -82,6 +88,7 @@ class KeywordBatchSafetyTests(unittest.TestCase):
         for target in (self.text("B047"), self.preview_text("B047")):
             for phrase in required_content:
                 self.assertIn(phrase, target)
+            self.assertNotIn("発電機は換気すれば屋内で使える", target)
 
     def test_parent_and_category_links_exist(self):
         self.assertIn("article_b044.html", (ROOT / "preview/category_vehicle.html").read_text(encoding="utf-8"))
