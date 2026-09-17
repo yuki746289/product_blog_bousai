@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-15T11:36:00+09:00",
+  "updated_at": "2026-09-17T19:40:00+09:00",
   "articles": [
     {
       "article_id": "B018",
@@ -31,10 +31,10 @@
     },
     {
       "article_id": "B047",
-      "body_char_count_approx": 3034,
-      "last_reviewed_at": "2026-09-15",
-      "review_checklist_last_checked_at": "2026-09-15",
-      "modified_at": "2026-09-15"
+      "body_char_count_approx": 3374,
+      "last_reviewed_at": "2026-09-17",
+      "review_checklist_last_checked_at": "2026-09-17",
+      "modified_at": "2026-09-17"
     },
     {
       "article_id": "B052",
