@@ -95,6 +95,10 @@ FEATURE_GLOBAL_NAV_RE = re.compile(
     r'<nav\s+class=["\']feature-global-nav["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
 )
+SITE_NAV_RE = re.compile(
+    r'<nav\s+class=["\'][^"\']*\bsite-nav\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
+)
 BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
@@ -117,12 +121,17 @@ def _with_style(html: str) -> str:
 
 def _with_common_runtime(html: str) -> str:
     """Move bespoke feature pages onto the same header/runtime contract as the site."""
+    placeholder = '<nav class="site-nav" aria-label="メインナビゲーション"></nav>'
     if FEATURE_GLOBAL_NAV_RE.search(html):
-        html = FEATURE_GLOBAL_NAV_RE.sub(
-            '<nav class="site-nav" aria-label="メインナビゲーション"></nav>',
-            html,
-            count=1,
-        )
+        html = FEATURE_GLOBAL_NAV_RE.sub(placeholder, html, count=1)
+    elif not SITE_NAV_RE.search(html):
+        # B073-B077 were created with a branded header but no global nav at all.
+        # Insert the placeholder inside header-inner before its closing div.
+        marker = "</div></header>"
+        if marker not in html:
+            raise ValueError("site header missing expected closing marker")
+        html = html.replace(marker, placeholder + marker, 1)
+
     if not COMMON_JS_RE.search(html):
         if "</head>" not in html:
             raise ValueError("missing </head> while adding shared feature runtime")
@@ -341,6 +350,7 @@ def enhance() -> list[str]:
         changed.append(region_path.name)
 
     # The feature's old global nav is converted to a site-nav placeholder above.
+    # Regional children that had no global nav receive the same placeholder.
     # Render the same three-hub mega navigation and assets used everywhere else.
     for nav_change in apply_site_navigation():
         filename = nav_change.removeprefix("NAV:")
