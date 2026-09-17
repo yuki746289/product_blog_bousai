@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -20,6 +21,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = ROOT / "config" / "site.json"
 GOOGLEBOT_UA = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 REGION_NAV_LABEL = "地域・疑問から探す"
+SITE_NAV_RE = re.compile(
+    r'(?P<open><nav\b(?=[^>]*\bclass=["\'][^"\']*\bsite-nav\b[^"\']*["\'])[^>]*>)'
+    r'(?P<body>.*?)'
+    r'(?P<close></nav>)',
+    re.IGNORECASE | re.DOTALL,
+)
+LEGACY_REGION_NAV_RE = re.compile(
+    r'<a\b[^>]*>\s*地域別\s*</a>',
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 class RobotsMetaParser(HTMLParser):
@@ -181,15 +192,13 @@ def region_mega_nav_failures(html: str) -> list[str]:
     if len(qa_cards) != 1:
         failures.append(f"Q&A card count must be 1, found {len(qa_cards)}")
 
-    legacy_bare_links = [
-        anchor
-        for anchor in parser.anchors
-        if anchor.get("text") == "地域別"
-        and "site-nav__submenu-card" not in anchor.get("classes", set())
-    ]
-    if legacy_bare_links:
+    nav_match = SITE_NAV_RE.search(html)
+    legacy_bare_count = (
+        len(LEGACY_REGION_NAV_RE.findall(nav_match.group("body"))) if nav_match else 0
+    )
+    if legacy_bare_count:
         failures.append(
-            f"legacy bare 地域別 link must be absent, found {len(legacy_bare_links)}"
+            f"legacy bare 地域別 link must be absent from site-nav, found {legacy_bare_count}"
         )
 
     return failures
