@@ -125,7 +125,7 @@
 <!-- content-depth-20260917:metric -->
 ## 2026-09-17 本文量・読者満足度の再確認
 
-- reader_visible_char_count: **4,074字**
+- reader_visible_char_count: **4,076字**
 - guideline_minimum: **2,500字**
 - length_status: **PASS**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
