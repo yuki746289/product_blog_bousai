@@ -108,7 +108,7 @@ affiliate: false
 - [防災リュックの中身は何を入れる？](article_b002.html)
 - [飲料水はどう備蓄する？](article_b025.html)
 - [家族で決めておきたい災害時の連絡・集合ルール](article_b030.html)
-- [災害時の常用薬はどう備える？](article_b061.html)
+- 災害時の常用薬はどう備える？
 
 ## 公的情報
 
