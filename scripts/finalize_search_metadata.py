@@ -1,11 +1,11 @@
-# Created: 2026-09-06 / Updated: 2026-09-09 09:55 JST
+# Created: 2026-09-06 / Updated: 2026-09-17 20:55 JST
 """Finalize production-only metadata, article infographics and category navigation.
 
 The preview tree intentionally uses preview-only metadata such as noindex.
 This production-only step:
 - injects reviewed explanatory infographics into selected article sections,
 - adds a self-referencing canonical URL to every published HTML page,
-- adds the regional category link to the static top navigation,
+- adds the regional category link only to legacy static navigation,
 - renders category article summaries from each article's meta description,
 - validates the generated navigation and summaries.
 """
@@ -67,6 +67,11 @@ FIRST_SPAN_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 REGION_NAV_TEXT_RE = re.compile(r'>\s*地域別\s*</a>', re.IGNORECASE)
+MEGA_NAV_GROUP_RE = re.compile(r'\bsite-nav__mega-group\b', re.IGNORECASE)
+REGION_MEGA_CARD_RE = re.compile(
+    r'<strong\b[^>]*>\s*地域別\s*</strong>',
+    re.IGNORECASE,
+)
 CATEGORY_STATIC_STYLE = """<style id="bousai-category-listing-styles">
 .category-article-link[data-article-id] { align-items: flex-start; }
 .category-article-copy { display: block; min-width: 0; }
@@ -170,12 +175,20 @@ def region_nav_href(relative_output_path: str) -> str:
 
 
 def inject_region_navigation(html: str, relative_output_path: str) -> str:
-    """Add the regional category link to the static site navigation exactly once."""
+    """Add the regional link only to legacy static navigation.
+
+    The current grouped mega navigation already owns the Region/Q&A cards.  The
+    production URL rewrite can turn the Region card href into ``index.html``, so
+    text/href heuristics must never append a legacy bare ``地域別`` anchor to a
+    mega navigation.
+    """
     match = SITE_NAV_RE.search(html)
     if not match:
         return html
 
     body = match.group("body")
+    if MEGA_NAV_GROUP_RE.search(body):
+        return html
     if REGION_NAV_TEXT_RE.search(body):
         return html
 
@@ -247,10 +260,24 @@ def validate_category_enhancements(html: str, relative_output_path: str) -> list
     errors: list[str] = []
     nav_match = SITE_NAV_RE.search(html)
     if nav_match:
-        region_links = REGION_NAV_TEXT_RE.findall(nav_match.group("body"))
-        if len(region_links) != 1:
+        nav_body = nav_match.group("body")
+        legacy_region_links = REGION_NAV_TEXT_RE.findall(nav_body)
+        if MEGA_NAV_GROUP_RE.search(nav_body):
+            region_cards = REGION_MEGA_CARD_RE.findall(nav_body)
+            if len(region_cards) != 1:
+                errors.append(
+                    f"{relative_output_path}: mega-nav regional card count != 1 "
+                    f"({len(region_cards)})"
+                )
+            if legacy_region_links:
+                errors.append(
+                    f"{relative_output_path}: stray legacy regional navigation present "
+                    f"inside mega navigation ({len(legacy_region_links)})"
+                )
+        elif len(legacy_region_links) != 1:
             errors.append(
-                f"{relative_output_path}: regional navigation count != 1 ({len(region_links)})"
+                f"{relative_output_path}: regional navigation count != 1 "
+                f"({len(legacy_region_links)})"
             )
 
     if not is_category_page(html):
