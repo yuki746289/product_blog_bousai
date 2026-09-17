@@ -99,6 +99,10 @@ SITE_NAV_RE = re.compile(
     r'<nav\s+class=["\'][^"\']*\bsite-nav\b[^"\']*["\'][^>]*>',
     re.IGNORECASE,
 )
+SITE_HEADER_RE = re.compile(
+    r'<header\s+class=["\'][^"\']*\bsite-header\b[^"\']*["\'][^>]*>',
+    re.IGNORECASE,
+)
 BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
@@ -120,21 +124,20 @@ def _with_style(html: str) -> str:
 
 
 def _with_common_runtime(html: str) -> str:
-    """Move bespoke feature pages onto the same header/runtime contract as the site."""
+    """Move complete feature pages onto the site's shared header/runtime contract."""
     placeholder = '<nav class="site-nav" aria-label="メインナビゲーション"></nav>'
     if FEATURE_GLOBAL_NAV_RE.search(html):
         html = FEATURE_GLOBAL_NAV_RE.sub(placeholder, html, count=1)
-    elif not SITE_NAV_RE.search(html):
+    elif SITE_HEADER_RE.search(html) and not SITE_NAV_RE.search(html):
         # B073-B077 were created with a branded header but no global nav at all.
-        # Insert the placeholder inside header-inner before its closing div.
+        # Only complete pages get structural header repair; unit-test HTML
+        # fragments without site-header continue through the content transform.
         marker = "</div></header>"
         if marker not in html:
             raise ValueError("site header missing expected closing marker")
         html = html.replace(marker, placeholder + marker, 1)
 
-    if not COMMON_JS_RE.search(html):
-        if "</head>" not in html:
-            raise ValueError("missing </head> while adding shared feature runtime")
+    if not COMMON_JS_RE.search(html) and "</head>" in html:
         html = html.replace(
             "</head>",
             '<script src="bousai_common.js" defer></script>\n</head>',
