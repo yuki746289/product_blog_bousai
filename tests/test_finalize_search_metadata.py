@@ -8,7 +8,13 @@ SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from finalize_search_metadata import canonical_url, inject_canonical, validate_canonical
+from finalize_search_metadata import (
+    canonical_url,
+    inject_canonical,
+    inject_region_navigation,
+    validate_canonical,
+    validate_category_enhancements,
+)
 
 
 class FinalizeSearchMetadataTests(unittest.TestCase):
@@ -45,6 +51,49 @@ class FinalizeSearchMetadataTests(unittest.TestCase):
             "index.html",
         )
         self.assertTrue(errors)
+
+    def test_mega_navigation_is_not_given_legacy_region_link(self) -> None:
+        source = (
+            '<nav class="site-nav" aria-label="メインナビゲーション">'
+            '<div class="site-nav__mega-group" data-group-label="地域・疑問から探す">'
+            '<div class="site-nav__submenu">'
+            '<a class="site-nav__submenu-card" href="index.html">'
+            '<strong>地域別</strong><span>地域の災害史と備え</span></a>'
+            '<a class="site-nav__submenu-card" href="../qa.html">'
+            '<strong>Q&A</strong><span>よくある疑問</span></a>'
+            '</div></div></nav>'
+        )
+
+        result = inject_region_navigation(source, "region/index.html")
+
+        self.assertEqual(result, source)
+        self.assertNotIn('>地域別</a>', result)
+        self.assertEqual(result.count('<strong>地域別</strong>'), 1)
+        self.assertEqual(validate_category_enhancements(result, "region/index.html"), [])
+
+    def test_mega_navigation_rejects_stray_legacy_region_link(self) -> None:
+        source = (
+            '<nav class="site-nav">'
+            '<div class="site-nav__mega-group">'
+            '<a class="site-nav__submenu-card" href="index.html"><strong>地域別</strong></a>'
+            '<a href="index.html">地域別</a>'
+            '</div></nav>'
+        )
+
+        errors = validate_category_enhancements(source, "region/index.html")
+        self.assertTrue(any("stray legacy regional navigation" in error for error in errors))
+
+    def test_legacy_navigation_still_gets_region_link(self) -> None:
+        source = (
+            '<nav class="site-nav">'
+            '<a href="category_flood.html">台風・水害</a>'
+            '<a href="qa.html">Q&A</a>'
+            '</nav>'
+        )
+
+        result = inject_region_navigation(source, "guide/example.html")
+        self.assertIn('<a href="../region/index.html">地域別</a>', result)
+        self.assertEqual(validate_category_enhancements(result, "guide/example.html"), [])
 
 
 if __name__ == "__main__":
