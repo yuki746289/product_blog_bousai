@@ -91,6 +91,31 @@ class CommonNavigationRuntimeContractTests(unittest.TestCase):
             self.assertEqual(1, nav.count("<strong>地域別</strong>"), page)
             self.assertEqual(1, nav.count("<strong>Q&amp;A</strong>"), page)
 
+    def test_all_linear_rainband_pages_use_shared_header_and_runtime(self) -> None:
+        filenames = [
+            "index.html",
+            "history.html",
+            "frequency.html",
+            "regions.html",
+            "rainfall-records.html",
+            "information-history.html",
+            "kyushu.html",
+            "kanto-koshin.html",
+            "chugoku.html",
+            "shikoku.html",
+            "tokai.html",
+        ]
+        for filename in filenames:
+            page = PUBLIC / "special" / "linear-rainband" / filename
+            self.assertTrue(page.exists(), page)
+            html = page.read_text(encoding="utf-8")
+            nav = extract_nav(html)
+            self.assertTrue(nav, page)
+            self.assertNotIn("feature-global-nav", html, page)
+            self.assertIn("bousai_common.js", html, page)
+            self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
+            self.assertEqual(11, nav.count('class="site-nav__submenu-card"'), page)
+
 
 if __name__ == "__main__":
     unittest.main()
