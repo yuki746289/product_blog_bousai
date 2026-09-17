@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-17T20:05:00+09:00",
+  "updated_at": "2026-09-17T20:10:00+09:00",
   "articles": [
     {
       "article_id": "B018",
@@ -48,7 +48,18 @@
       "body_char_count_approx": 3374,
       "last_reviewed_at": "2026-09-17",
       "review_checklist_last_checked_at": "2026-09-17",
-      "modified_at": "2026-09-17"
+      "modified_at": "2026-09-17",
+      "source_checked_at": "2026-09-17",
+      "next_review_at": "2027-03-17",
+      "source_count": 6,
+      "source_ids": [
+        "F-B047-001",
+        "F-B047-002",
+        "F-B047-003",
+        "F-B047-004",
+        "F-B047-005",
+        "F-B047-006"
+      ]
     },
     {
       "article_id": "B052",
