@@ -79,6 +79,14 @@ class LiveIndexabilityTests(unittest.TestCase):
         failures = region_mega_nav_failures(html)
         self.assertTrue(any("legacy bare 地域別 link" in failure for failure in failures))
 
+    def test_region_mega_nav_detects_legacy_bare_link_outside_target_group(self):
+        html = VALID_REGION_NAV.replace(
+            '<nav class="site-nav">',
+            '<nav class="site-nav"><a href="region/index.html">地域別</a>',
+        )
+        failures = region_mega_nav_failures(html)
+        self.assertTrue(any("legacy bare 地域別 link" in failure for failure in failures))
+
     def test_region_mega_nav_detects_duplicate_region_card(self):
         duplicate = '''<a class="site-nav__submenu-card" href="region/index.html">
           <strong>地域別</strong><span>重複</span></a>'''
