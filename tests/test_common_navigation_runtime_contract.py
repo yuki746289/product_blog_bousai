@@ -87,7 +87,7 @@ class CommonNavigationRuntimeContractTests(unittest.TestCase):
             self.assertTrue(nav, page)
             self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
             self.assertEqual(3, nav.count('class="site-nav__submenu-toggle"'), page)
-            self.assertEqual(11, nav.count('class="site-nav__submenu-card"'), page)
+            self.assertEqual(12, nav.count('class="site-nav__submenu-card"'), page)
             self.assertEqual(1, nav.count("<strong>地域別</strong>"), page)
             self.assertEqual(1, nav.count("<strong>Q&amp;A</strong>"), page)
 
@@ -114,7 +114,7 @@ class CommonNavigationRuntimeContractTests(unittest.TestCase):
             self.assertNotIn("feature-global-nav", html, page)
             self.assertIn("bousai_common.js", html, page)
             self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
-            self.assertEqual(11, nav.count('class="site-nav__submenu-card"'), page)
+            self.assertEqual(12, nav.count('class="site-nav__submenu-card"'), page)
 
 
 if __name__ == "__main__":
