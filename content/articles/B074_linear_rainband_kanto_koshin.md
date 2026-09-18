@@ -84,8 +84,6 @@ affiliate: false
 
 ## 関連ページ
 
-- [線状降水帯の情報制度と警戒レベル](special/linear-rainband/information-history.html)
-
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 - [地域別の全国概観](special/linear-rainband/regions.html)
 - [全国の過去事例年表](special/linear-rainband/history.html)
