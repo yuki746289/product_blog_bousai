@@ -112,7 +112,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertIn('data-items="6"', nav, page)
             self.assertIn('data-items="2"', nav, page)
             self.assertNotIn('href="typhoon/index.html"', nav, page)
-            self.assertEqual(50, nav.count('class="site-nav__subcategory-link"'), page)
+            self.assertEqual(51, nav.count('class="site-nav__subcategory-link"'), page)
             self.assertEqual(12, nav.count('class="site-nav__category-block"'), page)
 
         homepage_nav = extract_nav((PUBLIC / "index.html").read_text(encoding="utf-8"))
@@ -151,6 +151,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             "goods/index.html#product-guides",
             "region/index.html#kyushu-okinawa",
             "qa.html#qa-care-pet",
+            "special/linear-rainband/index.html",
         ]:
             self.assertIn(f'href="{href}"', homepage_nav)
 
