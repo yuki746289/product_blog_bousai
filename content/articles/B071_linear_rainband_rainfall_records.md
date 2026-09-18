@@ -97,10 +97,10 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 広島地方気象台「平成26年8月19日から20日にかけての広島県の大雨について」
-- 気象庁「平成29年7月九州北部豪雨」関連資料
-- 気象庁「平成30年7月豪雨」
-- 気象庁「令和2年7月豪雨」
-- 気象庁「低気圧と前線による大雨（2024年9月）」
-- 気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」
-- 気象庁「最新の気象データ」2026年8月13～14日
+- [気象庁「前線による大雨（2014年8月15日～20日）」](https://www.data.jma.go.jp/stats/data/bosai/report/2014/20140815/20140815.html)
+- [福岡管区気象台「平成29年7月九州北部豪雨」](https://www.data.jma.go.jp/fukuoka/gyomu/H29_hokubugouu.html)
+- [気象庁「平成30年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2018/20180713/20180713.html)
+- [気象庁「令和2年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2020/20200811/20200811.html)
+- [気象庁「低気圧と前線による大雨（2024年9月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241029/20241029.html)
+- [気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html)
+- [気象庁「令和8年8月千葉豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2026/20260916/20260916.html)

@@ -89,9 +89,9 @@ affiliate: false
 
 ## 公的情報・参考資料
 
-- 気象庁「気象業務はいま2015」: https://www.jma.go.jp/jma/kishou/books/hakusho/2015/index1.html
-- 気象庁「平成30年7月豪雨 災害時気象報告」: https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2018/saigaiji_201902.pdf
-- 気象庁「令和7年8月6日から12日にかけての大雨等」: https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2026/202601/siryo_202601_joho01.html
-- 下関地方気象台「2025年8月9日から12日の大雨」: https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/pdf/2025_1_yamaguchi_1.pdf
-- 気象庁「線状降水帯の事例」: https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html
-- 気象庁「線状降水帯に関する情報」: https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html
+- [気象庁「気象業務はいま2015」](https://www.jma.go.jp/jma/kishou/books/hakusho/2015/index1.html)
+- [気象庁「平成30年7月豪雨 災害時気象報告」](https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2018/saigaiji_201902.pdf)
+- [気象庁「令和7年8月6日から12日にかけての大雨等」](https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2026/202601/siryo_202601_joho01.html)
+- [下関地方気象台「2025年8月9日から12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/pdf/2025_1_yamaguchi_1.pdf)
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)

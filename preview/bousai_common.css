@@ -626,6 +626,76 @@ a:hover, a:focus-visible { text-decoration-thickness: 2px; }
   border-radius: 10px;
 }
 
+.preparedness-summary-table th:first-child,
+.preparedness-summary-table td:first-child {
+  width: 15%;
+  white-space: nowrap;
+}
+.preparedness-summary-table th:nth-child(2),
+.preparedness-summary-table td:nth-child(2) {
+  width: 31%;
+}
+.preparedness-summary-table th:nth-child(3),
+.preparedness-summary-table td:nth-child(3) {
+  width: 54%;
+}
+
+@media (max-width: 720px) {
+  .preparedness-summary-wrap {
+    overflow: visible;
+    border: 0;
+  }
+  .preparedness-summary-table,
+  .preparedness-summary-table tbody,
+  .preparedness-summary-table tr,
+  .preparedness-summary-table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .preparedness-summary-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .preparedness-summary-table {
+    min-width: 0;
+    border: 0;
+    background: transparent;
+  }
+  .preparedness-summary-table tr {
+    margin: 0 0 12px;
+    padding: 13px 14px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    background: #fff;
+  }
+  .preparedness-summary-table td {
+    padding: 5px 0;
+    border: 0;
+  }
+  .preparedness-summary-table td:first-child {
+    width: 100%;
+    padding-top: 0;
+    color: var(--primary-dark);
+    font-size: 1rem;
+    white-space: normal;
+  }
+  .preparedness-summary-table td:nth-child(2)::before {
+    content: "準備：";
+    font-weight: 800;
+    color: var(--muted);
+  }
+  .preparedness-summary-table td:nth-child(3)::before {
+    content: "確認：";
+    font-weight: 800;
+    color: var(--muted);
+  }
+}
+
 table {
   width: 100%;
   min-width: 620px;

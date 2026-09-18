@@ -134,13 +134,14 @@ class NonArticlePageReviewTest(unittest.TestCase):
             self.assertRegex(nav, pattern)
         self.assertNotIn('href="category_typhoon.html"', nav)
         self.assertLess(nav.index("category_goods.html"), nav.index("category_region.html"))
-        self.assertEqual(50, nav.count('class="site-nav__subcategory-link"'))
+        self.assertEqual(51, nav.count('class="site-nav__subcategory-link"'))
         for href in (
             "category_earthquake.html#home-safety",
             "category_evacuation.html#pet-evacuation",
             "category_goods.html#product-guides",
             "category_region.html#kyushu-okinawa",
             "qa.html#qa-care-pet",
+            "article_b067.html",
         ):
             self.assertIn(f'href="{href}"', nav)
 

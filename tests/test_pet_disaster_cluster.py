@@ -64,16 +64,17 @@ class PetDisasterClusterTests(unittest.TestCase):
         md = (ROOT / "content/articles/B033_pet_disaster_preparedness.md").read_text(encoding="utf-8")
         html = (ROOT / "preview/article_b033.html").read_text(encoding="utf-8")
         for wording in (
-            "準備するもの",
-            "平常時に確認すること",
-            "災害時に困らないためのポイント",
-            "ペットを入れて玄関まで移動するところまで試す",
-            "第三者へ短時間で伝えられる形",
-            "どこで飼養するのかまで確認",
+            "主に準備するもの",
+            "ここまで確認する",
+            "玄関・階段・避難経路まで実際に移動",
+            "家族や第三者が短時間で確認",
+            "飼養場所・ケージ条件・移動経路・第二候補",
         ):
             self.assertIn(wording, md)
             self.assertIn(wording, html)
-        self.assertIn('class="preparedness-detail-table"', html)
+        self.assertIn('class="preparedness-summary-table"', html)
+        self.assertNotIn("平常時に確認すること", html)
+        self.assertNotIn("災害時に困らないためのポイント", html)
 
     def test_saved_checklist_supports_persistence_progress_and_share(self):
         html = (ROOT / "preview/article_b033.html").read_text(encoding="utf-8")
@@ -92,6 +93,9 @@ class PetDisasterClusterTests(unittest.TestCase):
             self.assertIn(token, js)
         self.assertIn(".interactive-checklist", css)
         self.assertIn(".checklist-tools", css)
+        self.assertIn('type="checkbox"', html)
+        self.assertIn('data-persistent-checklist="1"', html)
+        self.assertIn("bousai-checklist:v2:", js)
 
     def test_b033_links_to_pet_hub_and_children(self):
         md = (ROOT / "content/articles/B033_pet_disaster_preparedness.md").read_text(encoding="utf-8")

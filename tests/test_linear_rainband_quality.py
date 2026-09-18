@@ -65,6 +65,24 @@ class LinearRainbandQualityTest(unittest.TestCase):
         self.assertTrue(expected.issubset(preview_sync.SYNC_ARTICLE_IDS))
         self.assertTrue(expected.issubset(preview_sync.LEAD_SYNC_ARTICLE_IDS))
 
+    def test_public_source_sections_use_clickable_official_links(self):
+        for name, text in self._texts().items():
+            source_pos = max(
+                text.rfind("## 公的情報・参考資料"),
+                text.rfind("## 参考資料"),
+                text.rfind("## 出典"),
+            )
+            self.assertGreaterEqual(source_pos, 0, name)
+            source = text[source_pos:]
+            source_lines = [line for line in source.splitlines() if line.startswith("- ")]
+            self.assertTrue(source_lines, name)
+            for line in source_lines:
+                self.assertIn("](", line, f"{name}: {line}")
+                self.assertTrue(
+                    "jma.go.jp" in line or "data.jma.go.jp" in line,
+                    f"{name}: non-JMA source link {line}",
+                )
+
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
             text = (ARTICLE_DIR / name).read_text(encoding="utf-8")

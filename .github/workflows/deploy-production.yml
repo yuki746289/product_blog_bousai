@@ -177,6 +177,9 @@ jobs:
           require_text "homepage realtime root" 'data-realtime-root' "${tmp_home}"
           require_text "homepage evacuation menu" "避難・避難生活" "${tmp_home}"
           require_text "homepage mega-menu section link" "earthquake/index.html#home-safety" "${tmp_home}" fixed
+          require_text "homepage linear-rainband spotlight" "線状降水帯を知る" "${tmp_home}"
+          require_text "homepage linear-rainband menu link" "special/linear-rainband/index.html" "${tmp_home}" fixed
+          require_text "homepage asset cache version" "bousai_common.js?v=20260918-3" "${tmp_home}" fixed
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
@@ -224,6 +227,7 @@ jobs:
           require_text "linear-rainband level 5 guidance" "警戒レベル5" "${tmp_linear}"
           require_text "linear-rainband canonical" "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}" fixed
           require_text "linear-rainband structured data" 'data-generated="article-structured-data"' "${tmp_linear}"
+          require_text "linear-rainband official source link" "jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html" "${tmp_linear}" fixed
           rm -f "${tmp_linear}"
 
           tmp_linear_region="$(mktemp)"
@@ -261,6 +265,13 @@ jobs:
           grep -q "ペットは避難所に入れる？" "${tmp_pet_index}"
           grep -q "ペットと車中泊避難しても大丈夫？" "${tmp_pet_index}"
           rm -f "${tmp_pet_index}"
+
+          tmp_pet_guide="$(mktemp)"
+          fetch_public "guide/pet-disaster-preparedness.html" "${tmp_pet_guide}"
+          require_text "pet guide static checklist" 'type="checkbox"' "${tmp_pet_guide}" fixed
+          require_text "pet guide concise table" "ここまで確認する" "${tmp_pet_guide}"
+          require_text "pet guide common asset version" "../bousai_common.js?v=20260918-3" "${tmp_pet_guide}" fixed
+          rm -f "${tmp_pet_guide}"
 
           tmp_pet_shelter="$(mktemp)"
           fetch_public "pet/shelter-pet-evacuation.html" "${tmp_pet_shelter}"

@@ -527,10 +527,11 @@
 
   function checklistStorageKey(list, index) {
     var heading = list.previousElementSibling;
-    var headingText = heading && /^H[1-6]$/.test(heading.tagName)
+    while (heading && !/^H[1-6]$/.test(heading.tagName)) heading = heading.previousElementSibling;
+    var headingText = heading
       ? (heading.textContent || "").replace(/\s+/g, " ").trim()
       : "checklist";
-    return "bousai-checklist:v1:" + window.location.pathname + ":" + headingText + ":" + index;
+    return "bousai-checklist:v2:" + window.location.pathname + ":" + headingText + ":" + index;
   }
 
   function readChecklistState(key) {
@@ -608,23 +609,30 @@
 
       items.forEach(function (item, itemIndex) {
         var itemText = (item.textContent || "").replace(/\s+/g, " ").trim();
-        var content = document.createElement("span");
-        content.className = "interactive-checklist__text";
-        while (item.firstChild) content.appendChild(item.firstChild);
+        var checkbox = item.querySelector('input[type="checkbox"]');
+        var content = item.querySelector(".interactive-checklist__text");
 
-        var checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "persistent-checklist-" + listIndex + "-" + itemIndex;
+        if (!checkbox) {
+          content = document.createElement("span");
+          content.className = "interactive-checklist__text";
+          while (item.firstChild) content.appendChild(item.firstChild);
+
+          checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+
+          var label = document.createElement("label");
+          label.appendChild(checkbox);
+          label.appendChild(content);
+          item.appendChild(label);
+        }
+
+        checkbox.id = checkbox.id || "persistent-checklist-" + listIndex + "-" + itemIndex;
         checkbox.setAttribute("aria-label", itemText);
-        if (saved && saved.checked[itemIndex]) checkbox.checked = true;
-
-        var label = document.createElement("label");
-        label.setAttribute("for", checkbox.id);
-        label.appendChild(checkbox);
-        label.appendChild(content);
+        if (saved && typeof saved.checked[itemIndex] === "boolean") {
+          checkbox.checked = saved.checked[itemIndex];
+        }
 
         item.classList.add("interactive-checklist__item");
-        item.appendChild(label);
         checkboxes.push(checkbox);
       });
 

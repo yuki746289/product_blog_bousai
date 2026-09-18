@@ -109,8 +109,8 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 気象庁「線状降水帯の事例」
-- 気象庁「気象業務はいま2024」特集1
-- 気象庁「気象業務はいま2025」
-- 気象庁「線状降水帯による大雨の半日程度前からの呼びかけと実際の状況等」各年度
-- 気象庁「線状降水帯の予測精度向上に向けた取組」
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「気象業務はいま2024」特集1](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
+- [気象庁「気象業務はいま2025」線状降水帯関連の取組](https://www.jma.go.jp/jma/kishou/books/hakusho/2025/index3.html)
+- [気象庁「線状降水帯半日前予測・直前予測と実際の状況等」](https://www.jma.go.jp/jma/kishou/know/jirei/index.html)
+- [気象庁「線状降水帯の予測精度向上に向けた取組」](https://www.jma.go.jp/jma/kishou/know/jma_suigai/jma_suigai.html)

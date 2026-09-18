@@ -94,9 +94,9 @@ affiliate: false
 
 ## 公的情報・参考資料
 
-- 気象庁「平成27年9月関東・東北豪雨から10年」
-- 気象庁「気象業務はいま2016」
-- 気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」
-- 気象庁「令和8年8月千葉豪雨」関連資料
-- 気象庁「線状降水帯に関する情報」
-- 気象庁「線状降水帯による大雨の半日程度前からの呼びかけと実際の状況等」
+- [仙台管区気象台「平成27年9月関東・東北豪雨から10年」](https://www.data.jma.go.jp/sendai/knowledge/H27ame/H27ooame.html)
+- [気象庁「気象業務はいま2016」](https://www.jma.go.jp/jma/kishou/books/hakusho/2016/index.html)
+- [気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html)
+- [気象庁「令和8年8月千葉豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2026/20260916/20260916.html)
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
+- [気象庁「線状降水帯半日前予測・直前予測と実際の状況等」](https://www.jma.go.jp/jma/kishou/know/jirei/index.html)
