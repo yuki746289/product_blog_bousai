@@ -53,7 +53,7 @@ class PetDisasterClusterTests(unittest.TestCase):
         self.assertIn("滞在用", html)
         self.assertIn("B079MD6JMN", html)
         self.assertNotIn("amazon.co.jp/s?k=", html)
-        self.assertIn("商品より公的情報", html)
+        self.assertIn("商品情報より", html)
 
     def test_pet_hub_links_all_cluster_articles(self):
         html = (ROOT / "preview/category_pet.html").read_text(encoding="utf-8")
