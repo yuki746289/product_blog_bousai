@@ -286,6 +286,29 @@ def enhance_feature_page(html: str, article_id: str) -> str:
     return html
 
 
+def homepage_feature_promo() -> str:
+    return """<section class="home-feature-spotlight" id="linear-rainband-home-feature" aria-labelledby="linear-rainband-home-title">
+<div>
+<span class="home-feature-spotlight__label">注目特集</span>
+<h2 id="linear-rainband-home-title">線状降水帯を知る</h2>
+<p>線状降水帯とは何か、過去事例、発生数、地域差、雨量記録、2026年からの情報制度までまとめて確認できます。</p>
+</div>
+<div class="home-feature-spotlight__actions">
+<a href="article_b067.html">特集を見る</a>
+<a href="article_b070.html">地域別を見る</a>
+</div>
+</section>"""
+
+
+def enhance_homepage(html: str) -> str:
+    if 'id="linear-rainband-home-feature"' in html:
+        return html
+    marker = '  <section class="section">\n    <div class="section-heading"><div><h2>ピックアップ</h2>'
+    if marker not in html:
+        raise ValueError("homepage pickup marker missing while inserting linear-rainband feature")
+    return html.replace(marker, homepage_feature_promo() + "\n\n" + marker, 1)
+
+
 def flood_category_promo() -> str:
     return """<section class="linear-feature-promo" id="linear-rainband-feature-entry">
 <h2>注目特集：線状降水帯</h2>
@@ -356,6 +379,11 @@ def enhance() -> list[str]:
         current = path.read_text(encoding="utf-8")
         if _write_if_changed(path, enhance_feature_page(current, article_id)):
             changed.append(path.name)
+
+    home_path = PREVIEW / "index.html"
+    home = home_path.read_text(encoding="utf-8")
+    if _write_if_changed(home_path, enhance_homepage(home)):
+        changed.append(home_path.name)
 
     flood_path = PREVIEW / "category_flood.html"
     flood = flood_path.read_text(encoding="utf-8")
