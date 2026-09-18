@@ -3,7 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B075",
-      "body_char_count_approx": 2814,
+      "body_char_count_approx": 2617,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -23,9 +23,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-chugoku",
-      "source_checked_at": "2026-09-15",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LRR2-001", "LRR2-002", "LRR-CH01", "LRR-CH02", "LRR-CH03", "LRR2-003"],
+      "source_ids": [
+        "LRR2-001",
+        "LRR2-002",
+        "LRR-CH01",
+        "LRR-CH02",
+        "LRR-CH03",
+        "LRR2-003"
+      ],
       "source_path": "content/articles/B075_linear_rainband_chugoku.md",
       "status": "READY_TO_PUBLISH",
       "title": "中国地方の線状降水帯｜2014年広島・2018年西日本豪雨・2025年山口から見る特徴",
@@ -35,12 +42,12 @@
       "image_relevance_reviewed_at": "2026-09-15",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-15",
-      "modified_at": "2026-09-15"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B076",
-      "body_char_count_approx": 2808,
+      "body_char_count_approx": 2669,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -60,9 +67,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-shikoku",
-      "source_checked_at": "2026-09-15",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LRR2-001", "LRR2-002", "LRR2-003", "LRR-SH01", "LRR-SH02", "LRR-SH03"],
+      "source_ids": [
+        "LRR2-001",
+        "LRR2-002",
+        "LRR2-003",
+        "LRR-SH01",
+        "LRR-SH02",
+        "LRR-SH03"
+      ],
       "source_path": "content/articles/B076_linear_rainband_shikoku.md",
       "status": "READY_TO_PUBLISH",
       "title": "四国の線状降水帯｜高知の多雨・2023年豪雨・2026年徳島から見る特徴",
@@ -72,12 +86,12 @@
       "image_relevance_reviewed_at": "2026-09-15",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-15",
-      "modified_at": "2026-09-15"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B077",
-      "body_char_count_approx": 3059,
+      "body_char_count_approx": 2932,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -97,9 +111,17 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-tokai",
-      "source_checked_at": "2026-09-15",
+      "source_checked_at": "2026-09-18",
       "source_count": 7,
-      "source_ids": ["LRR2-001", "LRR2-002", "LRR2-003", "LRR-TK01", "LRR-TK02", "LRR-TK03", "LRR-TK04"],
+      "source_ids": [
+        "LRR2-001",
+        "LRR2-002",
+        "LRR2-003",
+        "LRR-TK01",
+        "LRR-TK02",
+        "LRR-TK03",
+        "LRR-TK04"
+      ],
       "source_path": "content/articles/B077_linear_rainband_tokai.md",
       "status": "READY_TO_PUBLISH",
       "title": "東海の線状降水帯｜2023年6月豪雨・2025年静岡・2026年伊豆から見る特徴",
@@ -109,7 +131,7 @@
       "image_relevance_reviewed_at": "2026-09-15",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-15",
-      "modified_at": "2026-09-15"
+      "modified_at": "2026-09-18"
     }
   ]
 }
