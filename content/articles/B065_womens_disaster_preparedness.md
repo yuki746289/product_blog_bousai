@@ -2,7 +2,7 @@
 article_id: B065
 slug: womens-disaster-preparedness
 title: 女性の防災は何を準備する？生理用品・衛生・避難所のプライバシー
-category: guide
+category: evacuation
 content_role: practical
 risk_level: elevated
 status: READY_TO_PUBLISH

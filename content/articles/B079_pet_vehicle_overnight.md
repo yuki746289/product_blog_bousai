@@ -2,7 +2,7 @@
 article_id: B079
 slug: pet-vehicle-overnight
 title: ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点
-category: pet
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH
@@ -133,7 +133,7 @@ affiliate: false
 - 一時預かり
 - 入浴・充電等の生活支援
 
-について、自治体サイト、防災メール、指定避難所などから情報を得られるようにします。
+こうした支援情報を、自治体サイト、防災メール、指定避難所などから確認できるようにしておきます。
 
 「避難所に宿泊しないと支援を受けられない」と自己判断せず、自治体に確認してください。
 

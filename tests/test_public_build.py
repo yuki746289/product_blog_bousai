@@ -24,6 +24,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue((PUBLIC / "guide" / "first-disaster-preparedness.html").exists())
         self.assertTrue((PUBLIC / "evacuation" / "index.html").exists())
         self.assertTrue((PUBLIC / "pet" / "index.html").exists())
+        self.assertTrue((PUBLIC / "goods" / "pet-evacuation.html").exists())
         self.assertTrue((PUBLIC / "pet" / "shelter-pet-evacuation.html").exists())
         self.assertTrue((PUBLIC / "pet" / "pet-vehicle-overnight.html").exists())
         self.assertTrue((PUBLIC / "pet" / "dog-disaster-preparedness.html").exists())
@@ -268,8 +269,8 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIn('href="water-outage/portable-toilet-stockpile.html">携帯トイレの備え方を読む', home)
 
         goods_index = (PUBLIC / "goods" / "index.html").read_text(encoding="utf-8")
-        self.assertEqual(5, goods_index.count("category-product-link"))
-        self.assertEqual(5, goods_index.count("<small>商品比較</small>"))
+        self.assertEqual(6, goods_index.count("category-product-link"))
+        self.assertEqual(6, goods_index.count("<small>商品比較</small>"))
 
     def test_product_pages_have_navigation_safety_context_and_product_role(self):
         pages = [
@@ -277,6 +278,7 @@ class PublicBuildTests(unittest.TestCase):
             PUBLIC / "goods" / "toilet-hygiene.html",
             PUBLIC / "goods" / "light-information.html",
             PUBLIC / "goods" / "power-charging.html",
+            PUBLIC / "goods" / "pet-evacuation.html",
         ]
         for page in pages:
             html = page.read_text(encoding="utf-8")
@@ -329,6 +331,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIn("https://bousaikun.ashigaru.jp/", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/goods/portable-power-station-disaster.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/goods/volcanic-ash-protection.html", sitemap)
+        self.assertIn("https://bousaikun.ashigaru.jp/goods/pet-evacuation.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/guide/emergency-food-expiration.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/guide/emergency-bag-capacity.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/flood/landslide-evacuation-kikikuru.html", sitemap)

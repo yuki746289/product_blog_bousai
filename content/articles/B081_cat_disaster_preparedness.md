@@ -2,7 +2,7 @@
 article_id: B081
 slug: cat-disaster-preparedness
 title: 猫の防災は何を準備する？キャリー・猫砂・脱走対策と避難
-category: pet
+category: evacuation
 content_role: practical
 risk_level: standard
 status: READY_TO_PUBLISH
@@ -37,6 +37,8 @@ affiliate: false
 - 玄関まで移動する練習をする
 
 無理に閉じ込めて強い恐怖を与え続けるのではなく、少しずつ慣らします。
+
+キャリーを買い替える場合は、体重目安だけで決めず、内寸・扉のロック・ペットを入れた総重量を確認します。[犬・猫のキャリー・ケージの商品例と選び方](goods_pet_evacuation.html)で具体例を比較しています。
 
 ## 地震直後は玄関・窓からの脱走に注意する
 

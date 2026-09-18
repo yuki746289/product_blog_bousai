@@ -2,7 +2,7 @@
 article_id: B062
 slug: pregnancy-disaster-preparedness
 title: 妊婦・妊産婦の防災｜避難時の持ち物・母子健康手帳・健診をどう備える？
-category: guide
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH

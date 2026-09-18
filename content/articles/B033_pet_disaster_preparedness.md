@@ -2,7 +2,7 @@
 article_id: B033
 slug: pet-disaster-preparedness
 title: ペットの防災は何を準備する？同行避難・備蓄・持ち出し品を整理
-category: guide
+category: evacuation
 content_role: practical
 risk_level: standard
 status: READY_TO_PUBLISH

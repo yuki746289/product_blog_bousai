@@ -1,0 +1,61 @@
+{
+  "updated_at": "2026-09-18T13:15:00+09:00",
+  "articles": [
+    {
+      "article_id": "B061",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B062",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B063",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B064",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B065",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B066",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B078",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18"
+    },
+    {
+      "article_id": "B079",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 3153,
+      "modified_at": "2026-09-18"
+    },
+    {
+      "article_id": "B080",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 2721,
+      "modified_at": "2026-09-18"
+    },
+    {
+      "article_id": "B081",
+      "last_reviewed_at": "2026-09-18",
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 2696,
+      "modified_at": "2026-09-18"
+    }
+  ]
+}

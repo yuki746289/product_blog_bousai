@@ -42,6 +42,19 @@ class PetDisasterClusterTests(unittest.TestCase):
         for article_id in ("B033", "B078", "B079", "B080", "B081"):
             self.assertIn(f'data-article-id="{article_id}"', html)
 
+    def test_dog_and_cat_articles_link_pet_goods_guide(self):
+        for filename in ("B080_dog_disaster_preparedness.md", "B081_cat_disaster_preparedness.md"):
+            text = (ROOT / "content/articles" / filename).read_text(encoding="utf-8")
+            self.assertIn("(goods_pet_evacuation.html)", text, filename)
+
+    def test_pet_goods_guide_keeps_transport_and_stay_roles_separate(self):
+        html = (ROOT / "preview/goods_pet_evacuation.html").read_text(encoding="utf-8")
+        self.assertIn("移動用", html)
+        self.assertIn("滞在用", html)
+        self.assertIn("B079MD6JMN", html)
+        self.assertNotIn("amazon.co.jp/s?k=", html)
+        self.assertIn("商品情報より", html)
+
     def test_pet_hub_links_all_cluster_articles(self):
         html = (ROOT / "preview/category_pet.html").read_text(encoding="utf-8")
         for article_id in ("B033", "B078", "B079", "B080", "B081"):

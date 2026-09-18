@@ -2,7 +2,7 @@
 article_id: B080
 slug: dog-disaster-preparedness
 title: 犬の防災は何を準備する？避難時のリード・ケージ・持ち出し品
-category: pet
+category: evacuation
 content_role: practical
 risk_level: standard
 status: READY_TO_PUBLISH
@@ -45,6 +45,8 @@ affiliate: false
 避難所では多数の人や動物が集まり、床に物が散乱している場合もあります。抱っこだけに頼ると、飼い主が荷物を持てず、犬が暴れたときに落下・逸走する可能性があります。
 
 キャリーやクレートは災害時だけ出すのではなく、日常から部屋に置き、短時間入ることに慣らしておくと使いやすくなります。
+
+具体的な製品を選ぶときは、体重表示だけでなく内寸や持ち運ぶ総重量まで確認します。[犬・猫のキャリー・ケージの商品例と選び方](goods_pet_evacuation.html)で比較しています。
 
 ## 大型犬は徒歩移動の経路まで確認する
 
