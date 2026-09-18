@@ -188,6 +188,7 @@ jobs:
           fetch_public "special/linear-rainband/index.html" "${tmp_linear}"
           grep -q "線状降水帯とは？" "${tmp_linear}"
           grep -q "地域から線状降水帯を見る" "${tmp_linear}"
+          grep -q "警戒レベル5" "${tmp_linear}"
           grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}"
           grep -q 'data-generated="article-structured-data"' "${tmp_linear}"
           rm -f "${tmp_linear}"
