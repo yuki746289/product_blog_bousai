@@ -69,7 +69,7 @@ SITE_NAV_GROUPS = (
                     ("洪水・土砂災害から避難する", "category_flood.html#flood-evacuation"),
                     ("自宅・マンションを守る", "category_flood.html#home-protection"),
                     ("車と水害", "category_flood.html#vehicle-flood"),
-                    ("線状降水帯特集", "article_b067.html"),
+                    ("線状降水帯を知る", "article_b067.html"),
                 ),
             ),
             (
