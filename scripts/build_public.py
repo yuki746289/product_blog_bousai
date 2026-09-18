@@ -62,6 +62,8 @@ STATIC_HTML_MAP = {
     "goods_pet_evacuation.html": "goods/pet-evacuation.html",
 }
 
+ASSET_VERSION = "20260918-3"
+
 RESOURCE_TARGETS = {
     "bousai_common.css": "bousai_common.css",
     "bousai_common.js": "bousai_common.js",
@@ -139,7 +141,10 @@ def rewrite_url(url: str, current_output: str, html_map: dict[str, str]) -> str:
         return url
 
     rewritten = relative_target(current_output, target)
-    return urlunsplit(("", "", rewritten, parts.query, parts.fragment))
+    query = parts.query
+    if normalized in {"bousai_common.css", "bousai_common.js"} and not query:
+        query = f"v={ASSET_VERSION}"
+    return urlunsplit(("", "", rewritten, query, parts.fragment))
 
 
 def reduce_listing_commons_width(html: str) -> str:
