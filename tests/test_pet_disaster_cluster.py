@@ -15,7 +15,7 @@ class PetDisasterClusterTests(unittest.TestCase):
         by_id = {a["article_id"]: a for a in registry["articles"]}
         for article_id in ("B078", "B079", "B080", "B081"):
             self.assertIn(article_id, by_id)
-            self.assertEqual("pet", by_id[article_id]["category"])
+            self.assertEqual("evacuation", by_id[article_id]["category"])
             self.assertEqual("B033", by_id[article_id]["parent_article_id"])
             self.assertEqual("READY_TO_PUBLISH", by_id[article_id]["status"])
 
@@ -36,6 +36,11 @@ class PetDisasterClusterTests(unittest.TestCase):
         self.assertIn("車中泊を選ぶ前に確認したい代替策", text)
         self.assertIn("ペット側でも「車内温度」を最優先", text)
         self.assertNotIn("何度までなら安全", text.replace("「何度までなら安全」という固定値は設けません", ""))
+
+    def test_evacuation_category_links_pet_cluster_articles(self):
+        html = (ROOT / "preview/category_evacuation.html").read_text(encoding="utf-8")
+        for article_id in ("B033", "B078", "B079", "B080", "B081"):
+            self.assertIn(f'data-article-id="{article_id}"', html)
 
     def test_pet_hub_links_all_cluster_articles(self):
         html = (ROOT / "preview/category_pet.html").read_text(encoding="utf-8")
