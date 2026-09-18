@@ -40,6 +40,7 @@ STATIC_HTML_MAP = {
     "advertising.html": "advertising.html",
     # contact.html is intentionally not published while contact is hidden.
     "category_guide.html": "guide/index.html",
+    "category_pet.html": "pet/index.html",
     "category_disaster_situations.html": "topics/disaster-situations/index.html",
     "category_life.html": "topics/life/index.html",
     "category_region_qa.html": "topics/region-qa/index.html",
