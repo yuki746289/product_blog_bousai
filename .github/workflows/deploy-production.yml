@@ -128,22 +128,53 @@ jobs:
           fetch_public() {
             path="$1"
             output="$2"
-            curl --fail --silent --show-error --location \
+            http_code="$(curl --fail --silent --show-error --location \
               --retry 5 --retry-delay 10 --retry-all-errors \
               --connect-timeout 15 --max-time 90 \
               --header "Cache-Control: no-cache" \
-              "${BASE_URL}${path}" -o "${output}"
+              --output "${output}" --write-out "%{http_code}" \
+              "${BASE_URL}${path}")"
+            echo "Fetched ${path:-/}: HTTP ${http_code}, bytes $(wc -c < "${output}")"
             sleep 1
+          }
+
+          require_text() {
+            label="$1"
+            pattern="$2"
+            file="$3"
+            mode="${4:-regex}"
+            if [ "${mode}" = "fixed" ]; then
+              grep -Fq "${pattern}" "${file}" || {
+                echo "Smoke check failed: ${label}"
+                echo "Expected fixed text: ${pattern}"
+                echo "Page title: $(grep -o '<title>[^<]*</title>' "${file}" | head -n 1 || true)"
+                echo "Body sample:"
+                head -c 1200 "${file}" || true
+                echo
+                exit 1
+              }
+            else
+              grep -q "${pattern}" "${file}" || {
+                echo "Smoke check failed: ${label}"
+                echo "Expected pattern: ${pattern}"
+                echo "Page title: $(grep -o '<title>[^<]*</title>' "${file}" | head -n 1 || true)"
+                echo "Body sample:"
+                head -c 1200 "${file}" || true
+                echo
+                exit 1
+              }
+            fi
+            echo "PASS: ${label}"
           }
 
           tmp_home="$(mktemp)"
           fetch_public "" "${tmp_home}"
-          grep -q "防災くらしガイド" "${tmp_home}"
-          grep -q 'class="skip-link"' "${tmp_home}"
-          grep -q 'id="main-content"' "${tmp_home}"
-          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}\">" "${tmp_home}"
-          grep -q 'assets/images/commons/' "${tmp_home}"
-          grep -q 'data-realtime-root' "${tmp_home}"
+          require_text "homepage site title" "防災くらしガイド" "${tmp_home}"
+          require_text "homepage skip link" 'class="skip-link"' "${tmp_home}"
+          require_text "homepage main content anchor" 'id="main-content"' "${tmp_home}"
+          require_text "homepage canonical" "<link rel=\"canonical\" href=\"${BASE_URL}\">" "${tmp_home}" fixed
+          require_text "homepage localized Commons image" 'assets/images/commons/' "${tmp_home}"
+          require_text "homepage realtime root" 'data-realtime-root' "${tmp_home}"
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
