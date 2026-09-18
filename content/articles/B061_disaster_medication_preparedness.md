@@ -2,7 +2,7 @@
 article_id: B061
 slug: disaster-medication-preparedness
 title: 災害時の常用薬はどう備える？お薬手帳・予備薬・薬が切れたときの相談先
-category: guide
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH
