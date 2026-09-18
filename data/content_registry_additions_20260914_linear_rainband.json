@@ -3,7 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B067",
-      "body_char_count_approx": 3043,
+      "body_char_count_approx": 3969,
       "category": "flood",
       "content_role": "pillar",
       "image_source_count": 0,
@@ -23,9 +23,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-feature",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LR-001", "LR-002", "LR-003", "LR-004", "LR-006", "LR-011"],
+      "source_ids": [
+        "LR-001",
+        "LR-002",
+        "LR-003",
+        "LR-004",
+        "LR-006",
+        "LR-011"
+      ],
       "source_path": "content/articles/B067_linear_rainband_feature.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯の歴史｜過去の豪雨・発生数・多い地域・雨量記録をデータで見る",
@@ -35,12 +42,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B068",
-      "body_char_count_approx": 2977,
+      "body_char_count_approx": 3097,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -60,9 +67,18 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-history",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 8,
-      "source_ids": ["LR-002", "LR-004", "LR-005", "LR-006", "LR-007", "LR-008", "LR-009", "LR-011"],
+      "source_ids": [
+        "LR-002",
+        "LR-004",
+        "LR-005",
+        "LR-006",
+        "LR-007",
+        "LR-008",
+        "LR-009",
+        "LR-011"
+      ],
       "source_path": "content/articles/B068_linear_rainband_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯の過去事例｜全国の主な豪雨を年表で比較",
@@ -72,12 +88,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B069",
-      "body_char_count_approx": 2595,
+      "body_char_count_approx": 2583,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -97,9 +113,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-frequency",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LR-002", "LR-003", "LR-013", "LR-014", "LR-015", "LR-001"],
+      "source_ids": [
+        "LR-002",
+        "LR-003",
+        "LR-013",
+        "LR-014",
+        "LR-015",
+        "LR-001"
+      ],
       "source_path": "content/articles/B069_linear_rainband_frequency.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯は増えている？発生回数・公式事例数・将来予測を分けて検証",
@@ -109,12 +132,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B070",
-      "body_char_count_approx": 2838,
+      "body_char_count_approx": 3630,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -134,9 +157,17 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-regions",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 7,
-      "source_ids": ["LR-003", "LR-006", "LR-007", "LR-009", "LR-010", "LR-011", "LR-002"],
+      "source_ids": [
+        "LR-003",
+        "LR-006",
+        "LR-007",
+        "LR-009",
+        "LR-010",
+        "LR-011",
+        "LR-002"
+      ],
       "source_path": "content/articles/B070_linear_rainband_regions.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯が多い地域はどこ？地域別の発生傾向と主な豪雨",
@@ -146,12 +177,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B071",
-      "body_char_count_approx": 2849,
+      "body_char_count_approx": 2865,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -171,9 +202,17 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-rainfall-records",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 7,
-      "source_ids": ["LR-005", "LR-006", "LR-007", "LR-008", "LR-009", "LR-011", "LR-002"],
+      "source_ids": [
+        "LR-005",
+        "LR-006",
+        "LR-007",
+        "LR-008",
+        "LR-009",
+        "LR-011",
+        "LR-002"
+      ],
       "source_path": "content/articles/B071_linear_rainband_rainfall_records.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯の雨量記録｜観測史上1位・従来記録・平年月降水量を比較",
@@ -183,12 +222,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B072",
-      "body_char_count_approx": 2969,
+      "body_char_count_approx": 3520,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -208,9 +247,17 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-information-history",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 7,
-      "source_ids": ["LR-001", "LR-002", "LR-004", "LR-006", "LR-013", "LR-014", "LR-015"],
+      "source_ids": [
+        "LR-001",
+        "LR-002",
+        "LR-004",
+        "LR-006",
+        "LR-013",
+        "LR-014",
+        "LR-015"
+      ],
       "source_path": "content/articles/B072_linear_rainband_information_history.md",
       "status": "READY_TO_PUBLISH",
       "title": "線状降水帯はいつから使われた？用語と防災気象情報の歴史",
@@ -220,7 +267,7 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     }
   ]
 }
