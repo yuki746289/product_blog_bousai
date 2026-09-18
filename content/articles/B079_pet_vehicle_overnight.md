@@ -2,7 +2,7 @@
 article_id: B079
 slug: pet-vehicle-overnight
 title: ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点
-category: pet
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH
