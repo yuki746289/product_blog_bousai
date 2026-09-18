@@ -102,9 +102,9 @@ affiliate: false
 
 ## 公的情報・参考資料
 
-- 気象庁「気象業務はいま2024」: https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html
-- 高知地方気象台「2023年6月の気象」: https://www.data.jma.go.jp/kochi/kochinokishou/202306.pdf
-- 気象庁「梅雨前線及び台風第2号による大雨」: https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/20230623.html
-- 気象庁「線状降水帯に関する情報の不具合について（第3報）」: https://www.jma.go.jp/jma/press/2606/03b/20260603_oshirase3.html
-- 気象庁「線状降水帯の事例」: https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html
-- 気象庁「線状降水帯に関する情報」: https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html
+- [気象庁「気象業務はいま2024」](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
+- [高知地方気象台「2023年6月の気象」](https://www.data.jma.go.jp/kochi/kochinokishou/202306.pdf)
+- [気象庁「梅雨前線及び台風第2号による大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/20230623.html)
+- [気象庁「線状降水帯に関する情報の不具合について（第3報）」](https://www.jma.go.jp/jma/press/2606/03b/20260603_oshirase3.html)
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
