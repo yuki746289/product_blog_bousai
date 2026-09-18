@@ -65,6 +65,26 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         )[0]
         self.assertNotIn("article_b073.html", core_nav)
 
+    def test_feature_nav_is_reinserted_after_markdown_body_sync(self):
+        sample = (
+            '<html><head></head><body><nav class="breadcrumb">old</nav>'
+            '<article><header><h1>old</h1><p class="article-lead">old</p></header>'
+            '<div class="article-body"><h2>本文</h2><p>本文です。</p></div>'
+            '</article></body></html>'
+        )
+
+        pillar = enhance_feature_page(sample, "B067")
+        self.assertIn('aria-label="線状降水帯特集の主要テーマ"', pillar)
+        self.assertIn('id="linear-rainband-region-panel"', pillar)
+        self.assertIn("地域から線状降水帯を見る", pillar)
+
+        regional = enhance_feature_page(sample, "B075")
+        self.assertIn('aria-label="線状降水帯の地域別記事"', regional)
+        self.assertIn('href="article_b075.html" aria-current="page"', regional)
+
+        self.assertEqual(pillar, enhance_feature_page(pillar, "B067"))
+        self.assertEqual(regional, enhance_feature_page(regional, "B075"))
+
     def test_b067_preview_metadata_uses_broad_search_intent(self):
         sample = (
             '<html><head><meta name="description" content="old"><title>old</title></head>'
