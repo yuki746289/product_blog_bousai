@@ -2,6 +2,7 @@
 import unittest
 from pathlib import Path
 
+from scripts import sync_previews_from_markdown as preview_sync
 from scripts.enhance_linear_rainband_feature import (
     enhance_category_flood,
     enhance_category_region,
@@ -115,6 +116,13 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertIn("災害史記事は現在8地域・8記事", region)
         for number in range(73, 78):
             self.assertIn(f'article_b{number:03d}.html', region)
+
+    def test_mega_menu_exposes_linear_rainband_entry(self):
+        nav = preview_sync._site_nav_markup()
+        self.assertIn(
+            '<a class="site-nav__subcategory-link" href="article_b067.html">線状降水帯を知る</a>',
+            nav,
+        )
 
     def test_transforms_are_idempotent(self):
         sample = (
