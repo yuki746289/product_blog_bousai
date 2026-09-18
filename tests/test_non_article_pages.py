@@ -9,6 +9,7 @@ PREVIEW = ROOT / "preview"
 
 CATEGORY_FILES = [
     "category_guide.html",
+    "category_pet.html",
     "category_flood.html",
     "category_earthquake.html",
     "category_vehicle.html",
