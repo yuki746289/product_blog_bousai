@@ -59,6 +59,7 @@ STATIC_HTML_MAP = {
     "goods_toilet_hygiene.html": "goods/toilet-hygiene.html",
     "goods_light_information.html": "goods/light-information.html",
     "goods_power_charging.html": "goods/power-charging.html",
+    "goods_pet_evacuation.html": "goods/pet-evacuation.html",
 }
 
 RESOURCE_TARGETS = {
