@@ -587,6 +587,9 @@
       var headingText = (heading.textContent || "").replace(/\s+/g, " ").trim();
       if (headingText !== "保存用チェックリスト") return;
       var list = heading.nextElementSibling;
+      while (list && !/^H[1-6]$/.test(list.tagName) && !list.classList.contains("checklist")) {
+        list = list.nextElementSibling;
+      }
       if (!list || !list.classList.contains("checklist")) return;
       targetLists.push(list);
     });
