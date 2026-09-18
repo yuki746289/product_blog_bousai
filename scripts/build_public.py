@@ -142,7 +142,7 @@ def rewrite_url(url: str, current_output: str, html_map: dict[str, str]) -> str:
 
     rewritten = relative_target(current_output, target)
     query = parts.query
-    if normalized in {"bousai_common.css", "bousai_common.js"} and not query:
+    if normalized in RESOURCE_TARGETS and not query:
         query = f"v={ASSET_VERSION}"
     return urlunsplit(("", "", rewritten, query, parts.fragment))
 
