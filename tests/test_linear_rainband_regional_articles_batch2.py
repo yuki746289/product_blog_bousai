@@ -70,13 +70,15 @@ class LinearRainbandRegionalArticleBatch2Tests(unittest.TestCase):
             text = (ROOT / "content/articles" / filename).read_text(encoding="utf-8")
             self.assertIn("半日前", text, article_id)
             self.assertIn("直前予測", text, article_id)
-            self.assertIn("発生情報", text, article_id)
+            self.assertIn("気象防災速報（線状降水帯発生）", text, article_id)
+            self.assertIn("警戒レベル4相当以上", text, article_id)
+            self.assertIn("警戒レベル5", text, article_id)
             self.assertIn("キキクル", text, article_id)
             self.assertIn("自治体", text, article_id)
 
-        self.assertIn("発生情報が出てから初めて避難を考えるものではありません", (ROOT / "content/articles/B075_linear_rainband_chugoku.md").read_text(encoding="utf-8"))
-        self.assertIn("発生情報まで待って避難判断を始めません", (ROOT / "content/articles/B076_linear_rainband_shikoku.md").read_text(encoding="utf-8"))
-        self.assertIn("発生情報が出るまで避難を待つものではありません", (ROOT / "content/articles/B077_linear_rainband_tokai.md").read_text(encoding="utf-8"))
+        self.assertIn("危険な場所では発生情報を待たず", (ROOT / "content/articles/B075_linear_rainband_chugoku.md").read_text(encoding="utf-8"))
+        self.assertIn("暗くなる前に動けるか", (ROOT / "content/articles/B076_linear_rainband_shikoku.md").read_text(encoding="utf-8"))
+        self.assertIn("自分の場所で洪水・浸水・土砂のどれが高まっているか", (ROOT / "content/articles/B077_linear_rainband_tokai.md").read_text(encoding="utf-8"))
 
     def test_new_previews_are_noindex_only_before_public_build(self):
         for article_id in ("B075", "B076", "B077"):
