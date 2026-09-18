@@ -31,7 +31,7 @@ SYNC_ARTICLE_IDS = {
     "B001", "B002", "B004", "B005", "B006", "B007", "B009", "B011",
     "B012", "B014", "B015", "B016", "B017", "B018", "B020", "B023",
     "B024", "B025", "B026", "B027", "B028", "B031", "B032", "B034",
-    "B043", "B045", "B046", "B047",
+    "B043", "B045", "B046", "B047", "B078", "B079", "B080", "B081",
 }
 
 TARGETED_PREVIEW_REPLACEMENTS = {
@@ -46,6 +46,7 @@ TARGETED_PREVIEW_REPLACEMENTS = {
 
 STATIC_PRODUCTION_TO_PREVIEW = {
     "guide/index.html": "category_guide.html",
+    "pet/index.html": "category_pet.html",
     "typhoon/index.html": "category_typhoon.html",
     "flood/index.html": "category_flood.html",
     "earthquake/index.html": "category_earthquake.html",
