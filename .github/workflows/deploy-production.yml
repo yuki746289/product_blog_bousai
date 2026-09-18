@@ -175,6 +175,8 @@ jobs:
           require_text "homepage canonical" "<link rel=\"canonical\" href=\"${BASE_URL}\">" "${tmp_home}" fixed
           require_text "homepage localized Commons image" 'assets/images/commons/' "${tmp_home}"
           require_text "homepage realtime root" 'data-realtime-root' "${tmp_home}"
+          require_text "homepage evacuation menu" "避難・避難生活" "${tmp_home}"
+          require_text "homepage mega-menu section link" "earthquake/index.html#home-safety" "${tmp_home}" fixed
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
@@ -245,6 +247,13 @@ jobs:
           grep -q "倉敷市真備地区の水害史" "${tmp_region_index}"
           grep -q "線状降水帯を地域から見る" "${tmp_region_index}"
           rm -f "${tmp_region_index}"
+
+          tmp_evacuation="$(mktemp)"
+          fetch_public "evacuation/index.html" "${tmp_evacuation}"
+          require_text "evacuation category title" "<h1>避難・避難生活</h1>" "${tmp_evacuation}" fixed
+          require_text "evacuation pet section" "ペットと避難する" "${tmp_evacuation}"
+          require_text "evacuation canonical" "<link rel=\"canonical\" href=\"${BASE_URL}evacuation/index.html\">" "${tmp_evacuation}" fixed
+          rm -f "${tmp_evacuation}"
 
           tmp_pet_index="$(mktemp)"
           fetch_public "pet/index.html" "${tmp_pet_index}"

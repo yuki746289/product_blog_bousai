@@ -23,6 +23,7 @@ BREADCRUMB_RE = re.compile(
 # the same visible category route after the navigation merge.
 CATEGORY_PREVIEW_TO_PUBLIC = {
     "category_guide.html": "guide/index.html",
+    "category_evacuation.html": "evacuation/index.html",
     "category_outage.html": "outage/index.html",
     "category_flood.html": "flood/index.html",
     "category_earthquake.html": "earthquake/index.html",
@@ -39,7 +40,7 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
         self.registry = _core.load_registry(_core.REGISTRY)
         self.by_id = {article["article_id"]: article for article in self.registry["articles"]}
 
-    def test_all_sixty_articles_have_a_real_published_category_route(self):
+    def test_all_articles_have_a_real_published_category_route(self):
         self.assertTrue(ALL_ARTICLE_IDS.issubset(self.by_id))
         for article_id in sorted(ALL_ARTICLE_IDS):
             article = self.by_id[article_id]
@@ -55,7 +56,7 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
                 self.assertEqual(public_category, CATEGORY_PREVIEW_TO_PUBLIC[preview_category])
                 self.assertTrue((ROOT / "preview" / preview_category).exists())
 
-    def test_all_sixty_visible_breadcrumbs_link_the_category(self):
+    def test_all_visible_breadcrumbs_link_the_category(self):
         for article_id in sorted(ALL_ARTICLE_IDS):
             article = self.by_id[article_id]
             category_name, preview_category = CATEGORY_PREVIEW_BREADCRUMBS[article["category"]]
@@ -70,6 +71,19 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
                     f'<a href="{preview_category}">{category_name}</a>',
                     match.group(0),
                 )
+
+    def test_evacuation_articles_share_one_visible_category(self):
+        for article_id in ("B033", "B034", "B035", "B061", "B062", "B065", "B066", "B078", "B079", "B080", "B081"):
+            article = self.by_id[article_id]
+            self.assertEqual("evacuation", article["category"])
+            self.assertEqual(
+                ("避難・避難生活", "category_evacuation.html"),
+                CATEGORY_PREVIEW_BREADCRUMBS[article["category"]],
+            )
+            self.assertEqual(
+                ("避難・避難生活", "evacuation/index.html"),
+                CATEGORY_BREADCRUMBS[article["category"]],
+            )
 
     def test_typhoon_and_flood_articles_share_one_visible_category(self):
         for internal_category in ("typhoon", "flood"):

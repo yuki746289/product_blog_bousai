@@ -32,7 +32,8 @@ GENERATED_JSONLD_RE = re.compile(
 
 CATEGORY_BREADCRUMBS = {
     "guide": ("防災入門", "guide/index.html"),
-    "pet": ("ペット防災", "pet/index.html"),
+    "evacuation": ("避難・避難生活", "evacuation/index.html"),
+    "pet": ("避難・避難生活", "evacuation/index.html"),
     "water-outage": ("停電・断水", "outage/index.html"),
     "blackout": ("停電・断水", "outage/index.html"),
     "flood": ("台風・水害", "flood/index.html"),

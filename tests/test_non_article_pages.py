@@ -9,6 +9,7 @@ PREVIEW = ROOT / "preview"
 
 CATEGORY_FILES = [
     "category_guide.html",
+    "category_evacuation.html",
     "category_pet.html",
     "category_flood.html",
     "category_earthquake.html",
@@ -44,6 +45,7 @@ CHILD_NAV_LINKS = {
     "category_outage.html": "停電・断水",
     "category_post_disaster.html": "被災後・復旧",
     "category_guide.html": "防災入門",
+    "category_evacuation.html": "避難・避難生活",
     "category_vehicle.html": "車と災害",
     "category_home.html": "住宅と災害",
     "category_insurance.html": "保険・お金",
@@ -120,7 +122,7 @@ class NonArticlePageReviewTest(unittest.TestCase):
     def test_dropdowns_keep_every_individual_category_directly_accessible(self):
         nav = nav_html(read("index.html"))
         self.assertEqual(3, nav.count('class="site-nav__submenu"'))
-        self.assertEqual(11, nav.count('class="site-nav__submenu-card"'))
+        self.assertEqual(12, nav.count('class="site-nav__submenu-card"'))
         for href, label in CHILD_NAV_LINKS.items():
             display = label if label != "Q&A" else "Q&amp;A"
             pattern = (
@@ -131,6 +133,15 @@ class NonArticlePageReviewTest(unittest.TestCase):
             self.assertRegex(nav, pattern)
         self.assertNotIn('href="category_typhoon.html"', nav)
         self.assertLess(nav.index("category_goods.html"), nav.index("category_region.html"))
+        self.assertEqual(50, nav.count('class="site-nav__subcategory-link"'))
+        for href in (
+            "category_earthquake.html#home-safety",
+            "category_evacuation.html#pet-evacuation",
+            "category_goods.html#product-guides",
+            "category_region.html#kyushu-okinawa",
+            "qa.html#qa-care-pet",
+        ):
+            self.assertIn(f'href="{href}"', nav)
 
     def test_hub_pages_preview_representative_articles_and_all_article_links(self):
         disaster = read("category_disaster_situations.html")
@@ -145,11 +156,11 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertGreaterEqual(disaster.count('class="category-article-link"'), 12)
 
         self.assertIn("<h1>暮らし・備えから探す</h1>", life)
-        for category in ["guide", "vehicle", "home", "insurance", "goods"]:
+        for category in ["guide", "evacuation", "vehicle", "home", "insurance", "goods"]:
             self.assertIn(f'data-hub-category="{category}"', life)
-        for href in ["category_guide.html", "category_vehicle.html", "category_home.html", "category_insurance.html", "category_goods.html"]:
+        for href in ["category_guide.html", "category_evacuation.html", "category_vehicle.html", "category_home.html", "category_insurance.html", "category_goods.html"]:
             self.assertRegex(life, rf'href="{re.escape(href)}">[^<]*すべての記事を見る')
-        self.assertGreaterEqual(life.count('class="category-article-link"'), 15)
+        self.assertGreaterEqual(life.count('class="category-article-link"'), 18)
 
         self.assertIn("<h1>地域・疑問から探す</h1>", region_qa)
         self.assertIn('data-hub-category="region"', region_qa)
@@ -157,8 +168,8 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertIn("地域別のすべての記事を見る", region_qa)
         self.assertIn("Q&amp;Aをすべて見る", region_qa)
         self.assertGreaterEqual(region_qa.count('class="category-article-link"'), 4)
-        self.assertIn("qa.html#qa-car-insurance", region_qa)
-        self.assertIn("qa.html#qa-home-fire-insurance", region_qa)
+        self.assertIn("qa.html#qa-car", region_qa)
+        self.assertIn("qa.html#qa-home-insurance", region_qa)
 
     def test_typhoon_flood_category_contains_22_unique_articles(self):
         html = read("category_flood.html")

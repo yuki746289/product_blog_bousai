@@ -1,0 +1,49 @@
+{
+  "updated_at": "2026-09-18T12:40:00+09:00",
+  "articles": [
+    {
+      "article_id": "B033",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B034",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B035",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B061",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B062",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B065",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B066",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B078",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B079",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B080",
+      "category": "evacuation"
+    },
+    {
+      "article_id": "B081",
+      "category": "evacuation"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ from pathlib import Path
 
 from scripts.sync_previews_from_markdown import (
     apply_category_page_breadcrumbs,
+    apply_category_section_anchors,
     apply_homepage_typhoon_flood_card,
     apply_merged_category_links,
     apply_site_navigation,
@@ -62,6 +63,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         # idempotent and do not consume one-time article replacement markers.
         apply_homepage_typhoon_flood_card()
         apply_merged_category_links()
+        apply_category_section_anchors()
         apply_site_navigation()
         apply_category_page_breadcrumbs()
         subprocess.run(
@@ -86,6 +88,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         pages = [
             PUBLIC / "index.html",
             PUBLIC / "guide" / "index.html",
+            PUBLIC / "evacuation" / "index.html",
             PUBLIC / "flood" / "index.html",
             earthquake_articles[0],
             PUBLIC / "outage" / "index.html",
@@ -103,18 +106,21 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertEqual(MEGA_NAV_LABELS, extract_mega_nav_labels(nav), page)
             self.assertEqual(3, nav.count('class="site-nav__mega-group"'), page)
             self.assertEqual(3, nav.count('class="site-nav__submenu-toggle"'), page)
-            self.assertEqual(11, nav.count('class="site-nav__submenu-card"'), page)
-            self.assertEqual(11, nav.count('class="site-nav__submenu-caption"'), page)
+            self.assertEqual(12, nav.count('class="site-nav__submenu-card"'), page)
+            self.assertEqual(12, nav.count('class="site-nav__submenu-caption"'), page)
             self.assertIn('data-items="4"', nav, page)
-            self.assertIn('data-items="5"', nav, page)
+            self.assertIn('data-items="6"', nav, page)
             self.assertIn('data-items="2"', nav, page)
             self.assertNotIn('href="typhoon/index.html"', nav, page)
+            self.assertEqual(50, nav.count('class="site-nav__subcategory-link"'), page)
+            self.assertEqual(12, nav.count('class="site-nav__category-block"'), page)
 
         homepage_nav = extract_nav((PUBLIC / "index.html").read_text(encoding="utf-8"))
         for text in [
             "強風・大雨・洪水・高潮",
             "揺れ・津波・家具転倒",
-            "備蓄・持ち出し・家族の備え",
+            "備蓄・持ち出し・家族の基本",
+            "避難先・家族・健康・ペット",
             "冠水・車中泊・車載用品",
             "地域の災害史と備え",
             "よくある疑問から素早く確認",
@@ -125,6 +131,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             "topics/life/index.html",
             "topics/region-qa/index.html",
             "guide/index.html",
+            "evacuation/index.html",
             "flood/index.html",
             "earthquake/index.html",
             "outage/index.html",
@@ -135,6 +142,15 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             "goods/index.html",
             "region/index.html",
             "qa.html",
+        ]:
+            self.assertIn(f'href="{href}"', homepage_nav)
+
+        for href in [
+            "earthquake/index.html#home-safety",
+            "evacuation/index.html#pet-evacuation",
+            "goods/index.html#product-guides",
+            "region/index.html#kyushu-okinawa",
+            "qa.html#qa-care-pet",
         ]:
             self.assertIn(f'href="{href}"', homepage_nav)
 
@@ -154,13 +170,13 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertIn(href, disaster)
 
         self.assertIn("<h1>暮らし・備えから探す</h1>", life)
-        self.assertGreaterEqual(life.count('class="category-article-link'), 15)
-        self.assertIn('class="hub-category-jump" data-items="5"', life)
-        self.assertEqual(5, life.count('class="hub-category-jump__card"'))
-        for anchor in ["#hub-guide", "#hub-vehicle", "#hub-home", "#hub-insurance", "#hub-goods"]:
+        self.assertGreaterEqual(life.count('class="category-article-link'), 18)
+        self.assertIn('class="hub-category-jump" data-items="6"', life)
+        self.assertEqual(6, life.count('class="hub-category-jump__card"'))
+        for anchor in ["#hub-guide", "#hub-evacuation", "#hub-vehicle", "#hub-home", "#hub-insurance", "#hub-goods"]:
             self.assertIn(f'href="{anchor}"', life)
             self.assertIn(f'id="{anchor[1:]}"', life)
-        for href in ["../../guide/index.html", "../../vehicle/index.html", "../../home/index.html", "../../insurance/index.html", "../../goods/index.html"]:
+        for href in ["../../guide/index.html", "../../evacuation/index.html", "../../vehicle/index.html", "../../home/index.html", "../../insurance/index.html", "../../goods/index.html"]:
             self.assertIn(href, life)
 
         self.assertIn("<h1>地域・疑問から探す</h1>", region_qa)
@@ -172,7 +188,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         self.assertIn("地域別のすべての記事を見る", region_qa)
         self.assertIn("Q&amp;Aをすべて見る", region_qa)
         self.assertIn("../../region/index.html", region_qa)
-        self.assertIn("../../qa.html#qa-car-insurance", region_qa)
+        self.assertIn("../../qa.html#qa-car", region_qa)
 
     def test_combined_typhoon_flood_page_is_single_normal_entry(self):
         page = PUBLIC / "flood" / "index.html"
