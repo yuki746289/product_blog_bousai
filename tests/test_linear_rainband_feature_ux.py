@@ -70,13 +70,13 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
             '<html><head><meta name="description" content="old"><title>old</title></head>'
             '<body><nav class="breadcrumb">old</nav><h1>old</h1>'
             '<p class="article-lead">old</p><nav class="feature-nav"></nav>'
-            '<h2>まず見る：線状降水帯の歴史を5つの数字で整理</h2></body></html>'
+            '<h2>線状降水帯の主な事例とデータ</h2></body></html>'
         )
         actual = enhance_feature_page(sample, "B067")
         self.assertIn("<title>線状降水帯とは？", actual)
         self.assertIn("<h1>線状降水帯とは？", actual)
         self.assertIn("九州・関東甲信・中国・四国・東海", actual)
-        self.assertIn("まず見る：線状降水帯を5つの数字で整理", actual)
+        self.assertIn("線状降水帯の主な事例とデータ", actual)
         self.assertIn('id="linear-rainband-region-panel"', actual)
 
     def test_category_hubs_gain_feature_entry_points(self):
