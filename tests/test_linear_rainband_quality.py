@@ -1,6 +1,8 @@
 from pathlib import Path
 import unittest
 
+from scripts import sync_previews_from_markdown as preview_sync
+
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTICLE_DIR = ROOT / "content" / "articles"
@@ -57,6 +59,11 @@ class LinearRainbandQualityTest(unittest.TestCase):
         pillar = (ARTICLE_DIR / "B067_linear_rainband_feature.md").read_text(encoding="utf-8")
         self.assertIn("線状降水帯発生情報＝警戒レベル5ではない", pillar)
         self.assertIn("レベル4までに避難する", pillar)
+
+    def test_all_linear_rainband_articles_are_full_body_and_lead_sync_targets(self):
+        expected = {f"B{i:03d}" for i in range(67, 78)}
+        self.assertTrue(expected.issubset(preview_sync.SYNC_ARTICLE_IDS))
+        self.assertTrue(expected.issubset(preview_sync.LEAD_SYNC_ARTICLE_IDS))
 
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
