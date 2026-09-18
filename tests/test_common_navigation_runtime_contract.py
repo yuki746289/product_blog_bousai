@@ -59,7 +59,7 @@ class CommonNavigationRuntimeContractTests(unittest.TestCase):
         self.assertIn('href="index.html"><strong>地域別</strong>', nav)
         self.assertEqual(1, nav.count("<strong>地域別</strong>"))
         self.assertEqual(3, nav.count('class="site-nav__mega-group"'))
-        self.assertEqual(11, nav.count('class="site-nav__submenu-card"'))
+        self.assertEqual(12, nav.count('class="site-nav__submenu-card"'))
 
     def test_current_navigation_state_uses_resolved_paths(self) -> None:
         js = COMMON_JS.read_text(encoding="utf-8")
