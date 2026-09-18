@@ -77,9 +77,11 @@ affiliate: false
 
 線状降水帯発生情報は警戒レベル5を意味するものではなく、警戒レベル4相当以上の状況で発表される補足情報です。危険な場所では発生情報を待たず、避難指示などに応じて行動します。
 
-現在の情報体系は[線状降水帯はいつから使われた？](special/linear-rainband/information-history.html)で整理しています。
+現在の情報体系は、情報制度ページで整理しています。
 
 ## 関連ページ
+
+- [線状降水帯の情報制度と警戒レベル](special/linear-rainband/information-history.html)
 
 - [線状降水帯が多い地域はどこ？](special/linear-rainband/regions.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
