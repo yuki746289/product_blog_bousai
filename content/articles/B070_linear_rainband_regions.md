@@ -110,9 +110,9 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 気象庁「気象業務はいま2024」特集1
-- 気象庁「線状降水帯の事例」
-- 気象庁「平成30年7月豪雨」
-- 気象庁「梅雨前線及び台風第2号による大雨」
-- 気象庁「梅雨前線と低気圧による大雨（2024年7月）」
-- 気象庁「低気圧と前線による大雨（2024年9月）」
+- [気象庁「気象業務はいま2024」特集1](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「平成30年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2018/20180713/20180713.html)
+- [気象庁「梅雨前線及び台風第2号による大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/20230623.html)
+- [気象庁「梅雨前線と低気圧による大雨（2024年7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20240903/20240903.html)
+- [気象庁「低気圧と前線による大雨（2024年9月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241029/20241029.html)
