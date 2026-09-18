@@ -64,7 +64,9 @@ class LinearRainbandRegionalArticleTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertIn("半日前", text)
             self.assertIn("直前予測", text)
-            self.assertIn("発生情報", text)
+            self.assertIn("気象防災速報（線状降水帯発生）", text)
+            self.assertIn("警戒レベル4相当以上", text)
+            self.assertIn("警戒レベル5", text)
             self.assertIn("キキクル", text)
             self.assertIn("自治体", text)
 
@@ -74,8 +76,8 @@ class LinearRainbandRegionalArticleTests(unittest.TestCase):
         kanto = (ROOT / "content/articles/B074_linear_rainband_kanto_koshin.md").read_text(
             encoding="utf-8"
         )
-        self.assertIn("発生情報が出てから初めて避難を考えるものではありません", kyushu)
-        self.assertIn("発生情報が出たら動く", kanto)
+        self.assertIn("発生情報を待って避難を始めるのではなく", kyushu)
+        self.assertIn("自治体の避難情報、キキクル、河川情報を優先", kanto)
 
     def test_preview_noindex_is_only_a_preview_concern(self):
         for article_id in ("B073", "B074"):

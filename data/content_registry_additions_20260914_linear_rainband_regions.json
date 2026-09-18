@@ -3,7 +3,7 @@
     {
       "affiliate": false,
       "article_id": "B073",
-      "body_char_count_approx": 3166,
+      "body_char_count_approx": 2880,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -23,9 +23,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-kyushu",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LRR-001", "LRR-002", "LRR-003", "LRR-K01", "LRR-K02", "LRR-K03"],
+      "source_ids": [
+        "LRR-001",
+        "LRR-002",
+        "LRR-003",
+        "LRR-K01",
+        "LRR-K02",
+        "LRR-K03"
+      ],
       "source_path": "content/articles/B073_linear_rainband_kyushu.md",
       "status": "READY_TO_PUBLISH",
       "title": "九州の線状降水帯｜なぜ多い？九州北部豪雨など過去事例と大雨への備え",
@@ -35,12 +42,12 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     },
     {
       "affiliate": false,
       "article_id": "B074",
-      "body_char_count_approx": 3400,
+      "body_char_count_approx": 2973,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
@@ -60,9 +67,16 @@
       "review_checklist_status": "PASS",
       "risk_level": "standard",
       "slug": "linear-rainband-kanto-koshin",
-      "source_checked_at": "2026-09-14",
+      "source_checked_at": "2026-09-18",
       "source_count": 6,
-      "source_ids": ["LRR-001", "LRR-003", "LRR-C01", "LRR-C02", "LRR-C03", "LRR-002"],
+      "source_ids": [
+        "LRR-001",
+        "LRR-003",
+        "LRR-C01",
+        "LRR-C02",
+        "LRR-C03",
+        "LRR-002"
+      ],
       "source_path": "content/articles/B074_linear_rainband_kanto_koshin.md",
       "status": "READY_TO_PUBLISH",
       "title": "関東甲信の線状降水帯｜2015年関東・東北豪雨と2026年千葉豪雨から見る特徴",
@@ -72,7 +86,7 @@
       "image_relevance_reviewed_at": "2026-09-14",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-14",
-      "modified_at": "2026-09-14"
+      "modified_at": "2026-09-18"
     }
   ]
 }
