@@ -1,0 +1,58 @@
+# Created: 2026-09-18
+import unittest
+from pathlib import Path
+
+from bousai_blog.registry import load_registry
+from scripts.audit_article_content_metrics import audit
+
+ROOT = Path(__file__).resolve().parents[1]
+REGISTRY = ROOT / "data" / "content_registry.json"
+
+
+class PetDisasterClusterTests(unittest.TestCase):
+    def test_pet_articles_are_registered_under_b033(self):
+        registry = load_registry(REGISTRY)
+        by_id = {a["article_id"]: a for a in registry["articles"]}
+        for article_id in ("B078", "B079", "B080", "B081"):
+            self.assertIn(article_id, by_id)
+            self.assertEqual("pet", by_id[article_id]["category"])
+            self.assertEqual("B033", by_id[article_id]["parent_article_id"])
+            self.assertEqual("READY_TO_PUBLISH", by_id[article_id]["status"])
+
+    def test_pet_article_length_rules_pass(self):
+        rows = {row.article_id: row for row in audit()}
+        for article_id in ("B078", "B079", "B080", "B081"):
+            self.assertEqual("PASS", rows[article_id].length_status, article_id)
+
+    def test_shelter_article_distinguishes_accompanied_and_same_room_evacuation(self):
+        text = (ROOT / "content/articles/B078_shelter_pet_evacuation.md").read_text(encoding="utf-8")
+        self.assertIn("同じ室内で生活できるとは限りません", text)
+        self.assertIn("災害時の実際の開設状況を再確認", text)
+        self.assertIn("危険な場所へ戻らない", text)
+
+    def test_vehicle_article_keeps_human_and_pet_risks_and_alternatives(self):
+        text = (ROOT / "content/articles/B079_pet_vehicle_overnight.md").read_text(encoding="utf-8")
+        self.assertIn("エコノミークラス症候群", text)
+        self.assertIn("車中泊を選ぶ前に確認したい代替策", text)
+        self.assertIn("ペット側でも「車内温度」を最優先", text)
+        self.assertNotIn("何度までなら安全", text.replace("「何度までなら安全」という固定値は設けません", ""))
+
+    def test_pet_hub_links_all_cluster_articles(self):
+        html = (ROOT / "preview/category_pet.html").read_text(encoding="utf-8")
+        for article_id in ("B033", "B078", "B079", "B080", "B081"):
+            self.assertIn(f'data-article-id="{article_id}"', html)
+
+    def test_b033_links_to_pet_hub_and_children(self):
+        md = (ROOT / "content/articles/B033_pet_disaster_preparedness.md").read_text(encoding="utf-8")
+        for target in (
+            "/pet/index.html",
+            "/pet/shelter-pet-evacuation.html",
+            "/pet/pet-vehicle-overnight.html",
+            "/pet/dog-disaster-preparedness.html",
+            "/pet/cat-disaster-preparedness.html",
+        ):
+            self.assertIn(target, md)
+
+
+if __name__ == "__main__":
+    unittest.main()
