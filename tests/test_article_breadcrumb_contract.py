@@ -9,7 +9,7 @@ from pathlib import Path
 from scripts import sync_previews_core as _core
 from scripts.article_metadata import CATEGORY_BREADCRUMBS
 from scripts.sync_previews_from_markdown import (
-    ALL_ARTICLE_IDS,
+    BREADCRUMB_ARTICLE_IDS,
     CATEGORY_PREVIEW_BREADCRUMBS,
 )
 
@@ -41,8 +41,8 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
         self.by_id = {article["article_id"]: article for article in self.registry["articles"]}
 
     def test_all_articles_have_a_real_published_category_route(self):
-        self.assertTrue(ALL_ARTICLE_IDS.issubset(self.by_id))
-        for article_id in sorted(ALL_ARTICLE_IDS):
+        self.assertTrue(BREADCRUMB_ARTICLE_IDS.issubset(self.by_id))
+        for article_id in sorted(BREADCRUMB_ARTICLE_IDS):
             article = self.by_id[article_id]
             category = article.get("category")
             with self.subTest(article_id=article_id, category=category):
@@ -57,7 +57,7 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
                 self.assertTrue((ROOT / "preview" / preview_category).exists())
 
     def test_all_visible_breadcrumbs_link_the_category(self):
-        for article_id in sorted(ALL_ARTICLE_IDS):
+        for article_id in sorted(BREADCRUMB_ARTICLE_IDS):
             article = self.by_id[article_id]
             category_name, preview_category = CATEGORY_PREVIEW_BREADCRUMBS[article["category"]]
             preview_path = ROOT / article["preview_path"]
