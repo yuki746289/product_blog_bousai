@@ -223,14 +223,19 @@ class PublicBuildTests(unittest.TestCase):
         common_css = (PUBLIC / "bousai_common.css").read_text(encoding="utf-8")
         home_css = (PUBLIC / "bousai_home.css").read_text(encoding="utf-8")
 
-        self.assertIn('href="bousai_home.css"', home)
-        self.assertIn('src="bousai_home.js"', home)
+        self.assertIn('href="bousai_home.css?v=20260918-3"', home)
+        self.assertIn('src="bousai_home.js?v=20260918-3"', home)
+        self.assertIn('href="bousai_common.css?v=20260918-3"', home)
+        self.assertIn('src="bousai_common.js?v=20260918-3"', home)
         self.assertNotIn("bousai_home.css", article)
         self.assertNotIn("bousai_home.js", article)
         self.assertNotIn("initRealtimePanel", common_js)
         self.assertIn("initRealtimePanel", home_js)
         self.assertNotIn(".realtime-section", common_css)
         self.assertIn(".realtime-section", home_css)
+        self.assertIn("home-feature-spotlight", home)
+        self.assertIn("線状降水帯を知る", home)
+        self.assertIn("special/linear-rainband/index.html", home)
 
     def test_realtime_panel_avoids_scheduler_ui_copy(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
