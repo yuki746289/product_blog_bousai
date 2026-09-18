@@ -100,7 +100,7 @@ class RegionHistoryBatch2Tests(unittest.TestCase):
         region = self.text("preview/category_region.html")
         self.assertIn("8地域・8記事", region)
         for heading in ("北海道・東北", "関東", "中部", "近畿", "中国", "四国", "九州・沖縄"):
-            self.assertIn(f"<h2>{heading}</h2>", region)
+            self.assertRegex(region, rf"<h2(?:\\s+[^>]*)?>{re.escape(heading)}</h2>")
         for article_id in range(48, 57):
             if article_id in (51, 52):
                 continue
