@@ -1205,7 +1205,8 @@ th {
 .product-card-actions {
   margin: 14px 0 2px;
 }
-.amazon-link {
+.amazon-link,
+.product-official-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1220,8 +1221,14 @@ th {
   text-decoration: none;
 }
 .amazon-link:hover,
-.amazon-link:focus-visible {
+.amazon-link:focus-visible,
+.product-official-link:hover,
+.product-official-link:focus-visible {
   text-decoration: underline;
+}
+.product-official-link {
+  border-color: var(--primary-dark);
+  background: var(--primary);
 }
 .amazon-link-note {
   margin: 7px 0 0;
@@ -1298,7 +1305,8 @@ th {
   color: var(--text) !important;
   font-size: .82rem !important;
 }
-.product-recommendation .amazon-link {
+.product-recommendation .amazon-link,
+.product-recommendation .product-official-link {
   margin-top: 4px;
 }
 .product-price-note {
