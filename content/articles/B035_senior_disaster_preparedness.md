@@ -2,7 +2,7 @@
 article_id: B035
 slug: senior-disaster-preparedness
 title: 高齢者の防災は何を準備する？薬・補聴器・入れ歯・避難支援を確認
-category: guide
+category: evacuation
 content_role: practical
 risk_level: elevated
 status: READY_TO_PUBLISH
