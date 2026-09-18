@@ -1,5 +1,5 @@
 # Created: 2026-09-09 14:52 JST
-# Updated: 2026-09-10 12:05 JST
+# Updated: 2026-09-18 12:35 JST
 """Compatibility wrapper around the preview synchronizer.
 
 Markdown is the editorial source of truth. The reviewed core regenerates full
@@ -11,7 +11,7 @@ This wrapper therefore:
 
 1. extends full-body synchronization for reviewed articles omitted from the
    original core set;
-2. synchronizes the lead for every B001-B060 page from its Markdown intro;
+2. synchronizes leads for B001-B060 and the reviewed linear-rainband B067-B077 pages from Markdown;
 3. normalizes every article breadcrumb so its category is a real, clickable
    published category rather than an unlinked display-only label;
 4. inserts a breadcrumb when an older bespoke preview omitted it entirely;
