@@ -117,9 +117,9 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 気象庁「線状降水帯に関する情報」
-- 気象庁「新たな防災気象情報について（令和8年～）」
-- 気象庁「線状降水帯の事例」
-- 気象庁「気象業務はいま2024」特集1
-- 気象庁「予報が難しい現象について（線状降水帯による大雨）」
-- 気象庁「災害をもたらした気象事例」各年資料
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
+- [気象庁「新たな防災気象情報について（令和8年～）」](https://www.jma.go.jp/jma/kishou/know/bosai/keiho-update2026/)
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「気象業務はいま2024」特集1](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
+- [気象庁「予報が難しい現象について（線状降水帯による大雨）」](https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html)
+- [気象庁「災害をもたらした気象事例」各年資料](https://www.data.jma.go.jp/stats/data/bosai/report/index_1989.html)
