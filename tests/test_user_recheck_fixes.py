@@ -4,14 +4,20 @@ import unittest
 from pathlib import Path
 
 from scripts.article_diagrams import DIAGRAMS, inject_article_diagram, inject_article_image_zoom
-from scripts.sync_previews_from_markdown import EXTRA_SYNC_ARTICLE_IDS, SYNC_ARTICLE_IDS
+from scripts.sync_previews_from_markdown import (
+    EXTRA_SYNC_ARTICLE_IDS,
+    LINEAR_RAINBAND_ARTICLE_IDS,
+    SYNC_ARTICLE_IDS,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class UserRecheckFixTests(unittest.TestCase):
     def test_missing_markdown_articles_are_now_synchronized(self):
-        self.assertEqual({"B003", "B008", "B010", "B058"}, EXTRA_SYNC_ARTICLE_IDS)
+        self.assertTrue({"B003", "B008", "B010", "B058"}.issubset(EXTRA_SYNC_ARTICLE_IDS))
+        self.assertEqual({f"B{i:03d}" for i in range(67, 78)}, LINEAR_RAINBAND_ARTICLE_IDS)
+        self.assertTrue(LINEAR_RAINBAND_ARTICLE_IDS.issubset(EXTRA_SYNC_ARTICLE_IDS))
         self.assertTrue(EXTRA_SYNC_ARTICLE_IDS.issubset(SYNC_ARTICLE_IDS))
 
     def test_article_images_receive_one_accessible_zoom_behavior(self):
