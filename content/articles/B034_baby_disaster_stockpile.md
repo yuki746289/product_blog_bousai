@@ -2,7 +2,7 @@
 article_id: B034
 slug: baby-disaster-stockpile
 title: 赤ちゃんの防災備蓄｜ミルク・離乳食・おむつ・衛生用品をどう備える？
-category: guide
+category: evacuation
 content_role: practical
 risk_level: elevated
 status: READY_TO_PUBLISH
