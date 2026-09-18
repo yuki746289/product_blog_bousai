@@ -525,12 +525,249 @@
     }, { passive: true });
   }
 
+  function checklistStorageKey(list, index) {
+    var heading = list.previousElementSibling;
+    var headingText = heading && /^H[1-6]$/.test(heading.tagName)
+      ? (heading.textContent || "").replace(/\s+/g, " ").trim()
+      : "checklist";
+    return "bousai-checklist:v1:" + window.location.pathname + ":" + headingText + ":" + index;
+  }
+
+  function readChecklistState(key) {
+    try {
+      var raw = window.localStorage.getItem(key);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      return parsed && Array.isArray(parsed.checked) ? parsed : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeChecklistState(key, checked) {
+    try {
+      window.localStorage.setItem(key, JSON.stringify({
+        checked: checked,
+        updatedAt: new Date().toISOString()
+      }));
+    } catch (error) {
+      /* Checklist remains usable even when storage is unavailable. */
+    }
+  }
+
+  function copyTextFallback(text) {
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+      return navigator.clipboard.writeText(text);
+    }
+
+    return new Promise(function (resolve, reject) {
+      var textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        if (!document.execCommand("copy")) throw new Error("copy command failed");
+        resolve();
+      } catch (error) {
+        reject(error);
+      } finally {
+        textarea.remove();
+      }
+    });
+  }
+
+  function enhancePersistentChecklists() {
+    var headings = Array.prototype.slice.call(document.querySelectorAll("h2"));
+    var targetLists = [];
+
+    headings.forEach(function (heading) {
+      var headingText = (heading.textContent || "").replace(/\s+/g, " ").trim();
+      if (headingText !== "保存用チェックリスト") return;
+      var list = heading.nextElementSibling;
+      if (!list || !list.classList.contains("checklist")) return;
+      targetLists.push(list);
+    });
+
+    targetLists.forEach(function (list, listIndex) {
+      if (list.dataset.persistentChecklistEnhanced === "1") return;
+      list.dataset.persistentChecklistEnhanced = "1";
+      list.classList.add("interactive-checklist");
+
+      var items = Array.prototype.slice.call(list.querySelectorAll(":scope > li"));
+      if (!items.length) return;
+
+      var key = checklistStorageKey(list, listIndex);
+      var saved = readChecklistState(key);
+      var checkboxes = [];
+
+      items.forEach(function (item, itemIndex) {
+        var itemText = (item.textContent || "").replace(/\s+/g, " ").trim();
+        var content = document.createElement("span");
+        content.className = "interactive-checklist__text";
+        while (item.firstChild) content.appendChild(item.firstChild);
+
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "persistent-checklist-" + listIndex + "-" + itemIndex;
+        checkbox.setAttribute("aria-label", itemText);
+        if (saved && saved.checked[itemIndex]) checkbox.checked = true;
+
+        var label = document.createElement("label");
+        label.setAttribute("for", checkbox.id);
+        label.appendChild(checkbox);
+        label.appendChild(content);
+
+        item.classList.add("interactive-checklist__item");
+        item.appendChild(label);
+        checkboxes.push(checkbox);
+      });
+
+      var tools = document.createElement("div");
+      tools.className = "checklist-tools";
+
+      var summary = document.createElement("div");
+      summary.className = "checklist-tools__summary";
+
+      var progress = document.createElement("strong");
+      progress.className = "checklist-tools__progress";
+      progress.setAttribute("aria-live", "polite");
+
+      var storageNote = document.createElement("span");
+      storageNote.className = "checklist-tools__note";
+      storageNote.textContent = "チェック状況はこの端末に自動保存されます。";
+
+      summary.appendChild(progress);
+      summary.appendChild(storageNote);
+
+      var actions = document.createElement("div");
+      actions.className = "checklist-tools__actions";
+
+      var shareButton = document.createElement("button");
+      shareButton.type = "button";
+      shareButton.className = "checklist-tools__button checklist-tools__button--primary";
+      shareButton.textContent = "進捗を共有";
+
+      var resetButton = document.createElement("button");
+      resetButton.type = "button";
+      resetButton.className = "checklist-tools__button";
+      resetButton.textContent = "チェックをすべて外す";
+
+      var status = document.createElement("span");
+      status.className = "checklist-tools__status";
+      status.setAttribute("role", "status");
+      status.setAttribute("aria-live", "polite");
+
+      actions.appendChild(shareButton);
+      actions.appendChild(resetButton);
+      tools.appendChild(summary);
+      tools.appendChild(actions);
+      tools.appendChild(status);
+      list.parentNode.insertBefore(tools, list);
+
+      function checkedState() {
+        return checkboxes.map(function (checkbox) { return checkbox.checked; });
+      }
+
+      function updateProgress() {
+        var completed = checkboxes.filter(function (checkbox) { return checkbox.checked; }).length;
+        progress.textContent = completed + " / " + checkboxes.length + " 項目完了";
+        list.classList.toggle("is-complete", completed === checkboxes.length);
+      }
+
+      function saveProgress() {
+        writeChecklistState(key, checkedState());
+        updateProgress();
+      }
+
+      checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", saveProgress);
+      });
+
+      resetButton.addEventListener("click", function () {
+        checkboxes.forEach(function (checkbox) { checkbox.checked = false; });
+        saveProgress();
+        status.textContent = "チェックをすべて外しました。";
+        sendAnalyticsEvent("checklist_reset", {
+          page_path: window.location.pathname,
+          checklist_items: checkboxes.length
+        });
+      });
+
+      shareButton.addEventListener("click", function () {
+        var articleTitle = document.querySelector("h1");
+        var title = articleTitle ? (articleTitle.textContent || "").trim() : document.title;
+        var completedItems = [];
+        var remainingItems = [];
+
+        items.forEach(function (item, index) {
+          var itemText = (item.querySelector(".interactive-checklist__text") || item).textContent
+            .replace(/\s+/g, " ")
+            .trim();
+          if (checkboxes[index].checked) completedItems.push(itemText);
+          else remainingItems.push(itemText);
+        });
+
+        var lines = [
+          title,
+          "防災チェックリストの進捗: " + completedItems.length + " / " + items.length + " 項目完了"
+        ];
+        if (remainingItems.length) {
+          lines.push("", "未完了:");
+          remainingItems.forEach(function (item) { lines.push("□ " + item); });
+        } else {
+          lines.push("", "すべての項目を確認済みです。");
+        }
+        if (completedItems.length) {
+          lines.push("", "確認済み:");
+          completedItems.forEach(function (item) { lines.push("✓ " + item); });
+        }
+        var shareText = lines.join("\n");
+        var fallbackText = shareText + "\n\n" + window.location.href;
+
+        var sharePromise;
+        if (navigator.share) {
+          sharePromise = navigator.share({
+            title: title + "｜防災チェックリスト",
+            text: shareText,
+            url: window.location.href
+          });
+        } else {
+          sharePromise = copyTextFallback(fallbackText);
+        }
+
+        Promise.resolve(sharePromise).then(function () {
+          status.textContent = navigator.share
+            ? "チェックリストの共有画面を開きました。"
+            : "チェックリストをクリップボードにコピーしました。";
+          sendAnalyticsEvent("checklist_share", {
+            page_path: window.location.pathname,
+            checklist_completed: completedItems.length,
+            checklist_items: items.length
+          });
+        }).catch(function (error) {
+          if (error && error.name === "AbortError") return;
+          copyTextFallback(fallbackText).then(function () {
+            status.textContent = "共有用テキストをクリップボードにコピーしました。";
+          }).catch(function () {
+            status.textContent = "共有できませんでした。ブラウザの共有・コピー機能をご利用ください。";
+          });
+        });
+      });
+
+      updateProgress();
+    });
+  }
+
   function init() {
     ensureRegionNavLink();
     enhanceFontSizeControl();
     enhanceMobileNavigation();
     enhanceAccessibility();
     enhanceCategoryArticleListings();
+    enhancePersistentChecklists();
     bindImageFallbacks();
     bindTrackedLinks();
   }
