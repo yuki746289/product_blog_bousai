@@ -22,6 +22,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue((PUBLIC / "index.html").exists())
         self.assertTrue((PUBLIC / "qa.html").exists())
         self.assertTrue((PUBLIC / "guide" / "first-disaster-preparedness.html").exists())
+        self.assertTrue((PUBLIC / "evacuation" / "index.html").exists())
         self.assertTrue((PUBLIC / "pet" / "index.html").exists())
         self.assertTrue((PUBLIC / "pet" / "shelter-pet-evacuation.html").exists())
         self.assertTrue((PUBLIC / "pet" / "pet-vehicle-overnight.html").exists())
