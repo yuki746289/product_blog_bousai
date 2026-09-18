@@ -97,9 +97,11 @@ affiliate: false
 
 静岡の急流河川や伊豆の斜面、愛知の低地・都市部、岐阜の山地、三重の多雨地域では、優先して見る危険が違います。線状降水帯という一つの言葉にまとめず、**自分の場所で洪水・浸水・土砂のどれが高まっているか**を確認します。
 
-情報制度の詳細は[線状降水帯はいつから使われた？](special/linear-rainband/information-history.html)で整理しています。
+情報制度の詳細は、情報制度ページで整理しています。
 
 ## 関連ページ
+
+- [線状降水帯の情報制度と警戒レベル](special/linear-rainband/information-history.html)
 
 - [線状降水帯が多い地域はどこ？](special/linear-rainband/regions.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
