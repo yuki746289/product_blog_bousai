@@ -188,11 +188,11 @@ def region_panel() -> str:
     return (
         '<section class="feature-region-panel" id="linear-rainband-region-panel">'
         "<h2>地域から線状降水帯を見る</h2>"
-        "<p>全国傾向を確認した後、地方ごとの代表事例・地域差・防災情報の読み方へ進めます。</p>"
+        "<p>全国傾向を確認した後、地方ごとの主な事例・地域差・防災情報の確認ポイントへ進めます。</p>"
         '<div class="feature-region-grid">'
         + cards
         + "</div>"
-        '<p><a href="article_b070.html">地域別の全体像と高頻度地域を見る →</a></p>'
+        '<p><a href="article_b070.html">地域別の全体像と発生頻度が高い傾向を見る →</a></p>'
         "</section>"
     )
 
@@ -264,10 +264,6 @@ def enhance_feature_page(html: str, article_id: str) -> str:
             count=1,
             flags=re.DOTALL | re.IGNORECASE,
         )
-        html = html.replace(
-            "まず見る：線状降水帯の歴史を5つの数字で整理",
-            "まず見る：線状降水帯を5つの数字で整理",
-        )
     return html
 
 
@@ -291,7 +287,7 @@ def region_category_promo() -> str:
     return (
         '<section class="linear-feature-promo" id="linear-rainband-region-entry">'
         "<h2>線状降水帯を地域から見る</h2>"
-        "<p>災害史とは別に、線状降水帯の発生傾向と代表事例を地方別に整理した特集があります。</p>"
+        "<p>災害史とは別に、線状降水帯の発生傾向と主な事例を地方別に整理した特集があります。</p>"
         '<div class="linear-feature-promo__actions">'
         '<a href="article_b070.html">地域別の全体像を見る</a>'
         '<a href="article_b067.html">特集トップを見る</a>'
