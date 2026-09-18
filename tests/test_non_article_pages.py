@@ -33,6 +33,7 @@ PRODUCT_FILES = [
     "goods_toilet_hygiene.html",
     "goods_light_information.html",
     "goods_power_charging.html",
+    "goods_pet_evacuation.html",
 ]
 MEGA_NAV_LABELS = [
     "災害から探す",
