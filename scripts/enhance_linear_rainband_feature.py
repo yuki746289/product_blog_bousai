@@ -2,9 +2,10 @@
 # Updated: 2026-09-17 JST
 """Normalize the linear-rainband special feature's UX, navigation and discovery.
 
-The special pages are bespoke preview HTML, so the general Markdown preview
-synchronizer intentionally does not rebuild them. This pass keeps the feature
-scalable as regional child pages grow:
+The special pages keep bespoke framing and feature navigation, while reviewed
+Markdown now regenerates their article bodies. This pass restores and normalizes
+the feature UX after body synchronization and keeps it scalable as regional
+child pages grow:
 
 - keep the six core topics in one compact navigation;
 - put regional pages in a separate navigation/grid;
@@ -88,8 +89,12 @@ FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
 </style>"""
 
 NAV_RE = re.compile(
-    r'<nav\s+class=["\']feature-nav["\'][^>]*>.*?</nav>',
+    r'<nav\s+class=["\']feature-(?:region-)?nav["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
+)
+ARTICLE_BODY_OPEN_RE = re.compile(
+    r'(<div\s+class=["\'][^"\']*\barticle-body\b[^"\']*["\'][^>]*>)',
+    re.IGNORECASE,
 )
 FEATURE_GLOBAL_NAV_RE = re.compile(
     r'<nav\s+class=["\']feature-global-nav["\'][^>]*>.*?</nav>',
@@ -222,14 +227,28 @@ def breadcrumb(article_id: str) -> str:
     )
 
 
+def _ensure_feature_nav(html: str, nav: str, article_id: str) -> str:
+    if NAV_RE.search(html):
+        return NAV_RE.sub(nav, html, count=1)
+    if not ARTICLE_BODY_OPEN_RE.search(html):
+        raise ValueError(f"article-body not found while inserting feature nav: {article_id}")
+    return ARTICLE_BODY_OPEN_RE.sub(
+        lambda match: match.group(1) + "\n" + nav,
+        html,
+        count=1,
+    )
+
+
 def enhance_feature_page(html: str, article_id: str) -> str:
     html = _with_common_runtime(_with_style(html))
     html = BREADCRUMB_RE.sub(breadcrumb(article_id), html, count=1)
 
-    if article_id in {"B073", "B074", "B075", "B076", "B077"}:
-        html = NAV_RE.sub(region_nav(article_id), html, count=1)
-    else:
-        html = NAV_RE.sub(core_nav(article_id), html, count=1)
+    desired_nav = (
+        region_nav(article_id)
+        if article_id in {"B073", "B074", "B075", "B076", "B077"}
+        else core_nav(article_id)
+    )
+    html = _ensure_feature_nav(html, desired_nav, article_id)
 
     if article_id in {"B067", "B070"} and 'id="linear-rainband-region-panel"' not in html:
         marker = core_nav(article_id)
