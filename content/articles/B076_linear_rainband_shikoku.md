@@ -90,9 +90,11 @@ affiliate: false
 
 発生情報は警戒レベル5そのものではなく、警戒レベル4相当以上の状況で発表される補足情報です。夜間に危険度が上がる予報や、移動経路に危険箇所がある場合は、**雨が強くなる前・暗くなる前に動けるか**を自治体の避難情報と合わせて判断します。
 
-情報制度の詳細は[線状降水帯はいつから使われた？](special/linear-rainband/information-history.html)で確認できます。
+情報制度の詳細は、情報制度ページで確認できます。
 
 ## 関連ページ
+
+- [線状降水帯の情報制度と警戒レベル](special/linear-rainband/information-history.html)
 
 - [線状降水帯が多い地域はどこ？](special/linear-rainband/regions.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
