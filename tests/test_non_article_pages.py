@@ -168,8 +168,8 @@ class NonArticlePageReviewTest(unittest.TestCase):
         self.assertIn("地域別のすべての記事を見る", region_qa)
         self.assertIn("Q&amp;Aをすべて見る", region_qa)
         self.assertGreaterEqual(region_qa.count('class="category-article-link"'), 4)
-        self.assertIn("qa.html#qa-car-insurance", region_qa)
-        self.assertIn("qa.html#qa-home-fire-insurance", region_qa)
+        self.assertIn("qa.html#qa-car", region_qa)
+        self.assertIn("qa.html#qa-home-insurance", region_qa)
 
     def test_typhoon_flood_category_contains_22_unique_articles(self):
         html = read("category_flood.html")
