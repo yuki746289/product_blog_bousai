@@ -26,6 +26,7 @@ HTML_HREF_RE = re.compile(r"\bhref=[\"']([^\"']+)[\"']", re.IGNORECASE)
 # point at pre-build filenames. Normalize both representations to preview names.
 STATIC_PRODUCTION_TO_PREVIEW = {
     "guide/index.html": "category_guide.html",
+    "pet/index.html": "category_pet.html",
     "typhoon/index.html": "category_typhoon.html",
     "flood/index.html": "category_flood.html",
     "earthquake/index.html": "category_earthquake.html",
