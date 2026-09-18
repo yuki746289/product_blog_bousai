@@ -640,7 +640,16 @@
 
       var storageNote = document.createElement("span");
       storageNote.className = "checklist-tools__note";
-      storageNote.textContent = "チェック状況はこの端末に自動保存されます。";
+
+      function storageNoteText(state) {
+        var base = "チェック状況はこの端末に自動保存されます。";
+        if (!state || !state.updatedAt) return base;
+        var updated = new Date(state.updatedAt);
+        if (Number.isNaN(updated.getTime())) return base;
+        return base + " 最終更新: " + updated.toLocaleDateString("ja-JP");
+      }
+
+      storageNote.textContent = storageNoteText(saved);
 
       summary.appendChild(progress);
       summary.appendChild(storageNote);
@@ -681,7 +690,9 @@
       }
 
       function saveProgress() {
+        var now = new Date();
         writeChecklistState(key, checkedState());
+        storageNote.textContent = "チェック状況はこの端末に自動保存されます。 最終更新: " + now.toLocaleDateString("ja-JP");
         updateProgress();
       }
 
