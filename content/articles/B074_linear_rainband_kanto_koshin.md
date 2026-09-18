@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-14
+source_checked_at: 2026-09-18
 next_review_at: 2027-03-14
 affiliate: false
 ---
@@ -80,9 +80,11 @@ affiliate: false
 
 実際に**「気象防災速報（線状降水帯発生）」**が出るのは、線状降水帯が発生し、大雨災害の危険度が急激に高まっている状況です。これは警戒レベル5そのものではなく、警戒レベル4相当以上の状況で発表される補足情報です。自治体の避難情報、キキクル、河川情報を優先して行動を判断します。
 
-情報制度の違いは[線状降水帯はいつから使われた？](special/linear-rainband/information-history.html)で確認できます。
+情報制度の違いは、情報制度ページで確認できます。
 
 ## 関連ページ
+
+- [線状降水帯の情報制度と警戒レベル](special/linear-rainband/information-history.html)
 
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 - [地域別の全国概観](special/linear-rainband/regions.html)
