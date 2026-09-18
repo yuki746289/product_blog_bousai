@@ -91,6 +91,7 @@ SITE_NAV_LINKS = tuple(
 # typhoon/flood taxonomies now resolve to the same user-facing category.
 CATEGORY_PREVIEW_BREADCRUMBS = {
     "guide": ("防災入門", "category_guide.html"),
+    "pet": ("ペット防災", "category_pet.html"),
     "water-outage": ("停電・断水", "category_outage.html"),
     "blackout": ("停電・断水", "category_outage.html"),
     "flood": ("台風・水害", "category_flood.html"),
@@ -109,6 +110,7 @@ CATEGORY_PREVIEW_BREADCRUMBS = {
 # breadcrumb parents.
 CATEGORY_PAGE_HIERARCHY = {
     "category_guide.html": (None, None, "防災入門"),
+    "category_pet.html": (None, None, "ペット防災"),
     "category_typhoon.html": (None, None, "台風"),
     "category_flood.html": (None, None, "台風・水害"),
     "category_earthquake.html": (None, None, "地震"),
