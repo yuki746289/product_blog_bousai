@@ -2,7 +2,7 @@
 article_id: B066
 slug: dementia-disaster-preparedness
 title: 認知症の人の防災｜避難前の準備・持ち物・避難所で伝えたいこと
-category: guide
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH
