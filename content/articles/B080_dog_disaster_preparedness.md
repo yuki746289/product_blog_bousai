@@ -2,7 +2,7 @@
 article_id: B080
 slug: dog-disaster-preparedness
 title: 犬の防災は何を準備する？避難時のリード・ケージ・持ち出し品
-category: pet
+category: evacuation
 content_role: practical
 risk_level: standard
 status: READY_TO_PUBLISH
