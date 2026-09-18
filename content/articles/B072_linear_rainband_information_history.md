@@ -114,9 +114,9 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 気象庁「線状降水帯に関する情報」
-- 気象庁「新たな防災気象情報について（令和8年～）」
-- 気象庁「線状降水帯の事例」
-- 気象庁「大雨事例等における防災気象情報の精度検証と発表基準の改善」
-- 気象庁「気象業務はいま2018」「気象業務はいま2024」「気象業務はいま2026」
-- 気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
+- [気象庁「新たな防災気象情報について（令和8年～）」](https://www.jma.go.jp/jma/kishou/know/bosai/keiho-update2026/)
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「大雨事例等における防災気象情報の精度検証と発表基準の改善」](https://www.jma.go.jp/jma/kishou/know/jirei/index.html)
+- [気象庁「気象業務はいま2018」](https://www.jma.go.jp/jma/kishou/books/hakusho/2018/index2.html) / [「気象業務はいま2024」](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index4.html) / [「気象業務はいま2026」](https://www.jma.go.jp/jma/kishou/books/hakusho/2026/index6.html)
+- [気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html)
