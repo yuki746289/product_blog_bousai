@@ -2,7 +2,7 @@
 article_id: B078
 slug: shelter-pet-evacuation
 title: ペットは避難所に入れる？同行避難・同伴避難・同室避難の違いと確認方法
-category: pet
+category: evacuation
 content_role: practical
 risk_level: high
 status: READY_TO_PUBLISH
