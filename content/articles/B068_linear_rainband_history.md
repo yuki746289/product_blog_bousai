@@ -76,9 +76,9 @@ risk_level: standard
 
 ## 公的情報・参考資料
 
-- 気象庁「線状降水帯の事例」
-- 気象庁「予報が難しい現象について（線状降水帯による大雨）」
-- 気象庁「災害をもたらした気象事例」
-- 広島地方気象台「平成26年8月19日から20日にかけての広島県の大雨について」
-- 気象庁「平成30年7月豪雨」「令和2年7月豪雨」
-- 気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」
+- [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
+- [気象庁「予報が難しい現象について（線状降水帯による大雨）」](https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html)
+- [気象庁「災害をもたらした気象事例」](https://www.data.jma.go.jp/stats/data/bosai/report/index_1989.html)
+- [気象庁「前線による大雨（2014年8月15日～20日）」](https://www.data.jma.go.jp/stats/data/bosai/report/2014/20140815/20140815.html)
+- [気象庁「平成30年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2018/20180713/20180713.html) / [「令和2年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2020/20200811/20200811.html)
+- [気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html)
