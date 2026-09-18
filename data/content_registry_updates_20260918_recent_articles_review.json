@@ -39,17 +39,23 @@
     {
       "article_id": "B079",
       "last_reviewed_at": "2026-09-18",
-      "review_checklist_last_checked_at": "2026-09-18"
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 3153,
+      "modified_at": "2026-09-18"
     },
     {
       "article_id": "B080",
       "last_reviewed_at": "2026-09-18",
-      "review_checklist_last_checked_at": "2026-09-18"
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 2721,
+      "modified_at": "2026-09-18"
     },
     {
       "article_id": "B081",
       "last_reviewed_at": "2026-09-18",
-      "review_checklist_last_checked_at": "2026-09-18"
+      "review_checklist_last_checked_at": "2026-09-18",
+      "body_char_count_approx": 2696,
+      "modified_at": "2026-09-18"
     }
   ]
 }
