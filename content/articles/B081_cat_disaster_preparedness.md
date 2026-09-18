@@ -2,7 +2,7 @@
 article_id: B081
 slug: cat-disaster-preparedness
 title: 猫の防災は何を準備する？キャリー・猫砂・脱走対策と避難
-category: pet
+category: evacuation
 content_role: practical
 risk_level: standard
 status: READY_TO_PUBLISH
