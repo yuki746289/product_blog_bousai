@@ -46,8 +46,8 @@ LINEAR_RAINBAND_ARTICLE_IDS = {f"B{i:03d}" for i in range(67, 78)}
 EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"} | LINEAR_RAINBAND_ARTICLE_IDS
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
-ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
-LEAD_SYNC_ARTICLE_IDS = ALL_ARTICLE_IDS | LINEAR_RAINBAND_ARTICLE_IDS
+ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 82)}
+LEAD_SYNC_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)} | LINEAR_RAINBAND_ARTICLE_IDS
 
 # Three discovery hubs keep the always-visible header compact. Each hub is a
 # normal clickable page; its child categories are also reachable directly from
@@ -57,43 +57,167 @@ SITE_NAV_GROUPS = (
         "災害から探す",
         "category_disaster_situations.html",
         (
-            ("台風・水害", "category_flood.html", "強風・大雨・洪水・高潮"),
-            ("地震", "category_earthquake.html", "揺れ・津波・家具転倒"),
-            ("停電・断水", "category_outage.html", "電源・飲料水・携帯トイレ"),
-            ("被災後・復旧", "category_post_disaster.html", "記録・片付け・保険確認"),
+            (
+                "台風・水害",
+                "category_flood.html",
+                "強風・大雨・洪水・高潮",
+                (
+                    ("台風接近前に備える", "category_flood.html#typhoon-preparation"),
+                    ("洪水・土砂災害から避難する", "category_flood.html#flood-evacuation"),
+                    ("自宅・マンションを守る", "category_flood.html#home-protection"),
+                    ("車と水害", "category_flood.html#vehicle-flood"),
+                ),
+            ),
+            (
+                "地震",
+                "category_earthquake.html",
+                "揺れ・津波・家具転倒",
+                (
+                    ("まず確認する", "category_earthquake.html#earthquake-start"),
+                    ("家の中を安全にする", "category_earthquake.html#home-safety"),
+                    ("津波から避難する", "category_earthquake.html#tsunami-evacuation"),
+                    ("地震後の生活", "category_earthquake.html#after-earthquake"),
+                ),
+            ),
+            (
+                "停電・断水",
+                "category_outage.html",
+                "電源・飲料水・携帯トイレ",
+                (
+                    ("まず確認する", "category_outage.html#outage-start"),
+                    ("停電中の生活・健康", "category_outage.html#outage-living"),
+                    ("情報・電源を確保する", "category_outage.html#power-information"),
+                    ("水・食料を備える", "category_outage.html#water-food"),
+                ),
+            ),
+            (
+                "被災後・復旧",
+                "category_post_disaster.html",
+                "記録・片付け・保険確認",
+                (
+                    ("浸水後にすること", "category_post_disaster.html#flood-cleanup"),
+                    ("住宅・家財の被害", "category_post_disaster.html#home-damage"),
+                    ("車の被害", "category_post_disaster.html#vehicle-damage"),
+                ),
+            ),
         ),
     ),
     (
         "暮らし・備えから探す",
         "category_life.html",
         (
-            ("防災入門", "category_guide.html", "備蓄・持ち出し・家族の備え"),
-            ("車と災害", "category_vehicle.html", "冠水・車中泊・車載用品"),
-            ("住宅と災害", "category_home.html", "浸水・マンション・家具"),
-            ("保険・お金", "category_insurance.html", "火災保険・地震保険・補償"),
-            ("防災グッズ", "category_goods.html", "電源・ラジオ・衛生用品"),
+            (
+                "防災入門",
+                "category_guide.html",
+                "備蓄・持ち出し・家族の基本",
+                (
+                    ("まず始める", "category_guide.html#guide-start"),
+                    ("備蓄を整える", "category_guide.html#stockpile"),
+                    ("家族で連絡方法を決める", "category_guide.html#family-contact"),
+                ),
+            ),
+            (
+                "避難・避難生活",
+                "category_evacuation.html",
+                "避難先・家族・健康・ペット",
+                (
+                    ("避難先・避難方法を選ぶ", "category_evacuation.html#choose-evacuation"),
+                    ("赤ちゃん・妊産婦と避難する", "category_evacuation.html#baby-pregnancy"),
+                    ("高齢者・認知症・常用薬", "category_evacuation.html#care-health"),
+                    ("女性の衛生・プライバシー", "category_evacuation.html#womens-needs"),
+                    ("ペットと避難する", "category_evacuation.html#pet-evacuation"),
+                ),
+            ),
+            (
+                "車と災害",
+                "category_vehicle.html",
+                "冠水・車中泊・車載用品",
+                (
+                    ("大雨時の運転・駐車", "category_vehicle.html#driving-parking"),
+                    ("車両の損害と保険", "category_vehicle.html#vehicle-insurance"),
+                    ("車内の備え・避難生活", "category_vehicle.html#vehicle-shelter"),
+                ),
+            ),
+            (
+                "住宅と災害",
+                "category_home.html",
+                "浸水・マンション・家具",
+                (
+                    ("大雨・台風への住宅対策", "category_home.html#flood-home"),
+                    ("地震への住宅対策", "category_home.html#earthquake-home"),
+                    ("損害・被災後", "category_home.html#home-recovery"),
+                ),
+            ),
+            (
+                "保険・お金",
+                "category_insurance.html",
+                "火災保険・地震保険・補償",
+                (
+                    ("保険会社を比較する", "category_insurance.html#insurance-compare"),
+                    ("水害と保険", "category_insurance.html#flood-insurance"),
+                    ("台風と保険", "category_insurance.html#typhoon-insurance"),
+                    ("地震と保険", "category_insurance.html#earthquake-insurance"),
+                ),
+            ),
+            (
+                "防災グッズ",
+                "category_goods.html",
+                "電源・ラジオ・衛生用品",
+                (
+                    ("水・食料・トイレ", "category_goods.html#water-food-toilet"),
+                    ("照明・情報・電源", "category_goods.html#light-information-power"),
+                    ("車載防災用品", "category_goods.html#vehicle-goods"),
+                    ("商品を用途別に選ぶ", "category_goods.html#product-guides"),
+                ),
+            ),
         ),
     ),
     (
         "地域・疑問から探す",
         "category_region_qa.html",
         (
-            ("地域別", "category_region.html", "地域の災害史と備え"),
-            ("Q&A", "qa.html", "よくある疑問から素早く確認"),
+            (
+                "地域別",
+                "category_region.html",
+                "地域の災害史と備え",
+                (
+                    ("北海道・東北", "category_region.html#hokkaido-tohoku"),
+                    ("関東", "category_region.html#kanto"),
+                    ("中部", "category_region.html#chubu"),
+                    ("近畿", "category_region.html#kinki"),
+                    ("中国", "category_region.html#chugoku"),
+                    ("四国", "category_region.html#shikoku"),
+                    ("九州・沖縄", "category_region.html#kyushu-okinawa"),
+                ),
+            ),
+            (
+                "Q&A",
+                "qa.html",
+                "よくある疑問から素早く確認",
+                (
+                    ("台風・大雨・避難", "qa.html#qa-typhoon-rain"),
+                    ("停電・断水・備蓄", "qa.html#qa-outage"),
+                    ("住宅・保険", "qa.html#qa-home-insurance"),
+                    ("車と災害", "qa.html#qa-car"),
+                    ("要配慮者・ペット", "qa.html#qa-care-pet"),
+                    ("防災バッグ・防災用品", "qa.html#qa-goods"),
+                ),
+            ),
         ),
     ),
 )
 SITE_NAV_LINKS = tuple(
     (label, href)
     for _group_label, _hub, links in SITE_NAV_GROUPS
-    for label, href, _caption in links
+    for label, href, _caption, _sections in links
 )
 
 # Canonical visible article-category destinations in preview. Both internal
 # typhoon/flood taxonomies now resolve to the same user-facing category.
 CATEGORY_PREVIEW_BREADCRUMBS = {
     "guide": ("防災入門", "category_guide.html"),
-    "pet": ("ペット防災", "category_pet.html"),
+    "evacuation": ("避難・避難生活", "category_evacuation.html"),
+    "pet": ("避難・避難生活", "category_evacuation.html"),
     "water-outage": ("停電・断水", "category_outage.html"),
     "blackout": ("停電・断水", "category_outage.html"),
     "flood": ("台風・水害", "category_flood.html"),
@@ -112,7 +236,8 @@ CATEGORY_PREVIEW_BREADCRUMBS = {
 # breadcrumb parents.
 CATEGORY_PAGE_HIERARCHY = {
     "category_guide.html": (None, None, "防災入門"),
-    "category_pet.html": (None, None, "ペット防災"),
+    "category_evacuation.html": (None, None, "避難・避難生活"),
+    "category_pet.html": ("避難・避難生活", "category_evacuation.html", "ペット防災"),
     "category_typhoon.html": (None, None, "台風"),
     "category_flood.html": (None, None, "台風・水害"),
     "category_earthquake.html": (None, None, "地震"),
@@ -123,6 +248,86 @@ CATEGORY_PAGE_HIERARCHY = {
     "category_insurance.html": (None, None, "保険・お金"),
     "category_goods.html": (None, None, "防災グッズ"),
     "category_region.html": (None, None, "地域別"),
+}
+
+CATEGORY_SECTION_ANCHORS = {
+    "category_guide.html": {
+        "まず読む記事": "guide-start",
+        "備蓄を整える": "stockpile",
+        "家族で連絡方法を決める": "family-contact",
+        "火山・降灰が起きたとき": "volcano",
+    },
+    "category_evacuation.html": {
+        "避難先・避難方法を選ぶ": "choose-evacuation",
+        "赤ちゃん・妊産婦と避難する": "baby-pregnancy",
+        "高齢者・認知症・常用薬に備える": "care-health",
+        "女性の衛生・プライバシー": "womens-needs",
+        "ペットと避難する": "pet-evacuation",
+    },
+    "category_flood.html": {
+        "台風接近前・強風・高潮": "typhoon-preparation",
+        "洪水・河川氾濫・土砂災害": "flood-evacuation",
+        "自宅・マンションを守る": "home-protection",
+        "車と水害": "vehicle-flood",
+        "被災後・保険": "recovery-insurance",
+    },
+    "category_earthquake.html": {
+        "まず読む記事": "earthquake-start",
+        "家の中を安全にする": "home-safety",
+        "津波から避難する": "tsunami-evacuation",
+        "地震後の生活に備える": "after-earthquake",
+        "外出先で被災したとき": "away-from-home",
+    },
+    "category_outage.html": {
+        "まず読む記事": "outage-start",
+        "停電中の生活・健康": "outage-living",
+        "情報・電源を確保する": "power-information",
+        "水・食料を備える": "water-food",
+    },
+    "category_post_disaster.html": {
+        "浸水後にまず確認": "flood-cleanup",
+        "住宅・家財の損害": "home-damage",
+        "車の損害": "vehicle-damage",
+    },
+    "category_vehicle.html": {
+        "大雨時の運転・駐車": "driving-parking",
+        "車両の損害と保険": "vehicle-insurance",
+        "車内の備え・避難生活": "vehicle-shelter",
+    },
+    "category_home.html": {
+        "大雨・台風への住宅対策": "flood-home",
+        "地震への住宅対策": "earthquake-home",
+        "損害・被災後": "home-recovery",
+    },
+    "category_insurance.html": {
+        "保険会社を比較する": "insurance-compare",
+        "水害と保険": "flood-insurance",
+        "台風と保険": "typhoon-insurance",
+        "地震と保険": "earthquake-insurance",
+    },
+    "category_goods.html": {
+        "水・食料・トイレ": "water-food-toilet",
+        "照明・情報・電源": "light-information-power",
+        "車載防災用品": "vehicle-goods",
+        "商品を用途別に選ぶ": "product-guides",
+    },
+    "category_region.html": {
+        "北海道・東北": "hokkaido-tohoku",
+        "関東": "kanto",
+        "中部": "chubu",
+        "近畿": "kinki",
+        "中国": "chugoku",
+        "四国": "shikoku",
+        "九州・沖縄": "kyushu-okinawa",
+    },
+    "qa.html": {
+        "車と災害": "qa-car",
+        "住宅・保険": "qa-home-insurance",
+        "台風・大雨・避難": "qa-typhoon-rain",
+        "停電・断水・備蓄": "qa-outage",
+        "要配慮者・ペット": "qa-care-pet",
+        "防災バッグ・防災用品": "qa-goods",
+    },
 }
 
 BREADCRUMB_RE = re.compile(
@@ -149,6 +354,7 @@ HOME_TY_FLOOD_CARDS_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
+H2_RE = re.compile(r"<h2(?P<attrs>[^>]*)>(?P<body>.*?)</h2>", re.IGNORECASE | re.DOTALL)
 TAG_RE = re.compile(r"<[^>]+>")
 
 NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
@@ -191,9 +397,9 @@ NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
   top: calc(100% + 2px);
   left: 0;
   display: none;
-  width: min(720px, calc(100vw - 32px));
+  width: min(1000px, calc(100vw - 32px));
   padding: 12px;
-  gap: 9px;
+  gap: 10px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -201,36 +407,55 @@ NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
   white-space: normal;
 }
 .site-nav__mega-group[data-items="2"] .site-nav__submenu {
-  width: min(460px, calc(100vw - 32px));
+  width: min(760px, calc(100vw - 32px));
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .site-nav__mega-group[data-items="4"] .site-nav__submenu {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-.site-nav__mega-group[data-items="5"] .site-nav__submenu {
+.site-nav__mega-group[data-items="6"] .site-nav__submenu {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .site-nav__mega-group:nth-child(2) .site-nav__submenu { left: 50%; transform: translateX(-50%); }
 .site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; transform: none; }
+.site-nav__category-block {
+  min-width: 0;
+  padding: 10px 11px 11px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fff;
+}
 .site-nav__submenu-card {
   display: flex;
   min-width: 0;
-  min-height: 82px;
   flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  padding: 12px 13px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fff;
+  gap: 4px;
+  padding: 2px 2px 8px;
+  border-bottom: 1px solid var(--line);
   color: var(--text);
   line-height: 1.4;
 }
-.site-nav__submenu-card strong { font-size: .94rem; color: var(--primary-dark); }
-.site-nav__submenu-caption { display: block; font-size: .78rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
+.site-nav__submenu-card strong { font-size: .96rem; color: var(--primary-dark); }
+.site-nav__submenu-caption { display: block; font-size: .76rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
 .site-nav__submenu-card:hover,
 .site-nav__submenu-card:focus-visible,
-.site-nav__submenu-card[aria-current] { background: var(--primary-soft); border-color: rgba(23,107,104,.28); color: var(--primary-dark); }
+.site-nav__submenu-card[aria-current] { color: var(--primary-dark); }
+.site-nav__subcategories {
+  display: grid;
+  gap: 1px;
+  padding-top: 6px;
+}
+.site-nav__subcategory-link {
+  display: block;
+  padding: 6px 7px;
+  border-radius: 7px;
+  color: var(--text);
+  font-size: .82rem;
+  line-height: 1.35;
+}
+.site-nav__subcategory-link:hover,
+.site-nav__subcategory-link:focus-visible,
+.site-nav__subcategory-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
 .site-nav__mega-group:hover > .site-nav__submenu,
 .site-nav__mega-group:focus-within > .site-nav__submenu,
 .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
@@ -241,7 +466,8 @@ NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
 }
 .hub-category-jump[data-items="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .hub-category-jump[data-items="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.hub-category-jump[data-items="5"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hub-category-jump[data-items="5"],
+.hub-category-jump[data-items="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .hub-category-jump__card {
   display: flex;
   min-height: 92px;
@@ -266,7 +492,8 @@ NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .hub-category-jump[data-items="4"],
-  .hub-category-jump[data-items="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hub-category-jump[data-items="5"],
+  .hub-category-jump[data-items="6"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
   .site-nav.mobile-nav-enhanced { overflow: visible; }
@@ -313,15 +540,23 @@ NAV_GROUP_STYLE = """<style id="bousai-nav-group-styles">
   .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
   .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
   .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
-  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
-    min-height: 54px;
-    padding: 9px 10px;
+  .site-nav.mobile-nav-enhanced .site-nav__category-block {
+    padding: 6px 8px 9px;
     border: 0;
     border-bottom: 1px solid var(--line);
     border-radius: 0;
     background: transparent;
   }
-  .site-nav.mobile-nav-enhanced .site-nav__submenu-card:last-child { border-bottom: 0; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
+    min-height: 0;
+    padding: 7px 4px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__subcategories { padding: 4px 0 0 8px; }
+  .site-nav.mobile-nav-enhanced .site-nav__subcategory-link { padding: 8px 6px; }
   .site-nav.mobile-nav-enhanced .site-nav__submenu-caption { font-size: .76rem; }
   .hub-category-jump[data-items] { grid-template-columns: 1fr; }
   .hub-category-jump__card { min-height: 76px; padding: 12px 13px; }
@@ -509,15 +744,27 @@ def _site_nav_markup() -> str:
     chunks: list[str] = []
     for index, (group_label, group_href, links) in enumerate(SITE_NAV_GROUPS, start=1):
         submenu_id = f"site-nav-submenu-{index}"
-        child_links = "".join(
-            '<a class="site-nav__submenu-card" href="{href}">'
-            '<strong>{label}</strong><span class="site-nav__submenu-caption">{caption}</span></a>'.format(
-                href=href,
-                label=html_lib.escape(label),
-                caption=html_lib.escape(caption),
+        category_blocks: list[str] = []
+        for label, href, caption, sections in links:
+            section_links = "".join(
+                '<a class="site-nav__subcategory-link" href="{href}">{label}</a>'.format(
+                    href=section_href,
+                    label=html_lib.escape(section_label),
+                )
+                for section_label, section_href in sections
             )
-            for label, href, caption in links
-        )
+            category_blocks.append(
+                '<div class="site-nav__category-block">'
+                '<a class="site-nav__submenu-card" href="{href}">'
+                '<strong>{label}</strong><span class="site-nav__submenu-caption">{caption}</span></a>'
+                '<div class="site-nav__subcategories">{sections}</div>'
+                '</div>'.format(
+                    href=href,
+                    label=html_lib.escape(label),
+                    caption=html_lib.escape(caption),
+                    sections=section_links,
+                )
+            )
         chunks.append(
             f'<div class="site-nav__mega-group" data-group-label="{html_lib.escape(group_label)}" data-items="{len(links)}">'
             '<div class="site-nav__mega-head">'
@@ -526,7 +773,7 @@ def _site_nav_markup() -> str:
             f'aria-controls="{submenu_id}" aria-label="{html_lib.escape(group_label)}のカテゴリを開く">'
             '<span aria-hidden="true">⌄</span></button>'
             '</div>'
-            f'<div class="site-nav__submenu" id="{submenu_id}">{child_links}</div>'
+            f'<div class="site-nav__submenu" id="{submenu_id}">{"".join(category_blocks)}</div>'
             '</div>'
         )
     return '<nav class="site-nav" aria-label="メインナビゲーション">' + "".join(chunks) + "</nav>"
@@ -547,8 +794,41 @@ def _apply_nav_assets(html: str) -> str:
     return html.replace("</head>", NAV_GROUP_SCRIPT + "\n</head>", 1)
 
 
+def apply_category_section_anchors() -> list[str]:
+    """Give stable ids to category/Q&A sections used by the mega menu."""
+
+    preview_dir = _core.ROOT / "preview"
+    changed: list[str] = []
+
+    for filename, heading_map in CATEGORY_SECTION_ANCHORS.items():
+        path = preview_dir / filename
+        if not path.exists():
+            raise FileNotFoundError(f"section-anchor page missing: {path}")
+        html = path.read_text(encoding="utf-8")
+        found: set[str] = set()
+
+        def replace_heading(match: re.Match[str]) -> str:
+            visible = html_lib.unescape(TAG_RE.sub("", match.group("body"))).strip()
+            anchor = heading_map.get(visible)
+            if not anchor:
+                return match.group(0)
+            found.add(visible)
+            attrs = re.sub(r'\s+id=["\'][^"\']+["\']', "", match.group("attrs"), flags=re.I)
+            return f'<h2{attrs} id="{anchor}">{match.group("body")}</h2>'
+
+        updated = H2_RE.sub(replace_heading, html)
+        missing = set(heading_map) - found
+        if missing:
+            raise ValueError(f"section headings missing in {filename}: {sorted(missing)}")
+        if updated != html:
+            path.write_text(updated, encoding="utf-8")
+            changed.append(f"ANCHOR:{filename}")
+
+    return changed
+
+
 def apply_site_navigation() -> list[str]:
-    """Render three clickable hubs with responsive child-category cards."""
+    """Render three clickable hubs with category blocks and section links."""
     preview_dir = _core.ROOT / "preview"
     replacement = _site_nav_markup()
     changed: list[str] = []
@@ -630,6 +910,7 @@ def sync() -> list[str]:
     changed.extend(apply_article_breadcrumbs())
     changed.extend(apply_homepage_typhoon_flood_card())
     changed.extend(apply_merged_category_links())
+    changed.extend(apply_category_section_anchors())
     changed.extend(apply_site_navigation())
     changed.extend(apply_category_page_breadcrumbs())
     return sorted(set(changed))
