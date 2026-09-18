@@ -170,7 +170,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
             self.assertIn(href, disaster)
 
         self.assertIn("<h1>暮らし・備えから探す</h1>", life)
-        self.assertGreaterEqual(life.count('class="category-article-link'), 15)
+        self.assertGreaterEqual(life.count('class="category-article-link'), 18)
         self.assertIn('class="hub-category-jump" data-items="6"', life)
         self.assertEqual(6, life.count('class="hub-category-jump__card"'))
         for anchor in ["#hub-guide", "#hub-evacuation", "#hub-vehicle", "#hub-home", "#hub-insurance", "#hub-goods"]:
@@ -188,7 +188,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
         self.assertIn("地域別のすべての記事を見る", region_qa)
         self.assertIn("Q&amp;Aをすべて見る", region_qa)
         self.assertIn("../../region/index.html", region_qa)
-        self.assertIn("../../qa.html#qa-car-insurance", region_qa)
+        self.assertIn("../../qa.html#qa-car", region_qa)
 
     def test_combined_typhoon_flood_page_is_single_normal_entry(self):
         page = PUBLIC / "flood" / "index.html"
