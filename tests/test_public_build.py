@@ -172,7 +172,6 @@ class PublicBuildTests(unittest.TestCase):
             PUBLIC / "goods" / "water-food.html",
             PUBLIC / "goods" / "toilet-hygiene.html",
             PUBLIC / "goods" / "power-charging.html",
-            PUBLIC / "goods" / "pet-evacuation.html",
         ]
         for page in pages:
             html = page.read_text(encoding="utf-8")
@@ -279,6 +278,7 @@ class PublicBuildTests(unittest.TestCase):
             PUBLIC / "goods" / "toilet-hygiene.html",
             PUBLIC / "goods" / "light-information.html",
             PUBLIC / "goods" / "power-charging.html",
+            PUBLIC / "goods" / "pet-evacuation.html",
         ]
         for page in pages:
             html = page.read_text(encoding="utf-8")
