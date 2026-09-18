@@ -2,6 +2,8 @@
 # Updated: 2026-09-18 12:35 JST
 """Compatibility wrapper around the preview synchronizer.
 
+The shared navigation also assigns stable category-section anchors used by the desktop mega menu and mobile accordion.
+
 Markdown is the editorial source of truth. The reviewed core regenerates full
 article bodies only for pages where that is safe. Some preview pages retain
 bespoke hand-built bodies, but their public ``article-lead`` must still follow
