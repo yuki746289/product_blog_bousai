@@ -283,6 +283,19 @@ jobs:
           grep -q '商品情報より' "${tmp_product}"
           rm -f "${tmp_product}"
 
+          tmp_pet_goods="$(mktemp)"
+          fetch_public "goods/pet-evacuation.html" "${tmp_pet_goods}"
+          require_text "pet goods title" "ペット防災用品はどう選ぶ？" "${tmp_pet_goods}"
+          require_text "pet goods Amazon direct link" "B079MD6JMN" "${tmp_pet_goods}"
+          require_text "pet goods Richell" "キャンピングキャリーファインR" "${tmp_pet_goods}"
+          require_text "pet goods Necoichi" "ポータブルケージとトイレのセット" "${tmp_pet_goods}"
+          require_text "pet goods canonical" "<link rel=\"canonical\" href=\"${BASE_URL}goods/pet-evacuation.html\">" "${tmp_pet_goods}" fixed
+          if grep -q 'amazon.co.jp/s?k=' "${tmp_pet_goods}"; then
+            echo "Pet goods guide must use direct Amazon product links, but a search link remains."
+            exit 1
+          fi
+          rm -f "${tmp_pet_goods}"
+
           tmp_volcanic_goods="$(mktemp)"
           fetch_public "goods/volcanic-ash-protection.html" "${tmp_volcanic_goods}"
           grep -q "火山灰対策グッズの選び方" "${tmp_volcanic_goods}"
