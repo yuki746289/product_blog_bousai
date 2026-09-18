@@ -214,6 +214,27 @@ jobs:
           grep -q "線状降水帯を地域から見る" "${tmp_region_index}"
           rm -f "${tmp_region_index}"
 
+          tmp_pet_index="$(mktemp)"
+          fetch_public "pet/index.html" "${tmp_pet_index}"
+          grep -q "ペット防災" "${tmp_pet_index}"
+          grep -q "ペットは避難所に入れる？" "${tmp_pet_index}"
+          grep -q "ペットと車中泊避難しても大丈夫？" "${tmp_pet_index}"
+          rm -f "${tmp_pet_index}"
+
+          tmp_pet_shelter="$(mktemp)"
+          fetch_public "pet/shelter-pet-evacuation.html" "${tmp_pet_shelter}"
+          grep -q "同行避難" "${tmp_pet_shelter}"
+          grep -q "同じ室内で生活できるとは限りません" "${tmp_pet_shelter}"
+          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}pet/shelter-pet-evacuation.html\">" "${tmp_pet_shelter}"
+          grep -q 'data-generated="article-structured-data"' "${tmp_pet_shelter}"
+          rm -f "${tmp_pet_shelter}"
+
+          tmp_pet_vehicle="$(mktemp)"
+          fetch_public "pet/pet-vehicle-overnight.html" "${tmp_pet_vehicle}"
+          grep -q "エコノミークラス症候群" "${tmp_pet_vehicle}"
+          grep -q "車中泊以外の避難先" "${tmp_pet_vehicle}"
+          rm -f "${tmp_pet_vehicle}"
+
           tmp_product="$(mktemp)"
           fetch_public "goods/toilet-hygiene.html" "${tmp_product}"
           grep -q 'class="article-shell product-page"' "${tmp_product}"
