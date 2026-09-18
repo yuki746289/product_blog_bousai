@@ -217,11 +217,11 @@ jobs:
 
           tmp_linear="$(mktemp)"
           fetch_public "special/linear-rainband/index.html" "${tmp_linear}"
-          grep -q "線状降水帯とは？" "${tmp_linear}"
-          grep -q "地域から線状降水帯を見る" "${tmp_linear}"
-          grep -q "警戒レベル5" "${tmp_linear}"
-          grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}"
-          grep -q 'data-generated="article-structured-data"' "${tmp_linear}"
+          require_text "linear-rainband title" "線状降水帯とは？" "${tmp_linear}"
+          require_text "linear-rainband region navigation" "地域から線状降水帯を見る" "${tmp_linear}"
+          require_text "linear-rainband level 5 guidance" "警戒レベル5" "${tmp_linear}"
+          require_text "linear-rainband canonical" "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}" fixed
+          require_text "linear-rainband structured data" 'data-generated="article-structured-data"' "${tmp_linear}"
           rm -f "${tmp_linear}"
 
           tmp_linear_region="$(mktemp)"
