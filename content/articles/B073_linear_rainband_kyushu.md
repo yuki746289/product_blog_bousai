@@ -96,9 +96,9 @@ affiliate: false
 
 ## 公的情報・参考資料
 
-- 気象庁「気象業務はいま2024」特集1
-- 気象庁「平成29年7月九州北部豪雨」関連資料
-- 気象庁「予報が難しい現象について（線状降水帯による大雨）」
-- 気象庁「令和2年7月豪雨」
-- 気象庁「線状降水帯に関する情報」
-- 気象庁「線状降水帯による大雨の半日程度前からの呼びかけと実際の状況等」
+- [気象庁「気象業務はいま2024」特集1](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
+- [福岡管区気象台「平成29年7月九州北部豪雨」](https://www.data.jma.go.jp/fukuoka/gyomu/H29_hokubugouu.html)
+- [気象庁「予報が難しい現象について（線状降水帯による大雨）」](https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html)
+- [気象庁「令和2年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2020/20200811/20200811.html)
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
+- [気象庁「線状降水帯半日前予測・直前予測と実際の状況等」](https://www.jma.go.jp/jma/kishou/know/jirei/index.html)
