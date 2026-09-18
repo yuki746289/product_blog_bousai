@@ -42,10 +42,12 @@ except ImportError:  # direct script execution: python scripts/...
     import sync_previews_core as _core
     from sync_previews_core import *  # type: ignore # noqa: F401,F403
 
-EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"}
+LINEAR_RAINBAND_ARTICLE_IDS = {f"B{i:03d}" for i in range(67, 78)}
+EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"} | LINEAR_RAINBAND_ARTICLE_IDS
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
+LEAD_SYNC_ARTICLE_IDS = ALL_ARTICLE_IDS | LINEAR_RAINBAND_ARTICLE_IDS
 
 # Three discovery hubs keep the always-visible header compact. Each hub is a
 # normal clickable page; its child categories are also reachable directly from
@@ -416,16 +418,16 @@ def _replace_lead(preview: str, rendered: str, article_id: str, preview_path: Pa
 
 
 def apply_markdown_leads() -> list[str]:
-    """Synchronize every B001-B060 public lead from its Markdown introduction."""
+    """Synchronize reviewed public leads from their Markdown introductions."""
     registry = _core.load_registry(_core.REGISTRY)
     aliases = _core.preview_aliases(registry)
     by_id = {article["article_id"]: article for article in registry["articles"]}
-    missing = ALL_ARTICLE_IDS - set(by_id)
+    missing = LEAD_SYNC_ARTICLE_IDS - set(by_id)
     if missing:
         raise ValueError(f"registry missing article ids: {sorted(missing)}")
 
     changed: list[str] = []
-    for article_id in sorted(ALL_ARTICLE_IDS):
+    for article_id in sorted(LEAD_SYNC_ARTICLE_IDS):
         article = by_id[article_id]
         source_path = _core.ROOT / article["source_path"]
         preview_path = _core.ROOT / article["preview_path"]
