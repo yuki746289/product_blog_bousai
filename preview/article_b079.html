@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="description" content="ペットを理由に避難所を利用しにくい場合の車中泊について、人の熱中症・エコノミークラス症候群、ペットの暑さ対策、在宅避難や一時預かりなど代替策を整理します。"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点｜防災くらしガイド</title><link rel="stylesheet" href="bousai_common.css"><script src="bousai_common.js" defer></script><style id="bousai-nav-group-styles">
+.site-nav { overflow: visible; gap: 10px; }
+.site-nav__mega-group { position: relative; display: inline-block; }
+.site-nav__mega-head { display: flex; align-items: center; gap: 2px; }
+.site-nav__mega-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 7px 8px;
+  border-radius: 8px;
+}
+.site-nav__mega-link:hover,
+.site-nav__mega-link:focus-visible,
+.site-nav__mega-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav__submenu-toggle:hover,
+.site-nav__submenu-toggle:focus-visible,
+.site-nav__submenu-toggle[aria-expanded="true"] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle:focus-visible { outline: 3px solid rgba(23,107,104,.24); outline-offset: 2px; }
+.site-nav__submenu-toggle span { transition: transform .16s ease; }
+.site-nav__submenu-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.site-nav__submenu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 2px);
+  left: 0;
+  display: none;
+  width: min(720px, calc(100vw - 32px));
+  padding: 12px;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(31,42,48,.15);
+  white-space: normal;
+}
+.site-nav__mega-group[data-items="2"] .site-nav__submenu {
+  width: min(460px, calc(100vw - 32px));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="4"] .site-nav__submenu {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="5"] .site-nav__submenu {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.site-nav__mega-group:nth-child(2) .site-nav__submenu { left: 50%; transform: translateX(-50%); }
+.site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; transform: none; }
+.site-nav__submenu-card {
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  line-height: 1.4;
+}
+.site-nav__submenu-card strong { font-size: .94rem; color: var(--primary-dark); }
+.site-nav__submenu-caption { display: block; font-size: .78rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
+.site-nav__submenu-card:hover,
+.site-nav__submenu-card:focus-visible,
+.site-nav__submenu-card[aria-current] { background: var(--primary-soft); border-color: rgba(23,107,104,.28); color: var(--primary-dark); }
+.site-nav__mega-group:hover > .site-nav__submenu,
+.site-nav__mega-group:focus-within > .site-nav__submenu,
+.site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+.hub-category-jump {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+.hub-category-jump[data-items="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hub-category-jump[data-items="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hub-category-jump[data-items="5"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hub-category-jump__card {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31,42,48,.05);
+  color: var(--text);
+}
+.hub-category-jump__card strong { color: var(--primary-dark); font-size: 1rem; }
+.hub-category-jump__card span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.hub-category-jump__card:hover,
+.hub-category-jump__card:focus-visible { background: var(--primary-soft); border-color: rgba(23,107,104,.3); }
+.category-hub .category-section[id] { scroll-margin-top: 105px; }
+@media (min-width: 721px) and (max-width: 920px) {
+  .site-nav__mega-group[data-items] .site-nav__submenu {
+    width: min(620px, calc(100vw - 28px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hub-category-jump[data-items="4"],
+  .hub-category-jump[data-items="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .site-nav.mobile-nav-enhanced { overflow: visible; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-link {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-bottom: 0;
+    border-radius: 0;
+    font-weight: 800;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-toggle {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group[data-items] .site-nav__submenu {
+    position: static;
+    display: none;
+    width: auto;
+    min-width: 0;
+    padding: 6px 8px 9px 18px;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    background: #f8fafb;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
+    min-height: 54px;
+    padding: 9px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card:last-child { border-bottom: 0; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-caption { font-size: .76rem; }
+  .hub-category-jump[data-items] { grid-template-columns: 1fr; }
+  .hub-category-jump__card { min-height: 76px; padding: 12px 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__submenu-toggle span { transition: none; }
+}
+</style>
+<script id="bousai-mega-nav-script">
+(function () {
+  function setGroupState(group, expanded) {
+    if (!group) return;
+    var button = group.querySelector('.site-nav__submenu-toggle');
+    var isExpanded = Boolean(expanded);
+    group.classList.toggle('is-submenu-open', isExpanded);
+    if (button) {
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      var label = group.getAttribute('data-group-label') || 'カテゴリ';
+      button.setAttribute('aria-label', label + (isExpanded ? 'のカテゴリを閉じる' : 'のカテゴリを開く'));
+    }
+  }
+
+  function closeOtherGroups(current) {
+    document.querySelectorAll('.site-nav__mega-group.is-submenu-open').forEach(function (group) {
+      if (group !== current) setGroupState(group, false);
+    });
+  }
+
+  function initMegaNavigation() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.site-nav__mega-group'));
+    groups.forEach(function (group) {
+      var button = group.querySelector('.site-nav__submenu-toggle');
+      if (!button || button.dataset.megaNavBound === '1') return;
+      button.dataset.megaNavBound = '1';
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        closeOtherGroups(group);
+        setGroupState(group, !expanded);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      groups.forEach(function (group) {
+        if (!group.contains(event.target)) setGroupState(group, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var active = document.activeElement;
+      var activeGroup = active && active.closest ? active.closest('.site-nav__mega-group') : null;
+      groups.forEach(function (group) { setGroupState(group, false); });
+      if (activeGroup) {
+        var button = activeGroup.querySelector('.site-nav__submenu-toggle');
+        if (button) button.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaNavigation);
+  } else {
+    initMegaNavigation();
+  }
+})();
+</script>
+</head><body>
+<header class="site-header"><div class="header-inner"><div class="header-top"><a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a></div><nav class="site-nav" aria-label="メインナビゲーション"><div class="site-nav__mega-group" data-group-label="災害から探す" data-items="4"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_disaster_situations.html">災害から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-1" aria-label="災害から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-1"><a class="site-nav__submenu-card" href="category_flood.html"><strong>台風・水害</strong><span class="site-nav__submenu-caption">強風・大雨・洪水・高潮</span></a><a class="site-nav__submenu-card" href="category_earthquake.html"><strong>地震</strong><span class="site-nav__submenu-caption">揺れ・津波・家具転倒</span></a><a class="site-nav__submenu-card" href="category_outage.html"><strong>停電・断水</strong><span class="site-nav__submenu-caption">電源・飲料水・携帯トイレ</span></a><a class="site-nav__submenu-card" href="category_post_disaster.html"><strong>被災後・復旧</strong><span class="site-nav__submenu-caption">記録・片付け・保険確認</span></a></div></div><div class="site-nav__mega-group" data-group-label="暮らし・備えから探す" data-items="5"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_life.html">暮らし・備えから探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-2" aria-label="暮らし・備えから探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-2"><a class="site-nav__submenu-card" href="category_guide.html"><strong>防災入門</strong><span class="site-nav__submenu-caption">備蓄・持ち出し・家族の備え</span></a><a class="site-nav__submenu-card" href="category_vehicle.html"><strong>車と災害</strong><span class="site-nav__submenu-caption">冠水・車中泊・車載用品</span></a><a class="site-nav__submenu-card" href="category_home.html"><strong>住宅と災害</strong><span class="site-nav__submenu-caption">浸水・マンション・家具</span></a><a class="site-nav__submenu-card" href="category_insurance.html"><strong>保険・お金</strong><span class="site-nav__submenu-caption">火災保険・地震保険・補償</span></a><a class="site-nav__submenu-card" href="category_goods.html"><strong>防災グッズ</strong><span class="site-nav__submenu-caption">電源・ラジオ・衛生用品</span></a></div></div><div class="site-nav__mega-group" data-group-label="地域・疑問から探す" data-items="2"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_region_qa.html">地域・疑問から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-3" aria-label="地域・疑問から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-3"><a class="site-nav__submenu-card" href="category_region.html"><strong>地域別</strong><span class="site-nav__submenu-caption">地域の災害史と備え</span></a><a class="site-nav__submenu-card" href="qa.html"><strong>Q&amp;A</strong><span class="site-nav__submenu-caption">よくある疑問から素早く確認</span></a></div></div></nav></div></header>
+<div class="official-bar"><div class="official-bar__inner">車中泊には熱中症・エコノミークラス症候群などの健康リスクがあります。危険がある場合は自治体・医療機関等の案内を優先してください。</div></div>
+<main class="article-shell"><nav class="breadcrumb"><a href="index.html">トップ</a> &gt; <a href="category_pet.html">ペット防災</a> &gt; ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点</nav><article><header class="article-header"><span class="label">ペット防災</span><h1>ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点</h1><p class="article-lead">避難所でペットと同じ空間に入れない、あるいはペットの受入れができない場合に、車中泊を選ぶ飼い主がいます。しかし、<strong>車中泊は「ペットと一緒にいられる」一方で、人にもペットにも別の健康リスクが生じます</strong>。災害時の一時的な選択肢として考え、長期化を前提にしない準備が必要です。</p><div class="article-meta"><span>記事ID: B079</span><span>公的情報確認: 2026年9月18日</span><span>次回確認予定: 2027年3月</span></div></header><div class="article-body">
+<section class="key-points"><h2>結論：車中泊を「避難所の代わりにずっと続ける」前提にしない</h2>
+<ul class="checklist"><li>車中泊では、人の熱中症とエコノミークラス症候群に注意します。</li><li>ペットだけを車内に残す場合も、車内温度の上昇に特に注意が必要です。</li><li>避難所でペットを受け入れられなくても、別の避難所、一時預かり、親族・知人宅、二次避難先などを確認します。</li><li>自宅が安全とは限らないため、ペットを理由に危険な建物へ戻らないことを優先します。</li><li>車中泊を選んだ場合も、指定避難所等から支援情報を得られるか自治体へ確認します。</li></ul>
+</section>
+<h2>ペットがいるため車中泊を選ぶ事例は実際にある</h2>
+<p>環境省の2026年8月4日の記者会見では、過去の災害でペットの同行避難を断られ、車中泊や損傷した自宅での生活を選んだケースがあったことが話題になりました。同じ会見では、令和8年熊本地震の被災地で、自治体によってペット受入れ体制に差がある状況も説明されています。</p>
+<p>つまり、ペット飼育者にとって車中泊は机上の問題ではありません。ただし、「避難所に入れないから車」という一択にすると、人とペット双方のリスクを見落とします。</p>
+<p>発災直後は情報が十分に整理されていない場合があります。最初に訪れた避難所で受入れできなくても、その自治体内の別施設や、後から設けられる一時預かり先が案内される可能性があります。最初の情報だけで長期の車中泊を決めず、更新情報を確認します。</p>
+<h2>人側では熱中症とエコノミークラス症候群に注意する</h2>
+<p>厚生労働省は、食事や水分が十分でない状態で車などの狭い座席に長時間座り、足を動かさないと、血栓ができ肺塞栓などを起こすおそれがあると説明しています。</p>
+<p>また、夏季の車中泊では熱中症も重大な問題です。2026年の熊本地震では、環境省と厚生労働省が車中泊避難者へ熱中症とエコノミークラス症候群の注意喚起を行っています。</p>
+<p>基本的な対策として、次を意識します。</p>
+<ul class="checklist"><li>こまめに水分をとる</li><li>暑さを避け、車内温度を管理する</li><li>長時間同じ姿勢を続けない</li><li>定期的に足を動かす、歩く、軽い体操をする</li><li>体調不良を我慢せず、医療支援や避難所運営者へ相談する</li></ul>
+<p>「トイレに行きにくいから水分を控える」という行動は危険です。水分を減らすのではなく、利用できるトイレや支援場所を確認します。</p>
+<p>高齢者、妊産婦、持病がある人、体調が悪い人などでは、車中泊の負担がより大きくなる場合があります。家族内で「ペットと一緒だから車が一番安心」と決めつけず、人側の健康条件も含めて避難方法を見直します。</p>
+<h2>ペット側でも「車内温度」を最優先で見る</h2>
+<p>環境省の一般飼い主向けガイドラインでは、車の中でペットを飼養する場合、ペットだけを車中に残すときは車内温度に常に注意し、十分な飲み水を用意し、長時間車を離れる場合は安全な飼養場所へ移すよう案内しています。</p>
+<p>気温がそれほど高く感じられなくても、日射や換気条件によって車内環境は大きく変わります。犬種・猫種、年齢、持病、短頭種などで暑さへの弱さも異なるため、サイト独自の「何度までなら安全」という固定値は設けません。</p>
+<p>少なくとも次を確認します。</p>
+<ul class="checklist"><li>直射日光を避けられるか</li><li>車内温度を継続して確認できるか</li><li>十分な水を確保できるか</li><li>長時間ペットだけを残さないか</li><li>ペットの呼吸や反応、食欲等に異常がないか</li></ul>
+<p>異常がある場合は、涼しい安全な場所へ移し、必要に応じて獣医師へ相談します。</p>
+<p>夜間や冬季では低温も問題になります。暑さ対策だけでなく、季節と地域に応じて寝床や保温も考えます。ただし、密閉した車内で燃焼器具を使用するような危険な方法は避けます。</p>
+<h2>車中泊を選ぶ前に確認したい代替策</h2>
+<p>避難所の入口でペットを断られた場合、その場で「車しかない」と決める前に、職員へ別の受入先がないか確認します。</p>
+<p>候補としては、</p>
+<ul class="checklist"><li>ペットを受け入れられる別の指定避難所</li><li>ペット同伴者向けの専用避難場所</li><li>自治体・獣医師会等の一時預かり</li><li>安全な地域にいる親族・知人宅</li><li>ペット同伴可能な宿泊施設などの二次避難</li><li>自宅の安全が確認できた場合の在宅避難</li></ul>
+<p>があります。</p>
+<p>発災直後と数日後で受入体制が変わることもあります。最初に断られた情報だけで固定せず、自治体の更新情報を確認します。</p>
+<p>民間の宿泊施設やペットホテルは、道路状況、停電、満室、スタッフ不足などで通常営業できない場合があります。予約サイトで空室が見えても災害時に受入可能とは限らないため、現地へ移動する前に確認します。</p>
+<h2>在宅避難へ戻る場合は「家が安全か」を先に判断する</h2>
+<p>ペットと一緒にいられるからという理由だけで、損傷した自宅へ戻るのは危険です。</p>
+<p>地震後なら建物損傷や火災、大雨なら浸水・土砂災害、津波なら再度の避難情報などを確認します。安全確認が取れない場合は、ペットを理由に危険区域へ戻らないことを優先します。</p>
+<p>在宅避難が可能な場合でも、食料、水、トイレ、電源、情報取得手段が確保できるかを確認します。支援物資の受取方法は自治体によって異なるため、指定避難所等で情報を得られるか確認してください。</p>
+<p>「家に入れる＝安全」とは限りません。余震、停電、ガス漏れ、断水、周辺道路の寸断など生活条件も確認します。</p>
+<h2>車で避難するなら「人用」と「ペット用」を分けて準備する</h2>
+<p>人用としては、水、携帯トイレ、モバイルバッテリー、暑さ・寒さ対策、持病の薬などを確認します。一般的な災害時の車中泊については<a href="article_b044.html">災害時の車中泊で注意すること</a>も参考になります。</p>
+<p>ペット用としては、</p>
+<ul class="checklist"><li>フード、水</li><li>常用薬、療法食</li><li>キャリー、ケージ</li><li>リード、首輪</li><li>トイレ用品、排泄物処理袋</li><li>タオル、清掃用品</li><li>ペットの写真、健康情報</li></ul>
+<p>をまとめます。</p>
+<p>同じ水を人とペットで共用する場合も、必要量をまとめて見積もると不足しやすくなります。人用とペット用を別々に数え、合計量を確認します。</p>
+<h2>車の置き場所にも災害リスクがある</h2>
+<p>車中泊する場所は「駐車できる場所」であればどこでもよいわけではありません。</p>
+<p>大雨時の河川沿い、低地、地下駐車場、崖の近く、倒木や看板の落下が考えられる場所などは、別の危険があります。避難所の駐車場を利用する場合も、運営者の案内に従います。</p>
+<p>エンジンをかける場合は、排気口が雪や泥などで塞がれていないかにも注意が必要です。密閉・換気不良による一酸化炭素中毒につながる危険があるため、車両の取扱説明書や行政の安全案内を優先します。</p>
+<h2>支援から孤立しないことも重要</h2>
+<p>車中泊や在宅避難をしていると、避難所内にいる人よりも支援情報が届きにくい場合があります。</p>
+<ul class="checklist"><li>給水場所</li><li>食料・生活用品の配布</li><li>医療・保健相談</li><li>ペット用支援物資</li><li>一時預かり</li><li>入浴・充電等の生活支援</li></ul>
+<p>について、自治体サイト、防災メール、指定避難所などから情報を得られるようにします。</p>
+<p>「避難所に宿泊しないと支援を受けられない」と自己判断せず、自治体に確認してください。</p>
+<h2>保存用チェックリスト</h2>
+<ul class="checklist"><li>車中泊以外の避難先を2つ以上確認した</li><li>自治体へペット受入可能な別避難所を確認できる</li><li>人用の水と携帯トイレを準備した</li><li>長時間同じ姿勢を避けることを家族で共有した</li><li>ペット用の水・フード・薬を準備した</li><li>車内温度を確認する方法を用意した</li><li>ペットだけを長時間車内に残さない</li><li>自宅へ戻る前に建物・周辺の安全を確認する</li><li>車を置く場所の浸水・土砂災害等の危険を確認する</li><li>支援情報を受け取る方法を確認した</li><li>体調不良時の相談先を確認した</li></ul>
+<h2>関連記事</h2>
+<ul class="checklist"><li><a href="category_pet.html">ペット防災の記事をまとめて見る</a></li><li><a href="article_b078.html">ペットは避難所に入れる？</a></li><li><a href="article_b033.html">ペット防災の基本</a></li><li><a href="article_b080.html">犬の防災</a></li><li><a href="article_b081.html">猫の防災</a></li></ul>
+<h2>公的情報・参考資料</h2>
+<ul class="checklist"><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/tiiki/saigai_00001.html" target="_blank" rel="noopener noreferrer">厚生労働省「災害時における健康管理」</a></li><li><a href="https://www.env.go.jp/nature/dobutsu/aigo/1_law/disaster.html" target="_blank" rel="noopener noreferrer">環境省「ペットの災害対策」</a></li><li><a href="https://www.env.go.jp/nature/dobutsu/aigo/2_data/pamph/h3009a.html" target="_blank" rel="noopener noreferrer">環境省「人とペットの災害対策ガイドライン＜一般飼い主編＞」</a></li><li><a href="https://www.env.go.jp/annai/kaiken/kaiken_00411.html" target="_blank" rel="noopener noreferrer">環境省 2026年8月4日大臣記者会見</a></li></ul>
+</div></article></main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-links"><a href="about.html">運営方針</a><a href="disclaimer.html">免責事項</a><a href="privacy.html">プライバシーポリシー</a><a href="advertising.html">広告について</a><a href="https://www.jma.go.jp/bosai/" target="_blank" rel="noopener noreferrer">気象庁 防災情報</a></div><div class="footer-note">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</div></div></footer></body></html>
