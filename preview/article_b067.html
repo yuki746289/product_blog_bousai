@@ -11,6 +11,32 @@
 .feature-head{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,#f1f8fb,#fff)}
 .feature-kicker{font-weight:800;letter-spacing:.08em;color:var(--primary-dark)}
 .feature-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0 28px}.feature-nav a{padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center;font-weight:700}.feature-table{overflow-x:auto}.feature-table table{min-width:780px}.record-badge{display:inline-block;padding:2px 7px;border-radius:999px;background:#fff3cd;border:1px solid #ead18a;font-weight:800;font-size:.86em}.note-box{padding:14px 16px;border-left:4px solid var(--primary);background:var(--primary-soft);margin:18px 0}@media(max-width:720px){.feature-nav{grid-template-columns:1fr 1fr}.feature-nav a:last-child{grid-column:1/-1}}
+
+.lr-guide{margin:20px 0 26px;padding:18px;border:1px solid #cfdde5;border-radius:16px;background:#f9fcfd}
+.lr-guide__title{margin:0 0 6px;font-size:1.08rem;font-weight:800;color:#173b4d}
+.lr-guide__lead{margin:0 0 14px;color:#40535d}
+.lr-guide__grid{display:grid;gap:10px}
+.lr-guide__grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.lr-guide__card{padding:14px;border:1px solid #d9e4e9;border-radius:12px;background:#fff}
+.lr-guide__step{display:inline-flex;width:2rem;height:2rem;align-items:center;justify-content:center;border-radius:999px;background:#e5f2f7;font-weight:800;color:#134e68;margin-bottom:8px}
+.lr-guide__card h4{margin:0 0 7px;font-size:1rem}
+.lr-guide__card p{margin:6px 0}
+.lr-guide__card ul{margin:8px 0 0;padding-left:1.2rem}
+.lr-guide__arrow{text-align:center;font-weight:800;color:#52717f}
+.lr-guide__point{margin:14px 0 0;padding:11px 13px;border-left:4px solid #28769a;background:#eef7fb;border-radius:4px 10px 10px 4px}
+.lr-levels{display:grid;gap:8px;margin-top:12px}
+.lr-level{display:grid;grid-template-columns:90px 1fr 1.15fr;gap:12px;align-items:center;padding:12px;border:1px solid #d6e0e5;border-radius:12px;background:#fff}
+.lr-level__number{font-weight:900;text-align:center}
+.lr-level__number strong{display:block;font-size:1.45rem;line-height:1.1}
+.lr-level--1{border-left:7px solid #c9d8c2}.lr-level--2{border-left:7px solid #e7d764}.lr-level--3{border-left:7px solid #e5a34b}.lr-level--4{border-left:7px solid #c75a57}.lr-level--5{border-left:7px solid #76506e}
+.lr-level__action{font-weight:800}
+.lr-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.lr-timeline__card{position:relative;padding:16px 14px;border:1px solid #d9e4e9;border-radius:12px;background:#fff}
+.lr-timeline__badge{display:flex;width:2.4rem;height:2.4rem;align-items:center;justify-content:center;border-radius:50%;background:#173b4d;color:#fff;font-weight:900;margin-bottom:9px}
+.lr-timeline__card h4{margin:0 0 6px}
+.lr-guide figcaption{margin-top:12px;font-size:.9rem;color:#536771}
+@media(max-width:720px){.lr-guide__grid--3,.lr-timeline{grid-template-columns:1fr}.lr-guide__arrow{transform:rotate(90deg);padding:2px}.lr-level{grid-template-columns:72px 1fr}.lr-level__action{grid-column:2}.lr-guide{padding:14px}}
+
 </style>
 </head>
 <body>
@@ -36,6 +62,38 @@
 <h2>雨量は過去記録との差で読む</h2><p>例えば2017年朝倉は1時間129.5mm、日降水量516.0mmで観測史上1位でした。2026年千葉豪雨では、千葉の1時間雨量115.0mmが従来71.0mmを44.0mm更新し、24時間367.0mmも従来309.0mmを58.0mm更新しました。</p><p>こうした<strong>現在値 → 従来1位 → 更新幅</strong>を示すことで、「観測史上1位」という言葉だけでは分かりにくい記録の大きさを見える化します。</p>
 <h2>現在の大雨では最新情報を優先</h2><p>この特集は歴史・統計資料です。実際に大雨が降っているときは過去事例との類似より、気象庁の最新情報、キキクル、自治体の避難情報を優先してください。</p><p><a href="article_b005.html">大雨・水害の基本</a>、<a href="article_b042.html">洪水キキクルと避難判断</a>、<a href="article_b036.html">土砂キキクルと避難判断</a>もあわせて確認できます。</p>
 <h2>主な公的資料</h2><ul><li>気象庁「線状降水帯に関する情報」</li><li>気象庁「線状降水帯の事例」</li><li>気象庁「気象業務はいま2024」</li><li>気象庁「災害をもたらした気象事例」</li></ul>
-</div></article></main>
+<h3>図で確認：どの情報をどう見るか</h3><figure class="article-inline-image lr-guide lr-guide--information" aria-labelledby="lr-figure4-title">
+<div class="lr-guide__title" id="lr-figure4-title">どの情報をどう見るか</div>
+<p class="lr-guide__lead">1つの情報だけで判断せず、<strong>見通し → 自分の場所の危険度 → 実際の避難判断</strong>の順で確認します。</p>
+<div class="lr-guide__grid lr-guide__grid--3">
+<div class="lr-guide__card"><span class="lr-guide__step">1</span><h4>気象情報を確認</h4><p><strong>大雨の可能性を知る</strong></p><ul><li>線状降水帯の半日前予測</li><li>直前予測・発生情報</li><li>最新の気象見通し</li></ul></div>
+<div class="lr-guide__card"><span class="lr-guide__step">2</span><h4>キキクルを確認</h4><p><strong>自分の周辺の危険度を見る</strong></p><ul><li>土砂キキクル</li><li>浸水キキクル</li><li>洪水キキクル</li></ul></div>
+<div class="lr-guide__card"><span class="lr-guide__step">3</span><h4>自治体・河川情報を確認</h4><p><strong>どう動くかを決める</strong></p><ul><li>避難情報・避難所</li><li>河川の水位情報</li><li>地域の最新状況</li></ul></div>
+</div>
+<p class="lr-guide__point"><strong>ポイント：</strong>「線状降水帯」という言葉だけではなく、今いる場所で何の危険が高まっているかを確認します。</p>
+<figcaption>気象庁の防災気象情報・キキクルと、自治体等の避難情報を組み合わせて確認する流れを模式化しています。</figcaption>
+</figure><h3>図で確認：警戒レベルと行動</h3><figure class="article-inline-image lr-guide lr-guide--levels" aria-labelledby="lr-figure5-title">
+<div class="lr-guide__title" id="lr-figure5-title">警戒レベル1〜5と住民の行動</div>
+<p class="lr-guide__lead">警戒レベルは線状降水帯の強さではなく、<strong>住民が取るべき行動を整理する5段階</strong>です。</p>
+<div class="lr-levels">
+<div class="lr-level lr-level--1"><div class="lr-level__number"><strong>1</strong>心構え</div><div>最新情報を確認し、災害への心構えを高める</div><div class="lr-level__action">情報例：早期注意情報</div></div>
+<div class="lr-level lr-level--2"><div class="lr-level__number"><strong>2</strong>確認</div><div>ハザードマップ、避難先・経路を確認</div><div class="lr-level__action">情報例：レベル2注意報・キキクル「注意」</div></div>
+<div class="lr-level lr-level--3"><div class="lr-level__number"><strong>3</strong>避難開始</div><div>危険な場所にいる高齢者等は避難</div><div class="lr-level__action">情報例：レベル3警報・キキクル「警戒」</div></div>
+<div class="lr-level lr-level--4"><div class="lr-level__number"><strong>4</strong>全員避難</div><div>危険な場所から全員避難</div><div class="lr-level__action">情報例：レベル4危険警報・キキクル「危険」</div></div>
+<div class="lr-level lr-level--5"><div class="lr-level__number"><strong>5</strong>安全確保</div><div>災害が発生または切迫。直ちに身の安全を確保</div><div class="lr-level__action">情報例：レベル5特別警報・キキクル「災害切迫」</div></div>
+</div>
+<p class="lr-guide__point"><strong>重要：</strong>レベル5を待って避難するのではなく、危険な場所では<strong>レベル4までに避難</strong>することが基本です。線状降水帯発生情報＝警戒レベル5ではありません。</p>
+<figcaption>気象庁「防災気象情報と警戒レベルとの対応」をもとに、住民の行動を中心に整理した模式図です。</figcaption>
+</figure><h3>図で確認：家庭の行動タイムライン</h3><figure class="article-inline-image lr-guide lr-guide--timeline" aria-labelledby="lr-figure6-title">
+<div class="lr-guide__title" id="lr-figure6-title">家庭の行動タイムライン</div>
+<p class="lr-guide__lead">大雨が強くなってから考えるのではなく、<strong>準備 → 避難判断 → 命を守る行動</strong>の順に前倒しします。</p>
+<div class="lr-timeline">
+<div class="lr-timeline__card"><div class="lr-timeline__badge">準</div><h4>1. 早めの準備</h4><ul><li>最新の気象情報を確認</li><li>スマホ・モバイルバッテリーを充電</li><li>避難先と家族の連絡方法を確認</li><li>家の周り・側溝・ベランダを確認</li></ul></div>
+<div class="lr-timeline__card"><div class="lr-timeline__badge">避</div><h4>2. 避難の判断</h4><ul><li>高齢者等は早めに移動</li><li>危険な場所にいる人は避難</li><li>川・用水路・崖に近づかない</li><li>車を使うかは早めに判断</li></ul></div>
+<div class="lr-timeline__card"><div class="lr-timeline__badge">命</div><h4>3. 命を守る行動</h4><ul><li>無理に屋外へ出ない</li><li>建物の高い階へ移動</li><li>崖や川と反対側へ離れる</li><li>地下や浸水しやすい場所から離れる</li></ul></div>
+</div>
+<p class="lr-guide__point"><strong>雨が強くなってからでは遅い場合があります。</strong> 準備と避難判断は、危険が高まる前に進めます。</p>
+<figcaption>家庭での行動を時系列で整理した模式図です。実際の避難判断では気象庁・自治体等の最新情報を確認してください。</figcaption>
+</figure></div></article></main>
 <footer class="site-footer"><div class="footer-inner"><p>防災くらしガイド</p></div></footer>
 </body></html>
