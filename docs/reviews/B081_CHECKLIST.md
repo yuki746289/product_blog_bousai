@@ -3,8 +3,8 @@
 - article_id: `B081`
 - title: 猫の防災は何を準備する？キャリー・猫砂・脱走対策と避難
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
