@@ -3,8 +3,8 @@
 - article_id: `B074`
 - title: 関東甲信の線状降水帯｜2015年関東・東北豪雨と2026年千葉豪雨から見る特徴
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
