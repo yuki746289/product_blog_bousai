@@ -3,8 +3,8 @@
 - article_id: `B071`
 - title: 線状降水帯の雨量記録｜観測史上1位・従来記録・平年月降水量を比較
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
