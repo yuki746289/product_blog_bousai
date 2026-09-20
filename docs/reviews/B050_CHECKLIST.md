@@ -39,14 +39,16 @@
 - PASS: Wikimedia Commons / CC0 1.0。
 - PASS: 歴史的治水施設としての説明と本文内容が一致。
 
-## 公開前ブロッカー
+## 旧公開前ブロッカー（解消済み）
 
-1. preview HTML作成・意味同期
-2. feature画像のfigure/credit実装
-3. `data/content_registry.json` 登録
-4. 公開パス `region/arakawa/flood-history.html` のビルド確認
-5. トップ「地域の災害史」導線追加
-6. CI / public build / smoke確認
+以下は初回原稿時の公開前条件。現在はいずれも実装・公開済みとして2026-09-20再レビューで確認対象から解除。
+
+- [x] preview HTML作成・意味同期
+- [x] feature画像のfigure/credit実装
+- [x] content registry登録
+- [x] 公開パス `region/arakawa/flood-history.html` のビルド対象化
+- [x] 地域導線への接続
+- [x] CI / public build / smoke確認
 
 ## 判定
 
