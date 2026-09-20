@@ -3,8 +3,8 @@
 - article_id: `B067`
 - title: 線状降水帯とは？過去事例・発生数・多い地域・雨量記録をデータで見る
 - content_role: `pillar`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
