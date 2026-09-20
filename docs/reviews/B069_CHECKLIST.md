@@ -3,8 +3,8 @@
 - article_id: `B069`
 - title: 線状降水帯は増えている？発生回数・公式事例数・将来予測を分けて検証
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
