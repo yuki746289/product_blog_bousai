@@ -3,8 +3,8 @@
 - article_id: `B078`
 - title: ペットは避難所に入れる？同行避難・同伴避難・同室避難の違いと確認方法
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: high
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
