@@ -37,6 +37,26 @@
 .lr-guide figcaption{margin-top:12px;font-size:.9rem;color:#536771}
 @media(max-width:720px){.lr-guide__grid--3,.lr-timeline{grid-template-columns:1fr}.lr-guide__arrow{transform:rotate(90deg);padding:2px}.lr-level{grid-template-columns:72px 1fr}.lr-level__action{grid-column:2}.lr-guide{padding:14px}}
 
+.lr-scene{margin:20px 0 26px;padding:18px;border:1px solid #cfdde5;border-radius:16px;background:#f9fcfd}
+.lr-scene__title{margin:0 0 7px;font-size:1.08rem;font-weight:800;color:#173b4d}
+.lr-scene__lead{margin:0 0 14px;color:#40535d}
+.lr-scene__flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.lr-scene__node{padding:16px 14px;border:1px solid #d9e4e9;border-radius:12px;background:#fff}
+.lr-scene__node strong{display:block;margin-bottom:6px}
+.lr-scene__arrow{display:flex;align-items:center;justify-content:center;font-size:1.45rem;font-weight:900;color:#28769a}
+.lr-scene__badge{display:inline-flex;align-items:center;justify-content:center;min-width:3.1rem;height:2rem;padding:0 .6rem;margin-bottom:8px;border-radius:999px;background:#e5f2f7;color:#134e68;font-weight:800}
+.lr-scene__band{margin-top:12px;padding:12px 14px;border-radius:12px;background:#eaf4f8;border-left:5px solid #28769a;font-weight:700}
+.lr-scene__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.lr-scene__grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.lr-scene__card{padding:14px;border:1px solid #d9e4e9;border-radius:12px;background:#fff}
+.lr-scene__card h4{margin:0 0 7px;font-size:1rem}
+.lr-scene__card p{margin:6px 0}
+.lr-scene__risk{display:block;margin-top:10px;padding:8px 10px;border-radius:9px;background:#fff4f2;color:#7a3028;font-weight:700}
+.lr-scene__safe{display:block;margin-top:10px;padding:8px 10px;border-radius:9px;background:#eef7fb;color:#174f69;font-weight:700}
+.lr-scene__x{display:flex;width:2rem;height:2rem;align-items:center;justify-content:center;border-radius:50%;background:#b93b34;color:#fff;font-size:1.25rem;font-weight:900;margin-bottom:8px}
+.lr-scene figcaption{margin-top:12px;font-size:.9rem;color:#536771}
+@media(max-width:720px){.lr-scene{padding:14px}.lr-scene__flow{grid-template-columns:1fr}.lr-scene__arrow{transform:rotate(90deg);padding:0}.lr-scene__grid,.lr-scene__grid--4{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -62,6 +82,66 @@
 <h2>雨量は過去記録との差で読む</h2><p>例えば2017年朝倉は1時間129.5mm、日降水量516.0mmで観測史上1位でした。2026年千葉豪雨では、千葉の1時間雨量115.0mmが従来71.0mmを44.0mm更新し、24時間367.0mmも従来309.0mmを58.0mm更新しました。</p><p>こうした<strong>現在値 → 従来1位 → 更新幅</strong>を示すことで、「観測史上1位」という言葉だけでは分かりにくい記録の大きさを見える化します。</p>
 <h2>現在の大雨では最新情報を優先</h2><p>この特集は歴史・統計資料です。実際に大雨が降っているときは過去事例との類似より、気象庁の最新情報、キキクル、自治体の避難情報を優先してください。</p><p><a href="article_b005.html">大雨・水害の基本</a>、<a href="article_b042.html">洪水キキクルと避難判断</a>、<a href="article_b036.html">土砂キキクルと避難判断</a>もあわせて確認できます。</p>
 <h2>主な公的資料</h2><ul><li>気象庁「線状降水帯に関する情報」</li><li>気象庁「線状降水帯の事例」</li><li>気象庁「気象業務はいま2024」</li><li>気象庁「災害をもたらした気象事例」</li></ul>
+
+<h3>図で確認：線状降水帯の全体イメージ</h3><figure class="article-inline-image lr-scene lr-scene--overview" aria-labelledby="lr-scene-overview-title">
+<div class="lr-scene__title" id="lr-scene-overview-title">同じ地域へ強い雨が繰り返しかかる仕組み</div>
+<p class="lr-scene__lead">線状降水帯は「雨雲が一本だけある」現象ではなく、発達した雨雲が次々に生まれて列をつくり、同じ地域へ強い雨をもたらす状態です。</p>
+<div class="lr-scene__flow">
+<div class="lr-scene__node"><span class="lr-scene__badge">1</span><strong>暖かく湿った空気が流れ込む</strong><p>雨雲が発達しやすい環境になります。</p></div>
+<div class="lr-scene__arrow" aria-hidden="true">→</div>
+<div class="lr-scene__node"><span class="lr-scene__badge">2</span><strong>積乱雲が次々に発生・発達</strong><p>複数の発達した雨雲が列をつくります。</p></div>
+<div class="lr-scene__arrow" aria-hidden="true">→</div>
+<div class="lr-scene__node"><span class="lr-scene__badge">3</span><strong>同じ地域へ強雨が続く</strong><p>数時間にわたり大雨が続き、災害危険度が急上昇することがあります。</p></div>
+</div>
+<div class="lr-scene__band">見るべきなのは「雨雲が線に見えるか」ではなく、気象庁の情報と自分の場所の危険度です。</div>
+<figcaption>線状降水帯の成り立ちを簡略化した模式図です。実際の形成過程は事例ごとに異なります。</figcaption>
+</figure>
+
+<h3>図で確認：住宅浸水で起こること</h3><figure class="article-inline-image lr-scene lr-scene--home" aria-labelledby="lr-scene-home-title">
+<div class="lr-scene__title" id="lr-scene-home-title">住宅浸水は「床がぬれる」だけではない</div>
+<p class="lr-scene__lead">浸水が進むと、家財や設備だけでなく、生活動線や避難行動にも影響します。</p>
+<div class="lr-scene__grid">
+<div class="lr-scene__card"><span class="lr-scene__badge">住宅</span><h4>敷地・玄関周り</h4><p>道路や敷地の水が増えると、外へ出ること自体が危険になる場合があります。</p><span class="lr-scene__risk">雨が強くなってから外の様子を見に行かない</span></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">室内</span><h4>家財・設備へ影響</h4><p>室内へ水が入ると、家具・家電・電気設備などが使えなくなることがあります。</p><span class="lr-scene__safe">浸水する前に必要品と避難判断を確認</span></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">避難</span><h4>移動が難しくなる</h4><p>周囲の浸水が進むほど、安全な場所への移動が難しくなるおそれがあります。</p><span class="lr-scene__safe">危険な場所では早めの避難を優先</span></div>
+</div>
+<figcaption>住宅浸水の影響を生活場面に置き換えた模式図です。浸水深だけを安全判断の基準にせず、ハザードマップ・キキクル・自治体情報を確認してください。</figcaption>
+</figure>
+
+<h3>図で確認：冠水道路と車</h3><figure class="article-inline-image lr-scene lr-scene--car" aria-labelledby="lr-scene-car-title">
+<div class="lr-scene__title" id="lr-scene-car-title">冠水道路は「通れそう」に見えても進入しない</div>
+<p class="lr-scene__lead">水の深さ、流れ、路面の段差や側溝は車内から正確に把握できません。</p>
+<div class="lr-scene__grid">
+<div class="lr-scene__card"><span class="lr-scene__badge">見えない</span><h4>水深・路面状況が分からない</h4><p>冠水で道路境界や段差が見えにくくなり、危険箇所を避けにくくなります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">停止</span><h4>車が動けなくなるおそれ</h4><p>浸水や機器への影響で、走行不能・立ち往生につながる場合があります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">退避</span><h4>流れや閉じ込めの危険</h4><p>水位や流れが増すと、車での移動そのものが危険になります。</p><span class="lr-scene__risk">冠水道路・アンダーパスへ進入しない</span></div>
+</div>
+<figcaption>冠水道路で起こり得る危険を模式化しています。特定の水深を「走行できる基準」として示す図ではありません。</figcaption>
+</figure>
+
+<h3>図で確認：土砂災害</h3><figure class="article-inline-image lr-scene lr-scene--landslide" aria-labelledby="lr-scene-landslide-title">
+<div class="lr-scene__title" id="lr-scene-landslide-title">斜面・谷筋では大雨が別の危険につながる</div>
+<div class="lr-scene__grid">
+<div class="lr-scene__card"><span class="lr-scene__badge">がけ崩れ</span><h4>急な斜面が崩れる</h4><p>住宅や道路の近くで突然発生することがあります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">土石流</span><h4>土砂や石が谷筋を流れる</h4><p>谷や沢の下流側では広い範囲へ影響することがあります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__badge">地すべり</span><h4>斜面が広い範囲で動く</h4><p>大雨時は斜面周辺の危険度情報を早めに確認します。</p></div>
+</div>
+<div class="lr-scene__band">土砂災害警戒区域や斜面の近くでは、土砂キキクルと自治体の避難情報を確認し、危険が高まる前に行動します。</div>
+<figcaption>土砂災害の代表的な種類を簡略化した模式図です。個別地点の危険区域は自治体のハザードマップ等で確認してください。</figcaption>
+</figure>
+
+<h3>図で確認：大雨時に避けたい行動</h3><figure class="article-inline-image lr-scene lr-scene--unsafe" aria-labelledby="lr-scene-unsafe-title">
+<div class="lr-scene__title" id="lr-scene-unsafe-title">「様子を見るために危険へ近づく」を避ける</div>
+<div class="lr-scene__grid lr-scene__grid--4">
+<div class="lr-scene__card"><span class="lr-scene__x" aria-hidden="true">×</span><h4>川・用水路を見に行く</h4><p>急な増水や流れに巻き込まれる危険があります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__x" aria-hidden="true">×</span><h4>冠水道路へ進入する</h4><p>水深や路面状況が分からず、立ち往生につながります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__x" aria-hidden="true">×</span><h4>アンダーパスへ入る</h4><p>低い場所は短時間で水がたまることがあります。</p></div>
+<div class="lr-scene__card"><span class="lr-scene__x" aria-hidden="true">×</span><h4>がけ・斜面へ近づく</h4><p>大雨時は土砂災害の危険が高まります。</p></div>
+</div>
+<div class="lr-scene__band">大雨時は、近づかない・無理をしない・危険が高まる前に避難することを優先します。</div>
+<figcaption>大雨時に避けたい行動の例です。現在地の状況と自治体・気象庁の最新情報を優先してください。</figcaption>
+</figure>
+
 <h3>図で確認：どの情報をどう見るか</h3><figure class="article-inline-image lr-guide lr-guide--information" aria-labelledby="lr-figure4-title">
 <div class="lr-guide__title" id="lr-figure4-title">どの情報をどう見るか</div>
 <p class="lr-guide__lead">1つの情報だけで判断せず、<strong>見通し → 自分の場所の危険度 → 実際の避難判断</strong>の順で確認します。</p>
