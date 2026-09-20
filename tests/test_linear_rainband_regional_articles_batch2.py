@@ -32,7 +32,7 @@ class LinearRainbandRegionalArticleBatch2Tests(unittest.TestCase):
 
     def test_chugoku_has_region_specific_evidence_and_boundary(self):
         text = (ROOT / "content/articles/B075_linear_rainband_chugoku.md").read_text(encoding="utf-8")
-        for marker in ("2014年広島豪雨", "2025年山口", "512.0mm", "九州北部地方（山口県を含む）"):
+        for marker in ("2014年8月広島豪雨", "2025年山口", "512.0mm", "九州北部地方（山口県を含む）"):
             self.assertIn(marker, text)
         self.assertIn("鳥取・島根・岡山を「少ない地域」と決めることはできません", text)
 
@@ -40,13 +40,13 @@ class LinearRainbandRegionalArticleBatch2Tests(unittest.TestCase):
         text = (ROOT / "content/articles/B076_linear_rainband_shikoku.md").read_text(encoding="utf-8")
         for marker in ("四国の南東斜面", "三崎432.5mm", "佐喜浜420.5mm", "徳島県南部"):
             self.assertIn(marker, text)
-        self.assertIn("高知・徳島・愛媛・香川を一括りにしない", text)
+        self.assertIn("四国4県で危険度や雨の降り方は同じではない", text)
 
     def test_tokai_has_region_specific_evidence_and_boundary(self):
         text = (ROOT / "content/articles/B077_linear_rainband_tokai.md").read_text(encoding="utf-8")
         for marker in ("三重、愛知、静岡", "500mmを超え", "1時間127.0mm", "静岡県伊豆"):
             self.assertIn(marker, text)
-        self.assertIn("静岡・愛知・岐阜・三重を一括りにしない", text)
+        self.assertIn("東海4県は地形と主な水害リスクが違う", text)
 
     def test_b070_links_all_five_regional_articles(self):
         source = (ROOT / "content/articles/B070_linear_rainband_regions.md").read_text(encoding="utf-8")

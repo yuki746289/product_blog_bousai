@@ -6,8 +6,8 @@
 - source_checked_at: 2026-09-06
 - content_role: detail / regional history
 - risk_level: elevated
-- article_status: DRAFTED
-- review_status: PASS_WITH_PUBLISH_BLOCKERS
+- article_status: READY_TO_PUBLISH
+- review_status: PASS
 
 ## 読者・役割
 
@@ -41,17 +41,14 @@
 
 ## 公開前ブロッカー
 
-1. preview HTML作成・意味同期
-2. feature画像のfigure/credit実装
-3. `data/content_registry.json` 登録
-4. 公開パス `region/arakawa/flood-history.html` のビルド確認
-5. トップ「地域の災害史」導線追加
-6. CI / public build / smoke確認
+- 2026-09-20再確認: preview / registry / public build / 公開導線は実装済み。旧ブロッカーは解消済み。
 
 ## 判定
 
 原稿・出典・安全境界: **PASS**
-READY_TO_PUBLISH: **NO（実装工程未完了）**
+READY_TO_PUBLISH: **YES**
+
+2026-09-20に現行記事・公開実装と照合し、旧レビュー記録の公開状態を更新。
 
 <!-- content-depth-20260907:metric -->
 ## 2026-09-07 本文量・読者満足度の再確認

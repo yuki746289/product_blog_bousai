@@ -128,6 +128,8 @@ Q&Aを作成・更新する場合:
 - [ ] **C08-06** HTMLリンク・画像・alt・構造を確認した
 - [ ] **C08-07** 共通UIを変更した場合は `docs/SITE_RELEASE_CHECKLIST.md` も実行した
 - [ ] **C08-08** 本番ビルドでtitle / meta descriptionの欠落・完全重複チェックがPASSした
+- [ ] **C08-09** 対応する `docs/reviews/Bxxx_CHECKLIST.md` が存在し、`review_status: PASS` / `READY_TO_PUBLISH: YES` を記録した。特集単位のチェックだけで代用していない
+- [ ] **C08-10** CIの「全記事→記事別チェック」動的対応テストがPASSし、新規記事がチェック対象から漏れていない
 
 ---
 
