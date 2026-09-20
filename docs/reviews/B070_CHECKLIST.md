@@ -3,8 +3,8 @@
 - article_id: `B070`
 - title: 線状降水帯が多い地域はどこ？地域別の発生傾向と主な豪雨
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
