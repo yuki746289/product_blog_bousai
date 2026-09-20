@@ -135,6 +135,11 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         b072_preview = (ROOT / "preview/article_b072.html").read_text(encoding="utf-8")
 
         for heading in (
+            "図で確認：線状降水帯の全体イメージ",
+            "図で確認：住宅浸水で起こること",
+            "図で確認：冠水道路と車",
+            "図で確認：土砂災害",
+            "図で確認：大雨時に避けたい行動",
             "図で確認：どの情報をどう見るか",
             "図で確認：警戒レベルと行動",
             "図で確認：家庭の行動タイムライン",
@@ -145,9 +150,13 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertNotIn("図で確認：家庭の行動タイムライン", b072_source)
 
         self.assertGreaterEqual(b067_preview.count("article-inline-image lr-guide"), 3)
+        self.assertGreaterEqual(b067_preview.count("article-inline-image lr-scene"), 5)
         self.assertGreaterEqual(b072_preview.count("article-inline-image lr-guide"), 2)
         self.assertIn("線状降水帯発生情報＝警戒レベル5ではありません", b067_preview)
         self.assertIn("レベル4までに避難", b067_preview)
+        self.assertIn("冠水道路・アンダーパスへ進入しない", b067_preview)
+        self.assertIn("特定の水深を「走行できる基準」として示す図ではありません", b067_preview)
+        self.assertIn(".lr-scene__grid,.lr-scene__grid--4{grid-template-columns:1fr}", b067_preview)
 
     def test_visual_guide_figure_survives_markdown_body_sync(self):
         old_body = (
@@ -159,6 +168,17 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         actual = preview_sync.insert_preserved_figures("B067", new_body, figures)
         self.assertIn('class="article-inline-image lr-guide"', actual)
         self.assertIn("<figcaption>guide</figcaption>", actual)
+
+    def test_new_hazard_figure_survives_markdown_body_sync(self):
+        old_body = (
+            "<h3>図で確認：冠水道路と車</h3>"
+            '<figure class="article-inline-image lr-scene"><figcaption>hazard</figcaption></figure>'
+        )
+        figures = preview_sync.extract_figures(old_body)
+        new_body = "<h3>図で確認：冠水道路と車</h3><p>本文</p>"
+        actual = preview_sync.insert_preserved_figures("B067", new_body, figures)
+        self.assertIn('class="article-inline-image lr-scene"', actual)
+        self.assertIn("<figcaption>hazard</figcaption>", actual)
 
     def test_transforms_are_idempotent(self):
         sample = (
