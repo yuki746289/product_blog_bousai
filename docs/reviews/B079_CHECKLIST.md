@@ -3,8 +3,8 @@
 - article_id: `B079`
 - title: ペットと車中泊避難しても大丈夫？避難所に入れないときの選択肢と注意点
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: high
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
