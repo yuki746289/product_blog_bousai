@@ -204,6 +204,10 @@ E04 情報設計 / ファインダビリティ、およびS02を確認する。
 3. `docs/EXPERT_REVIEW_FRAMEWORK.md`
 4. `docs/reviews/ARTICLE_CHECKLIST_TEMPLATE.md` に沿った記事別記録
 
+**記事別レビュー記録は特集単位・カテゴリ単位のチェックで代用しない。** `content/articles/Bxxx_*.md` を追加した時点で、対応する `docs/reviews/Bxxx_CHECKLIST.md` も同じ変更単位で作成する。
+
+CIでは記事番号の固定範囲を使わず、`content/articles/Bxxx_*.md` を動的に検出する。公開対象の記事は、対応チェックファイルの存在、PASS判定、公開可判定を満たさない限りテストをPASSさせない。
+
 ### 情報記事の最低専門家レビュー
 
 - E01 編集者
