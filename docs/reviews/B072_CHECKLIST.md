@@ -3,8 +3,8 @@
 - article_id: `B072`
 - title: 線状降水帯はいつから使われた？用語と防災気象情報の歴史
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
