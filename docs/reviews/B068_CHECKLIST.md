@@ -3,8 +3,8 @@
 - article_id: `B068`
 - title: 線状降水帯の過去事例｜全国の主な豪雨を年表で比較
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
