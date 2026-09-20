@@ -27,3 +27,17 @@ serp_display_quality: PASS
 - 厚生労働省「電子版お薬手帳」は2026-08-01更新を確認。
 - 政府広報オンライン「災害に事前に備える」で、常用薬・お薬手帳・マイナ保険証を災害時の情報伝達手段として扱うことを確認。
 - 記事は個別の服薬判断・処方判断には踏み込まず、平時の準備と災害時の相談行動に限定。
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->

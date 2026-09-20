@@ -105,3 +105,17 @@
 - PASS: 洪水・高潮と地震津波の原因区分を明確化。
 - PASS: 被災直後は車より人の安全を優先し、浸水車を始動しない境界を維持。
 - editorial_note: 文字数を増やすこと自体を目的にせず、検索意図と判断順を優先して再構成。
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->

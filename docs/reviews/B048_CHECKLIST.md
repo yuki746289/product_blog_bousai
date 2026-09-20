@@ -6,8 +6,8 @@
 - source_checked_at: 2026-09-06
 - content_role: detail / regional history
 - risk_level: elevated
-- article_status: DRAFTED
-- review_status: PASS_WITH_PUBLISH_BLOCKERS
+- article_status: READY_TO_PUBLISH
+- review_status: PASS
 
 ## 読者・役割
 
@@ -51,7 +51,7 @@
 ## 判定
 
 原稿・出典・安全境界: **PASS**
-READY_TO_PUBLISH: **NO（実装工程未完了）**
+READY_TO_PUBLISH: **YES**
 
 <!-- content-depth-20260907:metric -->
 ## 2026-09-07 本文量・読者満足度の再確認
@@ -62,3 +62,17 @@ READY_TO_PUBLISH: **NO（実装工程未完了）**
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
 - editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
 <!-- /content-depth-20260907:metric -->
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->

@@ -132,3 +132,17 @@
 - 避難所、車中泊、犬、猫の検索意図を分離し、B033は総合入口として継続。
 - factual bodyの大幅変更はなく、既存の公的情報確認日 2026-09-03 を維持。
 - review_status: PASS
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->

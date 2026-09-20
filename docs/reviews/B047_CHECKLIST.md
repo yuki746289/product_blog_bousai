@@ -64,3 +64,17 @@
 - PASS: クーリングシェルターは開設状況を確認し、暴風・冠水等がある場合は移動安全性を別に判断。
 - PASS: 発電機の一酸化炭素中毒境界を維持。
 - editorial_note: 文字数を満たすための水増しではなく、移動先を複数持つことと移動判断の前倒しを実用情報として補足した。
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->

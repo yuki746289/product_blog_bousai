@@ -1,6 +1,6 @@
 # キーワード調査から新規記事を作る標準手順
 
-更新日: 2026-09-04
+更新日: 2026-09-20
 
 ## 1. 目的
 
@@ -204,6 +204,8 @@ E04 情報設計 / ファインダビリティ、およびS02を確認する。
 3. `docs/EXPERT_REVIEW_FRAMEWORK.md`
 4. `docs/reviews/ARTICLE_CHECKLIST_TEMPLATE.md` に沿った記事別記録
 
+**記事別レビュー記録は特集単位・カテゴリ単位のチェックで代用しない。** `content/articles/Bxxx_*.md` を追加した時点で、対応する `docs/reviews/Bxxx_CHECKLIST.md` も同じ変更単位で作成する。
+
 ### 情報記事の最低専門家レビュー
 
 - E01 編集者
@@ -263,6 +265,8 @@ E04 情報設計 / ファインダビリティ、およびS02を確認する。
 13. 外部API・リアルタイム機能（該当時）
 
 を変更範囲に応じてPASSさせる。
+
+加えて、CIは `content/articles/Bxxx_*.md` を動的に列挙し、全記事について対応する記事別チェックファイルの存在、`review_status: PASS`、`READY_TO_PUBLISH: YES` を検証する。記事番号の上限を固定値で管理しない。
 
 共通UIや実装を変更した場合は `docs/SITE_RELEASE_CHECKLIST.md` も実行する。
 

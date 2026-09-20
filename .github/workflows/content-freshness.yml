@@ -13,6 +13,9 @@ on:
       - "config/site.json"
       - "scripts/**"
       - "tests/**"
+      - "docs/reviews/**"
+      - "docs/ARTICLE_REVIEW_CHECKLIST.md"
+      - "docs/NEW_ARTICLE_WORKFLOW.md"
       - "pyproject.toml"
       - ".github/workflows/content-freshness.yml"
   schedule:

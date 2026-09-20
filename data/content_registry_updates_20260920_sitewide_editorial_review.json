@@ -1,0 +1,432 @@
+{
+  "updated_at": "2026-09-20T12:00:00+09:00",
+  "articles": [
+    {
+      "article_id": "B001",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B002",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B003",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B004",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B005",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B006",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B007",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B008",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B009",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B010",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B011",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B012",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B013",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B014",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B015",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B016",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B017",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B018",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B019",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B020",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B021",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B022",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B023",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B024",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B025",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B026",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B027",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B028",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B029",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B030",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B031",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B032",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B033",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B034",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B035",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B036",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B037",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B038",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B039",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B040",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B041",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B042",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B043",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B044",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B045",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B046",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B047",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B048",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B049",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B050",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B051",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B052",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B053",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B054",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B055",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B056",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B057",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B058",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B059",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B060",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B061",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B062",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B063",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B064",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B065",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B066",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B067",
+      "body_char_count_approx": 4762,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B068",
+      "body_char_count_approx": 3133,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B069",
+      "body_char_count_approx": 2642,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B070",
+      "body_char_count_approx": 3695,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B071",
+      "body_char_count_approx": 2868,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B072",
+      "body_char_count_approx": 4024,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B073",
+      "body_char_count_approx": 2876,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B074",
+      "body_char_count_approx": 3043,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B075",
+      "body_char_count_approx": 2589,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B076",
+      "body_char_count_approx": 2693,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B077",
+      "body_char_count_approx": 2949,
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20",
+      "modified_at": "2026-09-20"
+    },
+    {
+      "article_id": "B078",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B079",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B080",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    },
+    {
+      "article_id": "B081",
+      "last_reviewed_at": "2026-09-20",
+      "review_checklist_last_checked_at": "2026-09-20"
+    }
+  ]
+}

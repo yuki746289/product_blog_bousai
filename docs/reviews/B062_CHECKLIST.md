@@ -29,3 +29,17 @@ serp_display_quality: PASS
 - 厚生労働省の妊産婦向け避難所情報共有マニュアルおよび災害時健康情報を確認。
 - 内閣府の福祉避難所ガイドラインでは妊産婦が要配慮者として想定される一方、利用方法は自治体運用に依存するため限定表現とした。
 - B034/B061との検索意図・内容重複を避け、B062は妊娠中〜産後まもない本人の防災・医療継続を担当する。
+
+<!-- sitewide-editorial-rereview-20260920 -->
+## 2026-09-20 全記事編集品質再レビュー
+- sitewide_editorial_rereview: `PASS`
+- review_status: `PASS`
+- READY_TO_PUBLISH: `YES`
+- title_h1_answer_alignment: `PASS`
+- heading_reader_facing: `PASS`
+- answer_first: `PASS`
+- ai_template_review: `PASS`
+- production_memo_review: `PASS`
+- checklist_refs: `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`, `docs/EXPLANATION_QUALITY_PREFLIGHT.md`, `docs/ARTICLE_STORY_QUALITY_GATE.md`
+- review_note: タイトル/H1、導入、主要H2、章冒頭、制作メモ混入、同系記事との定型重複を再確認。読者への結論が早い段階で分かるためPASS。
+<!-- /sitewide-editorial-rereview-20260920 -->
