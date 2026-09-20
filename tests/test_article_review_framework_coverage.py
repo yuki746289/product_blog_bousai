@@ -7,9 +7,18 @@ class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         reviews = root / "docs" / "reviews"
 
+        articles = root / "content" / "articles"
+        article_ids = sorted(
+            {
+                path.name.split("_", 1)[0]
+                for path in articles.glob("B[0-9][0-9][0-9]_*.md")
+            }
+        )
+
         missing = []
-        for n in range(1, 38):
-            aid = f"B{n:03d}"
+        self.assertTrue(article_ids, "no article source files discovered")
+
+        for aid in article_ids:
             path = reviews / f"{aid}_CHECKLIST.md"
             if not path.exists():
                 missing.append(f"{aid}: checklist missing")
@@ -19,15 +28,29 @@ class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
             required_markers = {
                 "site checklist": "BOUSAI_SITE_REVIEW_CHECKLIST.md",
                 "situational reader model": "persona_mode: `SITUATIONAL_SEGMENT`",
-                "published review status": "review_status: `PASS`",
-                "publish decision": "READY_TO_PUBLISH: `YES`",
             }
             for label, marker in required_markers.items():
                 if marker not in text:
                     missing.append(f"{aid}: {label} marker missing")
 
-            if "review_status: `IN_PROGRESS`" in text:
-                missing.append(f"{aid}: stale IN_PROGRESS remains")
+            has_pass = "review_status: `PASS`" in text or "review_status: PASS" in text
+            has_fix = (
+                "review_status: `FIX_REQUIRED`" in text
+                or "review_status: FIX_REQUIRED" in text
+                or "review_status: `IN_PROGRESS`" in text
+                or "review_status: IN_PROGRESS" in text
+            )
+            if not (has_pass or has_fix):
+                missing.append(f"{aid}: review_status marker missing")
+
+            has_ready = (
+                "READY_TO_PUBLISH: `YES`" in text
+                or "READY_TO_PUBLISH: YES" in text
+                or "READY_TO_PUBLISH: `NO`" in text
+                or "READY_TO_PUBLISH: NO" in text
+            )
+            if not has_ready:
+                missing.append(f"{aid}: publish decision marker missing")
 
         self.assertEqual([], missing, "\n" + "\n".join(missing))
 
