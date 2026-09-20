@@ -3,8 +3,8 @@
 - article_id: `B076`
 - title: 四国の線状降水帯｜高知の多雨・2023年豪雨・2026年徳島から見る特徴
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
