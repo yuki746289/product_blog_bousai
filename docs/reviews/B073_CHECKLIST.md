@@ -3,8 +3,8 @@
 - article_id: `B073`
 - title: 九州の線状降水帯｜なぜ多い？九州北部豪雨など過去事例と大雨への備え
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
