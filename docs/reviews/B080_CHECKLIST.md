@@ -3,8 +3,8 @@
 - article_id: `B080`
 - title: 犬の防災は何を準備する？避難時のリード・ケージ・持ち出し品
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
