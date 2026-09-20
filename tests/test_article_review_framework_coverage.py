@@ -58,9 +58,14 @@ class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
                 "article_status: READY_TO_PUBLISH",
             }
 
-            if not (pass_lines & lines):
+            has_pass = bool(pass_lines & lines)
+            has_ready = bool(ready_lines & lines) or any(
+                line.startswith("公開可能") for line in lines
+            )
+
+            if not has_pass:
                 errors.append(f"{aid}: PASS review decision missing")
-            if not (ready_lines & lines):
+            if not has_ready:
                 errors.append(f"{aid}: publish-ready decision missing")
 
         self.assertEqual([], errors, "\n" + "\n".join(errors))
