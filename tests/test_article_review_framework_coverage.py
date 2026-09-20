@@ -3,6 +3,15 @@ import unittest
 
 
 class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
+    @staticmethod
+    def _status_lines(text: str) -> set[str]:
+        normalized = text.replace("`", "").replace("**", "")
+        return {
+            line.strip().lstrip("- ").strip()
+            for line in normalized.splitlines()
+            if line.strip()
+        }
+
     def test_all_article_sources_have_completed_review_records(self):
         root = Path(__file__).resolve().parents[1]
         reviews = root / "docs" / "reviews"
@@ -25,39 +34,33 @@ class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
                 continue
 
             text = checklist.read_text(encoding="utf-8")
+            lines = self._status_lines(text)
 
-            blocked_markers = (
-                "review_status: `FIX_REQUIRED`",
+            blocked_lines = {
                 "review_status: FIX_REQUIRED",
-                "review_status: `IN_PROGRESS`",
                 "review_status: IN_PROGRESS",
-                "READY_TO_PUBLISH: `NO`",
+                "review_status: PASS_WITH_PUBLISH_BLOCKERS",
                 "READY_TO_PUBLISH: NO",
-            )
-            blocked = [marker for marker in blocked_markers if marker in text]
+            }
+            blocked = sorted(blocked_lines & lines)
             if blocked:
                 errors.append(f"{aid}: incomplete review remains ({', '.join(blocked)})")
                 continue
 
-            # Support both current and legacy checklist formats while requiring
-            # an explicit completed review decision.
-            pass_markers = (
-                "review_status: `PASS`",
+            pass_lines = {
                 "review_status: PASS",
                 "review_checklist_status: PASS",
                 "判定: PASS",
-            )
-            ready_markers = (
-                "READY_TO_PUBLISH: `YES`",
+            }
+            ready_lines = {
                 "READY_TO_PUBLISH: YES",
                 "production_build_status: READY_FOR_DEPLOY",
-                "article_status: `READY_TO_PUBLISH`",
                 "article_status: READY_TO_PUBLISH",
-            )
+            }
 
-            if not any(marker in text for marker in pass_markers):
+            if not (pass_lines & lines):
                 errors.append(f"{aid}: PASS review decision missing")
-            if not any(marker in text for marker in ready_markers):
+            if not (ready_lines & lines):
                 errors.append(f"{aid}: publish-ready decision missing")
 
         self.assertEqual([], errors, "\n" + "\n".join(errors))
