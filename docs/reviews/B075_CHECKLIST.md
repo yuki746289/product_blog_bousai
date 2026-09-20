@@ -3,8 +3,8 @@
 - article_id: `B075`
 - title: 中国地方の線状降水帯｜2014年広島・2018年西日本豪雨・2025年山口から見る特徴
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
