@@ -52,8 +52,9 @@
 
 ## 残課題
 
-- user_acceptance_status: `PENDING`
-- ユーザー確認・承認後に今回の図解タスクを完了扱いへ変更する。
+- user_acceptance_status: `APPROVED`
+- user_approved_at: `2026-09-20`
+- 2026-09-20 ユーザー承認済み。今回の図解タスクは完了扱い。
 
 ## 最終判定
 
