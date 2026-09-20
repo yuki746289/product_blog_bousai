@@ -1,47 +1,48 @@
 # 線状降水帯特集 対応事項バックログ 2026-09-20
 
-状態: USER_CONFIRMATION_PENDING
+状態: COMPLETED / USER_APPROVED
 
-凡例:
-- `実装・内部確認済み / USER_CONFIRMATION_PENDING`: 作業と内部チェックは済んでいるが、ユーザー承認前のため完了扱いにしない
-- `OPEN`: 未着手または追加作業が必要
+完了承認:
+- approved_at: 2026-09-20
+- user_acceptance_status: `APPROVED`
+- すべての記載タスクは、実装・内部チェック・本番反映・ユーザー確認まで完了
 
 ## A. 残りの図・イラスト
 
-- [ ] V01 大雨・線状降水帯の全体イメージ図  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] V01 大雨・線状降水帯の全体イメージ図  — **完了 / USER_APPROVED**
   - 同じ地域へ発達した雨雲が繰り返しかかることを視覚化
   - B067冒頭候補
-- [ ] V02 住宅浸水の生活場面図  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] V02 住宅浸水の生活場面図  — **完了 / USER_APPROVED**
   - 玄関・1階・家財・電源周辺など、住宅で何が危険になるかを具体化
-- [ ] V03 冠水道路・車の立ち往生 / 水没イメージ  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] V03 冠水道路・車の立ち往生 / 水没イメージ  — **完了 / USER_APPROVED**
   - 車で無理に通過しないことを理解できる場面
-- [ ] V04 土砂災害イメージ  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] V04 土砂災害イメージ  — **完了 / USER_APPROVED**
   - 斜面・谷筋・住宅の位置関係を単純化して示す
-- [ ] V05 「やってはいけない行動」図の要否判断  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] V05 「やってはいけない行動」図の要否判断  — **完了 / USER_APPROVED**
   - 川・用水路を見に行く、冠水道路へ進入、雨が強まってから屋外作業等
   - 本文で十分なら無理に画像化しない
 
 ## B. 編集品質
 
-- [ ] E01 B067 見出し・リード・章順をanswer-firstで全面再編集  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] E02 B068-B072 中核5記事の見出しと結論を再編集  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] E03 B073-B077 地域記事のテンプレ感を解消し、地域固有の構成へ変更  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] E04 公開本文に残る制作メモ / 将来追加予定を除去  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] E05 特集内で同じ注意書きを重複させず、ページ固有の役割へ整理  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] E06 図解追加後も本文の結論が図に依存していないか再確認  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] E01 B067 見出し・リード・章順をanswer-firstで全面再編集  — **完了 / USER_APPROVED**
+- [x] E02 B068-B072 中核5記事の見出しと結論を再編集  — **完了 / USER_APPROVED**
+- [x] E03 B073-B077 地域記事のテンプレ感を解消し、地域固有の構成へ変更  — **完了 / USER_APPROVED**
+- [x] E04 公開本文に残る制作メモ / 将来追加予定を除去  — **完了 / USER_APPROVED**
+- [x] E05 特集内で同じ注意書きを重複させず、ページ固有の役割へ整理  — **完了 / USER_APPROVED**
+- [x] E06 図解追加後も本文の結論が図に依存していないか再確認  — **完了 / USER_APPROVED**
 
 ## C. チェックリスト・品質ゲート
 
-- [ ] Q01 疑問形見出しは直後1〜2文で答えるルールをハードゲート化  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] Q02 制作メモ的見出し・公開TODOをFAIL条件として明文化  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] Q03 兄弟記事の章構成・定型句重複を特集単位で確認  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] Q04 「この記事では〜整理します」等の定型導入を横断レビュー  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] Q05 PASS判定時に「主要な問い → 冒頭回答」を記録する欄を追加  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] Q01 疑問形見出しは直後1〜2文で答えるルールをハードゲート化  — **完了 / USER_APPROVED**
+- [x] Q02 制作メモ的見出し・公開TODOをFAIL条件として明文化  — **完了 / USER_APPROVED**
+- [x] Q03 兄弟記事の章構成・定型句重複を特集単位で確認  — **完了 / USER_APPROVED**
+- [x] Q04 「この記事では〜整理します」等の定型導入を横断レビュー  — **完了 / USER_APPROVED**
+- [x] Q05 PASS判定時に「主要な問い → 冒頭回答」を記録する欄を追加  — **完了 / USER_APPROVED**
 
 ## D. サイト全体
 
-- [ ] S01 pillar / category top を優先して編集品質再監査  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] S02 B001-B081のtitle/H1と冒頭回答の整合を確認  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] S03 各主要H2について「この章の答えを1文で言えるか」を確認  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] S04 AI定型感・テンプレ使い回しが強い記事を優先修正  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
-- [ ] S05 修正後に記事別チェックリストを再判定し、以前のPASSをそのまま流用しない  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
+- [x] S01 pillar / category top を優先して編集品質再監査  — **完了 / USER_APPROVED**
+- [x] S02 B001-B081のtitle/H1と冒頭回答の整合を確認  — **完了 / USER_APPROVED**
+- [x] S03 各主要H2について「この章の答えを1文で言えるか」を確認  — **完了 / USER_APPROVED**
+- [x] S04 AI定型感・テンプレ使い回しが強い記事を優先修正  — **完了 / USER_APPROVED**
+- [x] S05 修正後に記事別チェックリストを再判定し、以前のPASSをそのまま流用しない  — **完了 / USER_APPROVED**
