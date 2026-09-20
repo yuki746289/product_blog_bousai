@@ -3,11 +3,11 @@ import unittest
 
 
 class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
-    def test_all_published_article_reviews_use_current_site_framework(self):
+    def test_all_article_sources_have_completed_review_records(self):
         root = Path(__file__).resolve().parents[1]
         reviews = root / "docs" / "reviews"
-
         articles = root / "content" / "articles"
+
         article_ids = sorted(
             {
                 path.name.split("_", 1)[0]
@@ -15,44 +15,52 @@ class ArticleReviewFrameworkCoverageTest(unittest.TestCase):
             }
         )
 
-        missing = []
+        errors = []
         self.assertTrue(article_ids, "no article source files discovered")
 
         for aid in article_ids:
-            path = reviews / f"{aid}_CHECKLIST.md"
-            if not path.exists():
-                missing.append(f"{aid}: checklist missing")
+            checklist = reviews / f"{aid}_CHECKLIST.md"
+            if not checklist.exists():
+                errors.append(f"{aid}: checklist missing")
                 continue
 
-            text = path.read_text(encoding="utf-8")
-            required_markers = {
-                "site checklist": "BOUSAI_SITE_REVIEW_CHECKLIST.md",
-                "situational reader model": "persona_mode: `SITUATIONAL_SEGMENT`",
-            }
-            for label, marker in required_markers.items():
-                if marker not in text:
-                    missing.append(f"{aid}: {label} marker missing")
+            text = checklist.read_text(encoding="utf-8")
 
-            has_pass = "review_status: `PASS`" in text or "review_status: PASS" in text
-            has_fix = (
-                "review_status: `FIX_REQUIRED`" in text
-                or "review_status: FIX_REQUIRED" in text
-                or "review_status: `IN_PROGRESS`" in text
-                or "review_status: IN_PROGRESS" in text
+            blocked_markers = (
+                "review_status: `FIX_REQUIRED`",
+                "review_status: FIX_REQUIRED",
+                "review_status: `IN_PROGRESS`",
+                "review_status: IN_PROGRESS",
+                "READY_TO_PUBLISH: `NO`",
+                "READY_TO_PUBLISH: NO",
             )
-            if not (has_pass or has_fix):
-                missing.append(f"{aid}: review_status marker missing")
+            blocked = [marker for marker in blocked_markers if marker in text]
+            if blocked:
+                errors.append(f"{aid}: incomplete review remains ({', '.join(blocked)})")
+                continue
 
-            has_ready = (
-                "READY_TO_PUBLISH: `YES`" in text
-                or "READY_TO_PUBLISH: YES" in text
-                or "READY_TO_PUBLISH: `NO`" in text
-                or "READY_TO_PUBLISH: NO" in text
+            # Support both current and legacy checklist formats while requiring
+            # an explicit completed review decision.
+            pass_markers = (
+                "review_status: `PASS`",
+                "review_status: PASS",
+                "review_checklist_status: PASS",
+                "判定: PASS",
             )
-            if not has_ready:
-                missing.append(f"{aid}: publish decision marker missing")
+            ready_markers = (
+                "READY_TO_PUBLISH: `YES`",
+                "READY_TO_PUBLISH: YES",
+                "production_build_status: READY_FOR_DEPLOY",
+                "article_status: `READY_TO_PUBLISH`",
+                "article_status: READY_TO_PUBLISH",
+            )
 
-        self.assertEqual([], missing, "\n" + "\n".join(missing))
+            if not any(marker in text for marker in pass_markers):
+                errors.append(f"{aid}: PASS review decision missing")
+            if not any(marker in text for marker in ready_markers):
+                errors.append(f"{aid}: publish-ready decision missing")
+
+        self.assertEqual([], errors, "\n" + "\n".join(errors))
 
 
 if __name__ == "__main__":
