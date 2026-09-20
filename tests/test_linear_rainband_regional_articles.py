@@ -42,8 +42,8 @@ class LinearRainbandRegionalArticleTests(unittest.TestCase):
         for marker in ("2015年関東・東北豪雨", "2026年千葉豪雨", "1時間115.0mm", "24時間367.0mm"):
             self.assertIn(marker, kanto)
 
-        self.assertIn("九州北部・九州南部・奄美・沖縄を一括りにしない", kyushu)
-        self.assertIn("「関東地方」と「関東甲信地方」は同じではない", kanto)
+        self.assertIn("九州北部・南部・奄美・沖縄では情報区分が異なる", kyushu)
+        self.assertIn("山梨・長野を含む「関東甲信」で確認する", kanto)
 
     def test_b070_is_the_regional_hub(self):
         hub = (ROOT / "content/articles/B070_linear_rainband_regions.md").read_text(
