@@ -3,8 +3,8 @@
 - article_id: `B077`
 - title: 東海の線状降水帯｜2023年6月豪雨・2025年静岡・2026年伊豆から見る特徴
 - content_role: `detail`
-- risk_level: HIGH
-- article_status: published
+- risk_level: standard
+- article_status: READY_TO_PUBLISH
 - review_status: `PASS`
 - last_checked_at: 2026-09-20
 - reviewer: ChatGPT
