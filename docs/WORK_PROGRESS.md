@@ -28,7 +28,7 @@
 
 | ID | 優先 | タスク | 状態 | 次にやること | ユーザー承認 |
 |---|:---:|---|---|---|---|
-| IMG-001 | A | 線状降水帯の生成画像を実画像として本番表示 | REOPENED | 公開アセットへ画像配置し、記事内へimg組み込み | NO |
+| IMG-001 | A | 線状降水帯の生成画像を実画像として本番表示 | IN_PROGRESS | 公開アセットへ5画像配置し、対象記事へimg組み込み | NO |
 | OPS-001 | A | タイムアウト時の仕様不変ルール | USER_CONFIRMATION_PENDING | ユーザー確認 | NO |
 | OPS-002 | A | 作業進捗台帳の導入 | DONE | なし | YES |
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
@@ -48,13 +48,13 @@
 
 ### IMG-001 線状降水帯の生成画像を実画像として本番表示
 
-- status: `REOPENED`
+- status: `IN_PROGRESS`
 - priority: `A`
 - approved_spec: 生成済み画像を実ファイルとして保存し、記事内へ `img` として表示する。PC・モバイル双方で画像が実際に見えること。
 - completion_criteria: 公開アセット配置 / img組み込み / 適切な章への配置 / PC表示確認 / モバイル表示確認 / 本番HTTP確認 / ユーザー承認
-- done: 生成画像原本1点＋分割5点を保存。HTML/CSS図解は実装済み。
-- remaining: 実画像の公開アセット配置と本番img表示。
-- next_action: 生成画像をGitHub公開アセットへ配置し、B067の該当章へ組み込む。
+- done: 生成画像原本1点＋分割5点を保存。HTML/CSS図解は実装済み。掲載先を B067 / B012 / B009 / B036 に確定。
+- remaining: 5画像の公開アセット配置、記事へのimg組み込み、PC/モバイル・本番HTTP確認。
+- next_action: 5画像を `preview/assets/images/disaster/` へ登録する。
 - blocker: なし
 - related: `docs/research/LINEAR_RAINBAND_BACKLOG_20260920.md`, `docs/reviews/B067_CHECKLIST.md`, PR #100
 - updated_at: `2026-09-21`

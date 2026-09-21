@@ -4,7 +4,7 @@
   "articles": [
     {
       "article_id": "B009",
-      "body_char_count": 2714,
+      "body_char_count": 2826,
       "minimum_char_count": 3000,
       "final_review_status": "PASS",
       "rationale": "High-risk action article is intentionally concise. It already explains why flooded roads must not be entered, the decision sequence, common misjudgments, stop conditions, and what to do instead; adding prose only to reach 3000 characters would reduce action clarity."

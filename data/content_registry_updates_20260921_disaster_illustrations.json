@@ -1,0 +1,39 @@
+{
+  "updated_at": "2026-09-21T10:35:00+09:00",
+  "articles": [
+    {
+      "article_id": "B009",
+      "body_char_count_approx": 2826,
+      "last_reviewed_at": "2026-09-21",
+      "review_checklist_last_checked_at": "2026-09-21",
+      "modified_at": "2026-09-21",
+      "image_source_count": 5
+    },
+    {
+      "article_id": "B012",
+      "body_char_count_approx": 4418,
+      "last_reviewed_at": "2026-09-21",
+      "review_checklist_last_checked_at": "2026-09-21",
+      "modified_at": "2026-09-21",
+      "image_source_count": 6
+    },
+    {
+      "article_id": "B036",
+      "body_char_count_approx": 3357,
+      "last_reviewed_at": "2026-09-21",
+      "review_checklist_last_checked_at": "2026-09-21",
+      "modified_at": "2026-09-21",
+      "image_source_count": 2
+    },
+    {
+      "article_id": "B067",
+      "body_char_count_approx": 4872,
+      "last_reviewed_at": "2026-09-21",
+      "review_checklist_last_checked_at": "2026-09-21",
+      "modified_at": "2026-09-21",
+      "image_source_count": 2,
+      "image_source_path": "docs/research/B067_IMAGES.md",
+      "image_status": "APPROVED"
+    }
+  ]
+}

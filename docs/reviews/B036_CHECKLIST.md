@@ -16,7 +16,7 @@
 - risk_level: `high`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -36,7 +36,7 @@
 |---|---|---|
 | C01 内容・情報量 | PASS | 区域確認→情報確認→避難判断→次善行動まで一連で整理 |
 | C02 出典・安全性 | PASS | 気象庁・国交省/国土地理院・内閣府を一次根拠に使用 |
-| C03 画像・視覚要素 | PASS | 日本の実災害Commons画像1点＋色/行動表。権利確認済み |
+| C03 画像・視覚要素 | PASS | 日本の実災害Commons画像1点＋色/行動表に加え、がけ崩れ・土石流・地すべりのAI模式図を実imgで追加。個別地点の危険判断には使用しない |
 | C04 読みやすさ・UI | PASS | 色だけに依存せず名称・警戒レベル・行動を併記 |
 | C05 内部リンク | PASS | 大雨・水害カテゴリから入口を設け、記事内からB005/B006/B012/B022へ回遊可能。孤立ページではない |
 | C06 商品導線・商品記事 | N/A | 商品購入を主目的にしない |

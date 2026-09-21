@@ -1847,3 +1847,17 @@ summary:focus-visible,
   background: var(--role-product-soft);
   color: var(--role-product-dark);
 }
+
+
+/* Added: 2026-09-21 / generated disaster illustrations */
+.article-generated-illustration {
+  width: min(100%, 720px);
+  margin: 28px auto 34px;
+}
+.article-generated-illustration img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  background: #fff;
+}
