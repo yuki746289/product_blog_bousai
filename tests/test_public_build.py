@@ -221,7 +221,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue(favicon.exists())
         data = favicon.read_bytes()
         self.assertGreater(len(data), 512)
-        self.assertEqual(b"\\x89PNG\\r\\n\\x1a\\n", data[:8])
+        self.assertEqual(bytes.fromhex("89504e470d0a1a0a"), data[:8])
         width, height = struct.unpack(">II", data[16:24])
         self.assertEqual((64, 64), (width, height))
 
