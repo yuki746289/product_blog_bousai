@@ -141,6 +141,9 @@ SABOアイでは、土砂災害のおそれのある箇所や避難施設を地�
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [気象庁「大気の状態不安定による大雨と突風（2008年7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2008/20080727/20080727.html)
+- [気象庁「医王山・観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=0570&prec_no=56)
+
 
 - [気象庁「2023年7月12日の北陸線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050712.pdf)
 - [気象庁「2024年9月20〜22日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241029/20241029.html)
