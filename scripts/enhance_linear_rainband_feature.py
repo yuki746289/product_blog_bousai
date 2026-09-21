@@ -69,6 +69,10 @@ CURRENT_LABEL = {
     "B076": "四国",
     "B077": "東海",
     "B082": "鹿児島県",
+    "B083": "宮崎県",
+    "B084": "熊本県",
+    "B085": "高知県",
+    "B086": "和歌山県",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
