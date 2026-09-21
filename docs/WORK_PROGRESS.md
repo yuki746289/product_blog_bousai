@@ -39,6 +39,7 @@
 | LINEAR-PREF-001 | A | 線状降水帯県別ページ展開 | USER_CONFIRMATION_PENDING | 実発生確認済み14都県を県別シリーズ化。大阪B093は一般豪雨記事へ変更。ユーザー確認待ち | NO |
 | LINEAR-CASE-002 | A | 線状降水帯 全事例表の再構成・高精度化 | USER_CONFIRMATION_PENDING | 県別14記事＋全国/地域別を5件以上目安で再構成し静的QA完了。デプロイ許可待ち | NO |
 | LINEAR-DIFF-001 | B | ゲリラ豪雨と線状降水帯の違い 記事＋図解 | USER_CONFIRMATION_PENDING | B097本文・比較表・模式図・一次資料・preview・registry作成済み。ユーザー確認後、公開工程へ | NO |
+| LINEAR-SHELTER-001 | A | 県別線状降水帯記事の避難場所・避難所導線 | USER_CONFIRMATION_PENDING | 14都県に公式避難所導線、東京23区/名古屋16区セレクターを追加。デプロイ許可待ち | NO |
 | CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | USER_CONFIRMATION_PENDING | 横断監査・本文修正・ルール/チェックリスト更新・静的整合確認完了。修正概要を報告し、明示許可後のみ本番反映 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
@@ -139,3 +140,18 @@
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
+
+
+### LINEAR-SHELTER-001 県別線状降水帯記事の避難場所・避難所導線
+
+- status: `USER_CONFIRMATION_PENDING`
+- priority: `A`
+- approved_spec: 県別記事で避難場所を分かりやすく案内する。指定緊急避難場所と指定避難所を区別し、洪水・内水・土砂等の災害種別への適合と当日の開設状況を自治体一次情報で確認できるようにする。候補が多い都市部は選択UIを使う。一般地図は位置確認の補助に限り、指定・開設状況の正本にはしない。
+- done: 14都県の記事本文に「避難場所の選び方」章と比較表を追加。各記事に自治体公式ページ＋国土地理院の指定緊急避難場所/指定避難所データを追加。共通shelter finderを記事上部に追加。東京B092は23区、愛知B094は名古屋16区を選択して各自治体公式ハザードマップを開けるUIを追加。モバイル1列化、キーボード操作、冠水後の遠距離移動注意を実装。正本ルールPR #20をmainへ反映。記事別/共通チェックリストへC02-29〜C02-35相当の確認を記録。
+- static_qa: shelter guide 14件 / 東京23区 / 名古屋16区 / GSI導線 / selector script / mobile single-column を確認。
+- remaining: production workflowでMarkdown→preview同期・unit test・build / 本番表示確認 / ユーザー確認
+- next_action: PR #126のデプロイ前報告へ追加し、ユーザー明示許可後にmainへマージする。
+- blocker: 本番デプロイはユーザー許可待ち
+- related: private rules PR #20, public PR #126
+- updated_at: `2026-09-22`
+- user_approval: `NO`
