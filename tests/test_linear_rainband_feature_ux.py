@@ -223,6 +223,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
             self.assertIn(f'id="shelter-finder-{article_id.lower()}"', actual)
             self.assertIn("指定緊急避難場所", actual)
             self.assertIn("指定避難所", actual)
+            self.assertIn("最新でない場合や未掲載の場合があります", actual)
             self.assertIn("https://www.gsi.go.jp/bousaichiri/hinanbasho", actual)
 
     def test_tokyo_and_nagoya_have_area_selectors(self):
