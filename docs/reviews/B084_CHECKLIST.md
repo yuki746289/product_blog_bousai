@@ -1,7 +1,7 @@
 # B084 記事別レビュー記録
 
 - article_id: B084
-- title: 熊本県の線状降水帯｜2012年九州北部豪雨・2020年7月豪雨から見る備え
+- title: 熊本県の線状降水帯｜2012・2020年豪雨と2026年7月の発生事例
 - content_role: detail
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
@@ -24,3 +24,14 @@
 ## 共通レビュー
 
 詳細は `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md` を参照。
+
+
+## 事例品質再監査（2026-09-21）
+
+- C02-07 独立イベント数: PASS（現行発生2件＋関連豪雨史2件）
+- C02-08/C02-09 重複確認: PASS
+- C02-10 発生実績 / 予測 / 制度・関連豪雨の分類: PASS
+- C02-12 直近事例再検索: PASS
+- 最新の発生確認: 2026年7月5日
+- 修正: 2020年7月3〜4日/6〜8日の重複を令和2年7月豪雨の一連期間へ統合。2026年7月2日・5日を追加。
+- 本番デプロイ・production workflow: **未実行（ユーザー許可制）**
