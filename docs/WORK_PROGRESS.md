@@ -30,7 +30,7 @@
 |---|:---:|---|---|---|---|
 | IMG-001 | A | 線状降水帯の生成画像を実画像として本番表示 | REOPENED | 公開アセットへ画像配置し、記事内へimg組み込み | NO |
 | OPS-001 | A | タイムアウト時の仕様不変ルール | USER_CONFIRMATION_PENDING | ユーザー確認 | NO |
-| OPS-002 | A | 作業進捗台帳の導入 | USER_CONFIRMATION_PENDING | ユーザー確認 | NO |
+| OPS-002 | A | 作業進捗台帳の導入 | DONE | なし | YES |
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
 | GA4-001 | A | Amazon / 商品記事クリックイベントのGA4受信確認 | BLOCKED | GA4管理画面で受信確認 | NO |
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
@@ -76,17 +76,17 @@
 
 ### OPS-002 作業進捗台帳の導入
 
-- status: `USER_CONFIRMATION_PENDING`
+- status: `DONE`
 - priority: `A`
 - approved_spec: GitHub上の一元台帳を進捗の正本とし、承認済み仕様・完了条件・次作業・承認状態を記録する。
 - completion_criteria: `docs/WORK_PROGRESS.md` 作成 / ガバナンス反映 / private正本反映 / CI契約テストPASS / ユーザー承認
-- done: `docs/WORK_PROGRESS.md` 作成、publicガバナンス反映、private正本PR #15マージ、CI契約テスト追加、run #217 PASS。
-- remaining: ユーザー承認。
-- next_action: ユーザー確認を受け、承認後に `DONE` へ更新する。
-- blocker: ユーザー確認待ち
-- related: `docs/RULES_GOVERNANCE.md`, private PR #15, public PR #101, CI run #217
+- done: `docs/WORK_PROGRESS.md` 作成、publicガバナンス反映、private正本PR #15マージ、CI契約テスト追加、run #218 PASS、2026-09-21ユーザー承認。
+- remaining: なし
+- next_action: なし
+- blocker: なし
+- related: `docs/RULES_GOVERNANCE.md`, private PR #15, public PR #101, CI run #218
 - updated_at: `2026-09-21`
-- user_approval: `NO`
+- user_approval: `YES`
 
 ### PERF-001 PageSpeed / Core Web Vitals継続改善
 
