@@ -189,6 +189,24 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertIn("article-generated-illustration", actual)
         self.assertIn("assets/images/disaster/linear-rainband-overview.jpg", actual)
 
+
+    def test_b097_is_feature_child_and_osaka_is_not_prefecture_card(self):
+        from scripts.enhance_linear_rainband_feature import region_panel
+
+        panel = region_panel()
+        self.assertNotIn("article_b093.html", panel)
+
+        sample = (
+            '<html><head></head><body><nav class="breadcrumb">old</nav>'
+            '<article><header><h1>old</h1><p class="article-lead">old</p></header>'
+            '<div class="article-body"><h2>本文</h2><p>本文です。</p></div>'
+            '</article></body></html>'
+        )
+        actual = enhance_feature_page(sample, "B097")
+        self.assertIn('<a href="article_b067.html">線状降水帯特集</a>', actual)
+        self.assertIn('aria-label="線状降水帯特集の主要テーマ"', actual)
+
+
     def test_transforms_are_idempotent(self):
         sample = (
             '<html><head></head><body><nav class="breadcrumb">old</nav>'
