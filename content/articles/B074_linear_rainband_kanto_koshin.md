@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-18
+source_checked_at: 2026-09-21
 next_review_at: 2027-03-14
 affiliate: false
 ---
@@ -100,6 +100,9 @@ affiliate: false
 - [土砂キキクルと避難判断](flood/landslide-evacuation-kikikuru.html)
 
 ## 公的情報・参考資料
+- [気象庁「2022年8月12〜13日の線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R040812.pdf)
+- [気象庁「令和元年東日本台風」](https://www.data.jma.go.jp/stats/data/bosai/report/2019/20191012/20191012.html)
+
 
 - [仙台管区気象台「平成27年9月関東・東北豪雨から10年」](https://www.data.jma.go.jp/sendai/knowledge/H27ame/H27ooame.html)
 - [気象庁「気象業務はいま2016」](https://www.jma.go.jp/jma/kishou/books/hakusho/2016/index.html)
