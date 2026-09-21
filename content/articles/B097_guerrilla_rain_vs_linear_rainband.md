@@ -126,9 +126,9 @@ affiliate: false
 
 ## 公的情報・参考資料
 
-- 気象庁「降水に関する用語」 https://www.jma.go.jp/jma/kishou/know/yougo_hp/kousui.html
-- 気象庁「線状降水帯に関する情報」 https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html
-- 気象庁「予報が難しい現象について（線状降水帯による大雨）」 https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html
-- 気象庁「気象防災速報（記録的短時間大雨）」 https://www.jma.go.jp/jma/kishou/know/bosai/kirokuame.html
-- 気象庁「防災気象情報とその効果的な利用」 https://www.jma.go.jp/jma/kishou/know/ame_chuui/ame_chuui_p8.html
-- 気象庁監修『図解説 中小規模気象学』 https://www.jma.go.jp/jma/kishou/know/expert/pdf/textbook_meso_v2.1.pdf
+- [気象庁「降水に関する用語」](https://www.jma.go.jp/jma/kishou/know/yougo_hp/kousui.html)
+- [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
+- [気象庁「予報が難しい現象について（線状降水帯による大雨）」](https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html)
+- [気象庁「気象防災速報（記録的短時間大雨）」](https://www.jma.go.jp/jma/kishou/know/bosai/kirokuame.html)
+- [気象庁「防災気象情報とその効果的な利用」](https://www.jma.go.jp/jma/kishou/know/ame_chuui/ame_chuui_p8.html)
+- [気象庁監修『図解説 中小規模気象学』](https://www.jma.go.jp/jma/kishou/know/expert/pdf/textbook_meso_v2.1.pdf)
