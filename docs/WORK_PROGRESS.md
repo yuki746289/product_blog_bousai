@@ -166,9 +166,9 @@
 - priority: `A`
 - approved_spec: 全国的な発生傾向・重要事例を持つ10県に、ユーザー指定の東京・大阪・愛知（名古屋重点）・石川・富山を加えた15都道府県を対象とする。県別の時系列発生史を厚くし、ページごとの差別化を行い、避難場所・ハザード情報への実用導線を持たせる。
 - completion_criteria: 15都道府県の一次情報調査 / B082〜B096のMarkdown・preview・registry / 県固有年表 / 避難導線 / 地方・全国記事との内部リンク / テンプレ過多防止レビュー / CI / 本番スモーク / ユーザー確認
-- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1のB082鹿児島・B083宮崎・B084熊本・B085長崎・B086大分について、一次情報に基づく県別年表、地形・河川等の差別化、防災・避難導線を本文へ実装。5記事すべて2,500字基準以上。PR #120 / deploy run #94で本番反映。長崎・大分は2024年事例も追加し、PR #122 / deploy run #95で本番反映。Batch 2のB087高知・B088和歌山・B089三重・B090静岡・B091千葉も、県固有の時系列・地形/都市条件・避難導線を実装し、全記事2,500字以上、preview・registry・特集ナビ・個別/共通レビュー・退行テストを追加済み。
-- remaining: Batch 2のCI・本番確認、Batch 3（東京・大阪・愛知・石川・富山）の作成・検証。全15都道府県のユーザー確認。
-- next_action: Batch 2をCI・本番確認し、その後Batch 3（東京・大阪・愛知・石川・富山）へ進む。
+- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1（鹿児島・宮崎・熊本・長崎・大分）はPR #120 / deploy run #94、長崎・大分の2024年事例追記はPR #122 / run #95で本番反映済み。Batch 2（高知・和歌山・三重・静岡・千葉）はCI run #244とdeploy run #96でテスト・ビルド・FTPS・本番スモーク・live sitemap監査まで全工程PASS。Batch 3（東京・大阪・愛知・石川・富山）はB092〜B096として、県固有の豪雨史・都市/地形特性・避難導線を実装し、5記事すべて2,500字以上、preview・registry・特集ナビ・個別/共通レビュー・退行テストを追加済み。
+- remaining: Batch 3のCI・production build・本番スモーク・live sitemap監査、全15都道府県のユーザー確認。
+- next_action: Batch 3をPR化し、CIと本番デプロイを確認する。
 - blocker: なし
 - related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md`, B067〜B077, B082〜B086
 - updated_at: `2026-09-21`
