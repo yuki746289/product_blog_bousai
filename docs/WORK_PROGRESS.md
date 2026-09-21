@@ -34,7 +34,7 @@
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
 | GA4-001 | A | Amazon / 商品記事クリックイベントのGA4受信確認 | BLOCKED | GA4管理画面で受信確認 | NO |
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
-| GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | B008の効果観測＋B019等のCTR要因調査 | NO |
+| GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | B008効果観測＋B010等のCTR要因調査 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
@@ -42,7 +42,7 @@
 | CONTENT-003 | C | 内水氾濫と洪水の違いの独立記事化再評価 | TODO | B005/B020とのカニバリ確認 | NO |
 | CONTENT-004 | C | 災害時の口腔ケア記事候補 | TODO | 需要・一次情報・商品導線を評価 | NO |
 | EXPAND-001 | C | 大雪・寒波、雷・竜巻等の新災害カテゴリ検討 | TODO | IAと記事群の必要数を先に設計 | NO |
-| UI-001 | B | サイトファビコン導入 | IN_PROGRESS | 盾＋家アイコンを本番へ配置し表示確認 | NO |
+| UI-001 | B | サイトファビコン導入 | USER_CONFIRMATION_PENDING | ユーザーがブラウザタブ等の表示を確認 | NO |
 | MOBILE-001 | - | モバイル実機レビュー | DONE | なし。線状降水帯の実画像問題はIMG-001で別管理 | YES |
 
 ## タスク詳細
@@ -137,9 +137,9 @@
 - priority: `A`
 - approved_spec: 実検索データを基に、表示回数・CTR・順位・クエリから必要な記事だけを改善する。
 - completion_criteria: 十分なデータ取得 / 優先記事選定 / 修正 / 効果確認 / ユーザー承認
-- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。B008はSERPとB009との役割分離を確認し、title/H1/meta descriptionを検索意図が伝わる形へ調整。
-- remaining: B008変更後の順位・CTR効果確認、線状降水帯のニュース流入の継続観測、B019等の低CTR候補調査と必要な記事だけの修正。
-- next_action: B008の効果を観測しつつ、B019を次のCTR調査対象とする。
+- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。B008はSERPとB009との役割分離を確認し、title/H1/meta descriptionを検索意図が伝わる形へ調整。B019はSERP・役割分離を確認したが、匿名クエリが多く主検索意図を十分特定できないため現行titleを維持。
+- remaining: B008変更後の順位・CTR効果確認、線状降水帯のニュース流入の継続観測、B010 / B022 / B015等の低CTR候補調査と必要な記事だけの修正。
+- next_action: B008の効果を観測しつつ、B010を次のCTR調査対象とする。
 - blocker: なし
 - related: `docs/SITE_IMPROVEMENT_BACKLOG.md`, `docs/research/GSC_ANALYSIS_20260921.md`
 - updated_at: `2026-09-21`
@@ -245,15 +245,15 @@
 
 ### UI-001 サイトファビコン導入
 
-- status: `IN_PROGRESS`
+- status: `USER_CONFIRMATION_PENDING`
 - priority: `B`
 - approved_spec: 防災くらしガイドのブランドに合う正方形ファビコンを実ファイルで配置し、全公開ページから安定URLで参照する。
 - completion_criteria: favicon実ファイル / 全公開HTMLのlink rel=icon / 64x64確認 / ビルド・テストPASS / 本番HTTP確認 / ユーザー確認
-- done: 現行ブランド色を基準に「盾＋家」案を選定し、64x64 PNGとビルド・回帰テストを実装中。
-- remaining: GitHubへ画像配置、CI、デプロイ、本番確認、ユーザー確認。
-- next_action: `/favicon.png` を本番配信して全公開ページの参照とHTTP取得を確認する。
-- blocker: なし
-- related: `scripts/build_public.py`, `tests/test_public_build.py`
+- done: 現行ブランド色を基準に「盾＋家」案の64x64 PNGを追加。全公開HTMLへ `/favicon.png` を自動挿入し、64x64 PNG・全HTML参照の回帰テストを追加。PR #108をマージし、deploy run #86でテスト・ビルド・FTPSデプロイ・本番スモークまでPASS。
+- remaining: ユーザーによるブラウザタブ等での表示確認とデザイン承認。
+- next_action: ユーザーが本番ファビコン表示とデザインを確認する。
+- blocker: ユーザー確認待ち
+- related: `scripts/build_public.py`, `tests/test_public_build.py`, PR #108, deploy run #86
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
