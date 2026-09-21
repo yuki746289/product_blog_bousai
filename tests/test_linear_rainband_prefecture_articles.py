@@ -27,8 +27,8 @@ class LinearRainbandPrefectureBatch1Tests(unittest.TestCase):
             "B082": ("B073", "special/linear-rainband/prefecture/kagoshima.html"),
             "B083": ("B073", "special/linear-rainband/prefecture/miyazaki.html"),
             "B084": ("B073", "special/linear-rainband/prefecture/kumamoto.html"),
-            "B085": ("B076", "special/linear-rainband/prefecture/kochi.html"),
-            "B086": ("B070", "special/linear-rainband/prefecture/wakayama.html"),
+            "B085": ("B073", "special/linear-rainband/prefecture/nagasaki.html"),
+            "B086": ("B073", "special/linear-rainband/prefecture/oita.html"),
         }
         for article_id, (parent, public_path) in expected.items():
             self.assertIn(article_id, self.by_id)
@@ -53,8 +53,8 @@ class LinearRainbandPrefectureBatch1Tests(unittest.TestCase):
             "B082": ("1993", "薩摩", "指定緊急避難場所"),
             "B083": ("2024", "2025", "河川水位"),
             "B084": ("2012", "2020", "球磨川"),
-            "B085": ("2022", "2023", "夜間"),
-            "B086": ("2011", "2023", "安全レベル"),
+            "B085": ("1982", "2023", "指定緊急避難場所"),
+            "B086": ("2017", "2023", "雨量・水位"),
         }
         for article_id, required in markers.items():
             source_path = ROOT / self.by_id[article_id]["source_path"]
