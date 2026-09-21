@@ -34,7 +34,7 @@
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
 | GA4-001 | A | Amazon / 商品記事クリックイベントのGA4受信確認 | BLOCKED | GA4管理画面で受信確認 | NO |
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
-| GSC-001 | A | Search Consoleデータ駆動リライト | BLOCKED | 十分なGSCデータ蓄積後に分析 | NO |
+| GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | B008等のCTR要因と線状降水帯のニュース流入を継続分析 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
@@ -132,15 +132,15 @@
 
 ### GSC-001 Search Consoleデータ駆動リライト
 
-- status: `BLOCKED`
+- status: `IN_PROGRESS`
 - priority: `A`
 - approved_spec: 実検索データを基に、表示回数・CTR・順位・クエリから必要な記事だけを改善する。
 - completion_criteria: 十分なデータ取得 / 優先記事選定 / 修正 / 効果確認 / ユーザー承認
-- done: GSC導入・初期データ確認済み。
-- remaining: データ蓄積と分析。
-- next_action: データ量が十分になった時点で最新エクスポートを分析する。
-- blocker: データ蓄積待ち
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
+- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。
+- remaining: 線状降水帯のニュース流入の継続観測、低CTR候補のページ別クエリ・SERP表示確認、必要な記事だけの修正、効果確認。
+- next_action: B008を最優先にCTR要因を確認し、線状降水帯は3〜7日推移を観測する。
+- blocker: なし
+- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`, `docs/research/GSC_ANALYSIS_20260921.md`
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
