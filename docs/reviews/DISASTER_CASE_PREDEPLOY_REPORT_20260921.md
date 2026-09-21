@@ -4,9 +4,9 @@
 
 - branch: `fix/disaster-case-quality-20260921`
 - base: `main`
-- ahead: 62 commits
+- ahead: 63 commits
 - behind: 0
-- changed files: 48
+- changed files: 49
 - production deploy: **未実行**
 - user approval: **NO**
 - current gate: `USER_CONFIRMATION_PENDING`
@@ -47,7 +47,7 @@
 
 ## ルール・チェックリスト
 
-private正本 `product_blog_rules` のブランチ `fix/disaster-case-quality-20260921` に以下を追加。
+private正本 `product_blog_rules` は PR #16 を squash mergeし、`main` へ以下を正式反映済み。
 
 1. 1事例 = 一連の同一イベント
 2. 台風・前線・低気圧・地震・噴火等を日別/地域別/資料別に重複計上しない
