@@ -1,7 +1,7 @@
 # B082 記事別レビュー記録
 
 - article_id: B082
-- title: 鹿児島県の線状降水帯｜2023〜2025年の発生史と薩摩・大隅の大雨への備え
+- title: 鹿児島県の線状降水帯｜2023〜2026年の発生史と薩摩・大隅・奄美の大雨への備え
 - content_role: detail
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
@@ -24,3 +24,14 @@
 ## 共通レビュー
 
 詳細は `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md` を参照。
+
+
+## 事例品質再監査（2026-09-21）
+
+- C02-07 独立イベント数: PASS（現行発生5件）
+- C02-08/C02-09 重複確認: PASS
+- C02-10 発生実績 / 予測 / 制度・関連豪雨の分類: PASS
+- C02-12 直近事例再検索: PASS
+- 最新の発生確認: 2026年8月25〜26日（奄美地方）
+- 修正: literal \\n を除去。2026年6月24日・8月25〜26日を追加。県本土と奄美を区別。
+- 本番デプロイ・production workflow: **未実行（ユーザー許可制）**
