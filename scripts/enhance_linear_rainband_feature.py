@@ -190,10 +190,6 @@ def region_nav(current_id: str) -> str:
         _link(href, label, article_id == current_id)
         for article_id, label, href, _caption in REGION_PAGES
     )
-    links.extend(
-        _link(href, label, article_id == current_id)
-        for article_id, label, href, _caption in PREFECTURE_PAGES
-    )
     return (
         '<nav class="feature-region-nav" aria-label="線状降水帯の地域別記事">'
         + "".join(links)
