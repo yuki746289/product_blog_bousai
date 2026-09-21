@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1448" height="960" viewBox="0 0 1448 960" role="img" aria-labelledby="title desc">
+<title id="title">局地的大雨と線状降水帯の違い</title>
+<desc id="desc">左に局地的大雨、右に線状降水帯を配置し、雨雲の構造、範囲、継続時間の違いを比較した模式図。</desc>
+<rect width="1448" height="960" rx="32" fill="#f7fafc"/>
+<text x="724" y="66" text-anchor="middle" font-family="sans-serif" font-size="40" font-weight="700" fill="#183447">局地的大雨と線状降水帯の違い</text>
+<text x="724" y="105" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#526775">違いは「雨の強さ」だけでなく、雨雲の構造と続き方</text>
+
+<rect x="56" y="145" width="640" height="700" rx="28" fill="#ffffff" stroke="#b8cbd7" stroke-width="3"/>
+<rect x="752" y="145" width="640" height="700" rx="28" fill="#ffffff" stroke="#b8cbd7" stroke-width="3"/>
+
+<text x="376" y="205" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="700" fill="#1f536b">局地的大雨</text>
+<text x="376" y="239" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">いわゆる「ゲリラ豪雨」</text>
+
+<g transform="translate(175 290)">
+  <ellipse cx="120" cy="75" rx="105" ry="48" fill="#d4dce2"/>
+  <ellipse cx="205" cy="72" rx="85" ry="58" fill="#c5d0d8"/>
+  <ellipse cx="165" cy="38" rx="82" ry="52" fill="#bac7d0"/>
+  <line x1="100" y1="130" x2="75" y2="245" stroke="#2b78a5" stroke-width="12" stroke-linecap="round"/>
+  <line x1="155" y1="130" x2="135" y2="250" stroke="#2b78a5" stroke-width="12" stroke-linecap="round"/>
+  <line x1="210" y1="130" x2="200" y2="240" stroke="#2b78a5" stroke-width="12" stroke-linecap="round"/>
+  <line x1="260" y1="128" x2="260" y2="220" stroke="#2b78a5" stroke-width="12" stroke-linecap="round"/>
+</g>
+<text x="376" y="585" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#183447">単独〜少数の積乱雲が急発達</text>
+<text x="376" y="628" text-anchor="middle" font-family="sans-serif" font-size="23" fill="#384f5c">狭い範囲・数十分の短時間</text>
+<text x="376" y="667" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">典型例：降水域 20〜30km程度</text>
+<text x="376" y="706" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">道路冠水・地下浸水・急な増水に注意</text>
+
+<text x="1072" y="205" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="700" fill="#7a3f1d">線状降水帯</text>
+<text x="1072" y="239" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">発達した積乱雲が次々と列状に発生</text>
+
+<g transform="translate(815 286)">
+  <g fill="#c3cdd5">
+    <ellipse cx="78" cy="78" rx="70" ry="38"/><ellipse cx="130" cy="66" rx="62" ry="44"/>
+    <ellipse cx="210" cy="78" rx="70" ry="38"/><ellipse cx="262" cy="66" rx="62" ry="44"/>
+    <ellipse cx="342" cy="78" rx="70" ry="38"/><ellipse cx="394" cy="66" rx="62" ry="44"/>
+  </g>
+  <g stroke="#2b78a5" stroke-width="10" stroke-linecap="round">
+    <line x1="75" y1="120" x2="62" y2="215"/><line x1="118" y1="120" x2="108" y2="220"/>
+    <line x1="205" y1="120" x2="195" y2="220"/><line x1="250" y1="120" x2="242" y2="220"/>
+    <line x1="338" y1="120" x2="332" y2="220"/><line x1="385" y1="120" x2="382" y2="220"/>
+  </g>
+  <path d="M30 260 C150 285, 300 285, 435 260" fill="none" stroke="#9e5b2d" stroke-width="6" stroke-dasharray="14 10"/>
+  <path d="M420 252 l20 8 -17 13" fill="none" stroke="#9e5b2d" stroke-width="6"/>
+</g>
+<text x="1072" y="585" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#183447">強い雨雲が同じ地域へ繰り返しかかる</text>
+<text x="1072" y="628" text-anchor="middle" font-family="sans-serif" font-size="23" fill="#384f5c">数時間にわたり通過・停滞</text>
+<text x="1072" y="667" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">長さ50〜300km程度 × 幅20〜50km程度</text>
+<text x="1072" y="706" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#526775">洪水・土砂災害・広範囲の浸水に注意</text>
+
+<rect x="118" y="770" width="1212" height="120" rx="22" fill="#eef4f6"/>
+<text x="724" y="815" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" fill="#183447">共通すること</text>
+<text x="724" y="853" text-anchor="middle" font-family="sans-serif" font-size="21" fill="#384f5c">現象名だけで危険度を決めず、雨雲の動き・キキクル・河川情報・自治体の避難情報を確認する</text>
+<text x="724" y="925" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#6b7b84">模式図：気象庁資料を基に防災くらしガイド作成。実際の雨雲の形・継続時間は事例により異なります。</text>
+</svg>
