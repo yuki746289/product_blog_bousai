@@ -116,6 +116,10 @@ affiliate: false
 - [土砂キキクルと避難判断](flood/landslide-evacuation-kikikuru.html)
 
 ## 公的情報・参考資料
+- [気象庁「2021年7月10日の宮崎県の大雨」](https://www.data.jma.go.jp/fukuoka/chosa/saigai/20210711_miyazaki.pdf)
+- [気象庁「台風第14号、前線（2005年9月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2005/20050903/20050903.html)
+- [気象庁「梅雨前線、台風第4号（1993年5〜7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/1993/19930513fr/19930513.html)
+
 
 - [気象庁「2024年10月22日に宮崎県で発生した事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R061022.pdf)
 - [気象庁「2024年10月の天候」](https://www.data.jma.go.jp/cpd/longfcst/monthly/202410/202410m.html)
