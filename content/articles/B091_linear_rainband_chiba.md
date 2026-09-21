@@ -122,6 +122,10 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [気象庁「台風第4号と梅雨前線による大雨（2007年）」](https://www.data.jma.go.jp/stats/data/bosai/report/2007/20070701/20070701.html)
+- [気象庁「1996年台風第17号・アメダス観測値」](https://www.data.jma.go.jp/stats/data/bosai/report/1996/19960921ty/19960921_c1.html)
+- [気象庁「勝浦・観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_s.php?block_no=47674&prec_no=45)
+
 
 - [気象庁「2019年10月25日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2019/20191025/20191025.html)
 - [気象庁「2023年9月8日に発生した事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050908.pdf)
