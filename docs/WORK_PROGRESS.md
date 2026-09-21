@@ -34,7 +34,7 @@
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
 | GA4-001 | A | Amazon / 商品記事クリックイベントのGA4受信確認 | BLOCKED | GA4管理画面で受信確認 | NO |
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
-| GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | B008効果観測＋B010等のCTR要因調査 | NO |
+| GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | B008/B010効果観測＋B022等のCTR要因調査 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
@@ -137,9 +137,9 @@
 - priority: `A`
 - approved_spec: 実検索データを基に、表示回数・CTR・順位・クエリから必要な記事だけを改善する。
 - completion_criteria: 十分なデータ取得 / 優先記事選定 / 修正 / 効果確認 / ユーザー承認
-- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。B008はSERPとB009との役割分離を確認し、title/H1/meta descriptionを検索意図が伝わる形へ調整。PR #108をマージし、deploy run #87で新タイトルの本番HTTP反映を確認。B019はSERP・役割分離を確認したが、匿名クエリが多く主検索意図を十分特定できないため現行titleを維持。
-- remaining: B008変更後の順位・CTR効果確認、線状降水帯のニュース流入の継続観測、B010 / B022 / B015等の低CTR候補調査と必要な記事だけの修正。
-- next_action: B008の効果を観測しつつ、B010を次のCTR調査対象とする。
+- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。B008はSERPとB009との役割分離を確認し、title/H1/meta descriptionを検索意図が伝わる形へ調整。PR #108をマージし、deploy run #87で新タイトルの本番HTTP反映を確認。B019はSERP・役割分離を確認したが、匿名クエリが多く主検索意図を十分特定できないため現行titleを維持。B010はSERP・記事役割を確認し、title/H1/meta descriptionを「車を移すべきか」が伝わる形へ調整。
+- remaining: B008/B010変更後の順位・CTR効果確認、線状降水帯のニュース流入の継続観測、B022 / B015等の低CTR候補調査と必要な記事だけの修正。
+- next_action: B008/B010の効果を観測しつつ、B022を次のCTR調査対象とする.
 - blocker: なし
 - related: `docs/SITE_IMPROVEMENT_BACKLOG.md`, `docs/research/GSC_ANALYSIS_20260921.md`
 - updated_at: `2026-09-21`
