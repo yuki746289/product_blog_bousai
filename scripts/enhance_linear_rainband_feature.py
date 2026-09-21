@@ -52,8 +52,13 @@ PREFECTURE_PAGES = (
     ("B082", "鹿児島県", "article_b082.html", "1993年8月豪雨・2023〜2025年"),
     ("B083", "宮崎県", "article_b083.html", "2024年10月・2025年9月"),
     ("B084", "熊本県", "article_b084.html", "2012年・2020年豪雨と球磨川"),
-    ("B085", "長崎県", "article_b085.html", "1982年長崎大水害・2023年9月"),
-    ("B086", "大分県", "article_b086.html", "2017年九州北部豪雨・2023年7月"),
+    ("B085", "長崎県", "article_b085.html", "1982年長崎大水害・2023〜2024年"),
+    ("B086", "大分県", "article_b086.html", "2017年九州北部豪雨・2023〜2024年"),
+    ("B087", "高知県", "article_b087.html", "多雨地形・2022〜2023年"),
+    ("B088", "和歌山県", "article_b088.html", "紀伊半島大水害・2023年"),
+    ("B089", "三重県", "article_b089.html", "2023年初発表・2024年台風10号"),
+    ("B090", "静岡県", "article_b090.html", "2022〜2025年の大雨史"),
+    ("B091", "千葉県", "article_b091.html", "2023年・2026年千葉豪雨"),
 )
 
 CURRENT_LABEL = {
@@ -73,6 +78,11 @@ CURRENT_LABEL = {
     "B084": "熊本県",
     "B085": "長崎県",
     "B086": "大分県",
+    "B087": "高知県",
+    "B088": "和歌山県",
+    "B089": "三重県",
+    "B090": "静岡県",
+    "B091": "千葉県",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
@@ -242,7 +252,7 @@ def breadcrumb(article_id: str) -> str:
             + current
             + "</nav>"
         )
-    if article_id in {"B082", "B083", "B084", "B085", "B086"}:
+    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091"}:
         return (
             prefix
             + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
@@ -276,7 +286,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
 
     desired_nav = (
         region_nav(article_id)
-        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086"}
+        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091"}
         else core_nav(article_id)
     )
     html = _ensure_feature_nav(html, desired_nav, article_id)
@@ -404,7 +414,7 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in list(range(67, 78)) + list(range(82, 87)):
+    for number in list(range(67, 78)) + list(range(82, 92)):
         article_id = f"B{number:03d}"
         path = PREVIEW / f"article_b{number:03d}.html"
         current = path.read_text(encoding="utf-8")
