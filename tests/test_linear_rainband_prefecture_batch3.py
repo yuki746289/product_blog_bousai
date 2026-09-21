@@ -25,7 +25,7 @@ class LinearRainbandPrefectureBatch3Tests(unittest.TestCase):
     def test_registry_paths_and_parents(self):
         expected = {
             "B092": ("B074", "special/linear-rainband/prefecture/tokyo.html"),
-            "B093": ("B070", "special/linear-rainband/prefecture/osaka.html"),
+            "B093": ("B005", "special/linear-rainband/prefecture/osaka.html"),
             "B094": ("B077", "special/linear-rainband/prefecture/aichi.html"),
             "B095": ("B070", "special/linear-rainband/prefecture/ishikawa.html"),
             "B096": ("B070", "special/linear-rainband/prefecture/toyama.html"),
@@ -67,7 +67,7 @@ class LinearRainbandPrefectureBatch3Tests(unittest.TestCase):
 
     def test_feature_panel_and_breadcrumb_support_batch3(self):
         panel = region_panel()
-        for article_id in ("B092", "B093", "B094", "B095", "B096"):
+        for article_id in ("B092", "B094", "B095", "B096"):
             article = self.by_id[article_id]
             preview_name = Path(article["preview_path"]).name
             self.assertIn(preview_name, panel)
@@ -77,6 +77,9 @@ class LinearRainbandPrefectureBatch3Tests(unittest.TestCase):
             self.assertIn("線状降水帯特集", enhanced, article_id)
             self.assertIn("地域別", enhanced, article_id)
             self.assertIn('class="breadcrumb"', enhanced, article_id)
+
+        osaka_preview = Path(self.by_id["B093"]["preview_path"]).name
+        self.assertNotIn(osaka_preview, panel)
 
     def test_previews_are_noindex_before_public_build(self):
         for article_id in ("B092", "B093", "B094", "B095", "B096"):
