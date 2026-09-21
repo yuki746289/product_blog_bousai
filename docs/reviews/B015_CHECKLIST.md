@@ -11,12 +11,12 @@
 > 防災サイト固有チェック: `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`
 
 - article_id: `B015`
-- title: 自宅が浸水した後、片付ける前に記録したいもの
+- title: 自宅が浸水したら片付け前に写真を撮る｜保険・罹災証明に備える記録
 - content_role: `practical`
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -89,3 +89,13 @@
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
 - editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
 <!-- /content-depth-20260907:metric -->
+
+
+## 2026-09-21 GSC CTR改善レビュー
+
+- GSC実績: 2026-09-02〜09-20で22表示・0クリック・平均掲載順位6.59位。
+- 検索意図: 政府広報・自治体案内では「片付け前に被害写真を残す」ことが中心で、全景・浸水深・損傷箇所の撮影が具体的に案内されている。
+- 判定: 旧titleの「記録したいもの」は内容として正しいが、検索者の最初の行動である「片付け前に写真を撮る」が検索結果上で弱い。
+- 対応: title/H1を「自宅が浸水したら片付け前に写真を撮る｜保険・罹災証明に備える記録」へ変更。meta descriptionは既に写真・動画・被害記録、保険・公的支援への備えを明示しているため変更しない。
+- 安全境界: 写真撮影のため危険な建物へ戻らない、感電・倒壊・汚水等の危険があれば撮影を後回しにする本文は変更しない。
+- 効果判定: GSC反映後、順位を大きく落とさずCTRが改善するか継続観測する。

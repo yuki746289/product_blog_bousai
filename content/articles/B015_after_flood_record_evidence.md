@@ -1,7 +1,7 @@
 ---
 article_id: B015
 slug: after-flood-record-evidence
-title: 自宅が浸水した後、片付ける前に記録したいもの
+title: 自宅が浸水したら片付け前に写真を撮る｜保険・罹災証明に備える記録
 category: post-disaster
 content_role: practical
 risk_level: elevated
@@ -11,7 +11,7 @@ next_review_at: 2027-03-01
 affiliate: false
 ---
 
-# 自宅が浸水した後、片付ける前に記録したいもの
+# 自宅が浸水したら片付け前に写真を撮る｜保険・罹災証明に備える記録
 
 浸水後は早く片付けたくなりますが、保険・修理・自治体への説明などで、**被害前の状態を後から再現できない**ことがあります。
 
