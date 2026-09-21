@@ -109,6 +109,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [高知地方気象台「平成10年高知豪雨」](https://www.data.jma.go.jp/kochi/kako_saigai/19980924/19980924.html)
+- [高知地方気象台「昭和51年台風第17号」](https://www.data.jma.go.jp/kochi/kako_saigai/19760908/19760908.html)
+
 
 - [気象庁「気象業務はいま2023」線状降水帯の予測](https://www.jma.go.jp/jma/kishou/books/hakusho/2023/index3.html)
 - [気象庁「2023年6月2日に四国・近畿・東海で発生した事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050602.pdf)
