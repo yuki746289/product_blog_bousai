@@ -16,7 +16,7 @@
 - risk_level: `high`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 - detailed_fictional_persona: `N/A`（根拠のない属性を作らず、利用状況・制約で設計）
@@ -59,7 +59,7 @@
 |---|---|---|
 | C01 内容・情報量 | PASS | 検索意図とpage jobに対して必要十分。文字数だけで判定しない |
 | C02 出典・安全性 | PASS | 確認済み一次・公的/メーカー情報を優先。source_checked_at=2026-09-01 |
-| C03 画像・視覚要素 | PASS | 既存画像レビューを継承し、画像を安全・性能判断の根拠にしていない |
+| C03 画像・視覚要素 | PASS | 既存実写に加え冠水車のAI模式図を実imgで追加。図中の水深を走行可能・安全水深として扱わず、「冠水路へ進入しない」を本文・キャプションで明示 |
 | C04 読みやすさ/UI | PASS | 見出し・表・箇条書き・要点表示を用途に応じ使用 |
 | C05 内部リンク | PASS | 親記事・関連記事・Q&A/商品ガイドを必要な文脈で接続 |
 | C06 商品導線/商品記事 | N/A | 無理な商品挿入を行わない |
