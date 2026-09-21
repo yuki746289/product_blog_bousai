@@ -1,7 +1,7 @@
 # B086 記事別レビュー記録
 
 - article_id: B086
-- title: 大分県の線状降水帯｜2017年九州北部豪雨と2023・2024年の発生史
+- title: 大分県の線状降水帯｜2017年九州北部豪雨と2023〜2026年の発生史
 - content_role: detail
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
@@ -26,3 +26,14 @@
 ## 共通レビュー
 
 詳細は `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md` を参照。
+
+
+## 事例品質再監査（2026-09-21）
+
+- C02-07 独立イベント数: PASS（現行発生3件＋関連豪雨史2件）
+- C02-08/C02-09 重複確認: PASS
+- C02-10 発生実績 / 予測 / 制度・関連豪雨の分類: PASS
+- C02-12 直近事例再検索: PASS
+- 最新の発生確認: 2026年7月2日
+- 修正: 曖昧だった2026年6月下旬の大雨行を除き、発生確認済み2026年7月2日を追加。
+- 本番デプロイ・production workflow: **未実行（ユーザー許可制）**
