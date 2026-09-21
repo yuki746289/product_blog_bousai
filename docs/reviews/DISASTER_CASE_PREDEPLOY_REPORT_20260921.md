@@ -4,7 +4,7 @@
 
 - branch: `fix/disaster-case-quality-20260921`
 - base: `main`
-- ahead: 65 commits
+- branch status: `main` より ahead / behind 0
 - behind: 0
 - changed files: 49
 - production deploy: **未実行**
