@@ -23,7 +23,7 @@
 | B012 | pillar | elevated | 3416 | 3000 | PASS | 自宅の浸水にどう備える？住宅の水害対策入門 |
 | B013 | detail | elevated | 2996 | 2500 | PASS | 火災保険の水災補償とは？住宅浸水との関係を整理 |
 | B014 | detail | elevated | 2965 | 2500 | PASS | 浸水した家財は保険の対象になる？確認ポイント |
-| B015 | practical | elevated | 2992 | 2500 | PASS | 自宅が浸水した後、片付ける前に記録したいもの |
+| B015 | practical | elevated | 2967 | 2500 | PASS | 自宅が浸水したら片付け前に写真を撮る｜保険・罹災証明に備える記録 |
 | B016 | detail | elevated | 2760 | 2500 | PASS | 台風の風災は火災保険でどう扱われる？ |
 | B017 | pillar | elevated | 3068 | 3000 | PASS | 地震保険の基本｜火災保険との違いを整理 |
 | B018 | detail | elevated | 2812 | 2500 | PASS | 地震で車が壊れた場合、自動車保険はどう考える？ |
