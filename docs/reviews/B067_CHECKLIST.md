@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: `PASS`
-- last_checked_at: 2026-09-20
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -22,7 +22,7 @@
 |---|---|---|
 | C01 内容・情報量 | PASS | 2026-09-20再編集で主要な問いをanswer-firstへ修正 |
 | C02 出典・安全性 | PASS | 特集一次資料・気象庁資料を基準に確認 |
-| C03 画像・視覚要素 | PASS | HTML/CSS図解は実装済み。ただし、ユーザーが要求した生成済み実画像の本番 img 表示は未実装のため別タスクとして再オープン |
+| C03 画像・視覚要素 | PASS | 生成済み実画像5点を公開アセット化。B067には線状降水帯全体像・NG行動の2点を実imgで配置し、住宅・車・土砂は専門記事へ分散。AI模式図・安全上の注意をキャプション明示 |
 | C04 読みやすさ・UI | PASS | メモ的見出し・制作側表現を除去し、読者向け見出しへ変更 |
 | C05 内部リンク | PASS | 特集内・実用記事への導線あり |
 | C08 同期・公開前 | PASS | Markdown/preview同期経路あり |
@@ -54,9 +54,9 @@
 
 - editorial_acceptance_status: `APPROVED`
 - html_css_guide_acceptance_status: `APPROVED`
-- actual_image_embed_status: `REOPENED`
+- actual_image_embed_status: `IN_PROGRESS`
 - 2026-09-21 ユーザー確認により、生成済み画像がPC/モバイルの公開ページに img として表示されていないことが判明。
-- 実画像掲載は未完了。画像ファイル保存 → 公開アセット配置 → img 組み込み → PC/モバイル実表示確認 → ユーザー確認まで完了扱いにしない。
+- 画像ファイル保存・公開アセット配置・img組み込みは実施済み。CI・本番PC/モバイル表示確認・ユーザー確認が残るため、まだ完了扱いにしない。
 
 ## 最終判定
 
