@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
-from scripts.enhance_linear_rainband_feature import prefecture_panel if False else region_panel
+from scripts.enhance_linear_rainband_feature import region_panel
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "content_registry.json"
