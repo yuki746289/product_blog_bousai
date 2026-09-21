@@ -207,6 +207,11 @@ B022「マンションの台風・水害対策｜戸建てとの違い」は、2
 - meta description: 変更なし
 - 本文・安全基準・出典: 変更なし
 
+### 参照した外部情報
+
+- 東京都マンション防災ガイドブック: https://www.mansion-tokyo.metro.tokyo.lg.jp/bousai/mansionbousai-guidebook/
+- 大阪市水道局「停電によるビル・マンション等の断水に備えましょう」: https://www.city.osaka.lg.jp/suido/page/0000515637.html
+
 ### 効果判定
 
 B008 / B010と同様、GSCで順位・表示回数・CTRを継続比較する。
