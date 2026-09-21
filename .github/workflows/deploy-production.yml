@@ -228,7 +228,41 @@ jobs:
           require_text "linear-rainband canonical" "<link rel=\"canonical\" href=\"${BASE_URL}special/linear-rainband/index.html\">" "${tmp_linear}" fixed
           require_text "linear-rainband structured data" 'data-generated="article-structured-data"' "${tmp_linear}"
           require_text "linear-rainband official source link" "jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html" "${tmp_linear}" fixed
+          require_text "linear-rainband overview actual image" "assets/images/disaster/linear-rainband-overview.jpg" "${tmp_linear}" fixed
+          require_text "linear-rainband unsafe-actions actual image" "assets/images/disaster/unsafe-actions.jpg" "${tmp_linear}" fixed
           rm -f "${tmp_linear}"
+
+          tmp_vehicle_flood="$(mktemp)"
+          fetch_public "vehicle/driving-flooded-road-risk.html" "${tmp_vehicle_flood}"
+          require_text "flooded-road car actual image" "assets/images/disaster/flooded-road-car.jpg" "${tmp_vehicle_flood}" fixed
+          rm -f "${tmp_vehicle_flood}"
+
+          tmp_home_flood="$(mktemp)"
+          fetch_public "home/home-flood-preparedness.html" "${tmp_home_flood}"
+          require_text "home flooding actual image" "assets/images/disaster/home-flooding.jpg" "${tmp_home_flood}" fixed
+          rm -f "${tmp_home_flood}"
+
+          tmp_landslide="$(mktemp)"
+          fetch_public "flood/landslide-evacuation-kikikuru.html" "${tmp_landslide}"
+          require_text "landslide actual image" "assets/images/disaster/landslide.jpg" "${tmp_landslide}" fixed
+          rm -f "${tmp_landslide}"
+
+          for disaster_image in \
+            "flooded-road-car.jpg" \
+            "home-flooding.jpg" \
+            "landslide.jpg" \
+            "linear-rainband-overview.jpg" \
+            "unsafe-actions.jpg"
+          do
+            tmp_disaster_image="$(mktemp)"
+            fetch_public "assets/images/disaster/${disaster_image}" "${tmp_disaster_image}"
+            image_bytes="$(wc -c < "${tmp_disaster_image}")"
+            if [ "${image_bytes}" -lt 20000 ]; then
+              echo "Disaster image is unexpectedly small: ${disaster_image} (${image_bytes} bytes)"
+              exit 1
+            fi
+            rm -f "${tmp_disaster_image}"
+          done
 
           tmp_linear_region="$(mktemp)"
           fetch_public "special/linear-rainband/regions.html" "${tmp_linear_region}"

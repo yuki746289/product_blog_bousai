@@ -28,7 +28,7 @@
 
 | ID | 優先 | タスク | 状態 | 次にやること | ユーザー承認 |
 |---|:---:|---|---|---|---|
-| IMG-001 | A | 線状降水帯の生成画像を実画像として本番表示 | IN_PROGRESS | 公開アセットへ5画像配置し、対象記事へimg組み込み | NO |
+| IMG-001 | A | 線状降水帯の生成画像を実画像として本番表示 | USER_CONFIRMATION_PENDING | ユーザーが本番4ページの画像表示を確認 | NO |
 | OPS-001 | A | タイムアウト時の仕様不変ルール | USER_CONFIRMATION_PENDING | ユーザー確認 | NO |
 | OPS-002 | A | 作業進捗台帳の導入 | DONE | なし | YES |
 | PERF-001 | A | PageSpeed / Core Web Vitals継続改善 | IN_PROGRESS | 現行ボトルネックを再計測・整理 | NO |
@@ -48,15 +48,15 @@
 
 ### IMG-001 線状降水帯の生成画像を実画像として本番表示
 
-- status: `IN_PROGRESS`
+- status: `USER_CONFIRMATION_PENDING`
 - priority: `A`
 - approved_spec: 生成済み画像を実ファイルとして保存し、記事内へ `img` として表示する。PC・モバイル双方で画像が実際に見えること。
 - completion_criteria: 公開アセット配置 / img組み込み / 適切な章への配置 / PC表示確認 / モバイル表示確認 / 本番HTTP確認 / ユーザー承認
-- done: 生成画像原本1点＋分割5点を保存。HTML/CSS図解は実装済み。掲載先を B067 / B012 / B009 / B036 に確定。
-- remaining: 5画像の公開アセット配置、記事へのimg組み込み、PC/モバイル・本番HTTP確認。
-- next_action: 5画像を `preview/assets/images/disaster/` へ登録する。
-- blocker: なし
-- related: `docs/research/LINEAR_RAINBAND_BACKLOG_20260920.md`, `docs/reviews/B067_CHECKLIST.md`, PR #100
+- done: 生成画像原本1点＋分割5点を保存。5画像を `preview/assets/images/disaster/` に公開アセット化し、B067 / B012 / B009 / B036 の指定位置へ実imgで配置。レスポンシブCSS・アクセシビリティ・非クロップを自動テストし、本番deploy run #85で4ページと5画像のHTTP 200、本番HTML内の実画像参照を確認。
+- remaining: ユーザーによる本番PC/モバイル目視確認と承認。
+- next_action: ユーザーが本番4ページの画像表示・配置を確認する。
+- blocker: ユーザー確認待ち
+- related: `docs/research/LINEAR_RAINBAND_BACKLOG_20260920.md`, `docs/reviews/B067_CHECKLIST.md`, PR #103, PR #104, deploy run #85
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 

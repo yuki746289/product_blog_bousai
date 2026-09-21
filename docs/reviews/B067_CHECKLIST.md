@@ -54,9 +54,9 @@
 
 - editorial_acceptance_status: `APPROVED`
 - html_css_guide_acceptance_status: `APPROVED`
-- actual_image_embed_status: `IN_PROGRESS`
+- actual_image_embed_status: `USER_CONFIRMATION_PENDING`
 - 2026-09-21 ユーザー確認により、生成済み画像がPC/モバイルの公開ページに img として表示されていないことが判明。
-- 画像ファイル保存・公開アセット配置・img組み込みは実施済み。CI・本番PC/モバイル表示確認・ユーザー確認が残るため、まだ完了扱いにしない。
+- 画像ファイル保存・公開アセット配置・img組み込み・レスポンシブ/非クロップ自動テスト・本番HTTPスモークは実施済み。deploy run #85でB067を含む対象4ページと5画像のHTTP 200を確認。ユーザーのPC/モバイル目視確認・承認が残るため、まだ完了扱いにしない。
 
 ## 最終判定
 
