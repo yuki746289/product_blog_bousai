@@ -1,5 +1,5 @@
 # Created: 2026-09-15 09:20 JST
-# Updated: 2026-09-17 JST
+# Updated: 2026-09-21 JST
 """Normalize the linear-rainband special feature's UX, navigation and discovery.
 
 The special pages keep bespoke framing and feature navigation, while reviewed
@@ -68,6 +68,7 @@ CURRENT_LABEL = {
     "B075": "中国地方",
     "B076": "四国",
     "B077": "東海",
+    "B082": "鹿児島県",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
@@ -185,6 +186,10 @@ def region_nav(current_id: str) -> str:
         _link(href, label, article_id == current_id)
         for article_id, label, href, _caption in REGION_PAGES
     )
+    links.extend(
+        _link(href, label, article_id == current_id)
+        for article_id, label, href, _caption in PREFECTURE_PAGES
+    )
     return (
         '<nav class="feature-region-nav" aria-label="線状降水帯の地域別記事">'
         + "".join(links)
@@ -237,6 +242,14 @@ def breadcrumb(article_id: str) -> str:
             + current
             + "</nav>"
         )
+    if article_id in {"B082", "B083", "B084", "B085", "B086"}:
+        return (
+            prefix
+            + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
+            + '<a href="article_b070.html">地域別</a> &gt; '
+            + current
+            + "</nav>"
+        )
     return (
         prefix
         + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
@@ -263,7 +276,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
 
     desired_nav = (
         region_nav(article_id)
-        if article_id in {"B073", "B074", "B075", "B076", "B077"}
+        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086"}
         else core_nav(article_id)
     )
     html = _ensure_feature_nav(html, desired_nav, article_id)
@@ -391,7 +404,7 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in range(67, 78):
+    for number in list(range(67, 78)) + list(range(82, 87)):
         article_id = f"B{number:03d}"
         path = PREVIEW / f"article_b{number:03d}.html"
         current = path.read_text(encoding="utf-8")
