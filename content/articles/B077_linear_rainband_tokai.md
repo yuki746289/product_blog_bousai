@@ -24,7 +24,7 @@ affiliate: false
 | 2023年6月1〜3日 | 三重・愛知・静岡 | 3県で線状降水帯、東海で総雨量500mm超 |
 | 2025年9月5日 | 静岡県 | 中部・西部→中部・東部→伊豆へ発生情報、県内で350mm超の地点 |
 | 2026年6月3日 | 静岡県伊豆 | 線状降水帯発生情報 |
-| 2026年9月8日 | 愛知県西部・名古屋周辺 | 名古屋で1時間104.5mmを観測し観測史上1位を更新。愛知県西部で線状降水帯を伴う大雨 |
+| 2026年9月8日 | 愛知県西部・名古屋周辺 | 名古屋で1時間101.5mmを観測し観測史上1位を更新。愛知県西部で線状降水帯を伴う大雨 |
 
 2023年以降の事例を見ると、**広い範囲で同時に発生するケースと、同じ県内で対象地域が時間とともに移るケースの両方**があります。
 
@@ -116,4 +116,4 @@ affiliate: false
 - [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
 - [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
 
-- [気象庁「名古屋の2026年9月8日の降水量記録」](https://www.data.jma.go.jp/stats/data/mdrr/periodstat/20260904a/20260908/24/pre1h_mx00.html)
+- [気象庁「名古屋の2026年9月8日の降水量記録」](https://www.data.jma.go.jp/stats/etrn/view/rank_s.php?prec_no=51&block_no=47636&year=2026&month=&day=&view=)
