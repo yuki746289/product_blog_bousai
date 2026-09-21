@@ -127,7 +127,7 @@ NAGOYA_WARD_MAPS = (
     ("天白区", "https://www.city.nagoya.jp/bousaiportal/hazardmap/1036429/1036298.html"),
 )
 
-GSI_SHELTER_URL = "https://www.gsi.go.jp/bousaichiri/hinanbasho.html"
+GSI_SHELTER_URL = "https://www.gsi.go.jp/bousaichiri/hinanbasho"
 
 CURRENT_LABEL = {
     "B067": "線状降水帯特集",
@@ -360,7 +360,7 @@ def shelter_finder_panel(article_id: str) -> str:
         '「指定避難所」は、自宅へ戻れない場合などに一定期間滞在する施設で、役割が異なります。</p>'
         '<div class="shelter-finder__actions">'
         f'<a class="shelter-finder__action" href="{url}" target="_blank" rel="noopener noreferrer">{label}を見る</a>'
-        f'<a class="shelter-finder__action" href="{GSI_SHELTER_URL}" target="_blank" rel="noopener noreferrer">地図アイコンで指定緊急避難場所を見る</a>'
+        f'<a class="shelter-finder__action" href="{GSI_SHELTER_URL}" target="_blank" rel="noopener noreferrer">国土地理院で避難場所を地図表示する</a>'
         '</div>'
         + _ward_selector(article_id)
         + '<p class="shelter-finder__notice">洪水・内水氾濫・土砂災害など、災害種別への対応を確認してください。'
