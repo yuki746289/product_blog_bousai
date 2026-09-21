@@ -1,4 +1,5 @@
 # Created: 2026-09-08 14:13 JST
+# Updated: 2026-09-21 JST
 import unittest
 from pathlib import Path
 
@@ -45,10 +46,10 @@ class ExplanationQualityPolicyContractTests(unittest.TestCase):
         registry = load_registry(ROOT / "data" / "content_registry.json")
         articles = {item["article_id"]: item for item in registry["articles"]}
         b022 = articles["B022"]
-        self.assertEqual(4576, b022["body_char_count_approx"])
-        self.assertEqual("2026-09-08", b022["last_reviewed_at"])
-        self.assertEqual("2026-09-08", b022["review_checklist_last_checked_at"])
-        self.assertEqual("2026-09-08", b022["modified_at"])
+        self.assertEqual(4583, b022["body_char_count_approx"])
+        self.assertEqual("2026-09-21", b022["last_reviewed_at"])
+        self.assertEqual("2026-09-21", b022["review_checklist_last_checked_at"])
+        self.assertEqual("2026-09-21", b022["modified_at"])
 
 
 if __name__ == "__main__":
