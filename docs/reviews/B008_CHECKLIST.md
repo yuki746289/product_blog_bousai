@@ -11,12 +11,12 @@
 > 専門家ロール: `docs/EXPERT_REVIEW_FRAMEWORK.md`
 
 - article_id: `B008`
-- title: 車が冠水・水没しそうなときに知っておきたいこと
+- title: 車が冠水・水没したらどうする？脱出方法と水没後の対応
 - content_role: `detail`
 - risk_level: `high`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 - detailed_fictional_persona: `N/A`（根拠のない属性を作らず、利用状況・制約で設計）
@@ -26,7 +26,7 @@
 - target_reader: 日本国内で家庭防災を具体化したい一般生活者
 - usage_context: 平常時の準備、予報・災害前後の確認、または記事固有の判断が必要な場面
 - knowledge_level: 防災の専門知識を前提にしない
-- reader_problem: `車が冠水・水没しそうなときに知っておきたいこと` に対応する判断・準備事項を整理したい
+- reader_problem: `車が冠水・水没したらどうする？脱出方法と水没後の対応` に対応する判断・準備事項を整理したい
 - reader_goal: 安全側の条件を理解し、自分の家庭条件へ置き換えて次の行動を決める
 - page_job: 特定の疑問・条件を掘り下げ、既存の親記事を補完する
 - entry_path: 検索、カテゴリ、関連記事、Q&A等
@@ -123,3 +123,11 @@
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
 - editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
 <!-- /content-depth-20260907:metric -->
+
+## 2026-09-21 GSC CTR改善レビュー
+
+- GSC実績: 2026-09-02〜09-20で111表示・0クリック・平均掲載順位5.41位。
+- SERP観察: 公的機関・自動車関連ページは「水没した場合の対処」「脱出方法」など、利用者の緊急疑問をタイトルで具体化している。
+- 役割分離: B009は「冠水した道路を走る危険」を担当するため、B008は「水没した／水没しそうな車からの脱出と水没後対応」を明確化する。
+- 対応: title/H1を「車が冠水・水没したらどうする？脱出方法と水没後の対応」へ変更し、meta descriptionも脱出・ハンマー・水没後の始動禁止が分かる内容へ調整。本文の安全基準・公的根拠は変更しない。
+- 効果判定: GSC反映後、順位を大きく落とさずCTRが改善するか継続観測する。
