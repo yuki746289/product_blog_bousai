@@ -11,12 +11,12 @@
 > 専門家ロール: `docs/EXPERT_REVIEW_FRAMEWORK.md`
 
 - article_id: `B010`
-- title: 地下駐車場・低い場所に車を置いている場合の大雨対策
+- title: 大雨の前に地下駐車場の車は移動する？浸水前の判断と対策
 - content_role: `practical`
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-04
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 - detailed_fictional_persona: `N/A`（根拠のない属性を作らず、利用状況・制約で設計）
@@ -26,7 +26,7 @@
 - target_reader: 日本国内で家庭防災を具体化したい一般生活者
 - usage_context: 平常時の準備、予報・災害前後の確認、または記事固有の判断が必要な場面
 - knowledge_level: 防災の専門知識を前提にしない
-- reader_problem: `地下駐車場・低い場所に車を置いている場合の大雨対策` に対応する判断・準備事項を整理したい
+- reader_problem: `大雨の前に地下駐車場の車は移動する？浸水前の判断と対策` に対応する判断・準備事項を整理したい
 - reader_goal: 安全側の条件を理解し、自分の家庭条件へ置き換えて次の行動を決める
 - page_job: 具体的な行動手順・準備順序を示し、読者が実行できる状態にする
 - entry_path: 検索、カテゴリ、関連記事、Q&A等
@@ -123,3 +123,13 @@
 - counting_method: frontmatter・URL・Markdown記号・公的情報/出典一覧を除き、読者が読む本文の非空白文字を同一スクリプトで計測。
 - editorial_note: 文字数そのものではなく、判断条件・具体例・生活への置き換え・次の行動の充足を優先して再確認。
 <!-- /content-depth-20260907:metric -->
+
+
+## 2026-09-21 GSC CTR改善レビュー
+
+- GSC実績: 2026-09-02〜09-20で29表示・0クリック・平均掲載順位7.66位。
+- SERP観察: 公的情報では、地下空間は浸水前の退避と、危険が高まった後に地下へ戻らないことが重視されている。
+- 検索意図仮説: 「地下駐車場 大雨」「地下駐車場 車 移動」等では、一般論より「車を移すべきか」「いつまでに移すか」の判断需要が中心と考えられる。
+- 役割分離: B008は水没車からの脱出・水没後対応、B009は冠水路の走行危険、B010は地下・低地の駐車場所から事前に車を退避する判断を担当する。
+- 対応: title/H1を「大雨の前に地下駐車場の車は移動する？浸水前の判断と対策」へ変更し、meta descriptionも移動時期・締切・中止条件が分かる内容へ調整。本文の安全条件・公的根拠は変更しない。
+- 効果判定: GSC反映後、順位を大きく落とさずCTRが改善するか継続観測する。

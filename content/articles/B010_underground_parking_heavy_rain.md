@@ -1,7 +1,7 @@
 ---
 article_id: B010
 slug: underground-parking-heavy-rain
-title: 地下駐車場・低い場所に車を置いている場合の大雨対策
+title: 大雨の前に地下駐車場の車は移動する？浸水前の判断と対策
 category: vehicle
 content_role: practical
 risk_level: elevated
@@ -11,7 +11,7 @@ next_review_at: 2027-03-01
 affiliate: false
 ---
 
-# 地下駐車場・低い場所に車を置いている場合の大雨対策
+# 大雨の前に地下駐車場の車は移動する？浸水前の判断と対策
 
 地下・半地下駐車場や周囲より低い駐車場所では、道路が冠水してから車を移動しようとすると危険です。重要なのは、**車を守ることより先に「移動するならいつまでに終えるか」「いつから取りに戻らないか」を決めておくこと**です。
 
