@@ -13,12 +13,12 @@
 > 防災サイト固有チェック: `docs/BOUSAI_SITE_REVIEW_CHECKLIST.md`
 
 - article_id: `B022`
-- title: マンションの台風・水害対策｜戸建てとの違い
+- title: マンションの台風・水害対策｜高層階の停電・断水と地下浸水
 - content_role: `detail`
 - risk_level: `elevated`
 - article_status: `READY_TO_PUBLISH`
 - review_status: `PASS`
-- last_checked_at: 2026-09-08
+- last_checked_at: 2026-09-21
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 - explanation_quality_review: `PASS`
@@ -113,3 +113,14 @@
 - explanation_quality_review: `PASS`
 - READY_TO_PUBLISH: `YES`
 - 判定理由: 説明不足・抽象表現・生活者として不自然な行動を修正し、主要章で理由・具体的方法・確認先を読者が追える状態にした。
+
+
+## 2026-09-21 GSC CTR改善レビュー
+
+- GSC実績: 2026-09-02〜09-20で24表示・0クリック・平均掲載順位7.54位。
+- SERP観察: 「マンション 台風・水害対策」では一般的な台風対策記事に加え、停電・断水・エレベーター停止など集合住宅特有の生活継続リスクを具体的に示すページが並ぶ。
+- 公的情報: 東京都のマンション防災ガイドは、建物自体が大きく損傷しなくても停電・断水・エレベーター停止で生活継続が難しくなる点を重視している。
+- 判定: 旧title末尾「戸建てとの違い」は本文の比較軸より抽象的で、記事の強みである「高層階の停電・断水」「地下浸水」が検索結果で伝わりにくい。
+- 対応: title/H1を「マンションの台風・水害対策｜高層階の停電・断水と地下浸水」へ変更。meta descriptionはすでに低層階浸水・地下駐車場・高層階の停電/断水・避難判断まで具体化されているため変更しない。
+- 本文・安全条件・公的根拠は変更しない。
+- 効果判定: GSC反映後、順位を大きく落とさずCTRが改善するか継続観測する。

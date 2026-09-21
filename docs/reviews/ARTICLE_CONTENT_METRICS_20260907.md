@@ -30,7 +30,7 @@
 | B019 | pillar | elevated | 4213 | 3000 | PASS | 水害・台風・地震で保険の扱いはどう違う？ |
 | B020 | practical | elevated | 3305 | 2500 | PASS | 大雨の前に自宅で確認すること｜浸水対策チェックリスト |
 | B021 | practical | elevated | 3771 | 2500 | PASS | 台風前日に確認したいこと｜屋外・窓・停電への備え |
-| B022 | detail | elevated | 3097 | 2500 | PASS | マンションの台風・水害対策｜戸建てとの違い |
+| B022 | detail | elevated | 4583 | 2500 | PASS | マンションの台風・水害対策｜高層階の停電・断水と地下浸水 |
 | B023 | practical | elevated | 2633 | 2500 | PASS | 地震の家具転倒対策｜まず優先したい場所 |
 | B024 | detail | elevated | 2863 | 2500 | PASS | 地震後の停電・断水にどう備える？ |
 | B025 | detail | standard | 2586 | 2500 | PASS | 飲料水はどう備蓄する？家庭での考え方 |
