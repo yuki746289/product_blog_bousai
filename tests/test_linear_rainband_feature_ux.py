@@ -223,7 +223,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
             self.assertIn(f'id="shelter-finder-{article_id.lower()}"', actual)
             self.assertIn("指定緊急避難場所", actual)
             self.assertIn("指定避難所", actual)
-            self.assertIn("https://www.gsi.go.jp/bousaichiri/hinanbasho.html", actual)
+            self.assertIn("https://www.gsi.go.jp/bousaichiri/hinanbasho", actual)
 
     def test_tokyo_and_nagoya_have_area_selectors(self):
         sample = (
@@ -236,6 +236,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertIn("23区から選ぶ", tokyo)
         self.assertIn(">江戸川区</option>", tokyo)
         self.assertIn(">杉並区</option>", tokyo)
+        self.assertEqual(tokyo.count("<option value="), 24)
         self.assertEqual(tokyo.count('data-shelter-select'), 1)
         self.assertIn('id="shelter-finder-script"', tokyo)
 
@@ -243,6 +244,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertIn("名古屋市16区から選ぶ", nagoya)
         self.assertIn(">港区</option>", nagoya)
         self.assertIn(">緑区</option>", nagoya)
+        self.assertEqual(nagoya.count("<option value="), 17)
         self.assertEqual(nagoya.count('data-shelter-select'), 1)
         self.assertIn('id="shelter-finder-script"', nagoya)
 
