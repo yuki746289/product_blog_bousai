@@ -37,6 +37,8 @@
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | USER_CONFIRMATION_PENDING | ユーザーが15都道府県ページの表示・内容を確認 | NO |
+| LINEAR-CASE-002 | A | 線状降水帯 全事例表の再構成・高精度化 | IN_PROGRESS | 県別・地域別・全国年表を直近/過去で分離し、直近事例の一次資料・雨量・警報・被害を再確認 | NO |
+| LINEAR-DIFF-001 | B | ゲリラ豪雨と線状降水帯の違い 記事＋図解 | TODO | LINEAR-CASE-002完了後に作成。現象・範囲・継続・予測・被害を図解比較 | NO |
 | CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | USER_CONFIRMATION_PENDING | 横断監査・本文修正・ルール/チェックリスト更新・静的整合確認完了。修正概要を報告し、明示許可後のみ本番反映 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
@@ -102,5 +104,27 @@
 - next_action: 修正概要・検証結果・既知の残課題をユーザーへ報告し、デプロイ可否の明示判断を受ける。
 - blocker: 本番デプロイはユーザー許可待ち
 - related: `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/CONTENT_CREATION_RULES.md`, `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/FRESHNESS_POLICY.md`, `docs/SITE_RELEASE_CHECKLIST.md`
+- updated_at: `2026-09-21`
+- user_approval: `NO`
+
+
+### LINEAR-CASE-002 線状降水帯 全事例表の再構成・高精度化
+
+- status: `IN_PROGRESS`
+- approved_spec: 県別だけでなく、全国年表・地域別等の線状降水帯ページで事例を扱う場合、「直近の大雨・線状降水帯事例」と「過去の代表的な豪雨」を原則別表にする。直近は最新時点まで再検索し、原則3〜5件を目安とするが件数合わせはしない。被害の大きい局地的大雨（いわゆるゲリラ豪雨）も掲載可。ただし線状降水帯とは別現象として明記。警戒レベルは雨量から独自推定せず、実際の公的発表に基づく。県別titleは「○○県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説」。実発生未確認県は県別シリーズから外す。
+- done: 正本ルールPR #17をmainへ反映。public側ルール・共通チェックリスト同期。県別14記事のtitle統一。大阪B093は一般の大雨・都市型水害記事へ役割変更し、registry上の親をB005へ変更。県別記事B082〜B096、全国年表B068、地域別B073〜B077の事例表を直近/過去へ再構成。記事別・特集・地域別・3バッチチェックリストへ新基準を反映。
+- remaining: 各直近事例についてユーザー提示サンプル相当の粒度（日付/現象/実測雨量/公式発表/被害）を一次資料中心に再照合し、空欄・弱い行を補強。全記事横断QA。デプロイ前修正概要報告。ユーザー許可後のみ本番反映。
+- next_action: 直近事例の高精度ソース監査を県別・地域別に実行する。
+- blocker: 本番デプロイはユーザー許可待ち
+- updated_at: `2026-09-21`
+- user_approval: `NO`
+
+### LINEAR-DIFF-001 ゲリラ豪雨と線状降水帯の違い
+
+- status: `TODO`
+- priority: `B`
+- approved_spec: LINEAR-CASE-002完了後に別ページを作成する。正式用語として「局地的大雨（いわゆるゲリラ豪雨）」を使用し、線状降水帯との違いを、雨雲の構造、範囲、継続時間、予測、防災情報、典型的な被害で比較する。図解を使用し、1図1メッセージ、誤解を招く安全境界・警戒レベル対応を作らない。
+- remaining: 一次資料調査 / 構成 / 図解作成 / 本文作成 / レビュー / ユーザー確認 / 許可後デプロイ
+- dependency: `LINEAR-CASE-002`
 - updated_at: `2026-09-21`
 - user_approval: `NO`
