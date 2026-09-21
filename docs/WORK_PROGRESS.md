@@ -36,7 +36,7 @@
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
-| LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | IN_PROGRESS | Batch 2（高知・和歌山・三重・静岡・千葉）を作成・検証 | NO |
+| LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | USER_CONFIRMATION_PENDING | ユーザーが15都道府県ページの表示・内容を確認 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
 | CONTENT-002 | B | 避難所×防犯／女性・子どもの記事検討 | TODO | 一次情報・検索意図・安全性を調査 | NO |
@@ -162,15 +162,15 @@
 
 ### LINEAR-PREF-001 線状降水帯15都道府県ページ展開
 
-- status: `IN_PROGRESS`
+- status: `USER_CONFIRMATION_PENDING`
 - priority: `A`
 - approved_spec: 全国的な発生傾向・重要事例を持つ10県に、ユーザー指定の東京・大阪・愛知（名古屋重点）・石川・富山を加えた15都道府県を対象とする。県別の時系列発生史を厚くし、ページごとの差別化を行い、避難場所・ハザード情報への実用導線を持たせる。
 - completion_criteria: 15都道府県の一次情報調査 / B082〜B096のMarkdown・preview・registry / 県固有年表 / 避難導線 / 地方・全国記事との内部リンク / テンプレ過多防止レビュー / CI / 本番スモーク / ユーザー確認
-- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1（鹿児島・宮崎・熊本・長崎・大分）はPR #120 / deploy run #94、長崎・大分の2024年事例追記はPR #122 / run #95で本番反映済み。Batch 2（高知・和歌山・三重・静岡・千葉）はCI run #244とdeploy run #96でテスト・ビルド・FTPS・本番スモーク・live sitemap監査まで全工程PASS。Batch 3（東京・大阪・愛知・石川・富山）はB092〜B096として、県固有の豪雨史・都市/地形特性・避難導線を実装し、5記事すべて2,500字以上、preview・registry・特集ナビ・個別/共通レビュー・退行テストを追加済み。
-- remaining: Batch 3のCI・production build・本番スモーク・live sitemap監査、全15都道府県のユーザー確認。
-- next_action: Batch 3をPR化し、CIと本番デプロイを確認する。
-- blocker: なし
-- related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md`, B067〜B077, B082〜B086
+- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1（鹿児島・宮崎・熊本・長崎・大分）はPR #120 / deploy run #94、長崎・大分の2024年事例追記はPR #122 / run #95で本番反映済み。Batch 2（高知・和歌山・三重・静岡・千葉）はCI run #244 / deploy run #96で全工程PASS。Batch 3（東京・大阪・愛知・石川・富山）もB092〜B096として実装し、CI run #245 / deploy run #97でMarkdown同期、特集ナビ、全テスト、production build、FTPS、本番スモーク、live sitemap監査まで全工程PASS。15都道府県すべて本番反映済み。
+- remaining: ユーザーによる15都道府県ページの表示・内容確認。
+- next_action: ユーザー確認を受ける。
+- blocker: ユーザー確認待ち
+- related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH2_CHECKLIST_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH3_CHECKLIST_20260921.md`, B067〜B077, B082〜B096, CI run #245, deploy run #97
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
