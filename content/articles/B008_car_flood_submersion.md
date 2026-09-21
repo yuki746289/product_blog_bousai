@@ -1,7 +1,7 @@
 ---
 article_id: B008
 slug: car-flood-submersion
-title: 車が冠水・水没しそうなときに知っておきたいこと
+title: 車が冠水・水没したらどうする？脱出方法と水没後の対応
 category: vehicle
 content_role: detail
 risk_level: high
@@ -11,7 +11,7 @@ next_review_at: 2027-03-01
 affiliate: false
 ---
 
-# 車が冠水・水没しそうなときに知っておきたいこと
+# 車が冠水・水没したらどうする？脱出方法と水没後の対応
 
 大雨時の車で最も重要なのは、**冠水した道路へ入らないこと**です。
 
