@@ -22,7 +22,7 @@
 |---|---|---|
 | C01 内容・情報量 | PASS | 2026-09-20再編集で主要な問いをanswer-firstへ修正 |
 | C02 出典・安全性 | PASS | 特集一次資料・気象庁資料を基準に確認 |
-| C03 画像・視覚要素 | PASS | 線状降水帯全体像・住宅浸水・冠水道路/車・土砂災害・NG行動の5図をHTML/CSSで実装。生成画像原本は別途保管 |
+| C03 画像・視覚要素 | PASS | HTML/CSS図解は実装済み。ただし、ユーザーが要求した生成済み実画像の本番 img 表示は未実装のため別タスクとして再オープン |
 | C04 読みやすさ・UI | PASS | メモ的見出し・制作側表現を除去し、読者向け見出しへ変更 |
 | C05 内部リンク | PASS | 特集内・実用記事への導線あり |
 | C08 同期・公開前 | PASS | Markdown/preview同期経路あり |
@@ -52,9 +52,11 @@
 
 ## 残課題
 
-- user_acceptance_status: `APPROVED`
-- user_approved_at: `2026-09-20`
-- 2026-09-20 ユーザー承認済み。今回の図解タスクは完了扱い。
+- editorial_acceptance_status: `APPROVED`
+- html_css_guide_acceptance_status: `APPROVED`
+- actual_image_embed_status: `REOPENED`
+- 2026-09-21 ユーザー確認により、生成済み画像がPC/モバイルの公開ページに img として表示されていないことが判明。
+- 実画像掲載は未完了。画像ファイル保存 → 公開アセット配置 → img 組み込み → PC/モバイル実表示確認 → ユーザー確認まで完了扱いにしない。
 
 ## 最終判定
 
