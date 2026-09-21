@@ -1,7 +1,7 @@
 # B090 記事別レビュー記録
 
 - article_id: B090
-- title: 静岡県の線状降水帯｜2022〜2025年の大雨史と突風・避難への備え
+- title: 静岡県の線状降水帯｜2022〜2026年の発生史と突風・避難への備え
 - content_role: detail
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
@@ -27,3 +27,14 @@
 ## 共通レビュー
 
 詳細は `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH2_CHECKLIST_20260921.md` を参照。
+
+
+## 事例品質再監査（2026-09-21）
+
+- C02-07 独立イベント数: PASS（発生確認5件）
+- C02-08/C02-09 重複確認: PASS
+- C02-10 発生実績 / 予測 / 制度・関連豪雨の分類: PASS
+- C02-12 直近事例再検索: PASS
+- 最新の発生確認: 2026年6月3日
+- 修正: 2026年6月3日の伊豆発生事例を追加。
+- 本番デプロイ・production workflow: **未実行（ユーザー許可制）**
