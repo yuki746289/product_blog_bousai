@@ -1,11 +1,12 @@
 # Created: 2026-09-02
-# Updated: 2026-09-10 10:14 JST
+# Updated: 2026-09-21 12:32 JST
 """Build production static files from preview HTML.
 
 - Uses data/content_registry.json planned_public_path for article URLs.
 - Merges reviewed entries from data/content_registry_additions.json.
 - Removes preview-only noindex/workflow labels.
 - Injects Google Analytics.
+- Injects one stable site favicon on every public HTML page.
 - Rewrites internal links for production paths.
 - Excludes contact.html while the contact channel is hidden.
 """
@@ -81,6 +82,7 @@ NOINDEX_RE = re.compile(
     re.IGNORECASE,
 )
 ATTR_RE = re.compile(r'(?P<attr>href|src)=["\'](?P<url>[^"\']+)["\']', re.IGNORECASE)
+FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">'
 
 
 def load_registry() -> dict:
@@ -188,6 +190,15 @@ def add_accessibility_scaffolding(html: str) -> str:
     return html
 
 
+def inject_favicon(html: str) -> str:
+    """Inject one stable favicon link for browsers and Google Search."""
+    if re.search(r'<link\b(?=[^>]*\brel=["\'][^"\']*\bicon\b[^"\']*["\'])[^>]*>', html, flags=re.IGNORECASE):
+        return html
+    if "</head>" not in html.lower():
+        raise ValueError("Missing </head> while injecting favicon")
+    return html.replace("</head>", FAVICON_LINK + "\n</head>", 1)
+
+
 def transform_html(
     source_name: str,
     output_path: str,
@@ -211,6 +222,7 @@ def transform_html(
         html = reduce_listing_commons_width(html)
 
     html = add_accessibility_scaffolding(html)
+    html = inject_favicon(html)
 
     if "G-XQVLD5HMNG" not in html:
         if "</head>" not in html:
@@ -316,6 +328,8 @@ def validate_public(
             errors.append(f'{rel}: href="#" remains')
         if "準備中" in text:
             errors.append(f"{rel}: 準備中 remains")
+        if FAVICON_LINK not in text:
+            errors.append(f"{rel}: favicon link missing")
 
         article = article_by_output.get(rel)
         if article is not None:
@@ -329,7 +343,7 @@ def validate_public(
             local_path = parts.path
             if not local_path:
                 continue
-            resolved = (path.parent / local_path).resolve()
+            resolved = ((PUBLIC / local_path.lstrip("/")) if local_path.startswith("/") else (path.parent / local_path)).resolve()
             try:
                 resolved.relative_to(PUBLIC.resolve())
             except ValueError:
@@ -346,6 +360,8 @@ def validate_public(
         errors.append("bousai_home.css missing")
     if not (PUBLIC / "bousai_home.js").exists():
         errors.append("bousai_home.js missing")
+    if not (PUBLIC / "favicon.png").exists():
+        errors.append("favicon.png missing")
     if not (PUBLIC / "sitemap.xml").exists():
         errors.append("sitemap.xml missing")
     if not (PUBLIC / "robots.txt").exists():
@@ -403,6 +419,8 @@ def build() -> None:
         "bousai_home.js",
     ):
         shutil.copy2(PREVIEW / resource, PUBLIC / resource)
+
+    shutil.copy2(PREVIEW / "favicon.png", PUBLIC / "favicon.png")
 
     src_assets = PREVIEW / "assets"
     if src_assets.exists():
