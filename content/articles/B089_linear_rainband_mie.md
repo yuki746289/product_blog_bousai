@@ -111,6 +111,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [津地方気象台「平成16年台風第21号と前線による大雨」](https://www.data.jma.go.jp/tsu/knowledge/H16T21/h16_typhoon21.html)
+- [津地方気象台「三重県における主な気象災害」](https://www.data.jma.go.jp/tsu/knowledge/weather_disaster.pdf)
+
 
 - [津地方気象台「2023年6月2〜3日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/pdf/2023_1_tsu_1.pdf)
 - [気象庁「2023年6月2日に発生した事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050602.pdf)
