@@ -1,4 +1,4 @@
-# Updated: 2026-09-15 09:20 JST
+# Updated: 2026-09-21 12:47 JST
 name: Deploy production site
 
 on:
@@ -180,11 +180,38 @@ jobs:
           require_text "homepage linear-rainband spotlight" "線状降水帯を知る" "${tmp_home}"
           require_text "homepage linear-rainband menu link" "special/linear-rainband/index.html" "${tmp_home}" fixed
           require_text "homepage asset cache version" "bousai_common.js?v=20260918-3" "${tmp_home}" fixed
+          require_text "homepage favicon link" 'href="/favicon.png"' "${tmp_home}" fixed
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
           fi
           rm -f "${tmp_home}"
+
+          tmp_favicon="$(mktemp)"
+          fetch_public "favicon.png" "${tmp_favicon}"
+          python - "${tmp_favicon}" <<'PY'
+          import struct
+          import sys
+          from pathlib import Path
+
+          path = Path(sys.argv[1])
+          data = path.read_bytes()
+          if data[:8] != bytes.fromhex("89504e470d0a1a0a"):
+              raise SystemExit("favicon.png is not a PNG")
+          if len(data) < 512:
+              raise SystemExit(f"favicon.png is unexpectedly small: {len(data)} bytes")
+          width, height = struct.unpack(">II", data[16:24])
+          if (width, height) != (64, 64):
+              raise SystemExit(f"favicon.png dimensions are {width}x{height}, expected 64x64")
+          print(f"PASS: favicon.png HTTP fetch and dimensions ({width}x{height}, {len(data)} bytes)")
+          PY
+          rm -f "${tmp_favicon}"
+
+          tmp_b008="$(mktemp)"
+          fetch_public "vehicle/car-flood-submersion.html" "${tmp_b008}"
+          require_text "B008 revised title" "車が冠水・水没したらどうする？脱出方法と水没後の対応" "${tmp_b008}" fixed
+          require_text "B008 favicon link" 'href="/favicon.png"' "${tmp_b008}" fixed
+          rm -f "${tmp_b008}"
 
           tmp_article="$(mktemp)"
           fetch_public "guide/first-disaster-preparedness.html" "${tmp_article}"
