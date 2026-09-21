@@ -44,12 +44,12 @@ except ImportError:  # direct script execution: python scripts/...
     import sync_previews_core as _core
     from sync_previews_core import *  # type: ignore # noqa: F401,F403
 
-LINEAR_RAINBAND_ARTICLE_IDS = {f"B{i:03d}" for i in range(67, 78)}
+LINEAR_RAINBAND_ARTICLE_IDS = ({f"B{i:03d}" for i in range(67, 78)} | {f"B{i:03d}" for i in range(82, 87)})
 EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"} | LINEAR_RAINBAND_ARTICLE_IDS
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
-BREADCRUMB_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 82)}
+BREADCRUMB_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 87)}
 LEAD_SYNC_ARTICLE_IDS = ALL_ARTICLE_IDS | LINEAR_RAINBAND_ARTICLE_IDS
 
 # Three discovery hubs keep the always-visible header compact. Each hub is a
