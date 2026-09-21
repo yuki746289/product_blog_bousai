@@ -163,3 +163,5 @@ affiliate: false
 - 気象庁「自分で行う災害への備え」: https://www.jma.go.jp/jma/kishou/know/ame_chuui/ame_chuui_p10.html
 - 内閣府「自然災害への備えは万全ですか？」: https://www.bousai.go.jp/kyoiku/hokenkyousai/check.html
 - 国土交通省・経済産業省「建築物における電気設備の浸水対策ガイドライン」: https://www.mlit.go.jp/jutakukentiku/build/content/001349327.pdf
+
+<!-- gsc-ctr-review: 2026-09-21 -->
