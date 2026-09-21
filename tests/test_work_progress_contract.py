@@ -42,7 +42,7 @@ class WorkProgressContractTests(unittest.TestCase):
     def test_every_detailed_task_has_required_fields_and_valid_status(self):
         text = LEDGER.read_text(encoding="utf-8")
         sections = re.findall(
-            r"^### ([A-Z]+(?:-[A-Z]+)?-?\\d{3})[^\\n]*\\n(.*?)(?=^### |\\Z)",
+            r"^### ([A-Z]+(?:-[A-Z]+)?-?\d{3})[^\n]*\n(.*?)(?=^### |\Z)",
             text,
             flags=re.MULTILINE | re.DOTALL,
         )
@@ -53,7 +53,7 @@ class WorkProgressContractTests(unittest.TestCase):
             ids.append(task_id)
             fields = {}
             for line in body.splitlines():
-                m = re.match(r"^- ([a-z_]+):\\s*(.*)$", line.strip())
+                m = re.match(r"^- ([a-z_]+):\s*(.*)$", line.strip())
                 if m:
                     fields[m.group(1)] = m.group(2)
 
