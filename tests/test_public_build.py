@@ -1,7 +1,8 @@
-# Updated: 2026-09-17 JST
+# Updated: 2026-09-21 JST
 import json
 import re
 import subprocess
+import struct
 import sys
 import unittest
 from pathlib import Path
@@ -214,6 +215,20 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue((PUBLIC / "bousai_home.js").exists())
         self.assertTrue((PUBLIC / "assets" / "images" / "ai_b023_furniture_check_20260902.webp").exists())
         self.assertTrue((PUBLIC / "assets" / "images" / "ai_b024_outage_supplies_20260902.webp").exists())
+
+    def test_favicon_is_published_and_linked(self):
+        favicon = PUBLIC / "favicon.png"
+        self.assertTrue(favicon.exists())
+        data = favicon.read_bytes()
+        self.assertGreater(len(data), 512)
+        self.assertEqual(b"\\x89PNG\\r\\n\\x1a\\n", data[:8])
+        width, height = struct.unpack(">II", data[16:24])
+        self.assertEqual((64, 64), (width, height))
+
+        expected = '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">'
+        for page in sorted(PUBLIC.rglob("*.html")):
+            html = page.read_text(encoding="utf-8")
+            self.assertEqual(1, html.count(expected), page)
 
     def test_homepage_uses_home_specific_assets(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
