@@ -1,25 +1,26 @@
 # 線状降水帯特集 対応事項バックログ 2026-09-20
 
-状態: OPEN / IMAGE_EMBED_PENDING
+状態: USER_CONFIRMATION_PENDING
 
 履歴:
 - 2026-09-20: HTML/CSS図解実装についてユーザー承認
 - 2026-09-21: ユーザー確認で「実画像が本番表示されていない」ことが判明
-- actual_image_embed_status: `PENDING`
+- actual_image_embed_status: `USER_CONFIRMATION_PENDING`
 - HTML/CSS図解と実画像は同一成果物として扱わず、V01-V05を再オープン
+- 2026-09-21: PR #103で実画像掲載、PR #104で本番画像スモークを追加。deploy run #85で本番4ページ・5画像HTTP 200を確認。ユーザー目視確認待ち
 
 ## A. 残りの図・イラスト
 
-- [ ] V01 大雨・線状降水帯の全体イメージ図  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
+- [ ] V01 大雨・線状降水帯の全体イメージ図  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
   - 同じ地域へ発達した雨雲が繰り返しかかることを視覚化
   - B067冒頭候補
-- [ ] V02 住宅浸水の生活場面図  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
+- [ ] V02 住宅浸水の生活場面図  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
   - 玄関・1階・家財・電源周辺など、住宅で何が危険になるかを具体化
-- [ ] V03 冠水道路・車の立ち往生 / 水没イメージ  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
+- [ ] V03 冠水道路・車の立ち往生 / 水没イメージ  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
   - 車で無理に通過しないことを理解できる場面
-- [ ] V04 土砂災害イメージ  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
+- [ ] V04 土砂災害イメージ  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
   - 斜面・谷筋・住宅の位置関係を単純化して示す
-- [ ] V05 「やってはいけない行動」図の要否判断  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
+- [ ] V05 「やってはいけない行動」図の要否判断  — **実装・内部確認済み / USER_CONFIRMATION_PENDING**
   - 川・用水路を見に行く、冠水道路へ進入、雨が強まってから屋外作業等
   - 本文で十分なら無理に画像化しない
 
