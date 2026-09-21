@@ -115,6 +115,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [和歌山地方気象台「和歌山県の主な大雨災害」](https://www.data.jma.go.jp/wakayama/bousai/phenomenon/ooamesaigai.html)
+- [気象庁「南紀豪雨（1953年7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/1953/19530716/19530716.html)
+
 
 - [気象庁 過去の気象データ検索・本宮](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=1074&prec_no=65)
 - [気象庁 過去の気象データ検索・龍神](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=1089&prec_no=65)
