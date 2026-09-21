@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-18
+source_checked_at: 2026-09-21
 next_review_at: 2027-03-15
 affiliate: false
 ---
@@ -97,6 +97,9 @@ affiliate: false
 - [大雨・水害の基本](flood/flood-preparedness-basics.html)
 
 ## 公的情報・参考資料
+- [気象庁「梅雨前線による大雨（2023年6〜7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230808/20230808.html)
+- [広島地方気象台「気象情報等で引用する過去事例」](https://www.data.jma.go.jp/hiroshima/jirei.html)
+
 
 - [気象庁「気象業務はいま2015」](https://www.jma.go.jp/jma/kishou/books/hakusho/2015/index1.html)
 - [気象庁「平成30年7月豪雨 災害時気象報告」](https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2018/saigaiji_201902.pdf)
