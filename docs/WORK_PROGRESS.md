@@ -36,7 +36,7 @@
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
-| LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | IN_PROGRESS | Batch 1（鹿児島・宮崎・熊本・長崎・大分）を作成 | NO |
+| LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | IN_PROGRESS | Batch 1のCI・本番確認後、Batch 2へ進む | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
 | CONTENT-002 | B | 避難所×防犯／女性・子どもの記事検討 | TODO | 一次情報・検索意図・安全性を調査 | NO |
@@ -166,11 +166,11 @@
 - priority: `A`
 - approved_spec: 全国的な発生傾向・重要事例を持つ10県に、ユーザー指定の東京・大阪・愛知（名古屋重点）・石川・富山を加えた15都道府県を対象とする。県別の時系列発生史を厚くし、ページごとの差別化を行い、避難場所・ハザード情報への実用導線を持たせる。
 - completion_criteria: 15都道府県の一次情報調査 / B082〜B096のMarkdown・preview・registry / 県固有年表 / 避難導線 / 地方・全国記事との内部リンク / テンプレ過多防止レビュー / CI / 本番スモーク / ユーザー確認
-- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。
-- remaining: Batch 1（鹿児島・宮崎・熊本・長崎・大分）、Batch 2（高知・和歌山・三重・静岡・千葉）、Batch 3（東京・大阪・愛知・石川・富山）の作成・検証。
-- next_action: Batch 1の一次情報を記事化し、県別ナビ・registry・テストを追加する。
+- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1のB082鹿児島・B083宮崎・B084熊本・B085長崎・B086大分について、一次情報に基づく県別年表、地形・河川等の差別化、防災・避難導線を本文へ実装。5記事すべて2,500字基準以上。preview・registry・特集ナビ・個別/共通レビュー・退行テストを追加済み。
+- remaining: Batch 1のCI・production build・本番スモーク確認。Batch 2（高知・和歌山・三重・静岡・千葉）、Batch 3（東京・大阪・愛知・石川・富山）の作成・検証。全15都道府県のユーザー確認。
+- next_action: Batch 1をPR化してCIと本番デプロイを確認し、問題なければBatch 2へ進む。
 - blocker: なし
-- related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, B067〜B077
+- related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md`, B067〜B077, B082〜B086
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
