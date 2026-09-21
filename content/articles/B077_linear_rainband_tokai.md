@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-18
+source_checked_at: 2026-09-21
 next_review_at: 2027-03-15
 affiliate: false
 ---
@@ -110,6 +110,9 @@ affiliate: false
 - [洪水キキクル・河川氾濫はいつ避難する？](flood/flood-river-evacuation.html)
 
 ## 公的情報・参考資料
+- [気象庁「令和6年台風第10号による大雨、暴風及び突風」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241008/20241008.html)
+- [気象庁「令和4年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2022.html)
+
 
 - [気象庁「梅雨前線及び台風第2号による大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/20230623.html)
 - [気象庁「気象業務はいま2026」](https://www.jma.go.jp/jma/kishou/books/hakusho/2026/index6.html)
