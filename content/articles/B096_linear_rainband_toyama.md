@@ -141,6 +141,10 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [富山地方気象台「2025年8月6日からの大雨」](https://www.data.jma.go.jp/toyama/_topics/pdf_sokuhou/20250806_rain_sokuhou.pdf)
+- [富山地方気象台「2014年7月19〜20日の大雨」](https://www.data.jma.go.jp/toyama/_topics/pdf_sokuhou/20140722_rain_sokuhou.pdf)
+- [気象庁「大気の状態不安定による大雨と突風（2008年7月）」](https://www.data.jma.go.jp/stats/data/bosai/report/2008/20080727/20080727.html)
+
 
 - [気象庁「2023年7月12日の北陸線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050712.pdf)
 - [気象庁「2026年8月の天候」](https://ds.data.jma.go.jp/cpd/longfcst/monthly/202608/202608m.html)
