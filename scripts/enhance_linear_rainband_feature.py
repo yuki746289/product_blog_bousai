@@ -48,6 +48,14 @@ REGION_PAGES = (
     ("B077", "東海", "article_b077.html", "愛知・静岡・三重・伊豆"),
 )
 
+PREFECTURE_PAGES = (
+    ("B082", "鹿児島県", "article_b082.html", "1993年8月豪雨・2023〜2025年"),
+    ("B083", "宮崎県", "article_b083.html", "2024年10月・2025年9月"),
+    ("B084", "熊本県", "article_b084.html", "2012年・2020年豪雨と球磨川"),
+    ("B085", "高知県", "article_b085.html", "2022年7月・2023年6月"),
+    ("B086", "和歌山県", "article_b086.html", "2011年紀伊半島大水害・2023年"),
+)
+
 CURRENT_LABEL = {
     "B067": "線状降水帯特集",
     "B068": "全国年表",
@@ -190,6 +198,11 @@ def region_panel() -> str:
         f"<span>{caption}</span></a>"
         for _article_id, label, href, caption in REGION_PAGES
     )
+    prefecture_cards = "".join(
+        f'<a class="feature-region-card" href="{href}"><strong>{label}</strong>'
+        f"<span>{caption}</span></a>"
+        for _article_id, label, href, caption in PREFECTURE_PAGES
+    )
     return (
         '<section class="feature-region-panel" id="linear-rainband-region-panel">'
         "<h2>地域から線状降水帯を見る</h2>"
@@ -198,6 +211,11 @@ def region_panel() -> str:
         + cards
         + "</div>"
         '<p><a href="article_b070.html">地域別の全体像と発生頻度が高い傾向を見る →</a></p>'
+        '<h3>都道府県別の発生史を見る</h3>'
+        '<p>県ごとに、線状降水帯の公式事例と、それ以前の代表的な豪雨史、避難場所の確認先を分けて整理します。</p>'
+        '<div class="feature-region-grid feature-prefecture-grid">'
+        + prefecture_cards
+        + "</div>"
         "</section>"
     )
 
