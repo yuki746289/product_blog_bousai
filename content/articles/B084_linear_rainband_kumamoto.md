@@ -110,6 +110,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [気象庁「2025年8月6日〜12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/20251003.html)
+- [気象庁「2025年8月大雨・観測史上1位更新地点」](https://www.data.jma.go.jp/stats/data/mdrr/periodstat/20250806a/20250813/24/rank_update.html)
+
 
 - [気象庁「平成24年7月九州北部豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2012/20120711/20120711.html)
 - [気象庁「令和2年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2020/20200811/20200811.html)
