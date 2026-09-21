@@ -38,6 +38,7 @@ risk_level: standard
 | [地域別](special/linear-rainband/regions.html) | どこで多い？ | 高頻度地域と近年事例を分け、地方別記事へ案内 |
 | [雨量記録](special/linear-rainband/rainfall-records.html) | どれくらい降った？ | 観測史上1位、平年月降水量との倍率等を比較 |
 | [情報制度の歴史](special/linear-rainband/information-history.html) | 「線状降水帯」はいつから？ | 用語・発生情報・半日前予測・直前予測の変化 |
+| [ゲリラ豪雨との違い](special/linear-rainband/guerrilla-rain-vs-linear-rainband.html) | ゲリラ豪雨と何が違う？ | 雨雲の構造、範囲、継続時間、予測情報を図と表で比較 |
 
 ### 地域別の詳しい記事
 
