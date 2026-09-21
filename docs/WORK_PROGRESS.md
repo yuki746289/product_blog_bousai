@@ -37,6 +37,7 @@
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | USER_CONFIRMATION_PENDING | ユーザーが15都道府県ページの表示・内容を確認 | NO |
+| CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | IN_PROGRESS | 事例記事を横断監査し、重複・分類・鮮度を修正。デプロイ前に修正概要を報告して許可待ち | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
 | CONTENT-002 | B | 避難所×防犯／女性・子どもの記事検討 | TODO | 一次情報・検索意図・安全性を調査 | NO |
@@ -285,3 +286,18 @@
 - related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
 - updated_at: `2026-09-21`
 - user_approval: `YES`
+
+
+### CASE-QUALITY-001 実在災害事例の全記事品質監査・最新事例補強
+
+- status: `IN_PROGRESS`
+- priority: `A`
+- approved_spec: 線状降水帯記事に限定せず、実在する災害・豪雨・地震・噴火等の事例を掲載する全記事を対象に、同一イベント重複、予測/制度と発生実績の混同、日付順、地域適合、最新事例不足を再確認する。直近実事例は一次情報で確認できる範囲で複数件を掲載する。2026-09-21以降、本番デプロイはユーザー明示許可制とし、デプロイ前に修正概要・検証結果・残課題を報告する。
+- completion_criteria: 正本ルール更新 / public作業コピー同期 / 事例記事横断抽出 / 独立イベント単位の監査 / 直近事例複数件の補強 / 重複・分類誤り修正 / 記事別レビュー更新 / テストPASS / デプロイ前修正概要報告 / ユーザー明示許可 / 本番反映 / ユーザー確認
+- done: 正本ルール側に重複排除・予測/制度分離・直近2件以上・発生確認の基準を追加。public作業コピーへ同期中。サイト96記事を横断抽出し、事例中核記事群を特定。東京2026年9月の直前予測と実発生を分離して扱う必要を確認。
+- remaining: 事例中核記事の全件監査、本文修正、レビュー更新、テスト、修正概要報告、ユーザー許可後のみデプロイ。
+- next_action: 線状降水帯県別15記事と既存地域災害史・特集記事の事例データを再監査する。
+- blocker: 本番デプロイはユーザー許可待ち
+- related: `docs/CONTENT_CREATION_RULES.md`, `docs/ARTICLE_REVIEW_CHECKLIST.md`, `docs/FRESHNESS_POLICY.md`, `docs/SITE_RELEASE_CHECKLIST.md`
+- updated_at: `2026-09-21`
+- user_approval: `NO`
