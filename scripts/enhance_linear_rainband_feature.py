@@ -60,7 +60,6 @@ PREFECTURE_PAGES = (
     ("B090", "静岡県", "article_b090.html", "2022〜2025年の大雨史"),
     ("B091", "千葉県", "article_b091.html", "2023年・2026年千葉豪雨"),
     ("B092", "東京都", "article_b092.html", "2005年都市豪雨・地下空間"),
-    ("B093", "大阪府", "article_b093.html", "2012年豪雨・都市型水害"),
     ("B094", "愛知県", "article_b094.html", "東海豪雨・名古屋の水害"),
     ("B095", "石川県", "article_b095.html", "能登・金沢・2023〜2026年"),
     ("B096", "富山県", "article_b096.html", "2023・2026年・急流河川"),
@@ -89,10 +88,10 @@ CURRENT_LABEL = {
     "B090": "静岡県",
     "B091": "千葉県",
     "B092": "東京都",
-    "B093": "大阪府",
     "B094": "愛知県",
     "B095": "石川県",
     "B096": "富山県",
+    "B097": "ゲリラ豪雨との違い",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
@@ -262,7 +261,7 @@ def breadcrumb(article_id: str) -> str:
             + current
             + "</nav>"
         )
-    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B093", "B094", "B095", "B096"}:
+    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096"}:
         return (
             prefix
             + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
@@ -296,7 +295,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
 
     desired_nav = (
         region_nav(article_id)
-        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B093", "B094", "B095", "B096"}
+        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096"}
         else core_nav(article_id)
     )
     html = _ensure_feature_nav(html, desired_nav, article_id)
@@ -424,7 +423,7 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in list(range(67, 78)) + list(range(82, 97)):
+    for number in list(range(67, 78)) + list(range(82, 93)) + list(range(94, 98)):
         article_id = f"B{number:03d}"
         path = PREVIEW / f"article_b{number:03d}.html"
         current = path.read_text(encoding="utf-8")
