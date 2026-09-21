@@ -110,6 +110,8 @@ affiliate: false
 - [全国の過去事例年表](special/linear-rainband/history.html)
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
+- [ゲリラ豪雨と線状降水帯の違い](special/linear-rainband/guerrilla-rain-vs-linear-rainband.html)
+
 ## 公的情報・参考資料
 
 - [気象庁「2005年9月の日々の天気図」](https://www.data.jma.go.jp/yoho/data/hibiten/2005/0509.pdf)
