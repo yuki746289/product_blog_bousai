@@ -1,24 +1,25 @@
 # 線状降水帯特集 対応事項バックログ 2026-09-20
 
-状態: COMPLETED / USER_APPROVED
+状態: OPEN / IMAGE_EMBED_PENDING
 
-完了承認:
-- approved_at: 2026-09-20
-- user_acceptance_status: `APPROVED`
-- すべての記載タスクは、実装・内部チェック・本番反映・ユーザー確認まで完了
+履歴:
+- 2026-09-20: HTML/CSS図解実装についてユーザー承認
+- 2026-09-21: ユーザー確認で「実画像が本番表示されていない」ことが判明
+- actual_image_embed_status: `PENDING`
+- HTML/CSS図解と実画像は同一成果物として扱わず、V01-V05を再オープン
 
 ## A. 残りの図・イラスト
 
-- [x] V01 大雨・線状降水帯の全体イメージ図  — **完了 / USER_APPROVED**
+- [ ] V01 大雨・線状降水帯の全体イメージ図  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
   - 同じ地域へ発達した雨雲が繰り返しかかることを視覚化
   - B067冒頭候補
-- [x] V02 住宅浸水の生活場面図  — **完了 / USER_APPROVED**
+- [ ] V02 住宅浸水の生活場面図  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
   - 玄関・1階・家財・電源周辺など、住宅で何が危険になるかを具体化
-- [x] V03 冠水道路・車の立ち往生 / 水没イメージ  — **完了 / USER_APPROVED**
+- [ ] V03 冠水道路・車の立ち往生 / 水没イメージ  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
   - 車で無理に通過しないことを理解できる場面
-- [x] V04 土砂災害イメージ  — **完了 / USER_APPROVED**
+- [ ] V04 土砂災害イメージ  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
   - 斜面・谷筋・住宅の位置関係を単純化して示す
-- [x] V05 「やってはいけない行動」図の要否判断  — **完了 / USER_APPROVED**
+- [ ] V05 「やってはいけない行動」図の要否判断  — **REOPENED / ACTUAL_IMAGE_EMBED_PENDING**
   - 川・用水路を見に行く、冠水道路へ進入、雨が強まってから屋外作業等
   - 本文で十分なら無理に画像化しない
 
