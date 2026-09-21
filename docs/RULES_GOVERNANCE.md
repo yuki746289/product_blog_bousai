@@ -43,6 +43,18 @@
 - 内部テストがPASSしても、要求された成果物が公開画面・ファイル・機能として実際に確認できない場合は完了扱いにしない
 - ユーザー承認前は最終状態を「確認待ち」とする
 
+## 作業進捗の正本
+
+サイト全体の作業進捗は `docs/WORK_PROGRESS.md` を正本とする。
+
+- 作業開始前に対象タスクの `approved_spec`、`completion_criteria`、`next_action` を確認する
+- 状態は `TODO / IN_PROGRESS / BLOCKED / INTERNAL_CHECK_DONE / USER_CONFIRMATION_PENDING / DONE / REOPENED` を使用する
+- 内部チェック終了後もユーザー承認前は `USER_CONFIRMATION_PENDING`
+- ユーザー承認後のみ `DONE`
+- 完了後に不具合・仕様不一致が見つかった場合は `REOPENED`
+- タイムアウト・接続切断後は `docs/WORK_PROGRESS.md` を再開地点とし、`next_action` から続ける
+- 個別バックログ・記事別チェック・PR等は詳細記録として保持し、全体状態はこの台帳へ集約する
+
 ## Actions方針
 
 - ルール同期専用のGitHub Actionsは作成・実行しない。
