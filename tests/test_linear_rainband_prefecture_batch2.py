@@ -50,7 +50,7 @@ class LinearRainbandPrefectureBatch2Tests(unittest.TestCase):
 
     def test_prefecture_specific_history_and_safety(self):
         markers = {
-            "B087": ("2022", "2023", "高知県防災アプリ"),
+            "B087": ("2022", "2023年6月1〜3日", "2023年8月10日", "高知県防災アプリ"),
             "B088": ("2011", "2023", "安全レベル"),
             "B089": ("2023", "2024", "伊勢志摩"),
             "B090": ("2022", "2025", "突風"),
