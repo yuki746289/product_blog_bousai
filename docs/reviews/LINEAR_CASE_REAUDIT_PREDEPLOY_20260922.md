@@ -97,10 +97,13 @@
 - 記事別レビュー・Batch1〜3レビュー: 更新済み
 - 回帰テストの事例マーカー: 更新済み
 
-## 5. デプロイ前の残作業
+## 5. デプロイ前の最終状態
 
-- 最新PR headに対するGitHub Actions最終成功確認
-- PR #129本文・タイトルを現在の修正範囲へ更新
-- `WORK_PROGRESS.md` を「全国年表・地域別・県別再調査完了／デプロイ許可待ち」へ更新
+- 最新PR head Content freshness check: PASS（run #424）
+- Markdown→preview同期: PASS
+- unit tests: PASS
+- content registry check: PASS
+- PR #129タイトル・本文: 現在の修正範囲へ更新済み
+- 本番デプロイ: **未実行**
 
-上記完了後も**ユーザーの明示許可があるまでmainへマージ・本番デプロイしない**。
+残作業はユーザーの明示許可のみ。許可があるまでmainへマージ・本番デプロイしない。
