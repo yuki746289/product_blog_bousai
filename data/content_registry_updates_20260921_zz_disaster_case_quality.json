@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T16:40:00+09:00",
+  "updated_at": "2026-09-22T17:10:00+09:00",
   "articles": [
     {
       "article_id": "B067",
@@ -11,43 +11,51 @@
     },
     {
       "article_id": "B068",
-      "source_checked_at": "2026-09-21",
-      "last_reviewed_at": "2026-09-21",
-      "review_checklist_last_checked_at": "2026-09-21",
-      "modified_at": "2026-09-21",
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22",
       "body_char_count_approx": 2928
     },
     {
       "article_id": "B073",
-      "source_checked_at": "2026-09-21",
-      "last_reviewed_at": "2026-09-21",
-      "review_checklist_last_checked_at": "2026-09-21",
-      "modified_at": "2026-09-21",
-      "body_char_count_approx": 2860
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22",
+      "body_char_count_approx": 3813
     },
     {
       "article_id": "B074",
-      "body_char_count_approx": 3111
+      "body_char_count_approx": 3821,
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22"
     },
     {
       "article_id": "B075",
-      "body_char_count_approx": 2843
+      "body_char_count_approx": 3335,
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22"
     },
     {
       "article_id": "B076",
-      "source_checked_at": "2026-09-21",
-      "last_reviewed_at": "2026-09-21",
-      "review_checklist_last_checked_at": "2026-09-21",
-      "modified_at": "2026-09-21",
-      "body_char_count_approx": 2951
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22",
+      "body_char_count_approx": 3483
     },
     {
       "article_id": "B077",
-      "source_checked_at": "2026-09-21",
-      "last_reviewed_at": "2026-09-21",
-      "review_checklist_last_checked_at": "2026-09-21",
-      "modified_at": "2026-09-21",
-      "body_char_count_approx": 3118
+      "source_checked_at": "2026-09-22",
+      "last_reviewed_at": "2026-09-22",
+      "review_checklist_last_checked_at": "2026-09-22",
+      "modified_at": "2026-09-22",
+      "body_char_count_approx": 3627
     },
     {
       "article_id": "B082",
