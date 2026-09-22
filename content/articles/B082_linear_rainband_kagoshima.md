@@ -26,6 +26,7 @@ affiliate: false
 | 2026年8月25〜26日／🌀 線状降水帯 | 奄美地方で発生 | 気象庁の2026年8月天候資料で発生を確認 | 奄美地方の事例。県本土とは情報区分を分けて見る |
 | 2026年6月24日／🌀 線状降水帯 | 鹿児島県で発生 | 気象庁の2026年6月天候資料で発生を確認 | 梅雨期の直近事例 |
 | 2025年8月8日／🌀 線状降水帯 | 霧島市福山町牧之原で24時間515.5mm、溝辺で506.5mm | 鹿児島地方気象台が線状降水帯発生を確認 | 霧島市・姶良市を中心に住家浸水、河川・土砂災害 |
+| 2024年8月29日／🌀 線状降水帯 | 台風第10号の影響。肝付前田で24時間降水量507.5mm | 気象庁が鹿児島県で線状降水帯発生を確認 | 台風本体の発達した雨雲により猛烈な雨。6月21日とは別の2024年事例 |
 | 2024年6月21日／🌀 線状降水帯 | 指宿423.0mmなど24時間400mm超の地点 | 顕著な大雨に関する気象情報 | 薩摩・大隅を中心に短時間・長時間の大雨 |
 | 2023年6月19〜20日／🌀 線状降水帯 | 鹿児島県で発生 | 2023年度実績で発生事例として掲載 | 現行一覧開始後の初期事例 |
 
@@ -109,6 +110,7 @@ affiliate: false
 - [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
 - [気象庁「令和6年6月21日に鹿児島県で発生した事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R060621.pdf)
 - [気象庁「2024年の気象災害」](https://www.jma.go.jp/jma/kishou/books/kishougaikyo/gaikyo_2024.pdf)
+- [気象庁「令和6年台風第10号による大雨、暴風及び突風」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241008/20241008.html)
 - [気象庁「2025年8月6日〜12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/20251003.html)
 - [鹿児島地方気象台「2025年8月の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/pdf/2025_1_kagoshima_1.pdf)
 - [気象庁「線状降水帯に関する情報」](https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html)
