@@ -54,7 +54,7 @@ class LinearRainbandPrefectureBatch3Tests(unittest.TestCase):
             "B093": ("2012", "寝屋川", "地下街", "内水"),
             "B094": ("2000", "2022", "東海豪雨", "名古屋"),
             "B095": ("2023", "2026", "能登", "金沢"),
-            "B096": ("2023", "2026", "急流河川", "県西部"),
+            "B096": ("2023", "2026", "2025年8月7日", "2023年6月28日", "2019年10月12日", "2018年7月4〜8日", "2017年6月30日", "2014年7月19〜20日", "2012年7月20〜21日", "急流河川", "県西部"),
         }
         for article_id, required in markers.items():
             text = (ROOT / self.by_id[article_id]["source_path"]).read_text(encoding="utf-8")
