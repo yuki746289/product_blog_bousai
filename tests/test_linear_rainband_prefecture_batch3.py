@@ -50,7 +50,7 @@ class LinearRainbandPrefectureBatch3Tests(unittest.TestCase):
 
     def test_prefecture_specific_history_and_safety(self):
         markers = {
-            "B092": ("2005", "2019", "地下空間", "内水"),
+            "B092": ("2005", "2019", "2025年10月9日", "伊豆諸島南部", "地下空間", "内水"),
             "B093": ("2012", "寝屋川", "地下街", "内水"),
             "B094": ("2000", "2022", "東海豪雨", "名古屋"),
             "B095": ("2023", "2026", "能登", "金沢"),
