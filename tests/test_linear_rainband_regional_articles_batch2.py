@@ -32,7 +32,7 @@ class LinearRainbandRegionalArticleBatch2Tests(unittest.TestCase):
 
     def test_chugoku_has_region_specific_evidence_and_boundary(self):
         text = (ROOT / "content/articles/B075_linear_rainband_chugoku.md").read_text(encoding="utf-8")
-        for marker in ("2014年8月広島豪雨", "2025年山口", "512.0mm", "九州北部地方（山口県を含む）"):
+        for marker in ("2014年8月20日", "2025年山口", "512.0mm", "九州北部地方（山口県を含む）"):
             self.assertIn(marker, text)
         self.assertIn("鳥取・島根・岡山を「少ない地域」と決めることはできません", text)
 
