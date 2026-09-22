@@ -2,6 +2,7 @@
 """Regression checks that prevent editor/AI work notes from leaking into articles."""
 
 from pathlib import Path
+import re
 import unittest
 
 
@@ -38,6 +39,14 @@ class PublicationHygieneTest(unittest.TestCase):
                 if marker in text:
                     failures.append(f"{path.relative_to(ROOT)}: {marker}")
         self.assertEqual([], failures, "Internal/editorial notes leaked into reader-facing content")
+
+    def test_markdown_tables_do_not_contain_raw_br(self):
+        failures = []
+        for path in sorted(ARTICLE_DIR.glob("B*.md")):
+            for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+                if line.lstrip().startswith("|") and re.search(r"<br\s*/?>", line, flags=re.IGNORECASE):
+                    failures.append(f"{path.relative_to(ROOT)}:{line_no}")
+        self.assertEqual([], failures, "Raw <br> remains in Markdown table cells")
 
     def test_final_review_rule_is_present_and_actionable(self):
         self.assertTrue(FINAL_REVIEW_RULE.exists())
