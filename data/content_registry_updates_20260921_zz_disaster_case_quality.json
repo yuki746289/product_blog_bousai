@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-21T20:00:00+09:00",
+  "updated_at": "2026-09-22T09:50:00+09:00",
   "articles": [
     {
       "article_id": "B067",
@@ -26,6 +26,14 @@
       "body_char_count_approx": 2860
     },
     {
+      "article_id": "B074",
+      "body_char_count_approx": 3111
+    },
+    {
+      "article_id": "B075",
+      "body_char_count_approx": 2843
+    },
+    {
       "article_id": "B076",
       "source_checked_at": "2026-09-21",
       "last_reviewed_at": "2026-09-21",
@@ -48,7 +56,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3437
+      "body_char_count_approx": 2972
     },
     {
       "article_id": "B083",
@@ -57,7 +65,7 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "宮崎県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3413
+      "body_char_count_approx": 2946
     },
     {
       "article_id": "B084",
@@ -66,7 +74,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3253
+      "body_char_count_approx": 2785
     },
     {
       "article_id": "B085",
@@ -75,7 +83,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3426
+      "body_char_count_approx": 2958
     },
     {
       "article_id": "B086",
@@ -84,7 +92,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3477
+      "body_char_count_approx": 3011
     },
     {
       "article_id": "B087",
@@ -93,7 +101,7 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "高知県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3469
+      "body_char_count_approx": 3007
     },
     {
       "article_id": "B088",
@@ -102,7 +110,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3330
+      "body_char_count_approx": 2864
     },
     {
       "article_id": "B089",
@@ -111,7 +119,7 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "三重県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3594
+      "body_char_count_approx": 3134
     },
     {
       "article_id": "B090",
@@ -120,7 +128,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3476
+      "body_char_count_approx": 3010
     },
     {
       "article_id": "B091",
@@ -129,7 +137,7 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "千葉県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3605
+      "body_char_count_approx": 3142
     },
     {
       "article_id": "B092",
@@ -138,7 +146,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3773
+      "body_char_count_approx": 3311
     },
     {
       "article_id": "B093",
@@ -157,7 +165,7 @@
       "last_reviewed_at": "2026-09-21",
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
-      "body_char_count_approx": 3841
+      "body_char_count_approx": 3377
     },
     {
       "article_id": "B095",
@@ -166,7 +174,7 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "石川県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3440
+      "body_char_count_approx": 2975
     },
     {
       "article_id": "B096",
@@ -175,7 +183,11 @@
       "review_checklist_last_checked_at": "2026-09-21",
       "modified_at": "2026-09-21",
       "title": "富山県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 3621
+      "body_char_count_approx": 3155
+    },
+    {
+      "article_id": "B097",
+      "body_char_count_approx": 3870
     }
   ]
 }
