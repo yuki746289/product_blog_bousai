@@ -1,5 +1,7 @@
 # 非記事ページ横断レビュー
 
+**位置づけ:** レビュー結果・回帰確認の記録。規範ルールの正本ではない。判断基準は `RULES_ARCHITECTURE.md`、`BOUSAI_SITE_REVIEW_CHECKLIST.md`、`SITE_RELEASE_CHECKLIST.md` を優先する。
+
 更新日: 2026-09-04
 
 ## 1. 対象
