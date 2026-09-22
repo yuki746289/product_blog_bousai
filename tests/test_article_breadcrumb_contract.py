@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 from scripts import sync_previews_core as _core
-from scripts.article_metadata import CATEGORY_BREADCRUMBS
+from scripts.article_metadata import CATEGORY_BREADCRUMBS, article_breadcrumb_items
 from scripts.sync_previews_from_markdown import (
     BREADCRUMB_ARTICLE_IDS,
     CATEGORY_PREVIEW_BREADCRUMBS,
@@ -103,6 +103,75 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
             self.assertEqual("停電・断水", category_name)
             self.assertEqual("category_outage.html", preview_category)
             self.assertEqual("outage/index.html", CATEGORY_PREVIEW_TO_PUBLIC[preview_category])
+
+    def test_structured_breadcrumbs_use_short_labels_and_special_hierarchies(self):
+        config = {
+            "public_base_url": "https://bousaikun.ashigaru.jp/",
+            "site_name": "防災くらしガイド",
+        }
+
+        chiba = self.by_id["B091"]
+        chiba_items = article_breadcrumb_items(
+            chiba,
+            chiba["planned_public_path"],
+            config,
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "線状降水帯", "千葉県"],
+            [item["name"] for item in chiba_items],
+        )
+
+        osaka = self.by_id["B093"]
+        osaka_items = article_breadcrumb_items(
+            osaka,
+            osaka["planned_public_path"],
+            config,
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "地域別", "大阪府の大雨・都市型水害"],
+            [item["name"] for item in osaka_items],
+        )
+
+        feature = self.by_id["B067"]
+        feature_items = article_breadcrumb_items(
+            feature,
+            feature["planned_public_path"],
+            config,
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "線状降水帯"],
+            [item["name"] for item in feature_items],
+        )
+
+        normal = self.by_id["B008"]
+        normal_items = article_breadcrumb_items(
+            normal,
+            normal["planned_public_path"],
+            config,
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "車と災害", "車の冠水・水没"],
+            [item["name"] for item in normal_items],
+        )
+
+    def test_future_prefecture_breadcrumb_name_is_derived_from_title(self):
+        article = {
+            "article_id": "B999",
+            "title": "佐賀県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
+            "category": "flood",
+        }
+        items = article_breadcrumb_items(
+            article,
+            "special/linear-rainband/prefecture/saga.html",
+            {
+                "public_base_url": "https://bousaikun.ashigaru.jp/",
+                "site_name": "防災くらしガイド",
+            },
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "線状降水帯", "佐賀県"],
+            [item["name"] for item in items],
+        )
 
     def test_post_disaster_category_name_is_consistent(self):
         self.assertEqual(
