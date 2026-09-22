@@ -1,17 +1,20 @@
 # 防災くらしガイド サイト個別レビュー・チェックリスト
 
-更新日: 2026-09-19
+更新日: 2026-09-23
 
 ## 1. 位置づけ
 
-本ファイルは、防災サイト固有の追加チェックと、既存共通チェック `docs/ARTICLE_REVIEW_CHECKLIST.md` の適用設定を管理する。
+本ファイルは、防災サイト固有の追加チェックと、全サイト共通チェック `common/COMMON_SITE_CHECKLIST.md` の適用設定を管理する。記事本文の詳細チェックは別途 `ARTICLE_REVIEW_CHECKLIST.md` を使う。
 
 参照順:
 
-1. `docs/COMMON_SITE_REVIEW_FRAMEWORK.md`
-2. `docs/BOUSAI_SITE_REVIEW_PROFILE.md`
-3. `docs/CONTENT_CREATION_RULES.md`
-4. `docs/ARTICLE_REVIEW_CHECKLIST.md`
+1. `COMMON_SITE_REVIEW_FRAMEWORK.md`（private正本: `common/`、public作業コピー: `docs/`）
+2. `COMMON_SITE_CHECKLIST.md`（GC01〜GC21。private正本: `common/`、public作業コピー: `docs/`）
+3. `BOUSAI_SITE_REVIEW_PROFILE.md`
+4. `CONTENT_CREATION_RULES.md`
+5. `ARTICLE_REVIEW_CHECKLIST.md`（記事変更時）
+6. 本ファイル
+7. ページ種別・記事固有チェック
 5. 本ファイル
 6. ページ種別・記事固有チェック
 
@@ -24,24 +27,40 @@
 
 `N/A` には理由を残す。
 
-## 2. 共通チェック C01〜C14 の防災サイト適用
+## 2. 共通チェック GC01〜GC21 の防災サイト適用
 
-| 共通チェック | 基本判定 | 備考 |
+全サイト共通チェックは **GC名前空間**を使用する。防災記事固有の `GC01〜GC21` と混同しない。
+
+| 共通チェック | 基本判定 | 防災サイトでの扱い |
 |---|---|---|
-| C01 内容・情報量 | REQUIRED | 全記事 |
-| C02 出典・安全性 | REQUIRED | 全記事。高リスクは強化 |
-| C03 画像・視覚要素 | REQUIRED | 画像なしでも「不要理由」を確認 |
-| C04 読みやすさ・UI | REQUIRED | 全公開ページ |
-| C05 内部リンク | REQUIRED | 全公開ページ |
-| C06 商品導線・商品記事 | CONDITIONAL | 商品・Amazon導線がある場合 |
-| C07 Q&A | CONDITIONAL | Q&A作成・導線がある場合 |
-| C08 同期・公開前 | REQUIRED | 全変更 |
-| C09 日付・構造化データ | REQUIRED | 対象公開ページ |
-| C10 デザイン・UX | REQUIRED | 全公開ページ |
-| C11 読者・マーケティング | REQUIRED | 状況ベース読者設定を使用 |
-| C12 アクセシビリティ | REQUIRED | 全公開ページ |
-| C13 技術品質・信頼性 | REQUIRED | 全公開ページ・共通実装 |
-| C14 計測・グロース | CONDITIONAL | GA4、Search Console、CTA、新機能等 |
+| GC01 ページ目的・内容品質 | REQUIRED | 全公開ページ |
+| GC02 正確性・安全性・根拠 | REQUIRED | 全記事。高リスクは強化 |
+| GC03 検索・SEO | REQUIRED | 検索流入対象ページ |
+| GC04 情報設計・内部導線 | REQUIRED | 全公開ページ |
+| GC05 UX / UI・デザイン | REQUIRED | 全公開ページ |
+| GC06 アクセシビリティ | REQUIRED | 全公開ページ |
+| GC07 読者・状況設計 | REQUIRED | 状況ベース読者設定を使用 |
+| GC08 マーケティング・CRO | REQUIRED | 全公開ページ |
+| GC09 ブランド・コンテンツデザイン | REQUIRED | 全公開ページ |
+| GC10 商品・EC・アフィリエイト | CONDITIONAL | 商品・Amazon導線がある場合 |
+| GC11 計測・分析・グロース | CONDITIONAL | GA4、Search Console、CTA、新機能等 |
+| GC12 Web技術・信頼性 | REQUIRED | 全公開ページ・共通実装 |
+| GC13 セキュリティ・プライバシー | REQUIRED | 外部JS/API/計測を含むため |
+| GC14 法務・権利・広告表示 | REQUIRED | 全公開ページ |
+| GC15 ローカライゼーション | REQUIRED | 日本向け文脈を必須とする |
+| GC16 コミュニティ / UGC | N/A | 現在UGCなし |
+| GC17 運用・ガバナンス | REQUIRED | 全変更 |
+| GC18 配信・SNS・PR | N/A | 現在の制作基準ではSNS運用対象外 |
+| GC19 事業・収益モデル | CONDITIONAL | 商品・広告・収益導線変更時 |
+| GC20 データ・統計・可視化 | CONDITIONAL | 数値比較・ランキング・リアルタイム時 |
+| GC21 サポート・サービス運用 | N/A | 会員・予約・購入後支援なし |
+
+### 記事レビューとの関係
+
+- `GCxx`: サイト横断で「観点を検討したか」を確認する。
+- `Cxx-yy`: 防災記事で「具体的に何を確認するか」を判定する。
+- 同じ内容を記事別記録へ全文コピーせず、結果・例外・証跡だけを残す。
+- 条件付きモジュールに該当しない場合は `N/A` とし、全項目を機械的に実行しない。
 
 ## 3. S01 サイトプロファイル・適用判定
 
