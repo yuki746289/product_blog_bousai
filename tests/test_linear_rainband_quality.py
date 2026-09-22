@@ -174,6 +174,58 @@ class LinearRainbandQualityTest(unittest.TestCase):
             self.assertNotIn("<br/>", text, name)
             self.assertNotIn("<br />", text, name)
 
+
+    def test_recent_case_recency_and_local_downpour_regressions(self):
+        expectations = {
+            "B068_linear_rainband_history.md": [
+                "2026年9月21日",
+                "2026年8月22日",
+                "局地的大雨（いわゆるゲリラ豪雨）",
+            ],
+            "B074_linear_rainband_kanto_koshin.md": [
+                "2026年9月21日",
+                "2025年7月10日",
+                "2024年8月21日",
+            ],
+            "B075_linear_rainband_chugoku.md": [
+                "2025年9月11日",
+                "2024年11月1〜2日",
+                "2024年9月11日",
+            ],
+            "B084_linear_rainband_kumamoto.md": [
+                "2024年11月2日",
+                "2024年10月19日",
+                "2024年9月22日",
+            ],
+            "B091_linear_rainband_chiba.md": [
+                "2026年9月21日",
+                "2025年9月12日",
+                "2024年9月3日",
+                "局地的大雨（いわゆるゲリラ豪雨）",
+            ],
+            "B092_linear_rainband_tokyo.md": [
+                "2025年7月10日",
+                "2024年8月21日",
+                "2024年7月31日",
+                "局地的大雨（いわゆるゲリラ豪雨）",
+            ],
+            "B096_linear_rainband_toyama.md": [
+                "2024年8月25日",
+                "146.5mm",
+                "局地的大雨（いわゆるゲリラ豪雨）",
+            ],
+        }
+        for name, phrases in expectations.items():
+            text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
+            for phrase in phrases:
+                self.assertIn(phrase, text, f"{name}: {phrase}")
+
+    def test_public_rules_define_recent_as_newest_first(self):
+        rules = (ROOT / "docs" / "CONTENT_CREATION_RULES.md").read_text(encoding="utf-8")
+        self.assertIn("「直近」は重大度ではなく新しさを優先する", rules)
+        self.assertIn("局地的大雨・短時間強雨", rules)
+        self.assertIn("「ゲリラ豪雨」を気象庁の公式分類名として扱わない", rules)
+
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
             text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
