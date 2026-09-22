@@ -34,6 +34,7 @@ affiliate: false
 |---|---|---|---|
 | 2019年10月12日 | 令和元年東日本台風 | 東京都に大雨特別警報。練馬の日降水量282.0mmは同地点の観測史上1位 | 都心・西部山地・大河川で危険の種類が異なる |
 | 2018年8月27日 | 局地的大雨（いわゆるゲリラ豪雨） | 練馬で1時間74.5mm | 練馬観測点では現在も年間を通じた1時間雨量の観測史上1位。短時間に集中する都市型豪雨の代表例 |
+| 2013年10月15〜16日 | 台風第26号・伊豆大島豪雨 | 大島で1時間122.5mm、24時間824.0mm。いずれも観測史上1位を更新 | 伊豆諸島では都心部と異なる土砂災害リスクがある。島しょ部も「東京都」として別地域特性で見る |
 | 2010年7月5日 | 練馬・板橋・北区等の局地的大雨 | 国交省資料では時間最大74.5mm、床上浸水111戸・床下浸水110戸 | 線状降水帯でなくても短時間強雨だけで都市型浸水が起こる |
 | 2005年9月4〜5日 | 杉並・中野などの集中豪雨 | 杉並区で自治体雨量計112mm/h。約5,000棟が床上・床下浸水 | 中小河川・下水・道路排水が短時間で限界へ近づく代表事例 |
 
@@ -118,6 +119,9 @@ affiliate: false
 - [気象庁「令和7年の線状降水帯実績」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R07jisseki.pdf)
 
 - [気象庁「2005年9月の日々の天気図」](https://www.data.jma.go.jp/yoho/data/hibiten/2005/0509.pdf)
+- [東京管区気象台「気象災害に関する資料」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/index.html)
+- [東京管区気象台「過去3年以前の気象災害資料」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/before3years.html)
+- [気象庁「台風第26号による暴風・大雨（2013年）」](https://www.data.jma.go.jp/stats/data/bosai/report/2013/20131014/20131014.html)
 - [東京管区気象台「令和元年台風第19号に関する東京都気象速報」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/2019/20191010-1013_ty1919_tokyo.pdf)
 - [気象庁「令和元年東日本台風」](https://www.data.jma.go.jp/stats/data/bosai/report/2019/20191012/20191012.html)
 - [東京都防災マップ](https://map.bosai.metro.tokyo.lg.jp/)
