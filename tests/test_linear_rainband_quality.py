@@ -113,7 +113,9 @@ class LinearRainbandQualityTest(unittest.TestCase):
             for line in source_lines:
                 self.assertIn("](", line, f"{name}: {line}")
                 self.assertTrue(
-                    "jma.go.jp" in line or "data.jma.go.jp" in line,
+                    "jma.go.jp" in line
+                    or "data.jma.go.jp" in line
+                    or "jma-net.go.jp" in line,
                     f"{name}: non-JMA source link {line}",
                 )
 
