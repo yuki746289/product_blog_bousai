@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: `PASS`
-- last_checked_at: 2026-09-20
+- last_checked_at: 2026-09-22
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -48,3 +48,14 @@
 - review_status: `PASS`
 - READY_TO_PUBLISH: `YES`
 - 判定理由: 2026-09-20の編集品質再監査で、地域固有の事例・見出し・結論へ再構成し、兄弟記事のテンプレ感を解消した。
+
+## 公式アーカイブ起点の事例数再監査（2026-09-22）
+
+- C02-12 直近5〜10件: PASS（5件）
+- C02-21 過去5〜10件: PASS（6件）
+- C02-37 母集団作成: PASS（気象庁の中国地方関連災害事例を1983年まで遡及）
+- C02-40 候補記録: PASS
+- C02-41 調査終了条件: PASS（直近5・過去6）
+- C02-42 遡及的な線状降水帯認定なし: PASS
+- 追加: 2022台風14号、2021前線豪雨、2013山口・島根、2010庄原、1983山陰豪雨
+- production: **未実行（ユーザー明示許可制）**
