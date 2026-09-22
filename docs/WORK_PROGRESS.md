@@ -112,20 +112,28 @@
 
 - status: `IN_PROGRESS`
 - priority: `A`
+- approved_spec: PageSpeed Insights / Core Web Vitalsを継続計測し、LCP・CLS・INP等の主要指標と実装上のボトルネックを確認して改善する。
+- completion_criteria: 現状計測 / 主要ボトルネック特定 / 改善実装 / 再計測 / 回帰確認 / ユーザー確認
+- done: 継続改善タスクとして台帳化済み。
+- remaining: 現状再計測 / ボトルネック整理 / 改善実装 / 再計測 / ユーザー確認
 - next_action: 現行ボトルネックを再計測・整理
 - blocker: 今回の線状降水帯品質監査とは別タスク
-- updated_at: `2026-09-21`
+- related: PageSpeed / Core Web Vitals 改善履歴
+- updated_at: `2026-09-22`
 - user_approval: `NO`
 
 
 ### LINEAR-CASE-002 線状降水帯 全事例表の再構成・高精度化
 
 - status: `USER_CONFIRMATION_PENDING`
+- priority: `A`
 - approved_spec: 県別だけでなく、全国年表・地域別等の線状降水帯ページで事例を扱う場合、「直近の大雨・線状降水帯事例」と「過去の代表的な豪雨」を原則別表にする。直近＋過去代表を合わせて目安5件以上。ただし信頼できる事例が不足する場合は件数合わせをしない。被害の大きい局地的大雨も現象を区別して掲載可。警戒レベルは公的発表に基づく。県別titleは「○○県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説」。実発生未確認県は県別シリーズから外す。
+- completion_criteria: 正本ルール反映 / 県別・全国・地域別の事例表再構成 / 事例分類・重複・最新性確認 / registry同期 / unit test / production build / 本番反映 / 本番スモーク / ユーザー確認
 - done: 正本ルールPR #17〜#19を反映。県別14記事のtitle統一。大阪B093は一般の大雨・都市型水害記事へ役割変更し、県別ナビから除外。B068/B073〜B077/B082〜B092/B094〜B096の事例表を直近/過去へ再構成。県別14記事は全て5件以上、B068/B073〜B077も5件以上。東京・愛知を含め、一次資料で確認できる観測史上順位・平年比・被害を補強。表列数、title/H1、literal \n、制作工程語、出典リンクを静的QA済み。registry文字数も再計算・同期済み。
 - remaining: ユーザー明示許可 / mainマージ後のworkflowでunit test・production build・FTPS・本番スモーク / ユーザー確認
 - next_action: public PR #126 の内容確認後、ユーザーのデプロイ許可を受ける。
 - blocker: 本番デプロイはユーザー許可待ち
+- related: `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`, PR #126
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
@@ -134,8 +142,12 @@
 - status: `USER_CONFIRMATION_PENDING`
 - priority: `B`
 - approved_spec: 正式用語として「局地的大雨（いわゆるゲリラ豪雨）」を使用し、線状降水帯との違いを、雨雲の構造、範囲、継続時間、予測、防災情報、典型的な被害で比較する。図解を使用し、1図1メッセージ、誤解を招く安全境界・警戒レベル対応を作らない。
+- completion_criteria: 本文・比較表・図解作成 / 一次資料確認 / preview・registry同期 / 内部リンク / unit test / production build / 本番反映 / 本番スモーク / ユーザー確認
 - done: B097 `ゲリラ豪雨と線状降水帯の違い｜雨雲・範囲・時間・予測を図で比較` をreader-visible約3,870字で作成。気象庁一次資料6件を確認。比較表、局地的大雨/線状降水帯の模式図SVG、preview HTML、SOURCES、IMAGES、CHECKLIST、registry追加を作成。B067/B092/B094から内部リンクを追加。正本ルールPR #19で災害事例数を「直近＋過去代表で目安5件以上、無ければ水増ししない」へ変更。
 - remaining: PR #126のユーザー内容確認 / mainマージ後の本番ビルド・自動テスト / ユーザー明示許可後のみデプロイ / 公開後HTTP・モバイル確認
+- next_action: PR #126のデプロイ工程を完了し、本番B097の本文・比較表・図解・内部リンクを確認する。
+- blocker: production workflowのテスト失敗を修正中
+- related: `content/articles/B097_guerrilla_rain_vs_linear_rainband.md`, `docs/reviews/B097_CHECKLIST.md`, PR #126
 - dependency: `LINEAR-CASE-002` の事例拡充と並行可能。公開は品質監査後にまとめて行う。
 - updated_at: `2026-09-21`
 - user_approval: `NO`
@@ -147,6 +159,7 @@
 - status: `USER_CONFIRMATION_PENDING`
 - priority: `A`
 - approved_spec: 県別記事で避難場所を分かりやすく案内する。指定緊急避難場所と指定避難所を区別し、洪水・内水・土砂等の災害種別への適合と当日の開設状況を自治体一次情報で確認できるようにする。候補が多い都市部は選択UIを使う。一般地図は位置確認の補助に限り、指定・開設状況の正本にはしない。
+- completion_criteria: 14都県の公式導線 / GSI導線 / 東京23区・名古屋16区セレクター / モバイル・アクセシビリティ確認 / unit test / production build / 本番表示確認 / ユーザー確認
 - done: 14都県に自治体公式ページ＋国土地理院の指定緊急避難場所/指定避難所データへの共通shelter finderを記事上部に追加。東京B092は23区、愛知B094は名古屋16区を選択して各自治体公式ハザードマップを開けるUIを追加。本文側は地域固有の避難ポイントだけ残し、重複していた共通説明を削除。モバイル1列化、キーボード操作、冠水後の遠距離移動注意を実装。正本ルールPR #20をmainへ反映。記事別/共通チェックリストへC02-29〜C02-35相当の確認を記録。
 - static_qa: shelter guide 14件 / 東京23区 / 名古屋16区 / GSI導線 / selector script / mobile single-column / 本文側の共通避難説明重複0件を確認。主要公式リンクも2026-09-22時点で再確認。
 - remaining: production workflowでMarkdown→preview同期・unit test・build / 本番表示確認 / ユーザー確認

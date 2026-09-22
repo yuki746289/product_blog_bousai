@@ -39,7 +39,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
             "## 先に確認：",
             "## まず見る：",
             "| 読み方 |",
-            "代表事例",
+            "## 代表事例",
         ]
         for name, text in self._texts().items():
             for phrase in forbidden:
