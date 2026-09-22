@@ -22,6 +22,7 @@ affiliate: false
 | 日時・発生現象 | 主な状況・実測雨量 | 気象庁等の発表 | 被害・特徴 |
 |---|---|---|---|
 | 2026年7月2日／🌀 線状降水帯 | 佐賀・長崎・福岡・大分・熊本で発生 | 九州北部の複数県で発生確認 | 直近の広域発生事例 |
+| 2025年8月11日／🌀 線状降水帯 | 長崎県南部で発生 | 顕著な大雨に関する長崎県気象情報を発表 | 九州北部で線状降水帯が繰り返し発生した一連の大雨 |
 | 2024年11月2日／🌀 線状降水帯 | 長崎県で発生 | 気象庁資料で発生確認 | 秋にも発生することを示す事例 |
 | 2024年7月14日／🌀 線状降水帯 | 長崎県で発生 | 梅雨前線の活動が活発化 | 九州北部の大雨 |
 | 2023年9月14〜15日／🌀 線状降水帯 | 14日朝に長崎県南部で実況解析 | 気象庁の検証資料で確認 | 予測と実況が一致しない時間帯もあり、予測だけで危険度を決めない |
@@ -112,6 +113,7 @@ affiliate: false
 - [気象庁「2023年9月14〜15日の線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050914.pdf)
 - [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
 - [気象庁「令和6年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2024.html)
+- [気象庁「2025年8月6日〜12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/20251003.html)
 - [長崎県「指定緊急避難場所」](https://www.pref.nagasaki.jp/doc/page-587945.html)
 - [長崎県「水位周知河川等の洪水浸水想定区域図とハザードマップ」](https://www.pref.nagasaki.jp/doc/page-737954.html)
 
