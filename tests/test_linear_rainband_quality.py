@@ -2,6 +2,7 @@ from pathlib import Path
 import unittest
 
 from scripts import sync_previews_from_markdown as preview_sync
+from scripts import enhance_linear_rainband_feature as feature_enhance
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -227,6 +228,28 @@ class LinearRainbandQualityTest(unittest.TestCase):
         self.assertIn("「直近」は重大度ではなく新しさを優先する", rules)
         self.assertIn("局地的大雨・短時間強雨", rules)
         self.assertIn("「ゲリラ豪雨」を気象庁の公式分類名として扱わない", rules)
+
+    def test_prefecture_cards_are_ordered_north_to_south(self):
+        labels = [row[1] for row in feature_enhance.PREFECTURE_PAGES]
+        self.assertEqual(
+            [
+                "富山県",
+                "石川県",
+                "東京都",
+                "千葉県",
+                "愛知県",
+                "静岡県",
+                "三重県",
+                "和歌山県",
+                "高知県",
+                "大分県",
+                "熊本県",
+                "長崎県",
+                "宮崎県",
+                "鹿児島県",
+            ],
+            labels,
+        )
 
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
