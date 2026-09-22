@@ -99,11 +99,16 @@
 
 ## 5. デプロイ前の最終状態
 
-- 最新PR head Content freshness check: PASS（run #424）
+- 最新PR head Content freshness check: PASS（run #430 / head `8bfaf715f48313918db8d65f225627894826c8ec`）
 - Markdown→preview同期: PASS
 - unit tests: PASS
 - content registry check: PASS
 - PR #129タイトル・本文: 現在の修正範囲へ更新済み
 - 本番デプロイ: **未実行**
+
+補足:
+- CI #428 / #429 ではB048・B097のreader-visible文字数とregistry値の不一致を検出。
+- 本文側を再計算し、B048=5,013字・B097=3,870字へregistryを同期。
+- 修正後のCI #430で全テストPASSを確認。
 
 残作業はユーザーの明示許可のみ。許可があるまでmainへマージ・本番デプロイしない。
