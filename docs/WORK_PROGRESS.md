@@ -36,7 +36,11 @@
 | STRUCT-001 | A | Google Rich Results Test外部確認 | BLOCKED | 外部Google検証を実施・結果記録 | NO |
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
-| LINEAR-PREF-001 | A | 線状降水帯15都道府県ページ展開 | USER_CONFIRMATION_PENDING | ユーザーが15都道府県ページの表示・内容を確認 | NO |
+| LINEAR-PREF-001 | A | 線状降水帯県別ページ展開 | USER_CONFIRMATION_PENDING | 実発生確認済み14都県を県別シリーズ化。大阪B093は一般豪雨記事へ変更。ユーザー確認待ち | NO |
+| LINEAR-CASE-002 | A | 線状降水帯 全事例表の再構成・高精度化 | USER_CONFIRMATION_PENDING | 県別14記事＋全国/地域別を5件以上目安で再構成し静的QA完了。デプロイ許可待ち | NO |
+| LINEAR-DIFF-001 | B | ゲリラ豪雨と線状降水帯の違い 記事＋図解 | USER_CONFIRMATION_PENDING | B097本文・比較表・模式図・一次資料・preview・registry作成済み。ユーザー確認後、公開工程へ | NO |
+| LINEAR-SHELTER-001 | A | 県別線状降水帯記事の避難場所・避難所導線 | USER_CONFIRMATION_PENDING | 14都県に公式避難所導線、東京23区/名古屋16区セレクターを追加。デプロイ許可待ち | NO |
+| CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | USER_CONFIRMATION_PENDING | 横断監査・本文修正・ルール/チェックリスト更新・静的整合確認完了。修正概要を報告し、明示許可後のみ本番反映 | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
 | CONTENT-002 | B | 避難所×防犯／女性・子どもの記事検討 | TODO | 一次情報・検索意図・安全性を調査 | NO |
@@ -90,198 +94,64 @@
 - updated_at: `2026-09-21`
 - user_approval: `YES`
 
+### CASE-QUALITY-001 実在災害事例の全記事品質監査・最新事例補強
+
+- status: `USER_CONFIRMATION_PENDING`
+- priority: `A`
+- approved_spec: 線状降水帯記事に限定せず、実在する災害・豪雨・地震・噴火等の事例を掲載する全記事を対象に、同一イベント重複、予測/制度と発生実績の混同、日付順、地域適合、最新事例不足を再確認する。直近実事例は一次情報で確認できる範囲で複数件を掲載する。2026-09-21以降、本番デプロイはユーザー明示許可制とし、デプロイ前に修正概要・検証結果・残課題を報告する。
+- completion_criteria: 正本ルール更新 / public作業コピー同期 / 事例記事横断抽出 / 独立イベント単位の監査 / 直近事例複数件の補強 / 重複・分類誤り修正 / 記事別レビュー更新 / 静的整合確認 / デプロイ前修正概要報告 / ユーザー明示許可 / 本番反映 / 本番スモーク / ユーザー確認
+- done: private正本ルールPR #16〜#19をmainへ反映。B001〜B097を対象に監査し、非線状降水帯の主要災害史と線状降水帯特集・地域・県別記事を再確認。県別線状降水帯は実発生確認済み14都県へ整理し、大阪B093は一般豪雨記事へ変更。重複・予測混在・最新事例不足を修正し、観測史上順位等の記録性も復活。B097比較記事を追加。静的QA・回帰テスト更新・デプロイ前報告まで完了。
+- remaining: ユーザー明示許可 / 許可後にmain反映 / workflowによるMarkdown→preview同期 / unit test / production build / FTPS転送 / 本番スモーク / ユーザー確認
+- next_action: public PR #126 の内容を提示し、デプロイ許可を受ける。
+- blocker: 本番デプロイはユーザー許可待ち
+- related: `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`
+- updated_at: `2026-09-21`
+- user_approval: `NO`
+
 ### PERF-001 PageSpeed / Core Web Vitals継続改善
 
 - status: `IN_PROGRESS`
 - priority: `A`
-- approved_spec: 既存機能や表示を壊さず、実測ベースで性能ボトルネックを改善する。
-- completion_criteria: 代表ページ再計測 / 主要ボトルネック記録 / 実装可能な改善反映 / 再計測 / ユーザー確認
-- done: 既存Lighthouse監査と一部画像最適化を実施済み。
-- remaining: 現行状態の再計測と継続改善。
-- next_action: トップ・代表記事の現行値を再監査する。
-- blocker: なし
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
+- next_action: 現行ボトルネックを再計測・整理
+- blocker: 今回の線状降水帯品質監査とは別タスク
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
-### GA4-001 Amazon / 商品記事クリックイベントのGA4受信確認
 
-- status: `BLOCKED`
-- priority: `A`
-- approved_spec: 実装済み `amazon_click` / `product_guide_click` がGA4で受信できることを確認する。
-- completion_criteria: DebugViewまたはリアルタイムでイベント受信確認 / 結果記録 / ユーザー承認
-- done: 共通JS実装・自動テスト済み。
-- remaining: GA4管理画面で受信確認。
-- next_action: GA4側の受信結果を確認する。
-- blocker: GA4管理画面へのユーザー側確認が必要
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### STRUCT-001 Google Rich Results Test外部確認
-
-- status: `BLOCKED`
-- priority: `A`
-- approved_spec: 本番BlogPosting / BreadcrumbListをGoogle外部検証でも確認する。
-- completion_criteria: Rich Results Test等で主要ページを確認 / エラー有無を記録 / 必要修正 / ユーザー承認
-- done: CIと本番HTTPでJSON-LD構文・主要項目を自動検証済み。
-- remaining: Google外部検証。
-- next_action: 代表ページをRich Results Testで確認する。
-- blocker: 外部Google検証
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### GSC-001 Search Consoleデータ駆動リライト
-
-- status: `IN_PROGRESS`
-- priority: `A`
-- approved_spec: 実検索データを基に、表示回数・CTR・順位・クエリから必要な記事だけを改善する。
-- completion_criteria: 十分なデータ取得 / 優先記事選定 / 修正 / 効果確認 / ユーザー承認
-- done: GSC導入・初期データ確認済み。2026-09-21エクスポート（9/2〜9/20、9/20単日、過去24時間）を分析し、線状降水帯のニュース需要増と、B008 / B019 / B010 / B022 / B015等の上位表示・低CTR候補を抽出。`docs/research/GSC_ANALYSIS_20260921.md` に記録。B008はSERPとB009との役割分離を確認し、title/H1/meta descriptionを検索意図が伝わる形へ調整。PR #108をマージし、deploy run #87で新タイトルの本番HTTP反映を確認。B019はSERP・役割分離を確認したが、匿名クエリが多く主検索意図を十分特定できないため現行titleを維持。B010はSERP・記事役割を確認し、title/H1/meta descriptionを「車を移すべきか」が伝わる形へ調整。B022はSERP・公的情報・記事役割を確認し、title/H1を高層階の停電・断水と地下浸水が伝わる形へ調整。B015は公的情報と検索意図を確認し、title/H1を「片付け前に写真を撮る」が伝わる形へ調整。B045は平均11.70位からの1ページ目到達を狙い、title/H1を「冷蔵庫は何時間もつ？」へ調整。
-- remaining: B008/B010/B022/B015/B045変更後の順位・CTR効果確認、線状降水帯のニュース流入の継続観測。
-- next_action: 次回GSCエクスポートで変更5記事の順位・表示回数・CTRと、線状降水帯のニュース後推移を比較する。
-- blocker: なし
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`, `docs/research/GSC_ANALYSIS_20260921.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### GSC-002 Search Consoleカニバリ監視
-
-- status: `BLOCKED`
-- priority: `A`
-- approved_spec: 同一クエリで複数URLが競合している場合のみ、統合・内部リンク・title等を検討する。
-- completion_criteria: 十分なGSCデータ / 競合候補抽出 / 対応判断 / 必要修正 / ユーザー承認
-- done: 監視方針定義済み。
-- remaining: データ蓄積後の実測確認。
-- next_action: GSCクエリ×ページデータが十分になったら抽出する。
-- blocker: データ蓄積待ち
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### LINEAR-PREF-001 線状降水帯15都道府県ページ展開
+### LINEAR-CASE-002 線状降水帯 全事例表の再構成・高精度化
 
 - status: `USER_CONFIRMATION_PENDING`
-- priority: `A`
-- approved_spec: 全国的な発生傾向・重要事例を持つ10県に、ユーザー指定の東京・大阪・愛知（名古屋重点）・石川・富山を加えた15都道府県を対象とする。県別の時系列発生史を厚くし、ページごとの差別化を行い、避難場所・ハザード情報への実用導線を持たせる。
-- completion_criteria: 15都道府県の一次情報調査 / B082〜B096のMarkdown・preview・registry / 県固有年表 / 避難導線 / 地方・全国記事との内部リンク / テンプレ過多防止レビュー / CI / 本番スモーク / ユーザー確認
-- done: 15都道府県とB082〜B096のID、3バッチ構成、歴史データの扱い、避難場所ポリシーを `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md` に定義。Batch 1（鹿児島・宮崎・熊本・長崎・大分）はPR #120 / deploy run #94、長崎・大分の2024年事例追記はPR #122 / run #95で本番反映済み。Batch 2（高知・和歌山・三重・静岡・千葉）はCI run #244 / deploy run #96で全工程PASS。Batch 3（東京・大阪・愛知・石川・富山）もB092〜B096として実装し、CI run #245 / deploy run #97でMarkdown同期、特集ナビ、全テスト、production build、FTPS、本番スモーク、live sitemap監査まで全工程PASS。15都道府県すべて本番反映済み。
-- remaining: ユーザーによる15都道府県ページの表示・内容確認。
-- next_action: ユーザー確認を受ける。
-- blocker: ユーザー確認待ち
-- related: `docs/research/LINEAR_RAINBAND_PREFECTURE_PLAN_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH1_CHECKLIST_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH2_CHECKLIST_20260921.md`, `docs/reviews/LINEAR_RAINBAND_PREFECTURES_BATCH3_CHECKLIST_20260921.md`, B067〜B077, B082〜B096, CI run #245, deploy run #97
+- approved_spec: 県別だけでなく、全国年表・地域別等の線状降水帯ページで事例を扱う場合、「直近の大雨・線状降水帯事例」と「過去の代表的な豪雨」を原則別表にする。直近＋過去代表を合わせて目安5件以上。ただし信頼できる事例が不足する場合は件数合わせをしない。被害の大きい局地的大雨も現象を区別して掲載可。警戒レベルは公的発表に基づく。県別titleは「○○県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説」。実発生未確認県は県別シリーズから外す。
+- done: 正本ルールPR #17〜#19を反映。県別14記事のtitle統一。大阪B093は一般の大雨・都市型水害記事へ役割変更し、県別ナビから除外。B068/B073〜B077/B082〜B092/B094〜B096の事例表を直近/過去へ再構成。県別14記事は全て5件以上、B068/B073〜B077も5件以上。東京・愛知を含め、一次資料で確認できる観測史上順位・平年比・被害を補強。表列数、title/H1、literal \n、制作工程語、出典リンクを静的QA済み。registry文字数も再計算・同期済み。
+- remaining: ユーザー明示許可 / mainマージ後のworkflowでunit test・production build・FTPS・本番スモーク / ユーザー確認
+- next_action: public PR #126 の内容確認後、ユーザーのデプロイ許可を受ける。
+- blocker: 本番デプロイはユーザー許可待ち
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
-### SEO-001 水害系記事のカニバリ再確認
-
-- status: `TODO`
-- priority: `B`
-- approved_spec: 実データと検索意図を見て、機械的な統合はしない。
-- completion_criteria: 対象ページ整理 / 意図比較 / GSCデータがあれば照合 / 対応判断 / ユーザー確認
-- done: 候補として記録済み。
-- remaining: 調査一式。
-- next_action: 水害系の近接テーマを一覧化する。
-- blocker: なし
-- related: `docs/research/SEO_IMPLEMENTATION_STATUS_20260912.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### CONTENT-001 長期断水×入浴・洗濯の記事検討
-
-- status: `TODO`
-- priority: `B`
-- approved_spec: 新規記事化前に検索意図・既存記事・一次情報を確認する。
-- completion_criteria: 調査 / カニバリ確認 / brief判断 / 必要なら記事作成・レビュー・ユーザー承認
-- done: 候補登録のみ。
-- remaining: 調査。
-- next_action: 既存断水記事との役割差を確認する。
-- blocker: なし
-- related: `docs/research/SEO_IMPLEMENTATION_STATUS_20260912.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### CONTENT-002 避難所×防犯／女性・子どもの記事検討
-
-- status: `TODO`
-- priority: `B`
-- approved_spec: 安全性と一次情報を優先し、センシティブな内容を煽情的に扱わない。
-- completion_criteria: 一次情報調査 / 検索意図 / リスクレビュー / brief判断 / 必要なら記事作成・ユーザー承認
-- done: 候補登録のみ。
-- remaining: 調査。
-- next_action: 公的ガイド・既存記事との重複を確認する。
-- blocker: なし
-- related: `docs/research/SEO_IMPLEMENTATION_STATUS_20260912.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### CONTENT-003 内水氾濫と洪水の違いの独立記事化再評価
-
-- status: `TODO`
-- priority: `C`
-- approved_spec: B005/B020とのカニバリを避け、独立した読者意図がある場合だけ記事化する。
-- completion_criteria: 検索意図 / 既存記事比較 / 独立価値判断 / ユーザー確認
-- done: 候補登録のみ。
-- remaining: 調査。
-- next_action: B005/B020の既存カバー範囲を確認する。
-- blocker: なし
-- related: `docs/research/SITEWIDE_CONTENT_GAP_REVIEW_20260905.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### CONTENT-004 災害時の口腔ケア記事候補
-
-- status: `TODO`
-- priority: `C`
-- approved_spec: 医療・衛生上の重要主張は一次情報で確認し、商品紹介を主目的にしない。
-- completion_criteria: 需要調査 / 一次情報 / 既存記事比較 / 記事化判断 / ユーザー確認
-- done: 候補登録のみ。
-- remaining: 調査。
-- next_action: 公的情報と検索需要を確認する。
-- blocker: なし
-- related: `docs/research/SITEWIDE_CONTENT_GAP_REVIEW_20260905.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### EXPAND-001 大雪・寒波、雷・竜巻等の新災害カテゴリ検討
-
-- status: `TODO`
-- priority: `C`
-- approved_spec: 単発記事ではなく、ナビゲーション・カテゴリ・関連記事群を含むIAを先に設計する。
-- completion_criteria: 対象災害選定 / 需要・一次情報調査 / IA案 / 記事群案 / ユーザー承認
-- done: 候補登録のみ。
-- remaining: 企画判断。
-- next_action: 既存カテゴリ構成との整合を評価する。
-- blocker: なし
-- related: `docs/research/SITEWIDE_CONTENT_GAP_REVIEW_20260905.md`
-- updated_at: `2026-09-21`
-- user_approval: `NO`
-
-### UI-001 サイトファビコン導入
+### LINEAR-DIFF-001 ゲリラ豪雨と線状降水帯の違い
 
 - status: `USER_CONFIRMATION_PENDING`
 - priority: `B`
-- approved_spec: 防災くらしガイドのブランドに合う正方形ファビコンを実ファイルで配置し、全公開ページから安定URLで参照する。
-- completion_criteria: favicon実ファイル / 全公開HTMLのlink rel=icon / 64x64確認 / ビルド・テストPASS / 本番HTTP確認 / ユーザー確認
-- done: 現行ブランド色を基準に「盾＋家」案の64x64 PNGを追加。全公開HTMLへ `/favicon.png` を自動挿入し、64x64 PNG・全HTML参照の回帰テストを追加。PR #108をマージし、deploy run #86でテスト・ビルド・FTPSデプロイ・本番スモークまでPASS。
-- remaining: ユーザーによるブラウザタブ等での表示確認とデザイン承認。
-- next_action: ユーザーが本番ファビコン表示とデザインを確認する。
-- blocker: ユーザー確認待ち
-- related: `scripts/build_public.py`, `tests/test_public_build.py`, PR #108, deploy run #86
+- approved_spec: 正式用語として「局地的大雨（いわゆるゲリラ豪雨）」を使用し、線状降水帯との違いを、雨雲の構造、範囲、継続時間、予測、防災情報、典型的な被害で比較する。図解を使用し、1図1メッセージ、誤解を招く安全境界・警戒レベル対応を作らない。
+- done: B097 `ゲリラ豪雨と線状降水帯の違い｜雨雲・範囲・時間・予測を図で比較` をreader-visible約3,870字で作成。気象庁一次資料6件を確認。比較表、局地的大雨/線状降水帯の模式図SVG、preview HTML、SOURCES、IMAGES、CHECKLIST、registry追加を作成。B067/B092/B094から内部リンクを追加。正本ルールPR #19で災害事例数を「直近＋過去代表で目安5件以上、無ければ水増ししない」へ変更。
+- remaining: PR #126のユーザー内容確認 / mainマージ後の本番ビルド・自動テスト / ユーザー明示許可後のみデプロイ / 公開後HTTP・モバイル確認
+- dependency: `LINEAR-CASE-002` の事例拡充と並行可能。公開は品質監査後にまとめて行う。
 - updated_at: `2026-09-21`
 - user_approval: `NO`
 
-### MOBILE-001 モバイル実機レビュー
 
-- status: `DONE`
-- priority: `-`
-- approved_spec: 実スマートフォンで主要画面の操作感と表示崩れを確認する。
-- completion_criteria: ユーザー実機確認 / 問題有無の報告 / 問題は別タスク化
-- done: 2026-09-21 ユーザーから「モバイル画面は問題なさそう」と確認。線状降水帯の実画像未掲載はIMG-001として別管理。
-- remaining: なし
-- next_action: なし
-- blocker: なし
-- related: `docs/SITE_IMPROVEMENT_BACKLOG.md`
-- updated_at: `2026-09-21`
-- user_approval: `YES`
+
+### LINEAR-SHELTER-001 県別線状降水帯記事の避難場所・避難所導線
+
+- status: `USER_CONFIRMATION_PENDING`
+- priority: `A`
+- approved_spec: 県別記事で避難場所を分かりやすく案内する。指定緊急避難場所と指定避難所を区別し、洪水・内水・土砂等の災害種別への適合と当日の開設状況を自治体一次情報で確認できるようにする。候補が多い都市部は選択UIを使う。一般地図は位置確認の補助に限り、指定・開設状況の正本にはしない。
+- done: 14都県に自治体公式ページ＋国土地理院の指定緊急避難場所/指定避難所データへの共通shelter finderを記事上部に追加。東京B092は23区、愛知B094は名古屋16区を選択して各自治体公式ハザードマップを開けるUIを追加。本文側は地域固有の避難ポイントだけ残し、重複していた共通説明を削除。モバイル1列化、キーボード操作、冠水後の遠距離移動注意を実装。正本ルールPR #20をmainへ反映。記事別/共通チェックリストへC02-29〜C02-35相当の確認を記録。
+- static_qa: shelter guide 14件 / 東京23区 / 名古屋16区 / GSI導線 / selector script / mobile single-column / 本文側の共通避難説明重複0件を確認。主要公式リンクも2026-09-22時点で再確認。
+- remaining: production workflowでMarkdown→preview同期・unit test・build / 本番表示確認 / ユーザー確認
+- next_action: PR #126のデプロイ前報告へ追加し、ユーザー明示許可後にmainへマージする。
+- blocker: 本番デプロイはユーザー許可待ち
+- related: private rules PR #20, public PR #126
+- updated_at: `2026-09-22`
+- user_approval: `NO`

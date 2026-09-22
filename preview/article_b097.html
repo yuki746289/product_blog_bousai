@@ -1,0 +1,243 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="description" content="ゲリラ豪雨と線状降水帯の違いを図と比較表で解説。雨雲の構造、範囲、継続時間、予測情報、被害の違いと大雨時に確認すべき情報を気象庁資料から整理します。"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>ゲリラ豪雨と線状降水帯の違い｜雨雲・範囲・時間・予測を図で比較｜防災くらしガイド</title><link rel="stylesheet" href="bousai_common.css"><script src="bousai_common.js" defer></script><style id="bousai-nav-group-styles">
+.site-nav { overflow: visible; gap: 10px; }
+.site-nav__mega-group { position: relative; display: inline-block; }
+.site-nav__mega-head { display: flex; align-items: center; gap: 2px; }
+.site-nav__mega-link {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 7px 8px;
+  border-radius: 8px;
+}
+.site-nav__mega-link:hover,
+.site-nav__mega-link:focus-visible,
+.site-nav__mega-link[aria-current] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle {
+  display: inline-flex;
+  min-width: 34px;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav__submenu-toggle:hover,
+.site-nav__submenu-toggle:focus-visible,
+.site-nav__submenu-toggle[aria-expanded="true"] { background: var(--primary-soft); color: var(--primary-dark); }
+.site-nav__submenu-toggle:focus-visible { outline: 3px solid rgba(23,107,104,.24); outline-offset: 2px; }
+.site-nav__submenu-toggle span { transition: transform .16s ease; }
+.site-nav__submenu-toggle[aria-expanded="true"] span { transform: rotate(180deg); }
+.site-nav__submenu {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 2px);
+  left: 0;
+  display: none;
+  width: min(720px, calc(100vw - 32px));
+  padding: 12px;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(31,42,48,.15);
+  white-space: normal;
+}
+.site-nav__mega-group[data-items="2"] .site-nav__submenu {
+  width: min(460px, calc(100vw - 32px));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="4"] .site-nav__submenu {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.site-nav__mega-group[data-items="5"] .site-nav__submenu {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.site-nav__mega-group:nth-child(2) .site-nav__submenu { left: 50%; transform: translateX(-50%); }
+.site-nav__mega-group:last-child .site-nav__submenu { left: auto; right: 0; transform: none; }
+.site-nav__submenu-card {
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  line-height: 1.4;
+}
+.site-nav__submenu-card strong { font-size: .94rem; color: var(--primary-dark); }
+.site-nav__submenu-caption { display: block; font-size: .78rem; color: var(--muted); font-weight: 500; line-height: 1.45; }
+.site-nav__submenu-card:hover,
+.site-nav__submenu-card:focus-visible,
+.site-nav__submenu-card[aria-current] { background: var(--primary-soft); border-color: rgba(23,107,104,.28); color: var(--primary-dark); }
+.site-nav__mega-group:hover > .site-nav__submenu,
+.site-nav__mega-group:focus-within > .site-nav__submenu,
+.site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+.hub-category-jump {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+.hub-category-jump[data-items="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hub-category-jump[data-items="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hub-category-jump[data-items="5"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hub-category-jump__card {
+  display: flex;
+  min-height: 92px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31,42,48,.05);
+  color: var(--text);
+}
+.hub-category-jump__card strong { color: var(--primary-dark); font-size: 1rem; }
+.hub-category-jump__card span { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+.hub-category-jump__card:hover,
+.hub-category-jump__card:focus-visible { background: var(--primary-soft); border-color: rgba(23,107,104,.3); }
+.category-hub .category-section[id] { scroll-margin-top: 105px; }
+@media (min-width: 721px) and (max-width: 920px) {
+  .site-nav__mega-group[data-items] .site-nav__submenu {
+    width: min(620px, calc(100vw - 28px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hub-category-jump[data-items="4"],
+  .hub-category-jump[data-items="5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .site-nav.mobile-nav-enhanced { overflow: visible; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-link {
+    min-height: 48px;
+    padding: 12px 10px;
+    border-bottom: 0;
+    border-radius: 0;
+    font-weight: 800;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-toggle {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-left: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group[data-items] .site-nav__submenu {
+    position: static;
+    display: none;
+    width: auto;
+    min-width: 0;
+    padding: 6px 8px 9px 18px;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    background: #f8fafb;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:hover > .site-nav__submenu,
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group:focus-within > .site-nav__submenu { display: none; }
+  .site-nav.mobile-nav-enhanced .site-nav__mega-group.is-submenu-open > .site-nav__submenu { display: grid; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card {
+    min-height: 54px;
+    padding: 9px 10px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+  }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-card:last-child { border-bottom: 0; }
+  .site-nav.mobile-nav-enhanced .site-nav__submenu-caption { font-size: .76rem; }
+  .hub-category-jump[data-items] { grid-template-columns: 1fr; }
+  .hub-category-jump__card { min-height: 76px; padding: 12px 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__submenu-toggle span { transition: none; }
+}
+</style>
+<script id="bousai-mega-nav-script">
+(function () {
+  function setGroupState(group, expanded) {
+    if (!group) return;
+    var button = group.querySelector('.site-nav__submenu-toggle');
+    var isExpanded = Boolean(expanded);
+    group.classList.toggle('is-submenu-open', isExpanded);
+    if (button) {
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      var label = group.getAttribute('data-group-label') || 'カテゴリ';
+      button.setAttribute('aria-label', label + (isExpanded ? 'のカテゴリを閉じる' : 'のカテゴリを開く'));
+    }
+  }
+
+  function closeOtherGroups(current) {
+    document.querySelectorAll('.site-nav__mega-group.is-submenu-open').forEach(function (group) {
+      if (group !== current) setGroupState(group, false);
+    });
+  }
+
+  function initMegaNavigation() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.site-nav__mega-group'));
+    groups.forEach(function (group) {
+      var button = group.querySelector('.site-nav__submenu-toggle');
+      if (!button || button.dataset.megaNavBound === '1') return;
+      button.dataset.megaNavBound = '1';
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        closeOtherGroups(group);
+        setGroupState(group, !expanded);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      groups.forEach(function (group) {
+        if (!group.contains(event.target)) setGroupState(group, false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      var active = document.activeElement;
+      var activeGroup = active && active.closest ? active.closest('.site-nav__mega-group') : null;
+      groups.forEach(function (group) { setGroupState(group, false); });
+      if (activeGroup) {
+        var button = activeGroup.querySelector('.site-nav__submenu-toggle');
+        if (button) button.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaNavigation);
+  } else {
+    initMegaNavigation();
+  }
+})();
+</script>
+<style data-article-diagram-style>.article-explainer--image{margin:30px 0 34px}.article-explainer--image img{display:block;width:100%;height:auto;border:1px solid #d7e2ea;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(29,65,93,.08)}.article-explainer--image figcaption{margin-top:10px;color:#667785;font-size:.79rem;line-height:1.65;text-align:center}@media(max-width:600px){.article-explainer--image{margin:24px 0 28px}.article-explainer--image img{border-radius:12px}}</style></head><body><header class="site-header"><div class="header-inner"><div class="header-top"><a class="site-brand" href="index.html">防災くらしガイド<small>知る・備える・困ったときに確認する</small></a></div><nav class="site-nav" aria-label="メインナビゲーション"><div class="site-nav__mega-group" data-group-label="災害から探す" data-items="4"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_disaster_situations.html">災害から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-1" aria-label="災害から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-1"><a class="site-nav__submenu-card" href="category_flood.html"><strong>台風・水害</strong><span class="site-nav__submenu-caption">強風・大雨・洪水・高潮</span></a><a class="site-nav__submenu-card" href="category_earthquake.html"><strong>地震</strong><span class="site-nav__submenu-caption">揺れ・津波・家具転倒</span></a><a class="site-nav__submenu-card" href="category_outage.html"><strong>停電・断水</strong><span class="site-nav__submenu-caption">電源・飲料水・携帯トイレ</span></a><a class="site-nav__submenu-card" href="category_post_disaster.html"><strong>被災後・復旧</strong><span class="site-nav__submenu-caption">記録・片付け・保険確認</span></a></div></div><div class="site-nav__mega-group" data-group-label="暮らし・備えから探す" data-items="5"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_life.html">暮らし・備えから探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-2" aria-label="暮らし・備えから探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-2"><a class="site-nav__submenu-card" href="category_guide.html"><strong>防災入門</strong><span class="site-nav__submenu-caption">備蓄・持ち出し・家族の備え</span></a><a class="site-nav__submenu-card" href="category_vehicle.html"><strong>車と災害</strong><span class="site-nav__submenu-caption">冠水・車中泊・車載用品</span></a><a class="site-nav__submenu-card" href="category_home.html"><strong>住宅と災害</strong><span class="site-nav__submenu-caption">浸水・マンション・家具</span></a><a class="site-nav__submenu-card" href="category_insurance.html"><strong>保険・お金</strong><span class="site-nav__submenu-caption">火災保険・地震保険・補償</span></a><a class="site-nav__submenu-card" href="category_goods.html"><strong>防災グッズ</strong><span class="site-nav__submenu-caption">電源・ラジオ・衛生用品</span></a></div></div><div class="site-nav__mega-group" data-group-label="地域・疑問から探す" data-items="2"><div class="site-nav__mega-head"><a class="site-nav__mega-link" href="category_region_qa.html">地域・疑問から探す</a><button class="site-nav__submenu-toggle" type="button" aria-expanded="false" aria-controls="site-nav-submenu-3" aria-label="地域・疑問から探すのカテゴリを開く"><span aria-hidden="true">⌄</span></button></div><div class="site-nav__submenu" id="site-nav-submenu-3"><a class="site-nav__submenu-card" href="category_region.html"><strong>地域別</strong><span class="site-nav__submenu-caption">地域の災害史と備え</span></a><a class="site-nav__submenu-card" href="qa.html"><strong>Q&amp;A</strong><span class="site-nav__submenu-caption">よくある疑問から素早く確認</span></a></div></div></nav></div></header><div class="official-bar"><div class="official-bar__inner">大雨時は現象名だけで判断せず、気象庁・自治体の最新情報と現在地の危険度を確認してください。</div></div><main class="article-shell"><nav class="breadcrumb"><a href="index.html">トップ</a> &gt; <a href="category_flood.html">台風・水害</a> &gt; ゲリラ豪雨と線状降水帯の違い</nav><article><header class="article-header"><span class="label">台風・水害</span><h1>ゲリラ豪雨と線状降水帯の違い｜雨雲・範囲・時間・予測を図で比較</h1><p class="article-lead"><strong>「ゲリラ豪雨」と線状降水帯は、どちらも激しい雨をもたらしますが、同じ現象ではありません。</strong> 気象庁は「ゲリラ豪雨」という言葉を正式な予報用語として使っておらず、急に強く降り、数十分の短時間に狭い範囲へ数十mm程度の雨をもたらす現象を「局地的大雨」と呼んでいます。一方、線状降水帯は、発達した積乱雲が次々と発生して列をつくり、ほぼ同じ場所を数時間通過・停滞することで形成される線状の強雨域です。 違いを知る目的は、用語を覚えることではありません。<strong>局地的大雨は短時間の急変、線状降水帯は強雨の長時間化・積算雨量の増加</strong>に特に注意し、実際の危険度はキキクル、河川情報、自治体の避難情報などで確認します。</p><div class="article-meta"><span>記事ID: B097</span><span>情報確認: 2026年9月21日</span></div></header><div class="article-body"><h2>結論：違うのは「雨の強さ」より雨雲の構造と続き方</h2><p>局地的大雨でも1時間に非常に激しい雨になることがあり、線状降水帯だから必ず1時間雨量が上回るわけではありません。大きな違いは、<strong>積乱雲が単独・少数で急発達して短時間に降るのか、積乱雲が次々と発生して線状に組織化し、同じ地域へ強雨を繰り返すのか</strong>です。</p><p>気象庁の用語では、局地的大雨は「急に強く降り、数十分の短時間に狭い範囲に数十mm程度の雨量をもたらす雨」です。線状降水帯は、長さ50〜300km程度、幅20〜50km程度の線状の雨域が、数時間にわたりほぼ同じ場所を通過または停滞する現象とされています。</p><h2>図で見る：局地的大雨と線状降水帯</h2><figure class="article-inline-image article-explainer--image" data-article-diagram="B097" role="group" aria-label="局地的大雨と線状降水帯の雨雲の構造、範囲、継続時間を比較した模式図"><img src="assets/images/ai_b097_local_vs_linear_rain_20260921.svg" alt="局地的大雨は単独から少数の積乱雲が狭い範囲で短時間に強雨をもたらし、線状降水帯は積乱雲が次々と列状に発生して同じ地域で数時間強雨が続くことを示した比較模式図" width="1448" height="960" loading="lazy" decoding="async"><figcaption>局地的大雨と線状降水帯の典型的な違いを示す模式図。実際の雨雲の形・継続時間は事例により異なり、危険度はキキクル等で確認します。</figcaption></figure><p>下の図は典型的な違いを模式化したものです。実際の雨雲の形や継続時間は事例ごとに異なり、図だけで安全・危険を判断するものではありません。</p><h2>比較表：範囲・時間・予測・被害の違い</h2><div class="table-wrap"><table><thead><tr><th>比較項目</th><th>局地的大雨（いわゆるゲリラ豪雨）</th><th>線状降水帯</th></tr></thead><tbody><tr><td>気象庁の正式な扱い</td><td>「ゲリラ豪雨」は正式用語ではなく、主に「局地的大雨」等を使用</td><td>「線状降水帯」として定義・防災情報を運用</td></tr><tr><td>主な雨雲</td><td>単独または少数の積乱雲が急発達</td><td>発達した積乱雲が次々に発生し列状に組織化</td></tr><tr><td>典型的な範囲</td><td>狭い範囲。気象庁監修教材では一つの降水域が20〜30km程度の例を説明</td><td>長さ50〜300km程度、幅20〜50km程度</td></tr><tr><td>継続</td><td>数十分程度の短時間が中心</td><td>数時間にわたり同じ場所を通過・停滞</td></tr><tr><td>雨量の特徴</td><td>短時間に数十mm、場合によっては1時間100mm程度の猛烈な雨</td><td>強雨が繰り返され、3時間・24時間・総雨量が大きくなりやすい</td></tr><tr><td>起こりやすい被害</td><td>道路冠水、地下空間への浸水、中小河川・水路の急増水、落雷など</td><td>河川氾濫、土砂災害、広範囲の浸水、道路寸断など</td></tr><tr><td>予測・確認</td><td>発生場所・時刻の正確な事前予測が難しい。雨雲の動き・ナウキャストを活用</td><td>半日前予測、直前予測、発生情報がある。ただし予測どおり発生するとは限らない</td></tr><tr><td>防災上の注意</td><td>「さっきまで晴れていた」状態からの急変に注意</td><td>すでに降った雨の蓄積、河川水位、土砂災害危険度の上昇に注意</td></tr></tbody></table></div><p>この表は典型的な特徴を比較したものです。<strong>局地的大雨でも重大な浸水や事故は起こりますし、線状降水帯が発生していなくても災害級の大雨になることがあります。</strong> 現象名だけで危険度を決めないことが重要です。</p><h2>「ゲリラ豪雨」は気象庁の正式用語ではない</h2><p>テレビやニュースでは「ゲリラ豪雨」という表現が広く使われますが、気象庁の予報用語ではありません。気象庁の用語集では「ゲリラ豪雨」を使わず、「局地的大雨」「集中豪雨」などを使うよう整理されています。</p><p>このサイトでは検索者が理解しやすいよう「ゲリラ豪雨」という語も使いますが、本文では原則として<strong>「局地的大雨（いわゆるゲリラ豪雨）」</strong>と表記します。</p><p>局地的大雨は単独の積乱雲が発達して起きることがあり、大雨警報が発表されるような広域の気象状態でなくても、河川・水路の急増水や都市部の内水氾濫を起こす場合があります。</p><h2>局地的大雨は「短時間だから安全」ではない</h2><p>局地的大雨では、強い雨が長時間続かなくても、短い時間に排水能力を超える雨が集中すると道路や地下空間が急速に浸水することがあります。中小河川や水路では、上流・周辺の雨によって短時間に水位が変化することもあります。</p><p>特に都市部では、低い道路、アンダーパス、地下駅、地下街、地下駐車場、半地下住宅などに水が集まりやすくなります。雨が急に強まった場合は、<strong>雨雲の動き、高解像度降水ナウキャスト、キキクルを確認し、冠水した場所へ近づかない</strong>ことを優先します。</p><p>また、気象庁の「記録的短時間大雨」は、数年に一度程度しか発生しないような短時間の大雨を観測・解析した場合に発表されます。これは線状降水帯とは別の情報であり、局地的大雨でも発表されることがあります。</p><h2>線状降水帯は「強い雨雲が次々に来る」ことが特徴</h2><p>線状降水帯では、発達した積乱雲が列をなし、風上側などで新しい積乱雲が次々と発生・発達します。そのため、一つの積乱雲の寿命を超えて、ほぼ同じ地域に強い雨が繰り返しかかります。</p><p>気象庁は、線状降水帯を<strong>長さ50〜300km程度、幅20〜50km程度</strong>の線状に伸びる強い降水域として説明しています。数時間にわたり同じ場所で強い雨が続くことで、短時間雨量だけでなく3時間雨量や24時間雨量、総雨量も大きくなる可能性があります。</p><p>土砂災害ではそれまでに降った雨が地中へ蓄積し、河川では上流の降雨が時間差で下流の水位に影響します。そのため、雨脚が一時的に弱くなっても「危険が終わった」と判断しないことが重要です。</p><h2>線状降水帯には半日前・直前・発生の情報がある</h2><p>2026年現在、気象庁は線状降水帯について、<strong>半日前予測、直前予測、発生情報</strong>を運用しています。</p><p>半日前予測は、線状降水帯による大雨の可能性がある程度高い場合に、半日程度前から注意を呼びかけます。直前予測は、発生の2〜3時間前を目標とした情報です。発生情報は、実際に線状降水帯が発生し、災害発生の危険度が急激に高まっている状況を知らせます。</p><p>ただし、<strong>予測が出たから必ず線状降水帯が発生する、予測が出なかったから大雨にならない、という意味ではありません。</strong> 実際の避難判断では線状降水帯情報だけでなく、キキクル、河川情報、自治体の避難情報を組み合わせます。</p><h2>「記録的短時間大雨」と「線状降水帯発生」は別の情報</h2><p>混同しやすいのが、記録的短時間大雨に関する情報と線状降水帯に関する情報です。</p><p>記録的短時間大雨は、<strong>その地域で数年に一度程度しか発生しないような短時間の猛烈な雨</strong>が観測・解析され、災害危険度も高まっていることを知らせる情報です。一方、線状降水帯の発生情報は、強雨域の形状、3時間降水量、危険度など複数の基準を満たす線状降水帯が発生していることを伝えます。</p><p>したがって、記録的短時間大雨情報が出ても線状降水帯とは限らず、線状降水帯が発生したときに必ず同じ場所で記録的短時間大雨情報が出るとも限りません。</p><h2>どちらが危険？「線状降水帯の方が上」とは決められない</h2><p>一般に線状降水帯は強い雨が長時間続きやすく、総雨量が増えるため、広域の洪水・土砂災害など甚大な災害につながる危険があります。しかし、防災上は<strong>現象名だけで危険度を序列化しない</strong>方が安全です。</p><p>局地的大雨でも、1時間100mm前後の猛烈な雨が都市部に集中すれば、駅・道路・地下空間の冠水、中小河川の急増水など大きな被害が起こります。逆に、線状降水帯という情報が出ていても、自分の現在地の危険度は地域によって異なります。</p><p>見るべきなのは「ゲリラ豪雨か線状降水帯か」だけではなく、<strong>今いる場所で浸水・洪水・土砂災害の危険度がどこまで上がっているか</strong>です。</p><h2>雨が急に強くなったときに確認する情報</h2><p>突然の強雨でも線状降水帯でも、最終的な行動判断は共通しています。</p><ul class="checklist"><li>雨雲の動き・高解像度降水ナウキャストで、目先の強雨を確認する</li><li>キキクルで土砂災害・浸水害・洪水の危険度を現在地まで絞る</li><li>国や都道府県の河川情報で水位・氾濫情報を確認する</li><li>自治体の避難情報を確認する</li><li>冠水道路、アンダーパス、川・用水路、がけ・斜面へ様子を見に行かない</li></ul><p>特に局地的大雨では雨が強まってから状況が急変しやすいため、移動中なら低い道路や地下空間へ入る前に立ち止まる判断が重要です。線状降水帯では、すでに数時間雨が続いている地域ほど、河川・斜面の危険度の蓄積を重視します。</p><h2>東京・名古屋の事例を見ると違いが分かりやすい</h2><p>東京では、伊豆諸島で線状降水帯の実発生事例がある一方、23区周辺では線状降水帯でなくても1時間100mm級の局地的大雨が都市型浸水を起こしています。名古屋でも、線状降水帯を伴った2026年9月8日の大雨だけでなく、2008年8月末豪雨や2013年9月の局地的集中豪雨で大きな浸水被害が発生しています。</p><p>具体的な雨量・観測史上順位・被害は、<a href="article_b092.html">東京都の線状降水帯・大雨事例</a>と<a href="article_b094.html">愛知県の線状降水帯・名古屋の大雨事例</a>で確認できます。</p><h2>まとめ：名前より「今どこが危険か」を見る</h2><ul class="checklist"><li>「ゲリラ豪雨」は正式な気象庁用語ではなく、この記事では主に局地的大雨を指して説明する</li><li>局地的大雨は、単独・少数の積乱雲による狭い範囲の短時間強雨が典型</li><li>線状降水帯は、積乱雲が次々に発生・組織化し、線状の雨域が数時間続く</li><li>局地的大雨でも都市型浸水や急な増水など重大な被害が起こる</li><li>線状降水帯には半日前予測・直前予測・発生情報があるが、予測の有無だけで安全判断しない</li><li>現象名より、キキクル・河川情報・自治体の避難情報で現在地の危険度を確認する</li></ul><h2>関連ページ</h2><ul class="checklist"><li><a href="article_b067.html">線状降水帯とは？過去事例・発生数・多い地域・雨量記録</a></li><li><a href="article_b068.html">線状降水帯の過去事例</a></li><li><a href="article_b092.html">東京都の線状降水帯</a></li><li><a href="article_b094.html">愛知県の線状降水帯</a></li></ul><h2>公的情報・参考資料</h2><ul class="checklist"><li>気象庁「降水に関する用語」 <a href="https://www.jma.go.jp/jma/kishou/know/yougo_hp/kousui.html" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/yougo_hp/kousui.html</a></li><li>気象庁「線状降水帯に関する情報」 <a href="https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/bosai/kishojoho_senjoukousuitai.html</a></li><li>気象庁「予報が難しい現象について（線状降水帯による大雨）」 <a href="https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html</a></li><li>気象庁「気象防災速報（記録的短時間大雨）」 <a href="https://www.jma.go.jp/jma/kishou/know/bosai/kirokuame.html" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/bosai/kirokuame.html</a></li><li>気象庁「防災気象情報とその効果的な利用」 <a href="https://www.jma.go.jp/jma/kishou/know/ame_chuui/ame_chuui_p8.html" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/ame_chuui/ame_chuui_p8.html</a></li><li>気象庁監修『図解説 中小規模気象学』 <a href="https://www.jma.go.jp/jma/kishou/know/expert/pdf/textbook_meso_v2.1.pdf" target="_blank" rel="noopener noreferrer">https://www.jma.go.jp/jma/kishou/know/expert/pdf/textbook_meso_v2.1.pdf</a></li></ul></div></article></main><footer class="site-footer"><div class="footer-inner">
+  <div class="footer-links"><a href="about.html">運営方針</a><a href="disclaimer.html">免責事項</a><a href="privacy.html">プライバシーポリシー</a><a href="advertising.html">広告について</a><a href="https://www.jma.go.jp/bosai/" target="_blank" rel="noopener noreferrer">気象庁 防災情報</a></div>
+  <div class="footer-note">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</div>
+</div></footer></body></html>

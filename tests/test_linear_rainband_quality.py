@@ -19,6 +19,7 @@ FILES = [
     "B075_linear_rainband_chugoku.md",
     "B076_linear_rainband_shikoku.md",
     "B077_linear_rainband_tokai.md",
+    "B097_guerrilla_rain_vs_linear_rainband.md",
 ]
 
 
@@ -61,7 +62,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
         self.assertIn("レベル4までに避難する", pillar)
 
     def test_all_linear_rainband_articles_are_full_body_and_lead_sync_targets(self):
-        expected = {f"B{i:03d}" for i in range(67, 78)}
+        expected = {f"B{i:03d}" for i in range(67, 78)} | {"B097"}
         self.assertTrue(expected.issubset(preview_sync.SYNC_ARTICLE_IDS))
         self.assertTrue(expected.issubset(preview_sync.LEAD_SYNC_ARTICLE_IDS))
 

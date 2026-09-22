@@ -189,6 +189,67 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertIn("article-generated-illustration", actual)
         self.assertIn("assets/images/disaster/linear-rainband-overview.jpg", actual)
 
+
+    def test_b097_is_feature_child_and_osaka_is_not_prefecture_card(self):
+        from scripts.enhance_linear_rainband_feature import region_panel
+
+        panel = region_panel()
+        self.assertNotIn("article_b093.html", panel)
+
+        sample = (
+            '<html><head></head><body><nav class="breadcrumb">old</nav>'
+            '<article><header><h1>old</h1><p class="article-lead">old</p></header>'
+            '<div class="article-body"><h2>本文</h2><p>本文です。</p></div>'
+            '</article></body></html>'
+        )
+        actual = enhance_feature_page(sample, "B097")
+        self.assertIn('<a href="article_b067.html">線状降水帯特集</a>', actual)
+        self.assertIn('aria-label="線状降水帯特集の主要テーマ"', actual)
+
+
+
+    def test_prefecture_pages_get_official_shelter_finder(self):
+        sample = (
+            '<html><head></head><body><nav class="breadcrumb">old</nav>'
+            '<article><header><h1>old</h1><p class="article-lead">old</p></header>'
+            '<div class="article-body"><h2>本文</h2><p>本文です。</p></div>'
+            '</article></body></html>'
+        )
+        for article_id in (
+            "B082", "B083", "B084", "B085", "B086", "B087", "B088",
+            "B089", "B090", "B091", "B092", "B094", "B095", "B096",
+        ):
+            actual = enhance_feature_page(sample, article_id)
+            self.assertIn(f'id="shelter-finder-{article_id.lower()}"', actual)
+            self.assertIn("指定緊急避難場所", actual)
+            self.assertIn("指定避難所", actual)
+            self.assertIn("最新でない場合や未掲載の場合があります", actual)
+            self.assertIn("https://www.gsi.go.jp/bousaichiri/hinanbasho", actual)
+
+    def test_tokyo_and_nagoya_have_area_selectors(self):
+        sample = (
+            '<html><head></head><body><nav class="breadcrumb">old</nav>'
+            '<article><header><h1>old</h1><p class="article-lead">old</p></header>'
+            '<div class="article-body"><h2>本文</h2><p>本文です。</p></div>'
+            '</article></body></html>'
+        )
+        tokyo = enhance_feature_page(sample, "B092")
+        self.assertIn("23区から選ぶ", tokyo)
+        self.assertIn(">江戸川区</option>", tokyo)
+        self.assertIn(">杉並区</option>", tokyo)
+        self.assertEqual(tokyo.count("<option value="), 24)
+        self.assertEqual(tokyo.count('data-shelter-select'), 1)
+        self.assertIn('id="shelter-finder-script"', tokyo)
+
+        nagoya = enhance_feature_page(sample, "B094")
+        self.assertIn("名古屋市16区から選ぶ", nagoya)
+        self.assertIn(">港区</option>", nagoya)
+        self.assertIn(">緑区</option>", nagoya)
+        self.assertEqual(nagoya.count("<option value="), 17)
+        self.assertEqual(nagoya.count('data-shelter-select'), 1)
+        self.assertIn('id="shelter-finder-script"', nagoya)
+
+
     def test_transforms_are_idempotent(self):
         sample = (
             '<html><head></head><body><nav class="breadcrumb">old</nav>'

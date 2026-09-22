@@ -45,7 +45,20 @@ class PublicBuildTests(unittest.TestCase):
         self.assertTrue((PUBLIC / "vehicle" / "vehicle-overnight-disaster.html").exists())
         self.assertTrue((PUBLIC / "blackout" / "blackout-refrigerator-food-safety.html").exists())
         self.assertTrue((PUBLIC / "typhoon" / "typhoon-window-glass.html").exists())
+        self.assertTrue((PUBLIC / "special" / "linear-rainband" / "guerrilla-rain-vs-linear-rainband.html").exists())
         self.assertTrue((PUBLIC / "blackout" / "blackout-heatstroke.html").exists())
+
+
+    def test_b097_public_output_keeps_comparison_diagram_and_key_distinctions(self):
+        page = PUBLIC / "special" / "linear-rainband" / "guerrilla-rain-vs-linear-rainband.html"
+        html = page.read_text(encoding="utf-8")
+        self.assertIn("ゲリラ豪雨と線状降水帯の違い", html)
+        self.assertIn("局地的大雨", html)
+        self.assertIn("長さ50〜300km程度", html)
+        self.assertIn("幅20〜50km程度", html)
+        self.assertIn("ai_b097_local_vs_linear_rain_20260921.svg", html)
+        self.assertIn("記録的短時間大雨", html)
+
 
     def test_b047_public_output_keeps_safety_and_preparation_content(self):
         page = PUBLIC / "blackout" / "blackout-heatstroke.html"

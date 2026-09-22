@@ -1,0 +1,48 @@
+{
+  "articles": [
+    {
+      "affiliate": false,
+      "article_id": "B097",
+      "body_char_count_approx": 3870,
+      "category": "flood",
+      "content_role": "detail",
+      "image_source_count": 1,
+      "image_status": "APPROVED",
+      "last_reviewed_at": "2026-09-21",
+      "manual_review_required": true,
+      "manual_review_status": "APPROVED",
+      "next_review_at": "2027-03-21",
+      "parent_article_id": "B067",
+      "pickup_candidate": true,
+      "planned_public_path": "special/linear-rainband/guerrilla-rain-vs-linear-rainband.html",
+      "preview_path": "preview/article_b097.html",
+      "priority": "high",
+      "publish_blockers": [],
+      "review_checklist_last_checked_at": "2026-09-21",
+      "review_checklist_path": "docs/reviews/B097_CHECKLIST.md",
+      "review_checklist_status": "PASS",
+      "risk_level": "standard",
+      "slug": "guerrilla-rain-vs-linear-rainband",
+      "source_checked_at": "2026-09-21",
+      "source_count": 6,
+      "source_ids": [
+        "B097-S01",
+        "B097-S02",
+        "B097-S03",
+        "B097-S04",
+        "B097-S05",
+        "B097-S06"
+      ],
+      "source_path": "content/articles/B097_guerrilla_rain_vs_linear_rainband.md",
+      "status": "READY_TO_PUBLISH",
+      "title": "ゲリラ豪雨と線状降水帯の違い｜雨雲・範囲・時間・予測を図で比較",
+      "readability_review_status": "PASS",
+      "readability_reviewed_at": "2026-09-21",
+      "image_relevance_review_status": "PASS",
+      "image_relevance_reviewed_at": "2026-09-21",
+      "production_build_status": "READY_FOR_DEPLOY",
+      "published_at": "2026-09-21",
+      "modified_at": "2026-09-21"
+    }
+  ]
+}
