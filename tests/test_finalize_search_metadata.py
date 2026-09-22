@@ -12,8 +12,11 @@ from finalize_search_metadata import (
     canonical_url,
     inject_canonical,
     inject_region_navigation,
+    inject_static_breadcrumb,
+    static_breadcrumb_items,
     validate_canonical,
     validate_category_enhancements,
+    validate_static_breadcrumb,
 )
 
 
@@ -51,6 +54,32 @@ class FinalizeSearchMetadataTests(unittest.TestCase):
             "index.html",
         )
         self.assertTrue(errors)
+
+    def test_static_breadcrumb_uses_user_facing_names(self) -> None:
+        items = static_breadcrumb_items(
+            "goods/water-food.html",
+            "https://example.test/",
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "防災グッズ", "水・非常食"],
+            [item["name"] for item in items],
+        )
+
+        source = "<html><head><title>Test</title></head><body></body></html>"
+        result = inject_static_breadcrumb(
+            source,
+            "goods/water-food.html",
+            "https://example.test/",
+        )
+        self.assertEqual(
+            [],
+            validate_static_breadcrumb(
+                result,
+                "goods/water-food.html",
+                "https://example.test/",
+            ),
+        )
+        self.assertEqual(result.count('data-generated="page-breadcrumb"'), 1)
 
     def test_mega_navigation_is_not_given_legacy_region_link(self) -> None:
         source = (
