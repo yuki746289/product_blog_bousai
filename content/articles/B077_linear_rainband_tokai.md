@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-21
+source_checked_at: 2026-09-22
 next_review_at: 2027-03-15
 affiliate: false
 ---
@@ -29,6 +29,20 @@ affiliate: false
 | 2022年9月23〜24日 | 愛知県・静岡県 | 台風第15号に伴い線状降水帯。静岡では24時間400mm超の地点。現行制度初期の代表事例 |
 
 近年だけでも、**広域で同時に発生するケースと、同じ県内で対象地域が時間とともに移るケースの両方**があります。
+
+## 過去の代表的な豪雨
+
+東海では現在の線状降水帯情報制度より前から、前線・台風・暖湿気による記録的大雨が繰り返されています。愛知・静岡・三重の地域差が出る5事例を選びました。
+
+| 年・時期 | 地域・事例 | 確認できる特徴 |
+|---|---|---|
+| 2021年8月13〜23日 | 愛知県を含む東海の長雨 | 愛知県で期間300mm超の地域。新城169.5mm/日は8月の観測史上1位 |
+| 2015年9月6〜9日 | 静岡県・台風第18号と前線 | 72時間300mm前後、局地的に400mm超。数日間の積算雨量が増大 |
+| 2011年8月30日〜9月5日 | 三重県・台風第12号 | 大台町宮川1,630.0mm、御浜1,085.5mm。紀伊半島で長時間の記録的大雨 |
+| 2004年9月25〜30日 | 三重県・台風第21号と前線 | 尾鷲133mm/h、宮川139mm/h、尾鷲740.5mm/日。猛烈雨と日積算が重なった |
+| 2000年9月11〜12日 | 東海豪雨・愛知県 | 名古屋428mm/日、2日間567mm。新川破堤と広域の都市浸水 |
+
+過去5件は現在の線状降水帯実発生件数へ加えません。公的資料に線状の降雨域・線状降雨帯などの解析表現があっても、**現在の統一的な線状降水帯発生情報とは制度・判定方法が異なる**ため、歴史的豪雨として分離します。
 
 ## 2023年6月：三重・愛知・静岡で線状降水帯
 
@@ -112,6 +126,11 @@ affiliate: false
 ## 公的情報・参考資料
 - [気象庁「令和6年台風第10号による大雨、暴風及び突風」](https://www.data.jma.go.jp/stats/data/bosai/report/2024/20241008/20241008.html)
 - [気象庁「令和4年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2022.html)
+- [名古屋地方気象台「2021年8月13〜23日の大雨」](https://www.data.jma.go.jp/nagoya/shosai/news/sokuhou/S_nagoya_20210813.pdf)
+- [静岡地方気象台「静岡県気象災害小史」](https://www.data.jma.go.jp/shizuoka/shosai/saigai_we/saigai_we.html)
+- [気象庁「平成23年台風第12号」](https://www.data.jma.go.jp/stats/data/bosai/report/2011/20110830/20110830.html)
+- [気象庁「平成16年台風第21号と前線」](https://www.data.jma.go.jp/stats/data/bosai/report/2004/20040925/20040925.html)
+- [名古屋地方気象台「東海豪雨」](https://www.data.jma.go.jp/nagoya/shosai/info/kakojirei/tokaigouu.pdf)
 
 
 - [気象庁「梅雨前線及び台風第2号による大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2023/20230623/20230623.html)
