@@ -54,7 +54,7 @@ class LinearRainbandPrefectureBatch2Tests(unittest.TestCase):
             "B088": ("2011", "2023", "安全レベル"),
             "B089": ("2023", "2024", "伊勢志摩"),
             "B090": ("2022", "2025", "突風"),
-            "B091": ("2019", "2026", "令和8年8月千葉豪雨"),
+            "B091": ("1999", "2021", "2023", "2026", "令和8年8月千葉豪雨"),
         }
         for article_id, required in markers.items():
             text = (ROOT / self.by_id[article_id]["source_path"]).read_text(encoding="utf-8")
@@ -64,6 +64,14 @@ class LinearRainbandPrefectureBatch2Tests(unittest.TestCase):
             self.assertIn("キキクル", text, article_id)
             self.assertIn("公的情報・参考資料", text, article_id)
             self.assertNotIn("\\n", text, article_id)
+
+    def test_chiba_distinguishes_official_linear_cases_from_related_heavy_rain(self):
+        text = (ROOT / self.by_id["B091"]["source_path"]).read_text(encoding="utf-8")
+        self.assertIn("2023年5月25日13時以降", text)
+        self.assertIn("2023年9月8日と2026年8月13〜14日", text)
+        self.assertIn("関連する重大豪雨", text)
+        self.assertIn("2021年6月30日〜7月4日", text)
+        self.assertIn("1999年10月27〜28日", text)
 
     def test_feature_panel_and_breadcrumb_support_batch2(self):
         panel = region_panel()
