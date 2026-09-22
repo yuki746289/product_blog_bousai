@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-22T17:10:00+09:00",
+  "updated_at": "2026-09-22T20:00:00+09:00",
   "articles": [
     {
       "article_id": "B067",
@@ -15,7 +15,7 @@
       "last_reviewed_at": "2026-09-22",
       "review_checklist_last_checked_at": "2026-09-22",
       "modified_at": "2026-09-22",
-      "body_char_count_approx": 2928
+      "body_char_count_approx": 3102
     },
     {
       "article_id": "B073",
@@ -27,7 +27,7 @@
     },
     {
       "article_id": "B074",
-      "body_char_count_approx": 3821,
+      "body_char_count_approx": 4170,
       "source_checked_at": "2026-09-22",
       "last_reviewed_at": "2026-09-22",
       "review_checklist_last_checked_at": "2026-09-22",
@@ -35,7 +35,7 @@
     },
     {
       "article_id": "B075",
-      "body_char_count_approx": 3335,
+      "body_char_count_approx": 3549,
       "source_checked_at": "2026-09-22",
       "last_reviewed_at": "2026-09-22",
       "review_checklist_last_checked_at": "2026-09-22",
@@ -82,7 +82,7 @@
       "last_reviewed_at": "2026-09-22",
       "review_checklist_last_checked_at": "2026-09-22",
       "modified_at": "2026-09-22",
-      "body_char_count_approx": 3569
+      "body_char_count_approx": 3917
     },
     {
       "article_id": "B085",
@@ -145,7 +145,7 @@
       "review_checklist_last_checked_at": "2026-09-22",
       "modified_at": "2026-09-22",
       "title": "千葉県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 4060
+      "body_char_count_approx": 4763
     },
     {
       "article_id": "B092",
@@ -154,7 +154,7 @@
       "last_reviewed_at": "2026-09-22",
       "review_checklist_last_checked_at": "2026-09-22",
       "modified_at": "2026-09-22",
-      "body_char_count_approx": 3588
+      "body_char_count_approx": 4103
     },
     {
       "article_id": "B093",
@@ -191,7 +191,7 @@
       "review_checklist_last_checked_at": "2026-09-22",
       "modified_at": "2026-09-22",
       "title": "富山県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
-      "body_char_count_approx": 4070
+      "body_char_count_approx": 4064
     },
     {
       "article_id": "B097",
