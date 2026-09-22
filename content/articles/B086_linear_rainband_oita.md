@@ -22,6 +22,7 @@ affiliate: false
 | 日時・発生現象 | 主な状況・実測雨量 | 気象庁等の発表 | 被害・特徴 |
 |---|---|---|---|
 | 2026年7月2日／🌀 線状降水帯 | 佐賀・長崎・福岡・大分・熊本で発生 | 九州北部の複数県で発生確認 | 直近の広域発生事例 |
+| 2025年8月10日／🌀 線状降水帯 | 大分県西部で19時50分頃から線状降水帯を確認 | 顕著な大雨に関する大分県気象情報を発表 | 九州北部で線状降水帯が繰り返し発生した大雨の一部 |
 | 2024年8月29日／🌀 線状降水帯 | 大分県中部・北部で発生 | 台風第10号の影響下で発生 | 動きの遅い台風に伴う長時間の警戒が必要 |
 | 2023年7月10日／🌀 線状降水帯 | 福岡・佐賀・大分で発生。日田で日降水量222.5mm、最大1時間69.5mm | 2023年度実績に掲載 | 現行基準で確認できる代表事例 |
 
@@ -119,6 +120,7 @@ affiliate: false
 - [気象庁「平成29年7月九州北部豪雨について」](https://www.jma.go.jp/jma/press/1707/19a/20170719_sankou.pdf)
 - [気象庁「令和5年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2023.html)
 - [気象庁「令和6年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2024.html)
+- [気象庁「2025年8月6日〜12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/20251003.html)
 - [気象庁「予報が難しい現象について（線状降水帯による大雨）」](https://www.jma.go.jp/jma/kishou/know/yohokaisetu/senjoukousuitai_ooame.html)
 - [おおいた防災ポータル](https://www.pref.oita.jp/site/bosaiportal/)
 - [大分県「避難所・防災マップ・土砂災害危険箇所情報」](https://www.pref.oita.jp/soshiki/13550/hinansyo-bosaimap.html)
