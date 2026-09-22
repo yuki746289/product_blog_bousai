@@ -1,17 +1,21 @@
 # ルール正本と一時作業コピーの運用
 
 作成日時: 2026-09-06T16:35:00+09:00
+更新日: 2026-09-23
 
 ## 正本
 
 防災ブログ「防災くらしガイド」の開発・記事制作・レビューに関するルール正本は、privateリポジトリ `yuki746289/product_blog_rules` で管理する。
 
+- ルール体系: `RULES_ARCHITECTURE.md`
 - 共通ルール: `common/`
 - 条件付き専門ルール: `common/subrules/`
 - 共通テンプレート: `templates/`
-- 防災サイト固有ルール: `sites/bousai/`
-- 防災ブログ用ルール一式: `sites/bousai/rules/`
+- 防災サイト設定・運用: `sites/bousai/`
+- 防災固有ルール: `sites/bousai/rules/`
 - 対応表: `sites/bousai/RULES_MANIFEST.md`
+
+public側では `docs/RULES_ARCHITECTURE.md` を体系確認の入口とする。共通チェックは `GC01〜GC21`、防災記事チェックは `Cxx-yy`、サイト横断チェックは `Sxx-yy` とし、番号の意味を混同しない。
 
 ## 優先順位
 
@@ -20,6 +24,8 @@
 ## このpublicリポジトリ内のルール
 
 `docs/` にあるルール・チェックリストは、記事制作、実装、レビュー、ローカルテストで使用する一時作業コピーとする。正本ではない。
+
+実在災害事例の調査・件数・候補選定は `docs/DISASTER_CASE_RESEARCH_POLICY.md` を作業コピーとして参照し、地域災害史では `docs/LOCAL_DISASTER_HISTORY_POLICY.md` を追加適用する。レビュー結果・監査記録はルール正本を上書きしない。
 
 既存のレビュー記録、テスト、作業手順から参照されているため、移行時点では削除しない。
 

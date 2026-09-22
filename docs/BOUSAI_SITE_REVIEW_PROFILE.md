@@ -1,10 +1,10 @@
 # 防災くらしガイド サイト個別レビュー・プロファイル
 
-更新日: 2026-09-04
+更新日: 2026-09-23
 
 ## 1. 目的
 
-本ファイルは `docs/COMMON_SITE_REVIEW_FRAMEWORK.md` を、防災サイト「防災くらしガイド」へ適用するためのサイト個別設定である。
+本ファイルは private正本 `common/COMMON_SITE_REVIEW_FRAMEWORK.md` を、防災サイト「防災くらしガイド」へ適用するためのサイト個別設定である。public側 `docs/COMMON_SITE_REVIEW_FRAMEWORK.md` は作業コピーとして扱う。
 
 共通専門家視点を削除せず、各視点を `REQUIRED / CONDITIONAL / N/A` で明示する。
 

@@ -2,6 +2,8 @@
 
 > 共通サイトフレームワーク: `docs/COMMON_SITE_REVIEW_FRAMEWORK.md`
 >
+> 全サイト共通チェック: `docs/COMMON_SITE_CHECKLIST.md`
+>
 > 防災サイト適用プロファイル: `docs/BOUSAI_SITE_REVIEW_PROFILE.md`
 >
 > 共通記事ルール: `docs/CONTENT_CREATION_RULES.md`
@@ -23,6 +25,7 @@
 - last_checked_at:
 - reviewer:
 - persona_mode: `SITUATIONAL_SEGMENT`
+- applied_modules: `CORE / DISASTER_CASE / EVACUATION_LOCATION / PRODUCT / QA / GROWTH`
 
 ## 1. 適用プロファイル確認
 
@@ -35,10 +38,11 @@
 | Amazonプレフライト | N/A | 該当時は `docs/AMAZON_WORK_PREFLIGHT.md` を先に実行し、未完了なら商品調査・実装へ進まない |
 | 詳細架空ペルソナ | N/A | 防災サイトは状況ベース読者設定を使用 |
 | N/A項目の理由確認 | TODO | サイトプロファイルと整合すること |
+| 全サイト共通GCレビュー | TODO | `docs/COMMON_SITE_CHECKLIST.md` のREQUIRED/CONDITIONAL適用を確認 |
 
-## 2. 共通チェック結果
+## 2. 防災記事チェック結果
 
-| 共通チェック | 状態 | 根拠・備考 |
+| 記事チェック | 状態 | 根拠・備考 |
 |---|---|---|
 | C01 内容・情報量 | TODO | |
 | C02 出典・安全性 | TODO | |
@@ -77,6 +81,8 @@
 | 条件 | 状態 | 根拠・備考 |
 |---|---|---|
 | 高リスク記事の追加安全レビュー | N/A | |
+| 災害事例: `docs/DISASTER_CASE_RESEARCH_POLICY.md` | N/A | 実在災害事例が主要価値なら `DISASTER_CASE` として必須 |
+| 地域災害史: `docs/LOCAL_DISASTER_HISTORY_POLICY.md` | N/A | 地域災害史では災害事例ポリシーと併用 |
 | Amazon作業プレフライト: `docs/AMAZON_WORK_PREFLIGHT.md` | N/A | 該当時は作業開始時にPASS必須 |
 | 商品記事: `docs/AFFILIATE_POLICY.md` | N/A | Amazon関連作業では必須 |
 | 商品在庫・販売終了: `docs/AMAZON_PRODUCT_AVAILABILITY_POLICY.md` | N/A | ASIN・商品差し替え・在庫確認時に必須 |
@@ -103,6 +109,16 @@
 - next_action:
 - conversion_path:
 - design_priority:
+
+## 5A. 編集品質ハードゲート
+
+| 項目 | 状態 | 根拠・備考 |
+|---|---|---|
+| title/H1への答えが冒頭にある | TODO | 疑問・比較・判断を約束する場合は1〜2文で回答 |
+| 主要H2の要点を1文で説明できる | TODO | 論点メモではなく読者向け見出しになっているか |
+| 制作TODO・内部メモが本文にない | TODO | 後日追加・集計予定等はbacklogへ移す |
+| 兄弟記事の構成を使い回していない | TODO | 同一特集を横並びで比較 |
+| AI定型感が強くない | TODO | 「この記事では〜整理します」等の反復だけで構成しない |
 
 ## 6. 記事固有チェック
 
