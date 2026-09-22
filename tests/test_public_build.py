@@ -8,6 +8,7 @@ import unittest
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
+from scripts.article_metadata import article_breadcrumb_items
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -158,8 +159,14 @@ class PublicBuildTests(unittest.TestCase):
             self.assertEqual(article["title"], posting["headline"], output)
             self.assertEqual(published, posting["datePublished"], output)
             self.assertEqual(modified, posting["dateModified"], output)
-            self.assertEqual(3, len(breadcrumb["itemListElement"]), output)
-            self.assertEqual(article["title"], breadcrumb["itemListElement"][-1]["name"], output)
+            config = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+            expected_breadcrumb = article_breadcrumb_items(
+                article,
+                article["planned_public_path"],
+                config,
+            )
+            self.assertEqual(expected_breadcrumb, breadcrumb["itemListElement"], output)
+            self.assertEqual("防災くらしガイド", breadcrumb["itemListElement"][0]["name"], output)
 
     def test_practical_articles_have_saveable_action_check(self):
         registry = load_registry(REGISTRY)
