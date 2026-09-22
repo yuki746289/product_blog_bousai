@@ -251,9 +251,9 @@ class LinearRainbandQualityTest(unittest.TestCase):
             labels,
         )
 
-    def test_feature_tables_emphasize_first_column_for_scanning(self):
+    def test_feature_tables_use_semantic_phrase_emphasis(self):
         style = feature_enhance.FEATURE_STYLE
-        self.assertIn(
+        self.assertNotIn(
             ".article-body table tbody td:first-child{font-weight:800;color:var(--primary-dark)}",
             style,
         )
@@ -261,6 +261,30 @@ class LinearRainbandQualityTest(unittest.TestCase):
             ".article-body table tbody tr:nth-child(even){background:rgba(23,107,104,.035)}",
             style,
         )
+
+        source = (
+            "<table><tbody><tr><td>"
+            "観測史上1位。大雨特別警報。避難指示。線状降水帯。"
+            "</td></tr></tbody></table>"
+        )
+        highlighted = feature_enhance._highlight_semantic_table_terms(source)
+        self.assertIn('<span class="emphasis-record">観測史上1位</span>', highlighted)
+        self.assertIn('<span class="emphasis-danger">大雨特別警報</span>', highlighted)
+        self.assertIn('<span class="emphasis-caution">避難指示</span>', highlighted)
+        self.assertIn('<span class="emphasis-term">線状降水帯</span>', highlighted)
+        self.assertEqual(
+            highlighted,
+            feature_enhance._highlight_semantic_table_terms(highlighted),
+        )
+
+        css = (ROOT / "preview" / "bousai_common.css").read_text(encoding="utf-8")
+        for css_class in (
+            ".emphasis-record",
+            ".emphasis-danger",
+            ".emphasis-caution",
+            ".emphasis-term",
+        ):
+            self.assertIn(css_class, css)
 
     def test_prefecture_card_captions_are_not_locked_to_specific_years(self):
         for article_id, label, _href, caption in feature_enhance.PREFECTURE_PAGES:

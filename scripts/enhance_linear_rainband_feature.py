@@ -171,7 +171,6 @@ FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
 .feature-region-card strong{color:var(--primary-dark)}
 .feature-region-card span{font-size:.82rem;line-height:1.45;color:var(--muted)}
 .feature-region-card:hover,.feature-region-card:focus-visible{background:var(--primary-soft);border-color:rgba(23,107,104,.3)}
-.article-body table tbody td:first-child{font-weight:800;color:var(--primary-dark)}
 .article-body table tbody tr:nth-child(even){background:rgba(23,107,104,.035)}
 .article-body table td{vertical-align:top}
 .linear-feature-promo{margin:22px 0 30px;padding:18px;border:1px solid rgba(23,107,104,.24);border-radius:16px;background:linear-gradient(135deg,var(--primary-soft),#fff)}
@@ -237,6 +236,43 @@ COMMON_JS_RE = re.compile(
     r'<script\b[^>]*\bsrc=["\'][^"\']*bousai_common\.js["\'][^>]*></script>',
     re.IGNORECASE,
 )
+
+TABLE_CELL_RE = re.compile(
+    r'(<td\b[^>]*>)(.*?)(</td>)',
+    re.IGNORECASE | re.DOTALL,
+)
+SEMANTIC_EMPHASIS_SPAN_RE = re.compile(
+    r'<span\s+class=["\']emphasis-(?:record|danger|caution|term)["\']>(.*?)</span>',
+    re.IGNORECASE | re.DOTALL,
+)
+SEMANTIC_TABLE_TERM_RE = re.compile(
+    r'(?P<danger>大雨特別警報|緊急安全確保|氾濫危険情報|土砂災害警戒情報)'
+    r'|(?P<record>観測史上(?:第)?1位|歴代1位|過去最多|過去最大|記録的短時間大雨情報)'
+    r'|(?P<caution>避難指示|高齢者等避難)'
+    r'|(?P<term>局地的大雨（いわゆるゲリラ豪雨）|短時間強雨（いわゆるゲリラ豪雨）|線状降水帯)',
+)
+
+
+def _highlight_semantic_table_terms(html: str) -> str:
+    """Highlight only meaningful phrases inside table cells; never bold whole cells."""
+    class_by_group = {
+        "danger": "emphasis-danger",
+        "record": "emphasis-record",
+        "caution": "emphasis-caution",
+        "term": "emphasis-term",
+    }
+
+    def replace_cell(match: re.Match[str]) -> str:
+        body = SEMANTIC_EMPHASIS_SPAN_RE.sub(r"\1", match.group(2))
+
+        def repl(term_match: re.Match[str]) -> str:
+            css_class = class_by_group[term_match.lastgroup or "term"]
+            return f'<span class="{css_class}">{term_match.group(0)}</span>'
+
+        body = SEMANTIC_TABLE_TERM_RE.sub(repl, body)
+        return match.group(1) + body + match.group(3)
+
+    return TABLE_CELL_RE.sub(replace_cell, html)
 
 
 def _with_style(html: str) -> str:
@@ -496,6 +532,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
             count=1,
             flags=re.DOTALL | re.IGNORECASE,
         )
+    html = _highlight_semantic_table_terms(html)
     return html
 
 
