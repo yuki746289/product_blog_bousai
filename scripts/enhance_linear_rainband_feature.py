@@ -1,5 +1,5 @@
 # Created: 2026-09-15 09:20 JST
-# Updated: 2026-09-21 JST
+# Updated: 2026-09-22 JST
 """Normalize the linear-rainband special feature's UX, navigation and discovery.
 
 The special pages keep bespoke framing and feature navigation, while reviewed
@@ -188,8 +188,8 @@ FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
 .shelter-finder__selector label{display:block;margin-bottom:7px;font-weight:800}
 .shelter-finder__selector-row{display:flex;gap:8px;align-items:stretch}
 .shelter-finder__selector select{min-width:0;flex:1;min-height:48px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit}
-.shelter-finder__selector a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:9px 14px;border-radius:10px;background:var(--primary-dark);color:#fff;font-weight:800;text-decoration:none}
-.shelter-finder__selector a[aria-disabled="true"]{pointer-events:none;opacity:.5}
+.shelter-finder__selector button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:9px 14px;border:0;border-radius:10px;background:var(--primary-dark);color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.shelter-finder__selector button:disabled{cursor:not-allowed;opacity:.5}
 
 @media(max-width:720px){
   .feature-region-grid{grid-template-columns:1fr}
@@ -198,7 +198,7 @@ FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
   .shelter-finder{padding:15px}
   .shelter-finder__actions{grid-template-columns:1fr}
   .shelter-finder__selector-row{flex-direction:column}
-  .shelter-finder__selector a{width:100%}
+  .shelter-finder__selector button{width:100%}
 }
 </style>"""
 
@@ -343,7 +343,7 @@ def _ward_selector(article_id: str) -> str:
         '<option value="">地域を選択してください</option>'
         + option_html
         + '</select>'
-        '<a href="#" data-shelter-open aria-disabled="true" target="_blank" rel="noopener noreferrer">公式マップを開く</a>'
+        '<button type="button" data-shelter-open disabled>公式マップを開く</button>'
         '</div></div>'
     )
 
@@ -376,15 +376,18 @@ document.addEventListener("change",function(event){
   var select=event.target.closest("[data-shelter-select]");
   if(!select)return;
   var panel=select.closest(".shelter-finder");
-  var link=panel?panel.querySelector("[data-shelter-open]"):null;
-  if(!link)return;
-  if(select.value){
-    link.href=select.value;
-    link.setAttribute("aria-disabled","false");
-  }else{
-    link.href="#";
-    link.setAttribute("aria-disabled","true");
-  }
+  var button=panel?panel.querySelector("[data-shelter-open]"):null;
+  if(!button)return;
+  button.disabled=!select.value;
+  button.dataset.href=select.value||"";
+});
+document.addEventListener("click",function(event){
+  var button=event.target.closest("[data-shelter-open]");
+  if(!button||button.disabled)return;
+  var url=button.dataset.href;
+  if(!url)return;
+  var opened=window.open(url,"_blank","noopener,noreferrer");
+  if(opened)opened.opener=null;
 });
 </script>"""
 
