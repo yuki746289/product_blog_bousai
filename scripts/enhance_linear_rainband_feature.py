@@ -49,20 +49,20 @@ REGION_PAGES = (
 )
 
 PREFECTURE_PAGES = (
-    ("B096", "富山県", "article_b096.html", "2023・2026年・急流河川"),
-    ("B095", "石川県", "article_b095.html", "能登・金沢・2023〜2026年"),
-    ("B092", "東京都", "article_b092.html", "2005年都市豪雨・地下空間"),
-    ("B091", "千葉県", "article_b091.html", "2023年・2026年千葉豪雨"),
-    ("B094", "愛知県", "article_b094.html", "東海豪雨・名古屋の水害"),
-    ("B090", "静岡県", "article_b090.html", "2022〜2025年の大雨史"),
-    ("B089", "三重県", "article_b089.html", "2023年初発表・2024年台風10号"),
-    ("B088", "和歌山県", "article_b088.html", "紀伊半島大水害・2023年"),
-    ("B087", "高知県", "article_b087.html", "多雨地形・2022〜2023年"),
-    ("B086", "大分県", "article_b086.html", "2017年九州北部豪雨・2023〜2024年"),
-    ("B084", "熊本県", "article_b084.html", "2012年・2020年豪雨と球磨川"),
-    ("B085", "長崎県", "article_b085.html", "1982年長崎大水害・2023〜2024年"),
-    ("B083", "宮崎県", "article_b083.html", "2024年10月・2025年9月"),
-    ("B082", "鹿児島県", "article_b082.html", "1993年8月豪雨・2023〜2025年"),
+    ("B096", "富山県", "article_b096.html", "直近事例・急流河川の大雨"),
+    ("B095", "石川県", "article_b095.html", "能登・金沢の豪雨史と直近事例"),
+    ("B092", "東京都", "article_b092.html", "都市型豪雨・伊豆諸島の事例"),
+    ("B091", "千葉県", "article_b091.html", "局地的大雨・線状降水帯の履歴"),
+    ("B094", "愛知県", "article_b094.html", "東海豪雨・名古屋の水害史"),
+    ("B090", "静岡県", "article_b090.html", "線状降水帯・突風・大雨史"),
+    ("B089", "三重県", "article_b089.html", "紀伊半島・台風・線状降水帯"),
+    ("B088", "和歌山県", "article_b088.html", "紀伊半島の豪雨史・直近事例"),
+    ("B087", "高知県", "article_b087.html", "多雨地形・直近の大雨事例"),
+    ("B086", "大分県", "article_b086.html", "九州北部豪雨・直近事例"),
+    ("B084", "熊本県", "article_b084.html", "球磨川・阿蘇・直近事例"),
+    ("B085", "長崎県", "article_b085.html", "長崎大水害・直近事例"),
+    ("B083", "宮崎県", "article_b083.html", "山沿い・河川・直近事例"),
+    ("B082", "鹿児島県", "article_b082.html", "薩摩・大隅・奄美の大雨史"),
 )
 
 SHELTER_GUIDES = {
@@ -171,6 +171,9 @@ FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
 .feature-region-card strong{color:var(--primary-dark)}
 .feature-region-card span{font-size:.82rem;line-height:1.45;color:var(--muted)}
 .feature-region-card:hover,.feature-region-card:focus-visible{background:var(--primary-soft);border-color:rgba(23,107,104,.3)}
+.article-body table tbody td:first-child{font-weight:800;color:var(--primary-dark)}
+.article-body table tbody tr:nth-child(even){background:rgba(23,107,104,.035)}
+.article-body table td{vertical-align:top}
 .linear-feature-promo{margin:22px 0 30px;padding:18px;border:1px solid rgba(23,107,104,.24);border-radius:16px;background:linear-gradient(135deg,var(--primary-soft),#fff)}
 .linear-feature-promo h2{margin:0 0 8px}
 .linear-feature-promo p{margin:0 0 14px}

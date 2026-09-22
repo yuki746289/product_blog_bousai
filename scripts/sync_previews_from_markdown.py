@@ -46,6 +46,7 @@ except ImportError:  # direct script execution: python scripts/...
 
 LINEAR_RAINBAND_ARTICLE_IDS = {f"B{i:03d}" for i in range(67, 78)}
 LINEAR_RAINBAND_PREFECTURE_IDS = {f"B{i:03d}" for i in range(82, 97)}
+LINEAR_RAINBAND_PREFECTURE_HEADER_IDS = LINEAR_RAINBAND_PREFECTURE_IDS - {"B093"}
 LINEAR_RAINBAND_COMPARISON_IDS = {"B097"}
 EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"} | LINEAR_RAINBAND_ARTICLE_IDS | LINEAR_RAINBAND_PREFECTURE_IDS | LINEAR_RAINBAND_COMPARISON_IDS
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
@@ -658,6 +659,67 @@ def _replace_lead(preview: str, rendered: str, article_id: str, preview_path: Pa
     )
 
 
+def apply_linear_prefecture_headers() -> list[str]:
+    """Synchronize prefecture feature title/H1/description and remove stale template labels."""
+    registry = _core.load_registry(_core.REGISTRY)
+    by_id = {article["article_id"]: article for article in registry["articles"]}
+    changed: list[str] = []
+
+    for article_id in sorted(LINEAR_RAINBAND_PREFECTURE_HEADER_IDS):
+        article = by_id[article_id]
+        preview_path = _core.ROOT / article["preview_path"]
+        html = preview_path.read_text(encoding="utf-8")
+        title = article["title"]
+        subject = title.split("｜", 1)[0]
+        description = (
+            f"{subject}の直近の発生履歴と過去の代表的な豪雨を整理。"
+            "線状降水帯と局地的大雨を区別し、雨量・被害・防災情報の確認ポイントを"
+            "公的資料に基づいて解説します。"
+        )
+
+        updated = re.sub(
+            r"<title>.*?</title>",
+            f"<title>{html_lib.escape(title)}｜防災くらしガイド</title>",
+            html,
+            count=1,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        updated = re.sub(
+            r'<meta\s+name=["\']description["\']\s+content=["\'][^"\']*["\']\s*/?>',
+            f'<meta name="description" content="{html_lib.escape(description, quote=True)}">',
+            updated,
+            count=1,
+            flags=re.IGNORECASE,
+        )
+        updated = re.sub(
+            r"(<h1\b[^>]*>).*?(</h1>)",
+            lambda m: m.group(1) + html_lib.escape(title) + m.group(2),
+            updated,
+            count=1,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        updated = re.sub(
+            r'(<span\s+class=["\']label["\']>).*?(</span>)',
+            r"\1台風・水害\2",
+            updated,
+            count=1,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        updated = re.sub(
+            r'(<div\s+class=["\']official-bar__inner["\']>).*?(</div>)',
+            r"\1大雨時は線状降水帯の名称だけで判断せず、警報・キキクル・自治体の避難情報を確認してください。\2",
+            updated,
+            count=1,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+
+        if updated != html:
+            preview_path.write_text(updated, encoding="utf-8")
+            changed.append(f"HEADER:{article_id}")
+
+    return changed
+
+
 def apply_markdown_leads() -> list[str]:
     """Synchronize reviewed public leads from their Markdown introductions."""
     registry = _core.load_registry(_core.REGISTRY)
@@ -912,6 +974,7 @@ def apply_category_page_breadcrumbs() -> list[str]:
 
 def sync() -> list[str]:
     changed = _core.sync()
+    changed.extend(apply_linear_prefecture_headers())
     changed.extend(apply_markdown_leads())
     changed.extend(apply_article_breadcrumbs())
     changed.extend(apply_homepage_typhoon_flood_card())

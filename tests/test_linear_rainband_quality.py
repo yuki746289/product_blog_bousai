@@ -251,6 +251,47 @@ class LinearRainbandQualityTest(unittest.TestCase):
             labels,
         )
 
+    def test_feature_tables_emphasize_first_column_for_scanning(self):
+        style = feature_enhance.FEATURE_STYLE
+        self.assertIn(
+            ".article-body table tbody td:first-child{font-weight:800;color:var(--primary-dark)}",
+            style,
+        )
+        self.assertIn(
+            ".article-body table tbody tr:nth-child(even){background:rgba(23,107,104,.035)}",
+            style,
+        )
+
+    def test_prefecture_card_captions_are_not_locked_to_specific_years(self):
+        for article_id, label, _href, caption in feature_enhance.PREFECTURE_PAGES:
+            self.assertNotIn("19", caption, f"{article_id} {label}: {caption}")
+            self.assertNotIn("20", caption, f"{article_id} {label}: {caption}")
+
+    def test_prefecture_public_headers_follow_current_generic_titles(self):
+        expected = {
+            "B082": "鹿児島県",
+            "B083": "宮崎県",
+            "B084": "熊本県",
+            "B085": "長崎県",
+            "B086": "大分県",
+            "B087": "高知県",
+            "B088": "和歌山県",
+            "B089": "三重県",
+            "B090": "静岡県",
+            "B091": "千葉県",
+            "B092": "東京都",
+            "B094": "愛知県",
+            "B095": "石川県",
+            "B096": "富山県",
+        }
+        for article_id, prefecture in expected.items():
+            title = f"{prefecture}の線状降水帯｜過去の発生履歴・直近事例を一覧で解説"
+            html = (ROOT / "preview" / f"article_{article_id.lower()}.html").read_text(encoding="utf-8")
+            self.assertIn(f"<title>{title}｜防災くらしガイド</title>", html, article_id)
+            self.assertIn(f"<h1>{title}</h1>", html, article_id)
+            self.assertIn('<span class="label">台風・水害</span>', html, article_id)
+            self.assertIn("線状降水帯の名称だけで判断せず", html, article_id)
+
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
             text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
