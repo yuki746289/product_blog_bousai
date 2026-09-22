@@ -23,7 +23,7 @@ affiliate: false
 
 | 年・時期 | 地域・事例 | 確認できる事実 | 確認ポイント |
 |---|---|---|---|
-| 2026年9月21日 | 千葉県・台風第25号 | 佐倉で日降水量278.0mm、1時間50.5mm。日降水量は観測史上1位 | 千葉県が24市町村へ災害救助法を適用。線状降水帯実発生とは別分類 |
+| 2026年9月21日 | 千葉県・台風第25号 | 佐倉で日降水量278.0mm、1時間50.5mm。日降水量は観測史上1位 | 線状降水帯実発生とは別分類の直近大雨 |
 | 2026年9月6〜8日 | 東京都伊豆諸島北部 | 記録的大雨。新島村に土砂災害に関する特別警報 | 線状降水帯の直前予測はあったが、実発生は一次資料で確認できないため別分類 |
 | 2026年8月22日 | 東京都区部・局地的大雨（いわゆるゲリラ豪雨） | 北区・板橋区・豊島区付近で記録的短時間大雨情報 | 線状降水帯でなくても都市部では100mm/h級の解析雨量となる |
 | 2026年8月13〜14日 | 千葉県 | 令和8年8月千葉豪雨。千葉で1時間115.0mm、24時間367.0mm | 線状降水帯が発生し、複数の観測記録を更新 |
@@ -125,7 +125,7 @@ affiliate: false
 - [気象庁「気象業務はいま2016」](https://www.jma.go.jp/jma/kishou/books/hakusho/2016/index.html)
 - [気象庁「令和8年夏を対象とした異常気象分析検討会の結果について」](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html)
 - [気象庁「令和8年8月千葉豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2026/20260916/20260916.html)
-- [千葉県「令和8年台風第25号に伴う災害に係る災害救助法の適用」](https://www.pref.chiba.lg.jp/bousaik/press/saigaikyujoho-r80921.html)
+- [気象庁「佐倉・観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=0916&prec_no=45)
 - [東京管区気象台「気象災害に関する資料」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/index.html)
 - [東京管区気象台「令和7年7月10日の大雨に関する東京都気象速報」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/2025/20250710_hm-air_tokyo.pdf)
 - [東京管区気象台「令和6年8月21日の大雨に関する東京都気象速報」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/2024/20240821_hm-air_tokyo.pdf)
