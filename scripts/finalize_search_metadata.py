@@ -1,4 +1,4 @@
-# Created: 2026-09-06 / Updated: 2026-09-17 20:55 JST
+# Created: 2026-09-06 / Updated: 2026-09-23 JST
 """Finalize production-only metadata, article infographics and category navigation.
 
 The preview tree intentionally uses preview-only metadata such as noindex.
@@ -28,6 +28,63 @@ PUBLIC = ROOT / "public"
 REGISTRY = ROOT / "data/content_registry.json"
 SITE_CONFIG = ROOT / "config/site.json"
 CATEGORY_SUMMARY_MAX_LENGTH = 82
+
+STATIC_BREADCRUMB_PATHS = {
+    "index.html": (),
+    "topics/disaster-situations/index.html": (("災害から探す", "topics/disaster-situations/index.html"),),
+    "flood/index.html": (("台風・水害", "flood/index.html"),),
+    "typhoon/index.html": (
+        ("台風・水害", "flood/index.html"),
+        ("台風", "typhoon/index.html"),
+    ),
+    "earthquake/index.html": (("地震", "earthquake/index.html"),),
+    "outage/index.html": (("停電・断水", "outage/index.html"),),
+    "post-disaster/index.html": (("被災後・復旧", "post-disaster/index.html"),),
+    "topics/life/index.html": (("暮らし・備えから探す", "topics/life/index.html"),),
+    "guide/index.html": (("防災入門", "guide/index.html"),),
+    "evacuation/index.html": (("避難・避難生活", "evacuation/index.html"),),
+    "pet/index.html": (
+        ("避難・避難生活", "evacuation/index.html"),
+        ("ペット防災", "pet/index.html"),
+    ),
+    "vehicle/index.html": (("車と災害", "vehicle/index.html"),),
+    "home/index.html": (("住宅と災害", "home/index.html"),),
+    "insurance/index.html": (("保険・お金", "insurance/index.html"),),
+    "goods/index.html": (("防災グッズ", "goods/index.html"),),
+    "topics/region-qa/index.html": (("地域・疑問から探す", "topics/region-qa/index.html"),),
+    "region/index.html": (("地域別", "region/index.html"),),
+    "qa.html": (("Q&A", "qa.html"),),
+    "about.html": (("このサイトについて", "about.html"),),
+    "disclaimer.html": (("免責事項", "disclaimer.html"),),
+    "privacy.html": (("プライバシーポリシー", "privacy.html"),),
+    "advertising.html": (("広告について", "advertising.html"),),
+    "goods/water-food.html": (
+        ("防災グッズ", "goods/index.html"),
+        ("水・非常食", "goods/water-food.html"),
+    ),
+    "goods/toilet-hygiene.html": (
+        ("防災グッズ", "goods/index.html"),
+        ("トイレ・衛生用品", "goods/toilet-hygiene.html"),
+    ),
+    "goods/light-information.html": (
+        ("防災グッズ", "goods/index.html"),
+        ("照明・情報収集", "goods/light-information.html"),
+    ),
+    "goods/power-charging.html": (
+        ("防災グッズ", "goods/index.html"),
+        ("電源・充電", "goods/power-charging.html"),
+    ),
+    "goods/pet-evacuation.html": (
+        ("防災グッズ", "goods/index.html"),
+        ("ペット防災用品", "goods/pet-evacuation.html"),
+    ),
+}
+
+GENERATED_PAGE_BREADCRUMB_RE = re.compile(
+    r'<script\s+type=["\']application/ld\+json["\']\s+'
+    r'data-generated=["\']page-breadcrumb["\']>.*?</script>\s*',
+    re.IGNORECASE | re.DOTALL,
+)
 
 CANONICAL_TAG_RE = re.compile(
     r'<link\b(?=[^>]*\brel=["\'][^"\']*\bcanonical\b[^"\']*["\'])[^>]*>\s*',
@@ -89,6 +146,84 @@ def canonical_url(base_url: str, relative_output_path: str) -> str:
     if normalized == "index.html":
         return base
     return urljoin(base, normalized)
+
+
+def static_breadcrumb_items(
+    relative_output_path: str,
+    base_url: str,
+    site_name: str = "防災くらしガイド",
+) -> list[dict]:
+    if relative_output_path not in STATIC_BREADCRUMB_PATHS:
+        raise ValueError(f"{relative_output_path}: static breadcrumb mapping missing")
+
+    base = base_url.rstrip("/") + "/"
+    hierarchy = [(site_name, base), *STATIC_BREADCRUMB_PATHS[relative_output_path]]
+    return [
+        {
+            "@type": "ListItem",
+            "position": position,
+            "name": name,
+            "item": urljoin(base, target) if target != base else base,
+        }
+        for position, (name, target) in enumerate(hierarchy, start=1)
+    ]
+
+
+def inject_static_breadcrumb(
+    html: str,
+    relative_output_path: str,
+    base_url: str,
+    site_name: str = "防災くらしガイド",
+) -> str:
+    cleaned = GENERATED_PAGE_BREADCRUMB_RE.sub("", html)
+    payload = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": static_breadcrumb_items(relative_output_path, base_url, site_name),
+    }
+    serialized = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    script = (
+        '<script type="application/ld+json" data-generated="page-breadcrumb">'
+        + serialized
+        + "</script>\n"
+    )
+    if "</head>" not in cleaned.lower():
+        raise ValueError("Missing </head> while injecting static BreadcrumbList")
+    return re.sub(
+        r"</head>",
+        lambda _: script + "</head>",
+        cleaned,
+        count=1,
+        flags=re.IGNORECASE,
+    )
+
+
+def validate_static_breadcrumb(
+    html: str,
+    relative_output_path: str,
+    base_url: str,
+    site_name: str = "防災くらしガイド",
+) -> list[str]:
+    errors: list[str] = []
+    scripts = re.findall(
+        r'<script\s+type=["\']application/ld\+json["\']\s+'
+        r'data-generated=["\']page-breadcrumb["\']>(.*?)</script>',
+        html,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if len(scripts) != 1:
+        return [f"{relative_output_path}: page BreadcrumbList script count != 1 ({len(scripts)})"]
+    try:
+        payload = json.loads(scripts[0])
+    except json.JSONDecodeError as exc:
+        return [f"{relative_output_path}: invalid page BreadcrumbList JSON-LD: {exc}"]
+
+    if payload.get("@type") != "BreadcrumbList":
+        errors.append(f"{relative_output_path}: page BreadcrumbList type mismatch")
+    expected = static_breadcrumb_items(relative_output_path, base_url, site_name)
+    if payload.get("itemListElement") != expected:
+        errors.append(f"{relative_output_path}: page BreadcrumbList hierarchy mismatch")
+    return errors
 
 
 def inject_canonical(html: str, canonical: str) -> str:
@@ -311,6 +446,12 @@ def finalize_public() -> None:
         raise ValueError("No public HTML files found")
 
     article_summaries = load_article_summaries()
+    registry = load_content_registry(REGISTRY)
+    article_outputs = {
+        article["planned_public_path"].lstrip("/")
+        for article in registry.get("articles", [])
+        if article.get("planned_public_path")
+    }
     errors: list[str] = []
     diagram_count = 0
 
@@ -337,10 +478,30 @@ def finalize_public() -> None:
             enhanced = inject_category_article_summaries(enhanced, article_summaries)
             enhanced = inject_category_listing_styles(enhanced)
 
+        if relative not in article_outputs:
+            if relative not in STATIC_BREADCRUMB_PATHS:
+                errors.append(f"{relative}: static breadcrumb mapping missing")
+            else:
+                enhanced = inject_static_breadcrumb(
+                    enhanced,
+                    relative,
+                    base_url,
+                    config.get("site_name", "防災くらしガイド"),
+                )
+
         finalized = inject_canonical(enhanced, expected)
         path.write_text(finalized, encoding="utf-8")
         errors.extend(validate_canonical(finalized, expected, relative))
         errors.extend(validate_category_enhancements(finalized, relative))
+        if relative not in article_outputs and relative in STATIC_BREADCRUMB_PATHS:
+            errors.extend(
+                validate_static_breadcrumb(
+                    finalized,
+                    relative,
+                    base_url,
+                    config.get("site_name", "防災くらしガイド"),
+                )
+            )
 
     if diagram_count != len(DIAGRAMS):
         errors.append(
