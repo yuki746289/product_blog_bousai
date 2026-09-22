@@ -159,6 +159,7 @@
 - status: `USER_CONFIRMATION_PENDING`
 - priority: `A`
 - approved_spec: 県別記事で避難場所を分かりやすく案内する。指定緊急避難場所と指定避難所を区別し、洪水・内水・土砂等の災害種別への適合と当日の開設状況を自治体一次情報で確認できるようにする。候補が多い都市部は選択UIを使う。一般地図は位置確認の補助に限り、指定・開設状況の正本にはしない。
+- completion_criteria: 14都県の公式導線 / GSI導線 / 東京23区・名古屋16区セレクター / モバイル・アクセシビリティ確認 / unit test / production build / 本番表示確認 / ユーザー確認
 - done: 14都県に自治体公式ページ＋国土地理院の指定緊急避難場所/指定避難所データへの共通shelter finderを記事上部に追加。東京B092は23区、愛知B094は名古屋16区を選択して各自治体公式ハザードマップを開けるUIを追加。本文側は地域固有の避難ポイントだけ残し、重複していた共通説明を削除。モバイル1列化、キーボード操作、冠水後の遠距離移動注意を実装。正本ルールPR #20をmainへ反映。記事別/共通チェックリストへC02-29〜C02-35相当の確認を記録。
 - static_qa: shelter guide 14件 / 東京23区 / 名古屋16区 / GSI導線 / selector script / mobile single-column / 本文側の共通避難説明重複0件を確認。主要公式リンクも2026-09-22時点で再確認。
 - remaining: production workflowでMarkdown→preview同期・unit test・build / 本番表示確認 / ユーザー確認
