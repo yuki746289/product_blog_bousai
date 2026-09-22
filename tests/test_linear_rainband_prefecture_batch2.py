@@ -50,11 +50,11 @@ class LinearRainbandPrefectureBatch2Tests(unittest.TestCase):
 
     def test_prefecture_specific_history_and_safety(self):
         markers = {
-            "B087": ("2022", "2023", "高知県防災アプリ"),
-            "B088": ("2011", "2023", "安全レベル"),
-            "B089": ("2023", "2024", "伊勢志摩"),
-            "B090": ("2022", "2025", "突風"),
-            "B091": ("2019", "2026", "令和8年8月千葉豪雨"),
+            "B087": ("1972年7月4〜6日", "1976年9月8〜13日", "1998年9月24〜25日", "2001年9月6日", "2004年10月18〜20日", "2018年6月28日〜7月8日", "2022", "2023年6月1〜3日", "2023年8月10日", "2024年8月26〜31日", "高知県防災アプリ"),
+            "B088": ("1889年8月18〜20日", "1953年7月17〜18日", "2011年8月30日〜9月4日", "2017年10月20〜23日", "2018年9月3〜5日", "2023年8月13〜16日", "2024年7月12日", "2025年6月24日", "2026", "安全レベル"),
+            "B089": ("1959年9月26〜27日", "2001年9月30日〜10月1日", "2004年9月25〜30日", "2011年8月30日〜9月5日", "2019年10月10〜13日", "2023年8月14〜15日", "2024年8月31日", "2025年9月12〜13日", "2026年6月2〜3日", "伊勢志摩"),
+            "B090": ("2022", "2025", "2015年9月6〜9日", "2014年10月5〜6日", "2011年9月19〜21日", "2004年9月4〜5日", "2003年7月3〜4日", "突風"),
+            "B091": ("1986年8月4日", "1996年9月22日", "1999年10月27〜28日", "2007年7月14日", "2019年9月8〜9日", "2019年10月12日", "2019年10月25日", "2021年6月30日〜7月4日", "2023年9月8日", "2026年8月13〜14日", "令和8年8月千葉豪雨"),
         }
         for article_id, required in markers.items():
             text = (ROOT / self.by_id[article_id]["source_path"]).read_text(encoding="utf-8")
@@ -64,6 +64,14 @@ class LinearRainbandPrefectureBatch2Tests(unittest.TestCase):
             self.assertIn("キキクル", text, article_id)
             self.assertIn("公的情報・参考資料", text, article_id)
             self.assertNotIn("\\n", text, article_id)
+
+    def test_chiba_distinguishes_official_linear_cases_from_related_heavy_rain(self):
+        text = (ROOT / self.by_id["B091"]["source_path"]).read_text(encoding="utf-8")
+        self.assertIn("2023年5月25日13時以降", text)
+        self.assertIn("2023年9月8日と2026年8月13〜14日", text)
+        self.assertIn("関連する重大豪雨", text)
+        self.assertIn("2021年6月30日〜7月4日", text)
+        self.assertIn("1999年10月27〜28日", text)
 
     def test_feature_panel_and_breadcrumb_support_batch2(self):
         panel = region_panel()

@@ -21,9 +21,42 @@ FILES = [
     "B077_linear_rainband_tokai.md",
     "B097_guerrilla_rain_vs_linear_rainband.md",
 ]
-
+PREFECTURE_FILES = [
+    "B082_linear_rainband_kagoshima.md",
+    "B083_linear_rainband_miyazaki.md",
+    "B084_linear_rainband_kumamoto.md",
+    "B085_linear_rainband_nagasaki.md",
+    "B086_linear_rainband_oita.md",
+    "B087_linear_rainband_kochi.md",
+    "B088_linear_rainband_wakayama.md",
+    "B089_linear_rainband_mie.md",
+    "B090_linear_rainband_shizuoka.md",
+    "B091_linear_rainband_chiba.md",
+    "B092_linear_rainband_tokyo.md",
+    "B093_linear_rainband_osaka.md",
+    "B094_linear_rainband_aichi.md",
+    "B095_linear_rainband_ishikawa.md",
+    "B096_linear_rainband_toyama.md",
+]
 
 class LinearRainbandQualityTest(unittest.TestCase):
+    def _table_row_count_after_heading(self, text, heading):
+        marker = f"## {heading}"
+        start = text.find(marker)
+        self.assertGreaterEqual(start, 0, heading)
+        section = text[start + len(marker):]
+        next_heading = section.find("\n## ")
+        if next_heading >= 0:
+            section = section[:next_heading]
+        rows = [
+            line for line in section.splitlines()
+            if line.startswith("|")
+            and not line.startswith("|---")
+            and not line.startswith("| ---")
+        ]
+        # Remove the table header; separator lines are already excluded.
+        return max(0, len(rows) - 1)
+
     def _texts(self):
         return {
             name: (ARTICLE_DIR / name).read_text(encoding="utf-8")
@@ -83,6 +116,63 @@ class LinearRainbandQualityTest(unittest.TestCase):
                     "jma.go.jp" in line or "data.jma.go.jp" in line,
                     f"{name}: non-JMA source link {line}",
                 )
+
+
+    def test_prefecture_markdown_has_no_raw_br_tags(self):
+        for name in PREFECTURE_FILES:
+            text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
+            self.assertNotIn("<br>", text.lower(), name)
+            self.assertNotIn("<br/>", text.lower(), name)
+            self.assertNotIn("<br />", text.lower(), name)
+
+
+    def test_case_focused_history_and_region_pages_keep_five_to_ten_cases(self):
+        expected = {
+            "B068_linear_rainband_history.md": (
+                "直近の線状降水帯・大雨事例",
+                "過去の代表的な豪雨・線状降水帯事例",
+            ),
+            "B073_linear_rainband_kyushu.md": (
+                "直近の大雨・線状降水帯事例",
+                "過去の代表的な豪雨",
+            ),
+            "B074_linear_rainband_kanto_koshin.md": (
+                "直近の大雨・線状降水帯事例",
+                "過去の代表的な豪雨",
+            ),
+            "B075_linear_rainband_chugoku.md": (
+                "直近の大雨・線状降水帯事例",
+                "過去の代表的な豪雨",
+            ),
+            "B076_linear_rainband_shikoku.md": (
+                "直近の大雨・線状降水帯事例",
+                "過去の代表的な豪雨",
+            ),
+            "B077_linear_rainband_tokai.md": (
+                "直近の大雨・線状降水帯事例",
+                "過去の代表的な豪雨",
+            ),
+        }
+        for name, headings in expected.items():
+            text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
+            for heading in headings:
+                count = self._table_row_count_after_heading(text, heading)
+                self.assertGreaterEqual(count, 5, f"{name}: {heading}={count}")
+                self.assertLessEqual(count, 10, f"{name}: {heading}={count}")
+
+    def test_case_focused_region_markdown_has_no_raw_html_breaks(self):
+        for name in (
+            "B068_linear_rainband_history.md",
+            "B073_linear_rainband_kyushu.md",
+            "B074_linear_rainband_kanto_koshin.md",
+            "B075_linear_rainband_chugoku.md",
+            "B076_linear_rainband_shikoku.md",
+            "B077_linear_rainband_tokai.md",
+        ):
+            text = (ARTICLE_DIR / name).read_text(encoding="utf-8").lower()
+            self.assertNotIn("<br>", text, name)
+            self.assertNotIn("<br/>", text, name)
+            self.assertNotIn("<br />", text, name)
 
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:

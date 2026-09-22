@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: `PASS`
-- last_checked_at: 2026-09-20
+- last_checked_at: 2026-09-22
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -48,3 +48,14 @@
 - review_status: `PASS`
 - READY_TO_PUBLISH: `YES`
 - 判定理由: 2026-09-20の編集品質再監査で、地域固有の事例・見出し・結論へ再構成し、兄弟記事のテンプレ感を解消した。
+
+## 公式アーカイブ起点の事例数再監査（2026-09-22）
+
+- C02-12 直近5〜10件: PASS（6件）
+- C02-21 過去5〜10件: PASS（5件）
+- C02-37 母集団作成: PASS（静岡・愛知・三重の県別監査結果と東海豪雨等の広域事例を統合）
+- C02-40 候補記録: PASS
+- C02-41 調査終了条件: PASS（直近6・過去5）
+- C02-42 遡及的な線状降水帯認定なし: PASS
+- 過去表を新設し、2021/2015/2011/2004/2000年を選定
+- production: **未実行（ユーザー明示許可制）**

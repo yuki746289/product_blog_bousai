@@ -3,6 +3,7 @@ article_id: B068
 title: "線状降水帯の過去事例｜全国の主な豪雨を年表で比較"
 content_role: detail
 risk_level: standard
+source_checked_at: 2026-09-22
 ---
 
 # 線状降水帯の過去事例｜全国の主な豪雨を年表で比較
