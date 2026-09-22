@@ -8,6 +8,7 @@ import unittest
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
+from scripts.article_metadata import article_breadcrumb_items
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -158,8 +159,33 @@ class PublicBuildTests(unittest.TestCase):
             self.assertEqual(article["title"], posting["headline"], output)
             self.assertEqual(published, posting["datePublished"], output)
             self.assertEqual(modified, posting["dateModified"], output)
-            self.assertEqual(3, len(breadcrumb["itemListElement"]), output)
-            self.assertEqual(article["title"], breadcrumb["itemListElement"][-1]["name"], output)
+            config = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+            expected_breadcrumb = article_breadcrumb_items(
+                article,
+                article["planned_public_path"],
+                config,
+            )
+            self.assertEqual(expected_breadcrumb, breadcrumb["itemListElement"], output)
+            self.assertEqual("防災くらしガイド", breadcrumb["itemListElement"][0]["name"], output)
+
+    def test_static_pages_have_human_readable_breadcrumb_jsonld(self):
+        cases = {
+            "flood/index.html": ["防災くらしガイド", "台風・水害"],
+            "typhoon/index.html": ["防災くらしガイド", "台風・水害", "台風"],
+            "pet/index.html": ["防災くらしガイド", "避難・避難生活", "ペット防災"],
+            "goods/water-food.html": ["防災くらしガイド", "防災グッズ", "水・非常食"],
+            "qa.html": ["防災くらしガイド", "Q&A"],
+        }
+        marker = '<script type="application/ld+json" data-generated="page-breadcrumb">'
+        for relative, expected_names in cases.items():
+            page = PUBLIC / relative
+            html = page.read_text(encoding="utf-8")
+            self.assertEqual(1, html.count(marker), page)
+            start = html.index(marker) + len(marker)
+            end = html.index("</script>", start)
+            payload = json.loads(html[start:end])
+            names = [item["name"] for item in payload["itemListElement"]]
+            self.assertEqual(expected_names, names, page)
 
     def test_practical_articles_have_saveable_action_check(self):
         registry = load_registry(REGISTRY)
