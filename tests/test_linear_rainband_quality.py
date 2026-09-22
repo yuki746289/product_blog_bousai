@@ -21,7 +21,23 @@ FILES = [
     "B077_linear_rainband_tokai.md",
     "B097_guerrilla_rain_vs_linear_rainband.md",
 ]
-
+PREFECTURE_FILES = [
+    "B082_linear_rainband_kagoshima.md",
+    "B083_linear_rainband_miyazaki.md",
+    "B084_linear_rainband_kumamoto.md",
+    "B085_linear_rainband_nagasaki.md",
+    "B086_linear_rainband_oita.md",
+    "B087_linear_rainband_kochi.md",
+    "B088_linear_rainband_wakayama.md",
+    "B089_linear_rainband_mie.md",
+    "B090_linear_rainband_shizuoka.md",
+    "B091_linear_rainband_chiba.md",
+    "B092_linear_rainband_tokyo.md",
+    "B093_linear_rainband_osaka.md",
+    "B094_linear_rainband_aichi.md",
+    "B095_linear_rainband_ishikawa.md",
+    "B096_linear_rainband_toyama.md",
+]
 
 class LinearRainbandQualityTest(unittest.TestCase):
     def _texts(self):
@@ -83,6 +99,14 @@ class LinearRainbandQualityTest(unittest.TestCase):
                     "jma.go.jp" in line or "data.jma.go.jp" in line,
                     f"{name}: non-JMA source link {line}",
                 )
+
+
+    def test_prefecture_markdown_has_no_raw_br_tags(self):
+        for name in PREFECTURE_FILES:
+            text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
+            self.assertNotIn("<br>", text.lower(), name)
+            self.assertNotIn("<br/>", text.lower(), name)
+            self.assertNotIn("<br />", text.lower(), name)
 
     def test_region_pages_do_not_repeat_old_four_stage_template(self):
         for name in FILES[6:]:
