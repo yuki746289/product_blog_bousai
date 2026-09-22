@@ -1,6 +1,6 @@
 # 防災くらしガイド 作業進捗台帳
 
-更新日: 2026-09-21
+更新日: 2026-09-22
 管理方針: このファイルをサイト全体の作業進捗の正本とする。
 
 ## 状態定義
@@ -37,10 +37,10 @@
 | GSC-001 | A | Search Consoleデータ駆動リライト | IN_PROGRESS | 変更5記事のGSC効果観測 | NO |
 | GSC-002 | A | Search Consoleカニバリ監視 | BLOCKED | 同一クエリ複数URLをデータ蓄積後に確認 | NO |
 | LINEAR-PREF-001 | A | 線状降水帯県別ページ展開 | USER_CONFIRMATION_PENDING | 実発生確認済み14都県を県別シリーズ化。大阪B093は一般豪雨記事へ変更。ユーザー確認待ち | NO |
-| LINEAR-CASE-002 | A | 線状降水帯 全事例表の再構成・高精度化 | USER_CONFIRMATION_PENDING | 県別14記事＋全国/地域別を5件以上目安で再構成し静的QA完了。デプロイ許可待ち | NO |
+| LINEAR-CASE-002 | A | 線状降水帯 全事例表の再構成・高精度化 | USER_CONFIRMATION_PENDING | 千葉B091再監査・2024/2025関連大雨追加・raw `<br>`全件除去・CI成功。デプロイ許可待ち | NO |
 | LINEAR-DIFF-001 | B | ゲリラ豪雨と線状降水帯の違い 記事＋図解 | USER_CONFIRMATION_PENDING | B097本文・比較表・模式図・一次資料・preview・registry作成済み。ユーザー確認後、公開工程へ | NO |
 | LINEAR-SHELTER-001 | A | 県別線状降水帯記事の避難場所・避難所導線 | USER_CONFIRMATION_PENDING | 14都県に公式避難所導線、東京23区/名古屋16区セレクターを追加。デプロイ許可待ち | NO |
-| CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | USER_CONFIRMATION_PENDING | 横断監査・本文修正・ルール/チェックリスト更新・静的整合確認完了。修正概要を報告し、明示許可後のみ本番反映 | NO |
+| CASE-QUALITY-001 | A | 実在災害事例の全記事品質監査・最新事例補強 | USER_CONFIRMATION_PENDING | 千葉の直近関連大雨追加・表内raw HTML除去・再発防止テスト・CI成功。デプロイ許可待ち | NO |
 | SEO-001 | B | 水害系記事のカニバリ再確認 | TODO | 対象ページ・クエリを整理 | NO |
 | CONTENT-001 | B | 長期断水×入浴・洗濯の記事検討 | TODO | 検索意図・既存記事との役割を確認 | NO |
 | CONTENT-002 | B | 避難所×防犯／女性・子どもの記事検討 | TODO | 一次情報・検索意図・安全性を調査 | NO |
@@ -100,12 +100,12 @@
 - priority: `A`
 - approved_spec: 線状降水帯記事に限定せず、実在する災害・豪雨・地震・噴火等の事例を掲載する全記事を対象に、同一イベント重複、予測/制度と発生実績の混同、日付順、地域適合、最新事例不足を再確認する。直近実事例は一次情報で確認できる範囲で複数件を掲載する。2026-09-21以降、本番デプロイはユーザー明示許可制とし、デプロイ前に修正概要・検証結果・残課題を報告する。
 - completion_criteria: 正本ルール更新 / public作業コピー同期 / 事例記事横断抽出 / 独立イベント単位の監査 / 直近事例複数件の補強 / 重複・分類誤り修正 / 記事別レビュー更新 / 静的整合確認 / デプロイ前修正概要報告 / ユーザー明示許可 / 本番反映 / 本番スモーク / ユーザー確認
-- done: private正本ルールPR #16〜#19をmainへ反映。B001〜B097を対象に監査し、非線状降水帯の主要災害史と線状降水帯特集・地域・県別記事を再確認。県別線状降水帯は実発生確認済み14都県へ整理し、大阪B093は一般豪雨記事へ変更。重複・予測混在・最新事例不足を修正し、観測史上順位等の記録性も復活。B097比較記事を追加。静的QA・回帰テスト更新・デプロイ前報告まで完了。
-- remaining: ユーザー明示許可 / 許可後にmain反映 / workflowによるMarkdown→preview同期 / unit test / production build / FTPS転送 / 本番スモーク / ユーザー確認
-- next_action: public PR #126 の内容を提示し、デプロイ許可を受ける。
-- blocker: 本番デプロイはユーザー許可待ち
-- related: `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`
-- updated_at: `2026-09-21`
+- done: private正本ルールPR #16〜#20を反映し、B001〜B097の横断監査後、PR #126/#127を経てproduction run #99で本番反映・スモーク・124 URL indexability監査まで成功。その後のユーザー再確認で、B091が2026年同一豪雨内の線状降水帯発生速報3回を1行へ圧縮して実態が見えにくいこと、線状降水帯県別Markdown表にraw `<br>`が46箇所残存して文字として露出することを確認。B091は独立イベントとイベント内発表回数を分離して再監査し、2021年関連豪雨に加えて2024年8月16日・2025年9月5日の関連大雨を「線状降水帯実発生には数えない」区分で追加。記事全体は独立豪雨8件。raw `<br>`は対象記事から除去し、全記事Markdown表を検査する回帰テストを追加。PR #128のContent freshness check run #331で同期・全テスト・registry確認まで成功。private正本ルールにもCR-01C/CR-02G反映済み。
+- remaining: デプロイ前修正概要報告 / ユーザー明示許可 / 許可後のみmain反映・production deploy / 本番表示確認 / ユーザー確認
+- next_action: 修正概要・検証結果を報告し、ユーザーの明示的なデプロイ許可を待つ。
+- blocker: 本番デプロイはユーザー明示許可待ち
+- related: `docs/reviews/B091_CHECKLIST.md`, `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`, PR #126, PR #127, production run #99
+- updated_at: `2026-09-22`
 - user_approval: `NO`
 
 ### PERF-001 PageSpeed / Core Web Vitals継続改善
@@ -129,12 +129,12 @@
 - priority: `A`
 - approved_spec: 県別だけでなく、全国年表・地域別等の線状降水帯ページで事例を扱う場合、「直近の大雨・線状降水帯事例」と「過去の代表的な豪雨」を原則別表にする。直近＋過去代表を合わせて目安5件以上。ただし信頼できる事例が不足する場合は件数合わせをしない。被害の大きい局地的大雨も現象を区別して掲載可。警戒レベルは公的発表に基づく。県別titleは「○○県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説」。実発生未確認県は県別シリーズから外す。
 - completion_criteria: 正本ルール反映 / 県別・全国・地域別の事例表再構成 / 事例分類・重複・最新性確認 / registry同期 / unit test / production build / 本番反映 / 本番スモーク / ユーザー確認
-- done: 正本ルールPR #17〜#19を反映。県別14記事のtitle統一。大阪B093は一般の大雨・都市型水害記事へ役割変更し、県別ナビから除外。B068/B073〜B077/B082〜B092/B094〜B096の事例表を直近/過去へ再構成。県別14記事は全て5件以上、B068/B073〜B077も5件以上。東京・愛知を含め、一次資料で確認できる観測史上順位・平年比・被害を補強。表列数、title/H1、literal \n、制作工程語、出典リンクを静的QA済み。registry文字数も再計算・同期済み。
-- remaining: ユーザー明示許可 / mainマージ後のworkflowでunit test・production build・FTPS・本番スモーク / ユーザー確認
-- next_action: public PR #126 の内容確認後、ユーザーのデプロイ許可を受ける。
-- blocker: 本番デプロイはユーザー許可待ち
-- related: `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`, PR #126
-- updated_at: `2026-09-21`
+- done: 正本ルールPR #17〜#20を反映し、県別14記事・全国/地域別を再構成後、PR #126/#127とproduction run #99で本番反映まで完了。その後、B091千葉について、現行公式一覧で確認できる独立した線状降水帯豪雨2件という整理自体は維持しつつ、2026年8月豪雨内の発生速報3回と2023年9月豪雨内の記録的短時間大雨情報11回が表から読み取れない点を再監査。独立イベント数を水増しせず、同一イベント内の繰り返し発生・発表回数を別表示。さらに2024年8月16日・2025年9月5日の関連大雨を「線状降水帯の実発生ではない」と明記して直近表へ追加し、記事全体を独立豪雨8件へ拡充。県別Markdown表のraw `<br>`46箇所も横断除去し再発防止テストを追加。PR #128 run #331で同期・全テスト・registry確認が成功。
+- remaining: デプロイ前報告 / ユーザー明示許可 / 許可後のみ本番反映 / 本番確認 / ユーザー確認
+- next_action: 千葉事例とraw `<br>`修正のデプロイ前概要を報告し、明示許可を待つ。
+- blocker: 本番デプロイはユーザー明示許可待ち
+- related: `docs/reviews/B091_CHECKLIST.md`, `docs/reviews/DISASTER_CASE_AUDIT_20260921.md`, `docs/reviews/DISASTER_CASE_PREDEPLOY_REPORT_20260921.md`, PR #126, PR #127, production run #99
+- updated_at: `2026-09-22`
 - user_approval: `NO`
 
 ### LINEAR-DIFF-001 ゲリラ豪雨と線状降水帯の違い
