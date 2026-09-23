@@ -66,6 +66,11 @@ PREFECTURE_PAGES = (
     ("B082", "鹿児島県", "article_b082.html", "薩摩・大隅・奄美の大雨史"),
 )
 
+FEATURE_PAGE_IDS = tuple(
+    article_id
+    for article_id, *_rest in (*CORE_PAGES, *REGION_PAGES, *PREFECTURE_PAGES)
+) + ("B097",)
+
 SHELTER_GUIDES = {
     "B082": ("鹿児島県ハザードマップ", "https://www.pref.kagoshima.jp/bosai/saigai/hazard.html"),
     "B083": ("宮崎県防災情報共有システム", "https://bosai.pref.miyazaki.lg.jp/SaigaiTask/pub"),
@@ -626,9 +631,8 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in list(range(67, 78)) + list(range(82, 93)) + list(range(94, 99)):
-        article_id = f"B{number:03d}"
-        path = PREVIEW / f"article_b{number:03d}.html"
+    for article_id in FEATURE_PAGE_IDS:
+        path = PREVIEW / f"article_{article_id.lower()}.html"
         current = path.read_text(encoding="utf-8")
         if _write_if_changed(path, enhance_feature_page(current, article_id)):
             changed.append(path.name)
