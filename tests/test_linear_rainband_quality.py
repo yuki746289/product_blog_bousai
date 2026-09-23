@@ -164,6 +164,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 self.assertGreaterEqual(count, 5, f"{name}: {heading}={count}")
                 self.assertLessEqual(count, 10, f"{name}: {heading}={count}")
 
+    def test_kanagawa_case_tables_keep_reviewed_case_counts(self):
+        text = (ARTICLE_DIR / "B098_linear_rainband_kanagawa.md").read_text(encoding="utf-8")
+        recent = self._table_row_count_after_heading(text, "直近の大雨・線状降水帯事例")
+        past = self._table_row_count_after_heading(text, "過去の代表的な豪雨")
+        self.assertEqual(10, recent)
+        self.assertEqual(7, past)
+
     def test_case_focused_region_markdown_has_no_raw_html_breaks(self):
         for name in (
             "B068_linear_rainband_history.md",
@@ -182,12 +189,12 @@ class LinearRainbandQualityTest(unittest.TestCase):
     def test_recent_case_recency_and_local_downpour_regressions(self):
         expectations = {
             "B068_linear_rainband_history.md": [
-                "2026年9月21日",
+                "2026年9月20〜23日",
                 "2026年8月22日",
                 "局地的大雨（いわゆるゲリラ豪雨）",
             ],
             "B074_linear_rainband_kanto_koshin.md": [
-                "2026年9月21日",
+                "2026年9月20〜23日",
                 "2025年7月10日",
                 "2024年8月21日",
             ],
@@ -202,7 +209,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "2024年9月22日",
             ],
             "B091_linear_rainband_chiba.md": [
-                "2026年9月21日",
+                "2026年9月21〜22日",
                 "2025年9月12日",
                 "2024年9月3日",
                 "局地的大雨（いわゆるゲリラ豪雨）",
@@ -217,6 +224,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "2024年8月25日",
                 "146.5mm",
                 "局地的大雨（いわゆるゲリラ豪雨）",
+            ],
+            "B098_linear_rainband_kanagawa.md": [
+                "2026年9月20〜23日",
+                "2025年9月11日",
+                "2025年9月4〜5日",
+                "県内で初めて線状降水帯",
+                "崖崩れ",
             ],
         }
         for name, phrases in expectations.items():
