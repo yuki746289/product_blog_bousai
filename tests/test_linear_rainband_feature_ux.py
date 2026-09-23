@@ -208,6 +208,14 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
 
 
 
+    def test_feature_page_registry_includes_kanagawa_without_numeric_range(self):
+        from scripts import enhance_linear_rainband_feature as feature
+
+        self.assertIn("B098", feature.FEATURE_PAGE_IDS)
+        self.assertEqual(len(feature.FEATURE_PAGE_IDS), len(set(feature.FEATURE_PAGE_IDS)))
+        prefecture_ids = [row[0] for row in feature.PREFECTURE_PAGES]
+        self.assertIn("B098", prefecture_ids)
+
     def test_prefecture_pages_get_official_shelter_finder(self):
         sample = (
             '<html><head></head><body><nav class="breadcrumb">old</nav>'
