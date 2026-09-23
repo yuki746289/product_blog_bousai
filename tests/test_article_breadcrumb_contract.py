@@ -121,6 +121,17 @@ class ArticleBreadcrumbContractTests(unittest.TestCase):
             [item["name"] for item in chiba_items],
         )
 
+        kanagawa = self.by_id["B098"]
+        kanagawa_items = article_breadcrumb_items(
+            kanagawa,
+            kanagawa["planned_public_path"],
+            config,
+        )
+        self.assertEqual(
+            ["防災くらしガイド", "線状降水帯", "神奈川県"],
+            [item["name"] for item in kanagawa_items],
+        )
+
         osaka = self.by_id["B093"]
         osaka_items = article_breadcrumb_items(
             osaka,
