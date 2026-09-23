@@ -38,6 +38,7 @@ PREFECTURE_FILES = [
     "B094_linear_rainband_aichi.md",
     "B095_linear_rainband_ishikawa.md",
     "B096_linear_rainband_toyama.md",
+    "B098_linear_rainband_kanagawa.md",
 ]
 
 class LinearRainbandQualityTest(unittest.TestCase):
@@ -237,6 +238,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "石川県",
                 "東京都",
                 "千葉県",
+                "神奈川県",
                 "愛知県",
                 "静岡県",
                 "三重県",
@@ -307,6 +309,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
             "B094": "愛知県",
             "B095": "石川県",
             "B096": "富山県",
+            "B098": "神奈川県",
         }
         for article_id, prefecture in expected.items():
             title = f"{prefecture}の線状降水帯｜過去の発生履歴・直近事例を一覧で解説"
