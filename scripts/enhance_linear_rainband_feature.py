@@ -626,7 +626,7 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in list(range(67, 78)) + list(range(82, 93)) + list(range(94, 98)):
+    for number in list(range(67, 78)) + list(range(82, 93)) + list(range(94, 99)):
         article_id = f"B{number:03d}"
         path = PREVIEW / f"article_b{number:03d}.html"
         current = path.read_text(encoding="utf-8")
