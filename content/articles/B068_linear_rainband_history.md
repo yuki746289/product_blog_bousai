@@ -18,7 +18,7 @@ source_checked_at: 2026-09-22
 
 | 年月 | 地域 | 主な状況・雨量 | 線状降水帯との関係 |
 |---|---|---|---|
-| 2026年9月21日 | 千葉県 | 佐倉で日降水量278.0mm、1時間50.5mm。日降水量は観測史上1位 | 台風第25号による大雨。線状降水帯実発生とは別分類 |
+| 2026年9月20〜23日 | 千葉県・神奈川県 | 千葉県佐倉で日降水量278.0mmが観測史上1位。神奈川県では三浦365.5mm、横浜山手342.0mm | 台風第25号による大雨。千葉では北印旛沼等の堤防決壊・大規模浸水、神奈川では死者・行方不明者や横浜市内6か所の崖崩れ。線状降水帯実発生とは別分類 |
 | 2026年9月8日 | 愛知県 | 名古屋1時間101.5mm、3時間185.0mm | 愛知県西部を中心に実発生 |
 | 2026年8月27日 | 石川・富山 | 北陸で記録的大雨 | 半日前・直前予測なしで実発生 |
 | 2026年8月22日 | 東京都区部 | 板橋区付近で120mm/h以上、北区・豊島区付近で約100mm/hの解析雨量 | 局地的大雨（いわゆるゲリラ豪雨）。線状降水帯とは別分類 |
@@ -91,6 +91,8 @@ source_checked_at: 2026-09-22
 ## 公的情報・参考資料
 - [気象庁「佐倉・観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=0916&prec_no=45)
 - [東京管区気象台「気象災害に関する資料」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/index.html)
+- [神奈川県「令和8年台風第25号による県内被害状況」](https://www.bousai.pref.kanagawa.jp/PUB_VF_Detail_KisyaHappyo?oid=a3whA0000005z7hQAA)
+- [千葉県「北印旛沼・角川・長門川の堤防決壊と緊急復旧」](https://www.pref.chiba.lg.jp/kendosei/press/2026/kitainba.html)
 
 
 - [気象庁「線状降水帯の事例」](https://www.data.jma.go.jp/senjo_list/list_senjoukousuitai.html)
