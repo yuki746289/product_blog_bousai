@@ -217,7 +217,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         )
         for article_id in (
             "B082", "B083", "B084", "B085", "B086", "B087", "B088",
-            "B089", "B090", "B091", "B092", "B094", "B095", "B096",
+            "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098",
         ):
             actual = enhance_feature_page(sample, article_id)
             self.assertIn(f'id="shelter-finder-{article_id.lower()}"', actual)
