@@ -114,11 +114,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
             self.assertTrue(source_lines, name)
             for line in source_lines:
                 self.assertIn("](", line, f"{name}: {line}")
+                # Primary evidence is not limited to JMA. Prefectures, cities,
+                # FDMA and other public bodies are valid for damage records.
                 self.assertTrue(
-                    "jma.go.jp" in line
-                    or "data.jma.go.jp" in line
-                    or "jma-net.go.jp" in line,
-                    f"{name}: non-JMA source link {line}",
+                    ".go.jp" in line
+                    or ".lg.jp" in line
+                    or ".pref." in line,
+                    f"{name}: non-official source link {line}",
                 )
 
 
@@ -240,9 +242,12 @@ class LinearRainbandQualityTest(unittest.TestCase):
 
     def test_public_rules_define_recent_as_newest_first(self):
         rules = (ROOT / "docs" / "CONTENT_CREATION_RULES.md").read_text(encoding="utf-8")
+        policy = (ROOT / "docs" / "DISASTER_CASE_RESEARCH_POLICY.md").read_text(encoding="utf-8")
+        self.assertIn("DISASTER_CASE_RESEARCH_POLICY.md", rules)
         self.assertIn("「直近」は重大度ではなく新しさを優先する", rules)
-        self.assertIn("局地的大雨・短時間強雨", rules)
-        self.assertIn("「ゲリラ豪雨」を気象庁の公式分類名として扱わない", rules)
+        self.assertIn("発生日の新しさ", policy)
+        self.assertIn("局地的大雨・短時間強雨", policy)
+        self.assertIn("気象庁の正式な現象分類名として扱わず", policy)
 
     def test_prefecture_cards_are_ordered_north_to_south(self):
         labels = [row[1] for row in feature_enhance.PREFECTURE_PAGES]
