@@ -47,7 +47,8 @@ class PublicationHygieneTest(unittest.TestCase):
             "画像・図解の挿入判断",
             "publication_hygiene",
             "visual_support",
-            "B001〜B060",
+            "全対象記事レビュー完了条件",
+            "固定記事数ではなく、その時点のレビュー対象台帳を正本とする",
         ):
             self.assertIn(required, text)
 
