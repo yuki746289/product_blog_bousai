@@ -131,7 +131,7 @@ affiliate: false
 - [気象庁「2023年8月6日～10日に発生した線状降水帯事例」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R050806.pdf)
 
 - [気象庁「平成29年7月九州北部豪雨について」](https://www.jma.go.jp/jma/press/1707/19a/20170719_sankou.pdf)
-- [総務省消防庁「平成29年7月九州北部豪雨の被害と対応」](https://www.fdma.go.jp/publication/hakusho/h29/topics1/45858.html)
+- [総務省消防庁「平成29年7月九州北部豪雨の被害と対応」](https://www.fdma.go.jp/publication/hakusho/h29/topics1/46039.html)
 - [気象庁「令和5年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2023.html)
 - [気象庁「令和6年度 線状降水帯の事例」](https://www.jma.go.jp/jma/kishou/know/jirei/jirei_senjoukousuitai_2024.html)
 - [気象庁「2025年8月6日〜12日の大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2025/20251003/20251003.html)
