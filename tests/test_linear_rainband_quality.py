@@ -38,6 +38,7 @@ PREFECTURE_FILES = [
     "B094_linear_rainband_aichi.md",
     "B095_linear_rainband_ishikawa.md",
     "B096_linear_rainband_toyama.md",
+    "B098_linear_rainband_kanagawa.md",
 ]
 
 class LinearRainbandQualityTest(unittest.TestCase):
@@ -113,11 +114,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
             self.assertTrue(source_lines, name)
             for line in source_lines:
                 self.assertIn("](", line, f"{name}: {line}")
+                # Primary evidence is not limited to JMA. Prefectures, cities,
+                # FDMA and other public bodies are valid for damage records.
                 self.assertTrue(
-                    "jma.go.jp" in line
-                    or "data.jma.go.jp" in line
-                    or "jma-net.go.jp" in line,
-                    f"{name}: non-JMA source link {line}",
+                    ".go.jp" in line
+                    or ".lg.jp" in line
+                    or ".pref." in line,
+                    f"{name}: non-official source link {line}",
                 )
 
 
@@ -163,6 +166,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 self.assertGreaterEqual(count, 5, f"{name}: {heading}={count}")
                 self.assertLessEqual(count, 10, f"{name}: {heading}={count}")
 
+    def test_kanagawa_case_tables_keep_reviewed_case_counts(self):
+        text = (ARTICLE_DIR / "B098_linear_rainband_kanagawa.md").read_text(encoding="utf-8")
+        recent = self._table_row_count_after_heading(text, "直近の大雨・線状降水帯事例")
+        past = self._table_row_count_after_heading(text, "過去の代表的な豪雨")
+        self.assertEqual(10, recent)
+        self.assertEqual(7, past)
+
     def test_case_focused_region_markdown_has_no_raw_html_breaks(self):
         for name in (
             "B068_linear_rainband_history.md",
@@ -181,12 +191,12 @@ class LinearRainbandQualityTest(unittest.TestCase):
     def test_recent_case_recency_and_local_downpour_regressions(self):
         expectations = {
             "B068_linear_rainband_history.md": [
-                "2026年9月21日",
+                "2026年9月20〜23日",
                 "2026年8月22日",
                 "局地的大雨（いわゆるゲリラ豪雨）",
             ],
             "B074_linear_rainband_kanto_koshin.md": [
-                "2026年9月21日",
+                "2026年9月20〜23日",
                 "2025年7月10日",
                 "2024年8月21日",
             ],
@@ -201,7 +211,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "2024年9月22日",
             ],
             "B091_linear_rainband_chiba.md": [
-                "2026年9月21日",
+                "2026年9月21〜22日",
                 "2025年9月12日",
                 "2024年9月3日",
                 "局地的大雨（いわゆるゲリラ豪雨）",
@@ -217,6 +227,13 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "146.5mm",
                 "局地的大雨（いわゆるゲリラ豪雨）",
             ],
+            "B098_linear_rainband_kanagawa.md": [
+                "2026年9月20〜23日",
+                "2025年9月11日",
+                "2025年9月4〜5日",
+                "県内で初めて線状降水帯",
+                "崖崩れ",
+            ],
         }
         for name, phrases in expectations.items():
             text = (ARTICLE_DIR / name).read_text(encoding="utf-8")
@@ -225,9 +242,12 @@ class LinearRainbandQualityTest(unittest.TestCase):
 
     def test_public_rules_define_recent_as_newest_first(self):
         rules = (ROOT / "docs" / "CONTENT_CREATION_RULES.md").read_text(encoding="utf-8")
+        policy = (ROOT / "docs" / "DISASTER_CASE_RESEARCH_POLICY.md").read_text(encoding="utf-8")
+        self.assertIn("DISASTER_CASE_RESEARCH_POLICY.md", rules)
         self.assertIn("「直近」は重大度ではなく新しさを優先する", rules)
-        self.assertIn("局地的大雨・短時間強雨", rules)
-        self.assertIn("「ゲリラ豪雨」を気象庁の公式分類名として扱わない", rules)
+        self.assertIn("発生日の新しさ", policy)
+        self.assertIn("局地的大雨・短時間強雨", policy)
+        self.assertIn("気象庁の正式な現象分類名として扱わず", policy)
 
     def test_prefecture_cards_are_ordered_north_to_south(self):
         labels = [row[1] for row in feature_enhance.PREFECTURE_PAGES]
@@ -237,6 +257,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "石川県",
                 "東京都",
                 "千葉県",
+                "神奈川県",
                 "愛知県",
                 "静岡県",
                 "三重県",
@@ -307,6 +328,7 @@ class LinearRainbandQualityTest(unittest.TestCase):
             "B094": "愛知県",
             "B095": "石川県",
             "B096": "富山県",
+            "B098": "神奈川県",
         }
         for article_id, prefecture in expected.items():
             title = f"{prefecture}の線状降水帯｜過去の発生履歴・直近事例を一覧で解説"

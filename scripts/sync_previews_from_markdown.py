@@ -45,14 +45,14 @@ except ImportError:  # direct script execution: python scripts/...
     from sync_previews_core import *  # type: ignore # noqa: F401,F403
 
 LINEAR_RAINBAND_ARTICLE_IDS = {f"B{i:03d}" for i in range(67, 78)}
-LINEAR_RAINBAND_PREFECTURE_IDS = {f"B{i:03d}" for i in range(82, 97)}
+LINEAR_RAINBAND_PREFECTURE_IDS = {f"B{i:03d}" for i in range(82, 97)} | {"B098"}
 LINEAR_RAINBAND_PREFECTURE_HEADER_IDS = LINEAR_RAINBAND_PREFECTURE_IDS - {"B093"}
 LINEAR_RAINBAND_COMPARISON_IDS = {"B097"}
 EXTRA_SYNC_ARTICLE_IDS = {"B003", "B008", "B010", "B058"} | LINEAR_RAINBAND_ARTICLE_IDS | LINEAR_RAINBAND_PREFECTURE_IDS | LINEAR_RAINBAND_COMPARISON_IDS
 _core.SYNC_ARTICLE_IDS.update(EXTRA_SYNC_ARTICLE_IDS)
 SYNC_ARTICLE_IDS = _core.SYNC_ARTICLE_IDS
 ALL_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 61)}
-BREADCRUMB_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 98)}
+BREADCRUMB_ARTICLE_IDS = {f"B{i:03d}" for i in range(1, 99)}
 LEAD_SYNC_ARTICLE_IDS = ALL_ARTICLE_IDS | LINEAR_RAINBAND_ARTICLE_IDS | LINEAR_RAINBAND_PREFECTURE_IDS | LINEAR_RAINBAND_COMPARISON_IDS
 
 # Three discovery hubs keep the always-visible header compact. Each hub is a

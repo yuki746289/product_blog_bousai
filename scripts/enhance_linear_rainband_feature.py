@@ -1,5 +1,5 @@
 # Created: 2026-09-15 09:20 JST
-# Updated: 2026-09-22 JST
+# Updated: 2026-09-24 JST
 """Normalize the linear-rainband special feature's UX, navigation and discovery.
 
 The special pages keep bespoke framing and feature navigation, while reviewed
@@ -42,7 +42,7 @@ CORE_PAGES = (
 
 REGION_PAGES = (
     ("B073", "九州", "article_b073.html", "九州北部豪雨・2020年7月豪雨"),
-    ("B074", "関東甲信", "article_b074.html", "2015年豪雨・2026年千葉豪雨"),
+    ("B074", "関東甲信", "article_b074.html", "都市型水害・河川・土砂災害と近年豪雨"),
     ("B075", "中国地方", "article_b075.html", "広島・西日本豪雨・山口"),
     ("B076", "四国", "article_b076.html", "四国南東斜面・高知・徳島"),
     ("B077", "東海", "article_b077.html", "愛知・静岡・三重・伊豆"),
@@ -53,6 +53,7 @@ PREFECTURE_PAGES = (
     ("B095", "石川県", "article_b095.html", "能登・金沢の豪雨史と直近事例"),
     ("B092", "東京都", "article_b092.html", "都市型豪雨・伊豆諸島の事例"),
     ("B091", "千葉県", "article_b091.html", "局地的大雨・線状降水帯の履歴"),
+    ("B098", "神奈川県", "article_b098.html", "横浜の浸水・土砂災害と県内初発生"),
     ("B094", "愛知県", "article_b094.html", "東海豪雨・名古屋の水害史"),
     ("B090", "静岡県", "article_b090.html", "線状降水帯・突風・大雨史"),
     ("B089", "三重県", "article_b089.html", "紀伊半島・台風・線状降水帯"),
@@ -64,6 +65,11 @@ PREFECTURE_PAGES = (
     ("B083", "宮崎県", "article_b083.html", "山沿い・河川・直近事例"),
     ("B082", "鹿児島県", "article_b082.html", "薩摩・大隅・奄美の大雨史"),
 )
+
+FEATURE_PAGE_IDS = tuple(
+    article_id
+    for article_id, *_rest in (*CORE_PAGES, *REGION_PAGES, *PREFECTURE_PAGES)
+) + ("B097",)
 
 SHELTER_GUIDES = {
     "B082": ("鹿児島県ハザードマップ", "https://www.pref.kagoshima.jp/bosai/saigai/hazard.html"),
@@ -80,6 +86,7 @@ SHELTER_GUIDES = {
     "B094": ("なごやハザードマップ", "https://www.city.nagoya.jp/bousaiportal/hazardmap/1036428.html"),
     "B095": ("石川県 防災に関する情報", "https://www.pref.ishikawa.lg.jp/bousai/bousai_g/"),
     "B096": ("富山県 洪水ハザードマップ", "https://www.pref.toyama.jp/1711/kurashi/kankyoushizen/kankyou/mizu/hazard/index.html"),
+    "B098": ("神奈川県 指定緊急避難場所・指定避難所", "https://www.pref.kanagawa.jp/docs/j8g/bousai/1_7748_9_8.html"),
 }
 
 TOKYO_WARD_MAPS = (
@@ -156,6 +163,7 @@ CURRENT_LABEL = {
     "B095": "石川県",
     "B096": "富山県",
     "B097": "ゲリラ豪雨との違い",
+    "B098": "神奈川県",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
@@ -454,7 +462,7 @@ def breadcrumb(article_id: str) -> str:
             + current
             + "</nav>"
         )
-    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096"}:
+    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098"}:
         return (
             prefix
             + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
@@ -488,7 +496,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
 
     desired_nav = (
         region_nav(article_id)
-        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096"}
+        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098"}
         else core_nav(article_id)
     )
     html = _ensure_feature_nav(html, desired_nav, article_id)
@@ -623,9 +631,8 @@ def _write_if_changed(path: Path, updated: str) -> bool:
 
 def enhance() -> list[str]:
     changed: list[str] = []
-    for number in list(range(67, 78)) + list(range(82, 93)) + list(range(94, 98)):
-        article_id = f"B{number:03d}"
-        path = PREVIEW / f"article_b{number:03d}.html"
+    for article_id in FEATURE_PAGE_IDS:
+        path = PREVIEW / f"article_{article_id.lower()}.html"
         current = path.read_text(encoding="utf-8")
         if _write_if_changed(path, enhance_feature_page(current, article_id)):
             changed.append(path.name)
