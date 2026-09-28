@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-28T14:50:00+09:00",
+  "metric": "Google Search Console Web search CTR",
+  "comparison_policy": {
+    "note": "Use finalized GSC data. Confirm SERP reflection before attributing CTR change. Compare CTR together with average position, impressions and query mix.",
+    "gsc_finalization_delay_days": 3,
+    "first_7d_review_not_before": "2026-10-08",
+    "first_28d_review_not_before": "2026-10-29"
+  },
+  "articles": [
+    {
+      "article_id": "B008",
+      "public_path": "vehicle/car-flood-submersion.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "meta_description"
+      ],
+      "implementation_status": "deployed_2026-09-28",
+      "baseline": {
+        "source": "user_gsc_export",
+        "start_date": "2026-09-02",
+        "end_date": "2026-09-27",
+        "clicks": 1,
+        "impressions": 137,
+        "ctr": 0.0072992701,
+        "average_position": 6.21
+      },
+      "hypothesis": "脱出方法・冠水路・水没後の行動をスニペットで具体化してCTRを改善",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B019",
+      "public_path": "insurance/disaster-insurance-overview.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "deployed_2026-09-28",
+      "baseline": {
+        "source": "user_gsc_export",
+        "start_date": "2026-09-02",
+        "end_date": "2026-09-27",
+        "clicks": 0,
+        "impressions": 50,
+        "ctr": 0,
+        "average_position": 6.74
+      },
+      "hypothesis": "火災保険・地震保険・車両保険を明示して検索結果だけで対象範囲を理解できるようにする",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B067",
+      "public_path": "special/linear-rainband/index.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description",
+        "generation_fix"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "user_gsc_export",
+        "start_date": "2026-09-02",
+        "end_date": "2026-09-27",
+        "clicks": 7,
+        "impressions": 353,
+        "ctr": 0.0198300283,
+        "average_position": 8.44
+      },
+      "hypothesis": "履歴・雨量記録・多い地域を検索意図前方に出す。Enhanceによる旧metadata巻き戻しも解消",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B094",
+      "public_path": "special/linear-rainband/prefecture/aichi.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "meta_description"
+      ],
+      "implementation_status": "deployed_2026-09-28",
+      "baseline": {
+        "source": "user_gsc_export",
+        "start_date": "2026-09-02",
+        "end_date": "2026-09-27",
+        "clicks": 9,
+        "impressions": 261,
+        "ctr": 0.0344827586,
+        "average_position": 7.57
+      },
+      "hypothesis": "高表示の名古屋クエリをtitleへ反映して都市名検索のCTRを改善",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B097",
+      "public_path": "special/linear-rainband/guerrilla-rain-vs-linear-rainband.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "deployed_2026-09-28",
+      "baseline": {
+        "source": "user_gsc_export",
+        "start_date": "2026-09-02",
+        "end_date": "2026-09-27",
+        "clicks": 0,
+        "impressions": 66,
+        "ctr": 0,
+        "average_position": 10.97
+      },
+      "hypothesis": "線状降水帯を語頭に置き、範囲・継続時間・予測という比較軸を明示",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B038",
+      "public_path": "earthquake/earthquake-stranded-commuter.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 0,
+        "impressions": 49,
+        "ctr": 0,
+        "average_position": 7.693877551
+      },
+      "hypothesis": "検索者の問い『電車が止まったらどうする』と公式原則『むやみに移動しない』をtitleで直接提示",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B045",
+      "public_path": "blackout/blackout-refrigerator-food-safety.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 2,
+        "impressions": 179,
+        "ctr": 0.0111731844,
+        "average_position": 11.6368715084
+      },
+      "hypothesis": "農林水産省の冷蔵約4時間・冷凍1〜2日をtitleで直接回答しCTRを改善",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B060",
+      "public_path": "goods/volcanic-ash-protection.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 0,
+        "impressions": 23,
+        "ctr": 0,
+        "average_position": 11.8260869565
+      },
+      "hypothesis": "『何が必要？』を先頭に置き、防じんマスク・ゴーグル・掃除用品という具体的購入意図へ直接回答",
+      "post_change_checks": []
+    }
+  ]
+}

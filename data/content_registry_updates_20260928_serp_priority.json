@@ -1,0 +1,29 @@
+{
+  "updated_at": "2026-09-28T14:50:00+09:00",
+  "articles": [
+    {
+      "article_id": "B038",
+      "title": "地震で電車が止まったらどうする？むやみに移動しない理由と帰宅困難者の行動",
+      "body_char_count_approx": 4344,
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
+    },
+    {
+      "article_id": "B045",
+      "title": "停電で冷蔵庫は何時間もつ？冷蔵約4時間・冷凍1〜2日の目安と食品判断",
+      "body_char_count_approx": 3730,
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
+    },
+    {
+      "article_id": "B060",
+      "title": "火山灰対策グッズは何が必要？防じんマスク・ゴーグル・掃除用品の選び方",
+      "body_char_count_approx": 3628,
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
+    }
+  ]
+}
