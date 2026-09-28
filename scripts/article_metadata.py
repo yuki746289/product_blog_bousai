@@ -148,6 +148,9 @@ ARTICLE_BREADCRUMB_NAMES = {
     "B095": "石川県",
     "B096": "富山県",
     "B097": "ゲリラ豪雨との違い",
+    "B098": "神奈川県",
+    "B099": "福岡県",
+    "B100": "佐賀県",
 }
 
 
@@ -155,6 +158,9 @@ def article_breadcrumb_name(article: dict, output_path: str) -> str:
     """Return the concise user-facing label used in Google breadcrumb markup."""
     article_id = article.get("article_id", "")
     if output_path.startswith("special/linear-rainband/prefecture/") and article_id != "B093":
+        mapped_name = ARTICLE_BREADCRUMB_NAMES.get(article_id)
+        if mapped_name:
+            return mapped_name
         title = article.get("title", "")
         match = re.match(r"^(.+?[都道府県])の線状降水帯", title)
         if match:
