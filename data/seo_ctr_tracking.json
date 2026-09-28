@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-28T15:20:00+09:00",
+  "updated_at": "2026-09-28T15:45:00+09:00",
   "metric": "Google Search Console Web search CTR",
   "comparison_policy": {
     "note": "Use finalized GSC data. Confirm SERP reflection before attributing CTR change. Compare CTR together with average position, impressions and query mix.",
@@ -265,6 +265,53 @@
         "average_position": 21.45
       },
       "hypothesis": "現titleは『真夏の停電』『エアコンが使えない』『熱中症対策』を既に直接示す。CTRより順位側の課題が大きいためmetadata変更を見送る",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B005",
+      "public_path": "flood/flood-preparedness-basics.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 1,
+        "impressions": 76,
+        "ctr": 0.013157894736842105,
+        "average_position": 59.28947368421053
+      },
+      "hypothesis": "広い『水害対策』検索の主ページとしてtitleを明確化し、カテゴリページを記事一覧へ分離してカニバリを減らす",
+      "post_change_checks": []
+    }
+  ],
+  "non_article_pages": [
+    {
+      "page_key": "category_flood",
+      "public_path": "flood/index.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description",
+        "internal_anchor"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 1,
+        "impressions": 55,
+        "ctr": 0.01818181818181818,
+        "average_position": 46.21818181818182
+      },
+      "hypothesis": "カテゴリページを『記事一覧』として明示し、広い水害対策クエリの代表役をB005へ寄せる",
       "post_change_checks": []
     }
   ]

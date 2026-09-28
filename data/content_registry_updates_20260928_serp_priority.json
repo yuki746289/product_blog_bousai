@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T15:20:00+09:00",
+  "updated_at": "2026-09-28T15:45:00+09:00",
   "articles": [
     {
       "article_id": "B038",
@@ -45,6 +45,14 @@
       "article_id": "B023",
       "title": "地震の家具転倒対策｜寝室・出入口を優先する配置と固定のポイント",
       "body_char_count_approx": 2738,
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
+    },
+    {
+      "article_id": "B005",
+      "title": "水害対策は何から始める？ハザードマップ・避難・自宅の備え",
+      "body_char_count_approx": 4285,
       "last_reviewed_at": "2026-09-28",
       "review_checklist_last_checked_at": "2026-09-28",
       "modified_at": "2026-09-28"
