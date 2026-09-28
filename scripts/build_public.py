@@ -18,6 +18,7 @@ import os
 import posixpath
 import re
 import shutil
+from html import escape as html_escape
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 from xml.sax.saxutils import escape as xml_escape
