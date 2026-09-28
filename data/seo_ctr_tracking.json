@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-09-28T14:50:00+09:00",
+  "updated_at": "2026-09-28T15:20:00+09:00",
   "metric": "Google Search Console Web search CTR",
   "comparison_policy": {
     "note": "Use finalized GSC data. Confirm SERP reflection before attributing CTR change. Compare CTR together with average position, impressions and query mix.",
@@ -181,6 +181,90 @@
         "average_position": 11.8260869565
       },
       "hypothesis": "『何が必要？』を先頭に置き、防じんマスク・ゴーグル・掃除用品という具体的購入意図へ直接回答",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B073",
+      "public_path": "special/linear-rainband/kyushu.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 4,
+        "impressions": 151,
+        "ctr": 0.026490066225165563,
+        "average_position": 7.80794701986755
+      },
+      "hypothesis": "『九州で線状降水帯が多いのはなぜ？』をtitle先頭へ置き、発生履歴・豪雨事例というページ価値を直接提示してCTRを改善",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B020",
+      "public_path": "home/home-heavy-rain-checklist.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 2,
+        "impressions": 87,
+        "ctr": 0.022988505747126436,
+        "average_position": 13.448275862068966
+      },
+      "hypothesis": "記事固有の『数日前・前日・当日』という時系列をtitleへ出し、大雨前に家で何をするかを検索結果だけで理解できるようにする",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B023",
+      "public_path": "earthquake/earthquake-furniture-safety.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "implementation_status": "pending_deploy_pr138",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 0,
+        "impressions": 9,
+        "ctr": 0,
+        "average_position": 7.777777777777778
+      },
+      "hypothesis": "寝室・出入口という公的情報でも重視される具体的優先箇所をtitleに明示し、抽象的な『優先したい場所』より内容を識別しやすくする",
+      "post_change_checks": []
+    },
+    {
+      "article_id": "B047",
+      "public_path": "blackout/blackout-heatstroke.html",
+      "reviewed_at": "2026-09-28",
+      "changed_fields": [],
+      "implementation_status": "monitor_no_change",
+      "baseline": {
+        "source": "gsc_connector_finalized",
+        "start_date": "2026-08-29",
+        "end_date": "2026-09-25",
+        "clicks": 0,
+        "impressions": 20,
+        "ctr": 0,
+        "average_position": 21.45
+      },
+      "hypothesis": "現titleは『真夏の停電』『エアコンが使えない』『熱中症対策』を既に直接示す。CTRより順位側の課題が大きいためmetadata変更を見送る",
       "post_change_checks": []
     }
   ]

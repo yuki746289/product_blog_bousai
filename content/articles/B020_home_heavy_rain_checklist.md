@@ -1,7 +1,7 @@
 ---
 article_id: B020
 slug: home-heavy-rain-checklist
-title: 大雨の前に自宅で確認すること｜浸水対策チェックリスト
+title: 大雨の前に家でやること｜浸水対策を数日前・前日・当日でチェック
 category: home
 content_role: practical
 risk_level: elevated
@@ -11,7 +11,7 @@ next_review_at: 2027-03-14
 affiliate: false
 ---
 
-# 大雨の前に自宅で確認すること｜浸水対策チェックリスト
+# 大雨の前に家でやること｜浸水対策を数日前・前日・当日でチェック
 
 大雨前の住宅対策は、雨が降ってから慌てて始めるより、**数日前・前日・当日で作業を分ける**と安全に進めやすくなります。屋外作業は早めに終え、当日は情報確認と避難判断へ切り替えます。
 
