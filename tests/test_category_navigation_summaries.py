@@ -194,7 +194,7 @@ class CategoryNavigationSummaryTests(unittest.TestCase):
     def test_combined_typhoon_flood_page_is_single_normal_entry(self):
         page = PUBLIC / "flood" / "index.html"
         html = page.read_text(encoding="utf-8")
-        self.assertIn("<h1>台風・水害</h1>", html)
+        self.assertIn("<h1>台風・水害の記事一覧</h1>", html)
         ids = re.findall(r'data-article-id="(B\d{3})"', html)
         self.assertEqual(22, len(ids))
         self.assertEqual(22, len(set(ids)))
