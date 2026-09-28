@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-09-28T16:10:00+09:00",
+  "note": "B098-B100 are newly published and do not yet have finalized page-level GSC rows. Missing data must not be recorded as zero impressions.",
+  "articles": [
+    {
+      "article_id": "B098",
+      "public_path": "special/linear-rainband/prefecture/kanagawa.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "title",
+        "h1",
+        "meta_description"
+      ],
+      "baseline_status": "not_available_yet",
+      "baseline_checked_range": "2026-08-29..2026-09-25",
+      "hypothesis": "神奈川県・横浜と2025年の県内初確認を検索結果で明示し、県別ページ固有の価値を伝える"
+    },
+    {
+      "article_id": "B099",
+      "public_path": "special/linear-rainband/prefecture/fukuoka.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "meta_description"
+      ],
+      "baseline_status": "not_available_yet",
+      "baseline_checked_range": "2026-08-29..2026-09-25",
+      "hypothesis": "九州北部豪雨・朝倉・筑後川流域・福岡市の都市浸水をdescriptionで具体化する"
+    },
+    {
+      "article_id": "B100",
+      "public_path": "special/linear-rainband/prefecture/saga.html",
+      "modified_at": "2026-09-28",
+      "changed_fields": [
+        "meta_description"
+      ],
+      "baseline_status": "not_available_yet",
+      "baseline_checked_range": "2026-08-29..2026-09-25",
+      "hypothesis": "佐賀平野・六角川・外水/内水・1990年六角川洪水をdescriptionで具体化する"
+    }
+  ]
+}

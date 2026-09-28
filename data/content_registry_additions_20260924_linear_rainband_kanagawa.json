@@ -3,12 +3,12 @@
     {
       "affiliate": false,
       "article_id": "B098",
-      "body_char_count_approx": 4165,
+      "body_char_count_approx": 4166,
       "category": "flood",
       "content_role": "detail",
       "image_source_count": 0,
       "image_status": "APPROVED",
-      "last_reviewed_at": "2026-09-24",
+      "last_reviewed_at": "2026-09-28",
       "manual_review_required": true,
       "manual_review_status": "APPROVED",
       "next_review_at": "2026-10-08",
@@ -18,7 +18,7 @@
       "preview_path": "preview/article_b098.html",
       "priority": "medium",
       "publish_blockers": [],
-      "review_checklist_last_checked_at": "2026-09-24",
+      "review_checklist_last_checked_at": "2026-09-28",
       "review_checklist_path": "docs/reviews/B098_CHECKLIST.md",
       "review_checklist_status": "PASS",
       "risk_level": "standard",
@@ -41,14 +41,14 @@
       ],
       "source_path": "content/articles/B098_linear_rainband_kanagawa.md",
       "status": "READY_TO_PUBLISH",
-      "title": "神奈川県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説",
+      "title": "神奈川県・横浜の線状降水帯｜2025年の県内初発生と大雨被害",
       "readability_review_status": "PASS",
       "readability_reviewed_at": "2026-09-24",
       "image_relevance_review_status": "PASS",
       "image_relevance_reviewed_at": "2026-09-24",
       "production_build_status": "READY_FOR_DEPLOY",
       "published_at": "2026-09-24",
-      "modified_at": "2026-09-24"
+      "modified_at": "2026-09-28"
     }
   ]
 }
