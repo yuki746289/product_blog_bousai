@@ -18,7 +18,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn(
-            "# 線状降水帯とは？過去事例・発生数・多い地域・雨量記録をデータで見る",
+            "# 線状降水帯とは？過去の発生履歴・雨量記録・多い地域を解説",
             text,
         )
         self.assertNotIn("この特集の5ページ", text)
@@ -215,6 +215,8 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertEqual(len(feature.FEATURE_PAGE_IDS), len(set(feature.FEATURE_PAGE_IDS)))
         prefecture_ids = [row[0] for row in feature.PREFECTURE_PAGES]
         self.assertIn("B098", prefecture_ids)
+        self.assertIn("B099", prefecture_ids)
+        self.assertIn("B100", prefecture_ids)
 
     def test_prefecture_pages_get_official_shelter_finder(self):
         sample = (
@@ -226,6 +228,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         for article_id in (
             "B082", "B083", "B084", "B085", "B086", "B087", "B088",
             "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098",
+            "B099", "B100",
         ):
             actual = enhance_feature_page(sample, article_id)
             self.assertIn(f'id="shelter-finder-{article_id.lower()}"', actual)

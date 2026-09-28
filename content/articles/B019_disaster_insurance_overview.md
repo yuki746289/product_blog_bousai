@@ -1,7 +1,7 @@
 ---
 article_id: B019
 slug: disaster-insurance-overview
-title: 水害・台風・地震で保険の扱いはどう違う？
+title: 水害・台風・地震は保険対象？火災保険・地震保険・車両保険を整理
 category: insurance
 content_role: pillar
 risk_level: elevated
@@ -11,7 +11,7 @@ next_review_at: 2027-03-08
 affiliate: false
 ---
 
-# 水害・台風・地震で保険の扱いはどう違う？
+# 水害・台風・地震は保険対象？火災保険・地震保険・車両保険を整理
 
 災害時の保険は「台風なら火災保険」「水没なら車両保険」と災害名だけでは決まりません。**何が原因で、何が壊れ、どの保険対象を契約しているか**の3点に分けると整理しやすくなります。
 

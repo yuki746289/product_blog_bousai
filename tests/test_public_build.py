@@ -53,7 +53,7 @@ class PublicBuildTests(unittest.TestCase):
     def test_b097_public_output_keeps_comparison_diagram_and_key_distinctions(self):
         page = PUBLIC / "special" / "linear-rainband" / "guerrilla-rain-vs-linear-rainband.html"
         html = page.read_text(encoding="utf-8")
-        self.assertIn("ゲリラ豪雨と線状降水帯の違い", html)
+        self.assertIn("線状降水帯とゲリラ豪雨の違い", html)
         self.assertIn("局地的大雨", html)
         self.assertIn("長さ50〜300km程度", html)
         self.assertIn("幅20〜50km程度", html)
@@ -249,6 +249,18 @@ class PublicBuildTests(unittest.TestCase):
         for page in sorted(PUBLIC.rglob("*.html")):
             html = page.read_text(encoding="utf-8")
             self.assertEqual(1, html.count(expected), page)
+
+    def test_homepage_declares_search_site_name(self):
+        home = (PUBLIC / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(1, home.count('<meta property="og:site_name" content="防災くらしガイド">'))
+        marker = '<script type="application/ld+json" data-generated="website-structured-data">'
+        self.assertEqual(1, home.count(marker))
+        start = home.index(marker) + len(marker)
+        end = home.index("</script>", start)
+        payload = json.loads(home[start:end])
+        self.assertEqual("WebSite", payload["@type"])
+        self.assertEqual("防災くらしガイド", payload["name"])
+        self.assertEqual("https://bousaikun.ashigaru.jp/", payload["url"])
 
     def test_homepage_uses_home_specific_assets(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")

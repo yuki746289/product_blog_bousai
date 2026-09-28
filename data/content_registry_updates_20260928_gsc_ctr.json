@@ -1,0 +1,42 @@
+{
+  "updated_at": "2026-09-28T09:00:00+09:00",
+  "articles": [
+    {
+      "article_id": "B067",
+      "title": "線状降水帯とは？過去の発生履歴・雨量記録・多い地域を解説",
+      "modified_at": "2026-09-28",
+      "body_char_count_approx": 5158
+    },
+    {
+      "article_id": "B094",
+      "title": "愛知県・名古屋の線状降水帯｜過去の発生履歴・大雨事例を解説",
+      "modified_at": "2026-09-28",
+      "body_char_count_approx": 3890
+    },
+    {
+      "article_id": "B097",
+      "title": "線状降水帯とゲリラ豪雨の違い｜範囲・継続時間・予測を図解",
+      "modified_at": "2026-09-28",
+      "body_char_count_approx": 3867
+    },
+    {
+      "article_id": "B019",
+      "title": "水害・台風・地震は保険対象？火災保険・地震保険・車両保険を整理",
+      "modified_at": "2026-09-28",
+      "body_char_count_approx": 4776
+    },
+    {
+      "article_id": "B008",
+      "modified_at": "2026-09-28",
+      "body_char_count_approx": 4073
+    },
+    {
+      "article_id": "B073",
+      "body_char_count_approx": 3855,
+      "source_checked_at": "2026-09-28",
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
+    }
+  ]
+}

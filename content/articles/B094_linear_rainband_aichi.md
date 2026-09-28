@@ -1,7 +1,7 @@
 ---
 article_id: B094
 slug: linear-rainband-aichi
-title: 愛知県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説
+title: 愛知県・名古屋の線状降水帯｜過去の発生履歴・大雨事例を解説
 category: flood
 content_role: detail
 risk_level: standard
@@ -11,7 +11,7 @@ next_review_at: 2027-03-21
 affiliate: false
 ---
 
-# 愛知県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説
+# 愛知県・名古屋の線状降水帯｜過去の発生履歴・大雨事例を解説
 
 愛知県の大雨史では、**2000年9月の東海豪雨**が最重要事例の一つです。名古屋では9月11日に日降水量428mm、2日間で567mmを記録し、庄内川水系の新川破堤などによって広範囲が浸水しました。
 
