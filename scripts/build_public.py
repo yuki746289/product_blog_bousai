@@ -83,6 +83,15 @@ NOINDEX_RE = re.compile(
 )
 ATTR_RE = re.compile(r'(?P<attr>href|src)=["\'](?P<url>[^"\']+)["\']', re.IGNORECASE)
 FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">'
+OG_SITE_NAME_RE = re.compile(
+    r'<meta\s+property=["\']og:site_name["\']\s+content=["\'][^"\']+["\']\s*/?>',
+    re.IGNORECASE,
+)
+WEBSITE_STRUCTURED_DATA_RE = re.compile(
+    r'<script\s+type=["\']application/ld\+json["\']\s+'
+    r'data-generated=["\']website-structured-data["\']>.*?</script>\s*',
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def load_registry() -> dict:
@@ -199,6 +208,32 @@ def inject_favicon(html: str) -> str:
     return html.replace("</head>", FAVICON_LINK + "\n</head>", 1)
 
 
+
+def inject_home_search_identity(html: str, site_config: dict) -> str:
+    """Add explicit Google Search site-name signals to the production homepage."""
+    site_name = str(site_config.get("site_name", "防災くらしガイド")).strip()
+    base_url = str(site_config.get("public_base_url", "")).strip()
+    if not site_name or not base_url:
+        raise ValueError("site_name and public_base_url are required for homepage search identity")
+
+    cleaned = OG_SITE_NAME_RE.sub("", html)
+    cleaned = WEBSITE_STRUCTURED_DATA_RE.sub("", cleaned)
+    payload = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": site_name,
+        "url": base_url.rstrip("/") + "/",
+    }
+    structured = (
+        '<script type="application/ld+json" data-generated="website-structured-data">'
+        + json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        + "</script>"
+    )
+    tags = f'<meta property="og:site_name" content="{html_escape(site_name)}">\n{structured}'
+    if "</head>" not in cleaned.lower():
+        raise ValueError("Missing </head> while injecting homepage search identity")
+    return re.sub(r"</head>", lambda _: tags + "\n</head>", cleaned, count=1, flags=re.IGNORECASE)
+
 def transform_html(
     source_name: str,
     output_path: str,
@@ -223,6 +258,10 @@ def transform_html(
 
     html = add_accessibility_scaffolding(html)
     html = inject_favicon(html)
+    if source_name == "index.html":
+        if site_config is None:
+            raise ValueError("site_config is required for homepage search identity")
+        html = inject_home_search_identity(html, site_config)
 
     if "G-XQVLD5HMNG" not in html:
         if "</head>" not in html:
