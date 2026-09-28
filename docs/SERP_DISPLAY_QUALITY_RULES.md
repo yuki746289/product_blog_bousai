@@ -3,6 +3,8 @@
 作成日: 2026-09-11
 適用先: 防災くらしガイドの記事作成・競合調査・SEOレビュー
 
+> 共通のtitle / meta description / SERP競合比較・変更管理は、`common/subrules/seo/SEO_CONTENT_DESIGN_RULES.md` と `common/COMMON_SITE_CHECKLIST.md#gc03-serp-title--description--検索結果比較` を正本とする。本ファイルは防災サイト固有の補足のみを扱う。
+
 ## 1. 目的
 
 Google検索結果では、ページの `<title>` や `meta description` がそのまま表示されるとは限らない。

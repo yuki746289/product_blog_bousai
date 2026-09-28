@@ -87,16 +87,19 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
         self.assertEqual(regional, enhance_feature_page(regional, "B075"))
 
     def test_b067_preview_metadata_uses_broad_search_intent(self):
+        title = "線状降水帯とは？過去の発生履歴・雨量記録・多い地域を解説"
+        description = "線状降水帯とは何か、過去の発生履歴・1時間雨量などの雨量記録・発生しやすい地域を公的データで整理。全国の事例や発生数も比較できます。"
         sample = (
-            '<html><head><meta name="description" content="old"><title>old</title></head>'
-            '<body><nav class="breadcrumb">old</nav><h1>old</h1>'
+            f'<html><head><meta name="description" content="{description}"><title>{title}｜防災くらしガイド</title></head>'
+            f'<body><nav class="breadcrumb">old</nav><h1>{title}</h1>'
             '<p class="article-lead">old</p><nav class="feature-nav"></nav>'
             '<h2>線状降水帯の主な事例とデータ</h2></body></html>'
         )
         actual = enhance_feature_page(sample, "B067")
-        self.assertIn("<title>線状降水帯とは？", actual)
-        self.assertIn("<h1>線状降水帯とは？", actual)
-        self.assertIn("九州・関東甲信・中国・四国・東海", actual)
+        self.assertIn(f"<title>{title}｜防災くらしガイド</title>", actual)
+        self.assertIn(f'<meta name="description" content="{description}">', actual)
+        self.assertIn(f"<h1>{title}</h1>", actual)
+        self.assertNotIn("過去事例・発生数・多い地域・雨量記録をデータで見る", actual)
         self.assertIn("線状降水帯の主な事例とデータ", actual)
         self.assertIn('id="linear-rainband-region-panel"', actual)
 

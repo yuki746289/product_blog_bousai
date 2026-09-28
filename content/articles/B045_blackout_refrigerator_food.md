@@ -1,7 +1,7 @@
 ---
 article_id: B045
 slug: blackout-refrigerator-food-safety
-title: 停電で冷蔵庫は何時間もつ？冷蔵・冷凍食品の判断と停電対策
+title: 停電で冷蔵庫は何時間もつ？冷蔵約4時間・冷凍1〜2日の目安と食品判断
 category: blackout
 content_role: practical
 risk_level: high
@@ -11,7 +11,7 @@ next_review_at: 2027-03-12
 affiliate: false
 ---
 
-# 停電で冷蔵庫は何時間もつ？冷蔵・冷凍食品の判断と停電対策
+# 停電で冷蔵庫は何時間もつ？冷蔵約4時間・冷凍1〜2日の目安と食品判断
 
 停電すると「冷蔵庫は何時間もつ？」「肉や牛乳は食べられる？」「冷凍食品は再冷凍できる？」と判断に迷います。
 

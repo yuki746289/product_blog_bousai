@@ -119,7 +119,7 @@ affiliate: false
 
 ## 関連ページ
 
-- [線状降水帯とは？過去事例・発生数・多い地域・雨量記録](special/linear-rainband/index.html)
+- [線状降水帯とは？過去の発生履歴・雨量記録・多い地域を解説](special/linear-rainband/index.html)
 - [線状降水帯の過去事例](special/linear-rainband/history.html)
 - [東京都の線状降水帯](special/linear-rainband/prefecture/tokyo.html)
 - [愛知県の線状降水帯](special/linear-rainband/prefecture/aichi.html)

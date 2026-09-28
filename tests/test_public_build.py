@@ -252,6 +252,7 @@ class PublicBuildTests(unittest.TestCase):
 
     def test_homepage_declares_search_site_name(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
+        self.assertIn("<title>防災くらしガイド｜暮らしの中で備える防災情報</title>", home)
         self.assertEqual(1, home.count('<meta property="og:site_name" content="防災くらしガイド">'))
         marker = '<script type="application/ld+json" data-generated="website-structured-data">'
         self.assertEqual(1, home.count(marker))

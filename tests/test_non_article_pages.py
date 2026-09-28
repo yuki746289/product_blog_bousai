@@ -184,7 +184,7 @@ class NonArticlePageReviewTest(unittest.TestCase):
             "B043", "B046", "B049", "B050", "B053", "B059",
         }
         self.assertEqual(expected, set(ids))
-        self.assertIn("<h1>台風・水害</h1>", html)
+        self.assertIn("<h1>台風・水害の記事一覧</h1>", html)
         for heading in [
             "台風接近前・強風・高潮",
             "洪水・河川氾濫・土砂災害",

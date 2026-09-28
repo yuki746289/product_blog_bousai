@@ -1,7 +1,7 @@
 ---
 article_id: B023
 slug: earthquake-furniture-safety
-title: 地震の家具転倒対策｜まず優先したい場所
+title: 地震の家具転倒対策｜寝室・出入口を優先する配置と固定のポイント
 category: earthquake
 content_role: practical
 risk_level: elevated
@@ -11,7 +11,7 @@ next_review_at: 2027-03-02
 affiliate: false
 ---
 
-# 地震の家具転倒対策｜まず優先したい場所
+# 地震の家具転倒対策｜寝室・出入口を優先する配置と固定のポイント
 
 家具転倒対策は、家中の家具へ一度に器具を付けることから始める必要はありません。最初に見るべきなのは、**倒れたときに人へ当たる場所と、避難経路を塞ぐ場所**です。
 
