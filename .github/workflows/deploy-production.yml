@@ -370,7 +370,7 @@ jobs:
 
           tmp_volcanic_goods="$(mktemp)"
           fetch_public "goods/volcanic-ash-protection.html" "${tmp_volcanic_goods}"
-          grep -q "火山灰対策グッズの選び方" "${tmp_volcanic_goods}"
+          grep -q "火山灰対策グッズは何が必要？" "${tmp_volcanic_goods}"
           grep -Fq "<link rel=\"canonical\" href=\"${BASE_URL}goods/volcanic-ash-protection.html\">" "${tmp_volcanic_goods}"
           grep -q 'B081YKHRLB' "${tmp_volcanic_goods}"
           grep -q 'B079BNC5XQ' "${tmp_volcanic_goods}"
