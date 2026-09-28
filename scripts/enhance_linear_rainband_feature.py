@@ -518,30 +518,11 @@ def enhance_feature_page(html: str, article_id: str) -> str:
         html = html.replace(marker, marker + region_panel(), 1)
 
     if article_id == "B067":
-        html = re.sub(
-            r"<title>.*?</title>",
-            "<title>線状降水帯とは？過去事例・発生数・多い地域・雨量記録をデータで見る｜防災くらしガイド</title>",
-            html,
-            count=1,
-            flags=re.DOTALL,
-        )
-        html = re.sub(
-            r'<meta\s+name="description"\s+content="[^"]*">',
-            '<meta name="description" content="線状降水帯とは何かを、過去事例・発生数・多い地域・雨量記録・情報制度から整理。九州・関東甲信・中国・四国・東海の地域別記事も案内します。">',
-            html,
-            count=1,
-            flags=re.IGNORECASE,
-        )
-        html = re.sub(
-            r"<h1>.*?</h1>",
-            "<h1>線状降水帯とは？過去事例・発生数・多い地域・雨量記録をデータで見る</h1>",
-            html,
-            count=1,
-            flags=re.DOTALL,
-        )
+        # Search metadata and H1 are synchronized from the reviewed Markdown/registry
+        # before this enhancer runs. Do not overwrite them here.
         html = re.sub(
             r'<p\s+class="article-lead"[^>]*>.*?</p>',
-            '<p class="article-lead">線状降水帯とは何かを入口に、<strong>過去事例・発生数・多い地域・雨量記録・情報制度</strong>を整理します。全国像から地域別記事まで、知りたいテーマへ直接進めます。</p>',
+            '<p class="article-lead">線状降水帯とは何かを入口に、<strong>過去の発生履歴・雨量記録・多い地域・発生数・情報制度</strong>を整理します。全国像から地域別記事まで、知りたいテーマへ直接進めます。</p>',
             html,
             count=1,
             flags=re.DOTALL | re.IGNORECASE,
