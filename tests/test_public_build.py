@@ -250,6 +250,18 @@ class PublicBuildTests(unittest.TestCase):
             html = page.read_text(encoding="utf-8")
             self.assertEqual(1, html.count(expected), page)
 
+    def test_homepage_declares_search_site_name(self):
+        home = (PUBLIC / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(1, home.count('<meta property="og:site_name" content="防災くらしガイド">'))
+        marker = '<script type="application/ld+json" data-generated="website-structured-data">'
+        self.assertEqual(1, home.count(marker))
+        start = home.index(marker) + len(marker)
+        end = home.index("</script>", start)
+        payload = json.loads(home[start:end])
+        self.assertEqual("WebSite", payload["@type"])
+        self.assertEqual("防災くらしガイド", payload["name"])
+        self.assertEqual("https://bousaikun.ashigaru.jp/", payload["url"])
+
     def test_homepage_uses_home_specific_assets(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
         article = (PUBLIC / "guide" / "first-disaster-preparedness.html").read_text(encoding="utf-8")
