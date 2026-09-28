@@ -39,6 +39,8 @@ PREFECTURE_FILES = [
     "B095_linear_rainband_ishikawa.md",
     "B096_linear_rainband_toyama.md",
     "B098_linear_rainband_kanagawa.md",
+    "B099_linear_rainband_fukuoka.md",
+    "B100_linear_rainband_saga.md",
 ]
 
 class LinearRainbandQualityTest(unittest.TestCase):
@@ -173,6 +175,18 @@ class LinearRainbandQualityTest(unittest.TestCase):
         self.assertEqual(10, recent)
         self.assertEqual(7, past)
 
+    def test_fukuoka_and_saga_case_tables_keep_reviewed_case_counts(self):
+        for filename in (
+            "B099_linear_rainband_fukuoka.md",
+            "B100_linear_rainband_saga.md",
+        ):
+            text = (ARTICLE_DIR / filename).read_text(encoding="utf-8")
+            recent = self._table_row_count_after_heading(text, "直近の大雨・線状降水帯事例")
+            past = self._table_row_count_after_heading(text, "過去の代表的な豪雨")
+            self.assertEqual(5, recent, filename)
+            self.assertGreaterEqual(past, 5, filename)
+            self.assertLessEqual(past, 10, filename)
+
     def test_case_focused_region_markdown_has_no_raw_html_breaks(self):
         for name in (
             "B068_linear_rainband_history.md",
@@ -263,6 +277,8 @@ class LinearRainbandQualityTest(unittest.TestCase):
                 "三重県",
                 "和歌山県",
                 "高知県",
+                "福岡県",
+                "佐賀県",
                 "大分県",
                 "熊本県",
                 "長崎県",
@@ -329,9 +345,14 @@ class LinearRainbandQualityTest(unittest.TestCase):
             "B095": "石川県",
             "B096": "富山県",
             "B098": "神奈川県",
+            "B099": "福岡県",
+            "B100": "佐賀県",
         }
+        registry = preview_sync._core.load_registry(preview_sync._core.REGISTRY)
+        by_id = {article["article_id"]: article for article in registry["articles"]}
         for article_id, prefecture in expected.items():
-            title = f"{prefecture}の線状降水帯｜過去の発生履歴・直近事例を一覧で解説"
+            title = by_id[article_id]["title"]
+            self.assertIn(prefecture, title, article_id)
             html = (ROOT / "preview" / f"article_{article_id.lower()}.html").read_text(encoding="utf-8")
             self.assertIn(f"<title>{title}｜防災くらしガイド</title>", html, article_id)
             self.assertIn(f"<h1>{title}</h1>", html, article_id)
