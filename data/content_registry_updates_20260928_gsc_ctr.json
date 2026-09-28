@@ -24,6 +24,14 @@
     {
       "article_id": "B008",
       "modified_at": "2026-09-28"
+    },
+    {
+      "article_id": "B073",
+      "body_char_count_approx": 5858,
+      "source_checked_at": "2026-09-28",
+      "last_reviewed_at": "2026-09-28",
+      "review_checklist_last_checked_at": "2026-09-28",
+      "modified_at": "2026-09-28"
     }
   ]
 }
