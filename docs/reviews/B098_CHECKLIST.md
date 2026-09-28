@@ -1,12 +1,12 @@
 # B098 記事別レビュー記録
 
 - article_id: B098
-- title: 神奈川県の線状降水帯｜過去の発生履歴・直近事例を一覧で解説
+- title: 神奈川県・横浜の線状降水帯｜2025年の県内初発生と大雨被害
 - content_role: detail
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: PASS
-- last_checked_at: 2026-09-24
+- last_checked_at: 2026-09-28
 - reviewer: ChatGPT
 - applied_modules: CORE / DISASTER_CASE / EVACUATION_LOCATION
 
