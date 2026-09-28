@@ -18,7 +18,7 @@ class LinearRainbandFeatureUxTests(unittest.TestCase):
             encoding="utf-8"
         )
         self.assertIn(
-            "# 線状降水帯とは？過去事例・発生数・多い地域・雨量記録をデータで見る",
+            "# 線状降水帯とは？過去の発生履歴・雨量記録・多い地域を解説",
             text,
         )
         self.assertNotIn("この特集の5ページ", text)
