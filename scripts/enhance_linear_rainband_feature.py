@@ -59,6 +59,8 @@ PREFECTURE_PAGES = (
     ("B089", "三重県", "article_b089.html", "紀伊半島・台風・線状降水帯"),
     ("B088", "和歌山県", "article_b088.html", "紀伊半島の豪雨史・直近事例"),
     ("B087", "高知県", "article_b087.html", "多雨地形・直近の大雨事例"),
+    ("B099", "福岡県", "article_b099.html", "筑後・福岡都市圏の豪雨史と直近事例"),
+    ("B100", "佐賀県", "article_b100.html", "佐賀平野・六角川流域の豪雨史と直近事例"),
     ("B086", "大分県", "article_b086.html", "九州北部豪雨・直近事例"),
     ("B084", "熊本県", "article_b084.html", "球磨川・阿蘇・直近事例"),
     ("B085", "長崎県", "article_b085.html", "長崎大水害・直近事例"),
@@ -87,6 +89,8 @@ SHELTER_GUIDES = {
     "B095": ("石川県 防災に関する情報", "https://www.pref.ishikawa.lg.jp/bousai/bousai_g/"),
     "B096": ("富山県 洪水ハザードマップ", "https://www.pref.toyama.jp/1711/kurashi/kankyoushizen/kankyou/mizu/hazard/index.html"),
     "B098": ("神奈川県 指定緊急避難場所・指定避難所", "https://www.pref.kanagawa.jp/docs/j8g/bousai/1_7748_9_8.html"),
+    "B099": ("福岡県 避難所・避難情報", "https://ken-bousai.pref.fukuoka.lg.jp/"),
+    "B100": ("佐賀県 県内各市町の避難所等", "https://www.pref.saga.lg.jp/kiji00350340/index.html"),
 }
 
 TOKYO_WARD_MAPS = (
@@ -164,6 +168,8 @@ CURRENT_LABEL = {
     "B096": "富山県",
     "B097": "ゲリラ豪雨との違い",
     "B098": "神奈川県",
+    "B099": "福岡県",
+    "B100": "佐賀県",
 }
 
 FEATURE_STYLE = """<style id="linear-rainband-feature-review-styles">
@@ -462,7 +468,7 @@ def breadcrumb(article_id: str) -> str:
             + current
             + "</nav>"
         )
-    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098"}:
+    if article_id in {"B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098", "B099", "B100"}:
         return (
             prefix
             + '<a href="article_b067.html">線状降水帯特集</a> &gt; '
@@ -496,7 +502,7 @@ def enhance_feature_page(html: str, article_id: str) -> str:
 
     desired_nav = (
         region_nav(article_id)
-        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098"}
+        if article_id in {"B073", "B074", "B075", "B076", "B077", "B082", "B083", "B084", "B085", "B086", "B087", "B088", "B089", "B090", "B091", "B092", "B094", "B095", "B096", "B098", "B099", "B100"}
         else core_nav(article_id)
     )
     html = _ensure_feature_nav(html, desired_nav, article_id)
