@@ -205,12 +205,12 @@ class LinearRainbandQualityTest(unittest.TestCase):
     def test_recent_case_recency_and_local_downpour_regressions(self):
         expectations = {
             "B068_linear_rainband_history.md": [
-                "2026年9月20〜23日",
+                "2026年9月19〜22日",
                 "2026年8月22日",
                 "局地的大雨（いわゆるゲリラ豪雨）",
             ],
             "B074_linear_rainband_kanto_koshin.md": [
-                "2026年9月20〜23日",
+                "2026年9月19〜22日",
                 "2025年7月10日",
                 "2024年8月21日",
             ],
