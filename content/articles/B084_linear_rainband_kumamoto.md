@@ -6,8 +6,8 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-22
-next_review_at: 2027-03-21
+source_checked_at: 2026-09-30
+next_review_at: 2026-10-08
 affiliate: false
 ---
 
@@ -23,6 +23,7 @@ affiliate: false
 
 | 日時・発生現象 | 主な状況・実測雨量 | 気象庁等の発表 | 被害・記録性 |
 |---|---|---|---|
+| 2026年9月27日／⚠️ 大雨・線状降水帯直前予測 | 5時59分に熊本県へ直前予測。鹿北51.5mm/h、岱明49.0mm/hなどで9月の1位を更新 | 熊本県が災害警戒本部体制で警戒。直前予測を発表 | 9月30日時点で実発生は一次資料未確認のため発生件数に加えない。予測と実績を分ける事例 |
 | 2026年7月5日／🌀 線状降水帯 | 熊本県で再び発生 | 気象庁資料で線状降水帯発生を確認 | 7月2日とは別日の独立事例 |
 | 2026年7月2日／🌀 線状降水帯 | 佐賀・長崎・福岡・大分・熊本で発生 | 九州北部の複数県で発生確認 | 広域に危険度が高まった事例 |
 | 2025年9月10日／🌀 線状降水帯 | 熊本県で発生。三角では日降水量188.0mm | 半日前の呼びかけなしで実発生。3時間降水量最大約200mm | 8月の大雨とは別イベント |
@@ -125,6 +126,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [気象庁「2026年9月26〜30日の観測史上1位更新状況」](https://www.data.jma.go.jp/stats/mdrr/periodstat/20260925a/20260930/24/rank_update.html)
+- [熊本県「線状降水帯直前予測の発表に伴う知事コメント」（2026年9月27日）](https://www.pref.kumamoto.jp/soshiki/222/280988.html)
+
 - [気象庁「2021年8月11〜19日の前線による大雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2021/20210831/20210831.html)
 - [気象庁「2021年8月12日 顕著な大雨に関する全般気象情報」](https://www.jma.go.jp/jma/kishou/books/saigaiji/saigaiji_2021/202202/denbun/2021/08/12/VPZJ50_RJTD_20210812045957_NJ001NNA.html)
 - [気象庁「令和2年7月豪雨」](https://www.data.jma.go.jp/stats/data/bosai/report/2020/20200811/20200811.html)
