@@ -6,8 +6,8 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-22
-next_review_at: 2027-03-21
+source_checked_at: 2026-09-30
+next_review_at: 2026-10-08
 affiliate: false
 ---
 
@@ -21,6 +21,7 @@ affiliate: false
 
 | 日時・発生現象 | 主な状況・実測雨量 | 気象庁等の発表 | 被害・特徴 |
 |---|---|---|---|
+| 2026年9月27〜28日／⚠️ 前線等による大雨 | 大村で1時間66.5mmを観測し、9月としての1位を更新 | 長崎県は27日・28日の大雨警報・土砂災害警報に関する被害情報を公表 | 線状降水帯実発生は一次資料未確認。月別記録として残し、実発生件数とは分ける |
 | 2026年7月2日／🌀 線状降水帯 | 佐賀・長崎・福岡・大分・熊本で発生 | 九州北部の複数県で発生確認 | 直近の広域発生事例 |
 | 2025年9月10日／🌀 線状降水帯 | 長崎県で発生。島原では日降水量163.0mm、3時間105.0mm | 半日前の呼びかけなしで実発生。3時間降水量最大約200mm | 8月とは別イベント。島原では9月の複数降水指標で上位記録 |
 | 2025年8月11日／🌀 線状降水帯 | 長崎県南部で発生 | 顕著な大雨に関する長崎県気象情報を発表 | 九州北部で線状降水帯が繰り返し発生した一連の大雨 |
@@ -116,6 +117,9 @@ affiliate: false
 - [線状降水帯特集トップ](special/linear-rainband/index.html)
 
 ## 公的情報・参考資料
+- [気象庁「2026年9月26〜30日の観測史上1位更新状況」](https://www.data.jma.go.jp/stats/mdrr/periodstat/20260925a/20260930/24/rank_update.html)
+- [長崎県「令和8年度の被害情報」](https://www.pref.nagasaki.jp/bunrui/anzen-anshin/bosai-kokuminhogo/saigai-zenpan/higai/higai8/body.html)
+
 - [長崎地方気象台「過去の気象災害」](https://www.data.jma.go.jp/nagasaki-c/shosai/saigai/index.html)
 - [長崎地方気象台「2021年8月11〜19日にかけての大雨」](https://www.data.jma.go.jp/nagasaki-c/shosai/saigai/ooame/20200811-0819/index.html)
 - [長崎地方気象台「2020年7月6〜8日にかけての大雨」](https://www.data.jma.go.jp/nagasaki-c/shosai/saigai/ooame/20200706-0708/index.html)
