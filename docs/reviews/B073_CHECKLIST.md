@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: `PASS`
-- last_checked_at: 2026-09-22
+- last_checked_at: 2026-09-30
 - reviewer: ChatGPT
 - persona_mode: `SITUATIONAL_SEGMENT`
 
@@ -59,3 +59,19 @@
 - C02-42 遡及的な線状降水帯認定なし: PASS
 - 同一広域豪雨を県ごとに重複計上しない: PASS
 - production: **未実行（ユーザー明示許可制）**
+
+
+## 2026-09-30 重大被害・記録更新監査
+
+- C02-51 被害種別の横断確認: PASS
+- C02-52 同一イベントの複数被害を別事例へ水増ししていない: PASS
+- C02-53 雨量以外の記録候補も確認: PASS
+- C02-54 観測史上 / 月別 / 統計期間の区別: PASS
+- C02-55 「初」の対象範囲確認: PASS / 該当時のみ使用
+- C02-56 長雨・期間記録の確認: PASS / 候補台帳で管理
+- C02-57 ダム・渇水・水資源記録: PASS / 別テーマ候補は台帳で管理
+- C02-58 公開後の追跡更新: PASS
+- C02-59 確認日・速報/確定の区別: PASS
+- C02-60 event_id付き候補台帳: PASS（`docs/research/DISASTER_RECORD_CANDIDATE_LEDGER_20260930.md`）
+- 記事固有確認: 9月26〜28日の九州北部大雨を関連豪雨として追加。大牟田の9月記録、熊本の直前予測、佐賀の被害なし最終確認を分離。
+- production: 未実行（ユーザー明示許可制）
