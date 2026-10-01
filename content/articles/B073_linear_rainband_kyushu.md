@@ -6,8 +6,8 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-22
-next_review_at: 2027-03-14
+source_checked_at: 2026-09-30
+next_review_at: 2026-10-08
 affiliate: false
 ---
 
@@ -23,6 +23,7 @@ affiliate: false
 
 | 年・時期 | 地域・事例 | 確認できる事実 | 確認ポイント |
 |---|---|---|---|
+| 2026年9月26〜28日 | 福岡・長崎・熊本・佐賀など／⚠️ 前線等による大雨 | 大牟田で1時間71.0mm・24時間281.0mmなど9月の1位更新。熊本県には27日5時59分に線状降水帯直前予測 | 実発生は一次資料未確認。佐賀県では土砂災害危険警報等が出たが、最終確認で人的・住家・道路被害の報告なし。予測・記録・被害を分けて扱う |
 | 2026年8月25〜26日 | 鹿児島県奄美地方 | 奄美地方で線状降水帯が発生 | 九州本土とは情報区分が異なる島しょ部の直近事例 |
 | 2026年7月5日 | 熊本県 | 熊本県で線状降水帯が再び発生 | 7月2日の広域豪雨とは別日の独立事例 |
 | 2026年7月2日 | 佐賀・長崎・福岡・大分・熊本 | 九州北部の複数県で線状降水帯 | 複数県にまたがる同日の広域事例として1件に整理 |
@@ -114,6 +115,8 @@ affiliate: false
 - [土砂キキクルと避難判断](flood/landslide-evacuation-kikikuru.html)
 
 ## 公的情報・参考資料
+- [気象庁「2026年9月26〜30日の観測史上1位更新状況」](https://www.data.jma.go.jp/stats/mdrr/periodstat/20260925a/20260930/24/rank_update.html)
+
 
 - [気象庁「気象業務はいま2024」特集1](https://www.jma.go.jp/jma/kishou/books/hakusho/2024/index1.html)
 - [福岡管区気象台「平成29年7月九州北部豪雨」](https://www.data.jma.go.jp/fukuoka/gyomu/H29_hokubugouu.html)
