@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: PASS
-- last_checked_at: 2026-09-30
+- last_checked_at: 2026-10-01
 - reviewer: ChatGPT
 
 ## 判定
@@ -127,5 +127,5 @@
 - C02-58 公開後の追跡更新: PASS
 - C02-59 確認日・速報/確定の区別: PASS
 - C02-60 event_id付き候補台帳: PASS（`docs/research/DISASTER_RECORD_CANDIDATE_LEDGER_20260930.md`）
-- 記事固有確認: 9月19〜22日と9月6〜8日の記録更新を追加。23区低地と島しょ部の被害型を分けて確認。35日連続降水の『歴代最長』は一次資料明示未確認のため本文採用を保留。
+- 記事固有確認: 9月19〜22日と9月6〜8日の記録更新を追加。23区低地と島しょ部の被害型を分けて確認。2026年9月の東京月降水量607.0mmは気象庁公式で9月として歴代2位を確認し本文へ反映。36日連続降水の『歴代最長』は気象庁公式ランキングの明示未確認のため候補台帳で保留。
 - production: 未実行（ユーザー明示許可制）

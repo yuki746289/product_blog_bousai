@@ -6,7 +6,7 @@
 - risk_level: standard
 - article_status: READY_TO_PUBLISH
 - review_status: PASS
-- last_checked_at: 2026-09-30
+- last_checked_at: 2026-10-01
 - reviewer: ChatGPT
 
 ## 判定
@@ -131,5 +131,5 @@
 - C02-58 公開後の追跡更新: PASS
 - C02-59 確認日・速報/確定の区別: PASS
 - C02-60 event_id付き候補台帳: PASS（`docs/research/DISASTER_RECORD_CANDIDATE_LEDGER_20260930.md`）
-- 記事固有確認: 台風25号の24h/72h記録、堤防決壊、大規模浸水、交通・ライフライン、9月30日時点の排水・復旧継続を確認。
+- 記事固有確認: 台風25号の24h/72h記録、北印旛沼・角川・長門川の破堤、大規模浸水、交通・ライフラインを確認。9月30日時点の緊急排水・応急復旧継続、県管理道路56区間全面通行止めも追跡。
 - production: 未実行（ユーザー明示許可制）

@@ -6,7 +6,7 @@ category: flood
 content_role: detail
 risk_level: standard
 status: READY_TO_PUBLISH
-source_checked_at: 2026-09-30
+source_checked_at: 2026-10-01
 next_review_at: 2026-10-08
 affiliate: false
 ---
@@ -36,6 +36,12 @@ affiliate: false
 | 2022年8月13日／🌀 線状降水帯 | 伊豆半島沖〜伊豆諸島北部で約50分継続。雨域で3時間約220mm | 気象庁検証資料で発生確認 | 現行統一一覧開始前だが、公的検証資料で実発生を確認 |
 
 **2022年・2023年に加え、2025年10月9日にも伊豆諸島で線状降水帯の実発生を確認できます。** 一方、2024年・2025年・2026年の23区を中心とする局地的大雨は、線状降水帯とは別の短時間強雨として扱います。「ゲリラ豪雨」は気象庁の正式な現象名ではないため、記事内では必ず「局地的大雨」と併記します。
+
+## 2026年9月は月降水量607.0mmで9月として歴代2位
+
+気象庁の東京観測点の月別順位では、**2026年9月の月降水量は607.0mm**で、1958年9月の670.9mmに次ぐ**9月として歴代2位**となっています。
+
+これは1回の線状降水帯や1日の豪雨記録とは別の「期間記録」です。東京の大雨を整理するときは、1時間・24時間などの短時間記録だけでなく、月降水量や長雨のような期間全体の異常さも分けて確認する必要があります。
 
 ## 過去の代表的な豪雨
 
@@ -124,6 +130,7 @@ affiliate: false
 - [ゲリラ豪雨と線状降水帯の違い](special/linear-rainband/guerrilla-rain-vs-linear-rainband.html)
 
 ## 公的情報・参考資料
+- [気象庁「東京観測点・9月としての観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_s.php?prec_no=44&block_no=47662&year=&month=9&day=&view=)
 - [気象庁「2025年10月9日に伊豆諸島で発生した線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/sokuhou/R071008.pdf)
 - [気象庁「令和7年の線状降水帯実績」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R07jisseki.pdf)
 
