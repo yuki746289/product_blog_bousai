@@ -60,7 +60,7 @@ source_checked_at: 2026-10-01
 
 短時間の最大雨量だけを見ると、長期間続いた異常さを見落とします。東京観測点では、2026年9月の月降水量が**696.5mmで9月として1位**、月間日照時間が**45.8時間で9月として少ない方から2位**となりました。
 
-Weathernewsの観測値集計では、東京で8月27日から9月30日まで**35日連続で降水を観測**し、1876年以降最長とされています。ただし、気象庁には同じ定義の連続降水日数ランキングを確認できないため、「1876年以降最長」は気象庁公式記録ではなく**民間集計**として扱います。
+[Weathernewsの観測値集計](https://weathernews.jp/news/202609/290181/)では、東京で8月27日から9月30日まで**35日連続で降水を観測**し、1876年以降最長とされています。ただし、気象庁には同じ定義の連続降水日数ランキングを確認できないため、「1876年以降最長」は気象庁公式記録ではなく**民間集計**として扱います。
 
 この長雨は線状降水帯の1事例として件数に加えません。全国年表では、単発災害とは別の「期間記録」として管理します。
 
@@ -116,7 +116,6 @@ Weathernewsの観測値集計では、東京で8月27日から9月30日まで**3
 - [千葉県「印旛沼の被災箇所の対応状況」](https://www.pref.chiba.lg.jp/kendosei/kendo/r8-taihuu25-inbanuma.html)
 - [千葉県「農林水産業の被害状況」](https://www.pref.chiba.lg.jp/nousui/nourinsuisanngyounohigaijyoukyou.html)
 - [気象庁「東京観測点・9月としての観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_s.php?prec_no=44&block_no=47662&year=&month=9&day=&view=)
-- [Weathernews「東京で8月27日から9月30日まで35日連続降水」（二次集計）](https://weathernews.jp/news/202609/290181/)
 
 - [気象庁「佐倉・観測史上1〜10位」](https://www.data.jma.go.jp/stats/etrn/view/rank_a.php?block_no=0916&prec_no=45)
 - [東京管区気象台「気象災害に関する資料」](https://www.data.jma.go.jp/tokyo/shosai/chiiki/disaster/index.html)
