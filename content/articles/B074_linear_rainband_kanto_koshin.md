@@ -80,7 +80,7 @@ affiliate: false
 
 東京観測点では2026年9月の月降水量が**696.5mmで9月として1位**、月間日照時間が**45.8時間で9月として少ない方から2位**となりました。これは1時間・24時間雨量とは別の期間記録です。
 
-Weathernews集計では8月27日から9月30日まで35日連続で降水を観測し、1876年以降最長とされています。ただし、気象庁に同一定義の公式連続日数ランキングを確認できないため、最長という評価は民間集計として扱います。線状降水帯の発生件数には加えません。
+[Weathernews集計](https://weathernews.jp/news/202609/290181/)では8月27日から9月30日まで35日連続で降水を観測し、1876年以降最長とされています。ただし、気象庁に同一定義の公式連続日数ランキングを確認できないため、最長という評価は民間集計として扱います。線状降水帯の発生件数には加えません。
 
 ## 2026年千葉豪雨：1時間115.0mm、24時間367.0mm
 
@@ -135,7 +135,6 @@ Weathernews集計では8月27日から9月30日まで35日連続で降水を観�
 - [国土交通省「令和8年台風第25号、第26号及び前線による大雨」](https://www.mlit.go.jp/saigai/saigai_260920.html)
 - [国土交通省「令和8年台風第24号及び前線による大雨」](https://www.mlit.go.jp/saigai/saigai_260903.html)
 - [千葉県「印旛沼の被災箇所の対応状況」](https://www.pref.chiba.lg.jp/kendosei/kendo/r8-taihuu25-inbanuma.html)
-- [Weathernews「東京で8月27日から9月30日まで35日連続降水」（二次集計）](https://weathernews.jp/news/202609/290181/)
 
 - [気象庁「2022年8月12〜13日の線状降水帯」](https://www.jma.go.jp/jma/kishou/know/jirei/senjoukousuitai/R040812.pdf)
 - [気象庁「令和7年台風第15号と線状降水帯」](https://www.jma.go.jp/jma/kishou/books/hakusho/2026/index6.html)
