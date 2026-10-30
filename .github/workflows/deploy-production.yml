@@ -464,6 +464,7 @@ jobs:
           tmp_sitemap="$(mktemp)"
           fetch_public "sitemap.xml" "${tmp_sitemap}"
           grep -q "<urlset" "${tmp_sitemap}"
+          grep -q "<lastmod>" "${tmp_sitemap}"
           grep -q "${BASE_URL}goods/portable-power-station-disaster.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}goods/volcanic-ash-protection.html" "${tmp_sitemap}"
           grep -q "${BASE_URL}water-outage/portable-toilet-stockpile.html" "${tmp_sitemap}"
