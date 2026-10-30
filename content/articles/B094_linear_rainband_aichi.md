@@ -139,6 +139,7 @@ affiliate: false
 
 ## 関連ページ
 
+- [名古屋市の水害史｜伊勢湾台風と東海豪雨](region/nagoya/flood-storm-surge-history.html)
 - [東海の線状降水帯](special/linear-rainband/tokai.html)
 - [三重県の線状降水帯](special/linear-rainband/prefecture/mie.html)
 - [静岡県の線状降水帯](special/linear-rainband/prefecture/shizuoka.html)
