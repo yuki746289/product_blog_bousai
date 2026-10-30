@@ -192,6 +192,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIn(">線状降水帯</a> &gt; 愛知県</nav>", expected)
         self.assertNotIn("被災後の手続き", expected)
         self.assertNotIn("浸水後の記録", expected)
+        self.assertIn("region/nagoya/flood-storm-surge-history.html", html)
 
     def test_practical_articles_have_saveable_action_check(self):
         registry = load_registry(REGISTRY)
@@ -410,6 +411,27 @@ class PublicBuildTests(unittest.TestCase):
         sitemap = sitemap_path.read_text(encoding="utf-8")
         robots = robots_path.read_text(encoding="utf-8")
         self.assertEqual(len(list(PUBLIC.rglob("*.html"))), sitemap.count("<url>"))
+
+        registry = load_registry(REGISTRY)
+        article_lastmod = {
+            f"https://bousaikun.ashigaru.jp/{article['planned_public_path'].lstrip('/')}":
+            article["modified_at"]
+            for article in registry["articles"]
+        }
+        sitemap_entries = {}
+        for block in re.findall(r"<url>(.*?)</url>", sitemap, flags=re.DOTALL):
+            loc_match = re.search(r"<loc>(.*?)</loc>", block)
+            self.assertIsNotNone(loc_match)
+            lastmod_match = re.search(r"<lastmod>(.*?)</lastmod>", block)
+            sitemap_entries[loc_match.group(1)] = (
+                lastmod_match.group(1) if lastmod_match else None
+            )
+
+        self.assertEqual(len(registry["articles"]), sitemap.count("<lastmod>"))
+        for url, modified_at in article_lastmod.items():
+            self.assertEqual(modified_at, sitemap_entries.get(url), url)
+        self.assertIsNone(sitemap_entries.get("https://bousaikun.ashigaru.jp/"))
+
         self.assertIn("https://bousaikun.ashigaru.jp/", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/goods/portable-power-station-disaster.html", sitemap)
         self.assertIn("https://bousaikun.ashigaru.jp/goods/volcanic-ash-protection.html", sitemap)
