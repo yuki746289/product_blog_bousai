@@ -18,7 +18,7 @@ VISIBLE_BREADCRUMB_RE = re.compile(
     r'<nav\s+class=["\']breadcrumb["\'][^>]*>.*?</nav>',
     re.IGNORECASE | re.DOTALL,
 )
-MAIN_OPEN_RE = re.compile(r"<main\\b[^>]*>", re.IGNORECASE)
+MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
 SPAN_RE = re.compile(r"<span>(?P<body>.*?)</span>", re.IGNORECASE | re.DOTALL)
 DESCRIPTION_RE = re.compile(
     r'<meta\s+name=["\']description["\']\s+content=["\']([^"\']+)["\']',
