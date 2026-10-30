@@ -277,12 +277,7 @@ class PublicBuildTests(unittest.TestCase):
         for page in sorted(PUBLIC.rglob("*.html")):
             html = page.read_text(encoding="utf-8")
             self.assertEqual(1, html.count(expected), page)
-            icon_links = re.findall(
-                r"<link\\b(?=[^>]*\\brel=[\"'][^\"']*\\bicon\\b[^\"']*[\"'])[^>]*>",
-                html,
-                flags=re.IGNORECASE,
-            )
-            self.assertEqual(1, len(icon_links), page)
+            self.assertEqual(1, html.count('<link rel="icon"'), page)
 
     def test_homepage_declares_search_site_name(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
