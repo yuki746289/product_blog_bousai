@@ -83,7 +83,10 @@ NOINDEX_RE = re.compile(
     re.IGNORECASE,
 )
 ATTR_RE = re.compile(r'(?P<attr>href|src)=["\'](?P<url>[^"\']+)["\']', re.IGNORECASE)
-FAVICON_LINK = '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">'
+ICON_LINK_RE = re.compile(
+    r'<link\b(?=[^>]*\brel=["\'][^"\']*\bicon\b[^"\']*["\'])[^>]*>\s*',
+    re.IGNORECASE,
+)
 OG_SITE_NAME_RE = re.compile(
     r'<meta\s+property=["\']og:site_name["\']\s+content=["\'][^"\']+["\']\s*/?>',
     re.IGNORECASE,
@@ -200,13 +203,27 @@ def add_accessibility_scaffolding(html: str) -> str:
     return html
 
 
-def inject_favicon(html: str) -> str:
-    """Inject one stable favicon link for browsers and Google Search."""
-    if re.search(r'<link\b(?=[^>]*\brel=["\'][^"\']*\bicon\b[^"\']*["\'])[^>]*>', html, flags=re.IGNORECASE):
-        return html
-    if "</head>" not in html.lower():
+def favicon_link(site_config: dict) -> str:
+    """Return one canonical same-host favicon declaration for public HTML."""
+    base_url = str(site_config.get("public_base_url", "")).strip()
+    if not base_url:
+        raise ValueError("public_base_url is required for favicon")
+    href = base_url.rstrip("/") + "/favicon.png"
+    return f'<link rel="icon" type="image/png" sizes="64x64" href="{href}">'
+
+
+def inject_favicon(html: str, site_config: dict) -> str:
+    """Normalize favicon markup to one stable absolute same-host URL."""
+    cleaned = ICON_LINK_RE.sub("", html)
+    if "</head>" not in cleaned.lower():
         raise ValueError("Missing </head> while injecting favicon")
-    return html.replace("</head>", FAVICON_LINK + "\n</head>", 1)
+    return re.sub(
+        r"</head>",
+        lambda _: favicon_link(site_config) + "\n</head>",
+        cleaned,
+        count=1,
+        flags=re.IGNORECASE,
+    )
 
 
 
@@ -258,10 +275,10 @@ def transform_html(
         html = reduce_listing_commons_width(html)
 
     html = add_accessibility_scaffolding(html)
-    html = inject_favicon(html)
+    if site_config is None:
+        raise ValueError("site_config is required for production search metadata")
+    html = inject_favicon(html, site_config)
     if source_name == "index.html":
-        if site_config is None:
-            raise ValueError("site_config is required for homepage search identity")
         html = inject_home_search_identity(html, site_config)
 
     if "G-XQVLD5HMNG" not in html:
@@ -368,8 +385,11 @@ def validate_public(
             errors.append(f'{rel}: href="#" remains')
         if "準備中" in text:
             errors.append(f"{rel}: 準備中 remains")
-        if FAVICON_LINK not in text:
-            errors.append(f"{rel}: favicon link missing")
+        expected_favicon = favicon_link(site_config)
+        if text.count(expected_favicon) != 1:
+            errors.append(f"{rel}: canonical favicon link missing or duplicated")
+        if len(ICON_LINK_RE.findall(text)) != 1:
+            errors.append(f"{rel}: favicon link count != 1")
 
         article = article_by_output.get(rel)
         if article is not None:
