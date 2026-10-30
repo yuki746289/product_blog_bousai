@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
-from scripts.article_metadata import article_breadcrumb_items
+from scripts.article_metadata import article_breadcrumb_items, visible_breadcrumb_markup
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
@@ -136,6 +136,7 @@ class PublicBuildTests(unittest.TestCase):
             for path in (ROOT / "content" / "articles").glob("B*.md")
         }
         self.assertEqual(source_ids, registered_ids)
+        self.assertTrue({f"B{i:03d}" for i in range(1, 101)}.issubset(registered_ids))
 
         for article in articles:
             output = PUBLIC / article["planned_public_path"]
@@ -167,6 +168,30 @@ class PublicBuildTests(unittest.TestCase):
             )
             self.assertEqual(expected_breadcrumb, breadcrumb["itemListElement"], output)
             self.assertEqual("防災くらしガイド", breadcrumb["itemListElement"][0]["name"], output)
+
+            expected_visible = visible_breadcrumb_markup(
+                article,
+                article["planned_public_path"],
+                config,
+            )
+            self.assertEqual(1, html.count(expected_visible), output)
+
+    def test_aichi_visible_breadcrumb_matches_linear_rainband_structured_path(self):
+        registry = load_registry(REGISTRY)
+        article = next(a for a in registry["articles"] if a["article_id"] == "B094")
+        output = PUBLIC / article["planned_public_path"]
+        html = output.read_text(encoding="utf-8")
+        config = json.loads((ROOT / "config" / "site.json").read_text(encoding="utf-8"))
+
+        expected = visible_breadcrumb_markup(
+            article,
+            article["planned_public_path"],
+            config,
+        )
+        self.assertIn(expected, html)
+        self.assertIn(">線状降水帯</a> &gt; 愛知県</nav>", expected)
+        self.assertNotIn("被災後の手続き", expected)
+        self.assertNotIn("浸水後の記録", expected)
 
     def test_practical_articles_have_saveable_action_check(self):
         registry = load_registry(REGISTRY)
@@ -245,10 +270,14 @@ class PublicBuildTests(unittest.TestCase):
         width, height = struct.unpack(">II", data[16:24])
         self.assertEqual((64, 64), (width, height))
 
-        expected = '<link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">'
+        expected = (
+            '<link rel="icon" type="image/png" sizes="64x64" '
+            'href="https://bousaikun.ashigaru.jp/favicon.png">'
+        )
         for page in sorted(PUBLIC.rglob("*.html")):
             html = page.read_text(encoding="utf-8")
             self.assertEqual(1, html.count(expected), page)
+            self.assertEqual(1, html.count('<link rel="icon"'), page)
 
     def test_homepage_declares_search_site_name(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")

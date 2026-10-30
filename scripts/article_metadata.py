@@ -14,6 +14,11 @@ ARTICLE_META_RE = re.compile(
     r'<div\s+class=["\']article-meta["\'][^>]*>(?P<body>.*?)</div>',
     re.IGNORECASE | re.DOTALL,
 )
+VISIBLE_BREADCRUMB_RE = re.compile(
+    r'<nav\s+class=["\']breadcrumb["\'][^>]*>.*?</nav>',
+    re.IGNORECASE | re.DOTALL,
+)
+MAIN_OPEN_RE = re.compile(r"<main\b[^>]*>", re.IGNORECASE)
 SPAN_RE = re.compile(r"<span>(?P<body>.*?)</span>", re.IGNORECASE | re.DOTALL)
 DESCRIPTION_RE = re.compile(
     r'<meta\s+name=["\']description["\']\s+content=["\']([^"\']+)["\']',
@@ -218,6 +223,41 @@ def article_breadcrumb_items(article: dict, output_path: str, site_config: dict)
     ]
 
 
+def visible_breadcrumb_markup(article: dict, output_path: str, site_config: dict) -> str:
+    """Render visible breadcrumbs from the same hierarchy used by JSON-LD."""
+    items = article_breadcrumb_items(article, output_path, site_config)
+    parts: list[str] = []
+    for index, item in enumerate(items):
+        name = html_lib.escape(str(item["name"]))
+        if index < len(items) - 1:
+            href = html_lib.escape(str(item["item"]), quote=True)
+            parts.append(f'<a href="{href}">{name}</a>')
+        else:
+            parts.append(name)
+    return (
+        '<nav class="breadcrumb" aria-label="パンくずリスト">'
+        + " &gt; ".join(parts)
+        + "</nav>"
+    )
+
+
+def normalize_visible_breadcrumb(
+    html: str,
+    article: dict,
+    output_path: str,
+    site_config: dict,
+) -> str:
+    """Replace legacy breadcrumb copy with the canonical structured hierarchy."""
+    markup = visible_breadcrumb_markup(article, output_path, site_config)
+    if VISIBLE_BREADCRUMB_RE.search(html):
+        return VISIBLE_BREADCRUMB_RE.sub(markup, html, count=1)
+
+    main_match = MAIN_OPEN_RE.search(html)
+    if not main_match:
+        raise ValueError(f"{article.get('article_id', '?')}: main element not found for breadcrumb")
+    return html[: main_match.end()] + "\n" + markup + html[main_match.end() :]
+
+
 def _required_date(article: dict, field: str) -> str:
     value = article.get(field)
     if not isinstance(value, str) or not DATE_RE.fullmatch(value):
@@ -328,6 +368,7 @@ def inject_structured_data(html: str, article: dict, output_path: str, site_conf
 
 def apply_article_metadata(html: str, article: dict, output_path: str, site_config: dict) -> str:
     html = normalize_article_meta(html, article)
+    html = normalize_visible_breadcrumb(html, article, output_path, site_config)
     return inject_structured_data(html, article, output_path, site_config)
 
 
@@ -379,6 +420,10 @@ def validate_article_output(html: str, article: dict, output_path: str, site_con
             errors.append(f"{article_id}: BlogPosting datePublished mismatch")
         if posting.get("dateModified") != modified:
             errors.append(f"{article_id}: BlogPosting dateModified mismatch")
+
+    expected_visible = visible_breadcrumb_markup(article, output_path, site_config)
+    if html.count(expected_visible) != 1:
+        errors.append(f"{article_id}: visible breadcrumb does not match structured hierarchy")
 
     if not breadcrumb:
         errors.append(f"{article_id}: BreadcrumbList missing")
