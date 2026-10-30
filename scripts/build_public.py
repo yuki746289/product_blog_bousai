@@ -298,25 +298,39 @@ def write_search_engine_files(html_map: dict[str, str]) -> None:
     """Generate sitemap.xml and robots.txt from the production route map."""
     site_config = json.loads(SITE_CONFIG.read_text(encoding="utf-8"))
     base_url = site_config["public_base_url"].rstrip("/")
+    registry = load_registry()
 
-    urls: list[str] = []
-    for output_path in sorted(set(html_map.values())):
-        if output_path == "index.html":
-            loc = base_url + "/"
-        else:
-            loc = f"{base_url}/{output_path}"
-        urls.append(loc)
+    modified_by_output: dict[str, str] = {}
+    for article in registry["articles"]:
+        output_path = str(article.get("planned_public_path", "")).lstrip("/")
+        modified_at = str(article.get("modified_at", "")).strip()
+        if not output_path or not modified_at:
+            continue
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", modified_at):
+            raise ValueError(
+                f"{article.get('article_id', '?')}: invalid sitemap modified_at: {modified_at!r}"
+            )
+        modified_by_output[output_path] = modified_at
 
     sitemap_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ]
-    for loc in urls:
+    for output_path in sorted(set(html_map.values())):
+        if output_path == "index.html":
+            loc = base_url + "/"
+        else:
+            loc = f"{base_url}/{output_path}"
+
         sitemap_lines.extend([
             "  <url>",
             f"    <loc>{xml_escape(loc)}</loc>",
-            "  </url>",
         ])
+        modified_at = modified_by_output.get(output_path)
+        if modified_at:
+            sitemap_lines.append(f"    <lastmod>{modified_at}</lastmod>")
+        sitemap_lines.append("  </url>")
+
     sitemap_lines.append("</urlset>")
     (PUBLIC / "sitemap.xml").write_text("\n".join(sitemap_lines) + "\n", encoding="utf-8")
 
