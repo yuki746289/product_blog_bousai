@@ -180,7 +180,7 @@ jobs:
           require_text "homepage linear-rainband spotlight" "線状降水帯を知る" "${tmp_home}"
           require_text "homepage linear-rainband menu link" "special/linear-rainband/index.html" "${tmp_home}" fixed
           require_text "homepage asset cache version" "bousai_common.js?v=20260918-3" "${tmp_home}" fixed
-          require_text "homepage favicon link" 'href="/favicon.png"' "${tmp_home}" fixed
+          require_text "homepage favicon link" "href=\"${BASE_URL}favicon.png\"" "${tmp_home}" fixed
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
@@ -207,10 +207,28 @@ jobs:
           PY
           rm -f "${tmp_favicon}"
 
+          googlebot_home_status="$(curl --silent --show-error --location \
+            --retry 5 --retry-delay 10 --retry-all-errors \
+            --connect-timeout 15 --max-time 90 \
+            --user-agent "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
+            --output /dev/null --write-out "%{http_code}" \
+            "${BASE_URL}")"
+          echo "Googlebot homepage HTTP status: ${googlebot_home_status}"
+          test "${googlebot_home_status}" = "200"
+
+          googlebot_image_status="$(curl --silent --show-error --location \
+            --retry 5 --retry-delay 10 --retry-all-errors \
+            --connect-timeout 15 --max-time 90 \
+            --user-agent "Googlebot-Image/1.0" \
+            --output /dev/null --write-out "%{http_code}" \
+            "${BASE_URL}favicon.png")"
+          echo "Googlebot-Image favicon HTTP status: ${googlebot_image_status}"
+          test "${googlebot_image_status}" = "200"
+
           tmp_b008="$(mktemp)"
           fetch_public "vehicle/car-flood-submersion.html" "${tmp_b008}"
           require_text "B008 revised title" "車が冠水・水没したらどうする？脱出方法と水没後の対応" "${tmp_b008}" fixed
-          require_text "B008 favicon link" 'href="/favicon.png"' "${tmp_b008}" fixed
+          require_text "B008 favicon link" "href=\"${BASE_URL}favicon.png\"" "${tmp_b008}" fixed
           rm -f "${tmp_b008}"
 
           tmp_article="$(mktemp)"
@@ -221,6 +239,16 @@ jobs:
           grep -q '"@type":"BlogPosting"' "${tmp_article}"
           grep -q '"@type":"BreadcrumbList"' "${tmp_article}"
           rm -f "${tmp_article}"
+
+          tmp_aichi="$(mktemp)"
+          fetch_public "special/linear-rainband/prefecture/aichi.html" "${tmp_aichi}"
+          require_text "B094 visible breadcrumb" "線状降水帯</a> &gt; 愛知県</nav>" "${tmp_aichi}" fixed
+          require_text "B094 structured breadcrumb" '"name":"愛知県"' "${tmp_aichi}" fixed
+          if grep -q "被災後の手続き" "${tmp_aichi}" || grep -q "浸水後の記録" "${tmp_aichi}"; then
+            echo "B094 stale breadcrumb copy remains."
+            exit 1
+          fi
+          rm -f "${tmp_aichi}"
 
           tmp_insurance="$(mktemp)"
           fetch_public "insurance/disaster-insurance-overview.html" "${tmp_insurance}"
