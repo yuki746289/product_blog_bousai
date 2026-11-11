@@ -34,5 +34,36 @@ jobs:
         run: python scripts/enhance_linear_rainband_feature.py
       - name: Run tests
         run: python -m unittest discover -s tests -v
+      - name: Diagnose favicon by user agent
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://bousaikun.ashigaru.jp/"
+          declare -A uas
+          uas[normal]="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+          uas[googlebot]="Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+          uas[inspection]="Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36 (compatible; Google-InspectionTool/1.0;)"
+
+          for key in normal googlebot inspection; do
+            body="${RUNNER_TEMP}/favicon-${key}.html"
+            headers="${RUNNER_TEMP}/favicon-${key}.headers"
+            code="$(curl --silent --show-error --location               --retry 3 --retry-delay 2 --retry-all-errors               --connect-timeout 15 --max-time 90               --user-agent "${uas[$key]}"               --header "Cache-Control: no-cache"               --dump-header "$headers"               --output "$body"               --write-out "%{http_code}"               "$url")"
+            echo "=== ${key} ==="
+            echo "HTTP: $code"
+            echo "Bytes: $(wc -c < "$body")"
+            echo "SHA256: $(sha256sum "$body" | awk '{print $1}')"
+            echo "favicon_count: $(grep -Eio '<link[^>]+rel=["'"''][^"'"'']*icon[^"'"'']*["'"''][^>]*>' "$body" | wc -l)"
+            echo "favicon_href_count: $(grep -Fio 'https://bousaikun.ashigaru.jp/favicon.png' "$body" | wc -l)"
+            echo "canonical_count: $(grep -Fio '<link rel="canonical" href="https://bousaikun.ashigaru.jp/">' "$body" | wc -l)"
+            echo "Selected headers:"
+            grep -Ei '^(HTTP/|content-type:|content-length:|cache-control:|etag:|last-modified:|vary:|server:|cf-cache-status:|age:)' "$headers" || true
+            echo "Favicon lines:"
+            grep -Ein 'favicon|rel=["'"'']icon["'"'']' "$body" | head -n 5 || true
+          done
+
+          cmp -s "${RUNNER_TEMP}/favicon-normal.html" "${RUNNER_TEMP}/favicon-googlebot.html"             && echo "normal_vs_googlebot: IDENTICAL"             || echo "normal_vs_googlebot: DIFFERENT"
+          cmp -s "${RUNNER_TEMP}/favicon-normal.html" "${RUNNER_TEMP}/favicon-inspection.html"             && echo "normal_vs_inspection: IDENTICAL"             || echo "normal_vs_inspection: DIFFERENT"
+          cmp -s "${RUNNER_TEMP}/favicon-googlebot.html" "${RUNNER_TEMP}/favicon-inspection.html"             && echo "googlebot_vs_inspection: IDENTICAL"             || echo "googlebot_vs_inspection: DIFFERENT"
+
       - name: Check content registry
         run: bousai-blog-freshness data/content_registry.json
