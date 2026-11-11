@@ -180,7 +180,8 @@ jobs:
           require_text "homepage linear-rainband spotlight" "線状降水帯を知る" "${tmp_home}"
           require_text "homepage linear-rainband menu link" "special/linear-rainband/index.html" "${tmp_home}" fixed
           require_text "homepage asset cache version" "bousai_common.js?v=20260918-3" "${tmp_home}" fixed
-          require_text "homepage favicon link" "href=\"${BASE_URL}favicon.png\"" "${tmp_home}" fixed
+          require_text "homepage favicon link" "<link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"${BASE_URL}favicon.png\">" "${tmp_home}" fixed
+          require_text "homepage Apple touch icon link" "<link rel=\"apple-touch-icon\" href=\"${BASE_URL}favicon.png\">" "${tmp_home}" fixed
           if grep -Eq 'src="https://(commons|upload)\.wikimedia\.org/' "${tmp_home}"; then
             echo "Homepage Commons images must be local, but external Wikimedia src remains."
             exit 1
@@ -190,8 +191,10 @@ jobs:
           tmp_favicon="$(mktemp)"
           fetch_public "favicon.png" "${tmp_favicon}"
           python - "${tmp_favicon}" <<'PY'
+          import binascii
           import struct
           import sys
+          import zlib
           from pathlib import Path
 
           path = Path(sys.argv[1])
@@ -201,20 +204,53 @@ jobs:
           if len(data) < 512:
               raise SystemExit(f"favicon.png is unexpectedly small: {len(data)} bytes")
           width, height = struct.unpack(">II", data[16:24])
-          if (width, height) != (64, 64):
-              raise SystemExit(f"favicon.png dimensions are {width}x{height}, expected 64x64")
-          print(f"PASS: favicon.png HTTP fetch and dimensions ({width}x{height}, {len(data)} bytes)")
+          if (width, height) != (96, 96):
+              raise SystemExit(f"favicon.png dimensions are {width}x{height}, expected 96x96")
+
+          position = 8
+          idat_chunks = []
+          saw_iend = False
+          while position < len(data):
+              if len(data) - position < 12:
+                  raise SystemExit("favicon.png has a truncated PNG chunk header")
+              chunk_size = struct.unpack(">I", data[position : position + 4])[0]
+              chunk_type = data[position + 4 : position + 8]
+              chunk_end = position + 12 + chunk_size
+              if chunk_end > len(data):
+                  raise SystemExit(f"favicon.png has a truncated {chunk_type!r} chunk")
+              chunk_data = data[position + 8 : position + 8 + chunk_size]
+              stored_crc = struct.unpack(">I", data[position + 8 + chunk_size : chunk_end])[0]
+              calculated_crc = binascii.crc32(chunk_type)
+              calculated_crc = binascii.crc32(chunk_data, calculated_crc) & 0xFFFFFFFF
+              if stored_crc != calculated_crc:
+                  raise SystemExit(f"favicon.png CRC mismatch in {chunk_type!r}")
+              if chunk_type == b"IDAT":
+                  idat_chunks.append(chunk_data)
+              if chunk_type == b"IEND":
+                  if chunk_size != 0 or chunk_end != len(data):
+                      raise SystemExit("favicon.png has an invalid IEND chunk")
+                  saw_iend = True
+              position = chunk_end
+
+          if not saw_iend or not idat_chunks:
+              raise SystemExit("favicon.png is missing IDAT or IEND")
+          zlib.decompress(b"".join(idat_chunks))
+          print(f"PASS: favicon.png is a complete valid PNG ({width}x{height}, {len(data)} bytes)")
           PY
           rm -f "${tmp_favicon}"
 
+          tmp_googlebot_home="$(mktemp)"
           googlebot_home_status="$(curl --silent --show-error --location \
             --retry 5 --retry-delay 10 --retry-all-errors \
             --connect-timeout 15 --max-time 90 \
             --user-agent "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" \
-            --output /dev/null --write-out "%{http_code}" \
+            --output "${tmp_googlebot_home}" --write-out "%{http_code}" \
             "${BASE_URL}")"
           echo "Googlebot homepage HTTP status: ${googlebot_home_status}"
           test "${googlebot_home_status}" = "200"
+          require_text "Googlebot homepage favicon link" "<link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"${BASE_URL}favicon.png\">" "${tmp_googlebot_home}" fixed
+          require_text "Googlebot homepage Apple touch icon link" "<link rel=\"apple-touch-icon\" href=\"${BASE_URL}favicon.png\">" "${tmp_googlebot_home}" fixed
+          rm -f "${tmp_googlebot_home}"
 
           googlebot_image_status="$(curl --silent --show-error --location \
             --retry 5 --retry-delay 10 --retry-all-errors \
