@@ -1,10 +1,12 @@
 # Updated: 2026-09-21 JST
+import binascii
 import json
 import re
 import subprocess
 import struct
 import sys
 import unittest
+import zlib
 from pathlib import Path
 
 from bousai_blog.registry import load_registry
@@ -269,16 +271,49 @@ class PublicBuildTests(unittest.TestCase):
         self.assertGreater(len(data), 512)
         self.assertEqual(bytes.fromhex("89504e470d0a1a0a"), data[:8])
         width, height = struct.unpack(">II", data[16:24])
-        self.assertEqual((64, 64), (width, height))
+        self.assertEqual((96, 96), (width, height))
+
+        position = 8
+        idat_chunks = []
+        saw_iend = False
+        while position < len(data):
+            self.assertGreaterEqual(len(data) - position, 12)
+            chunk_size = struct.unpack(">I", data[position : position + 4])[0]
+            chunk_type = data[position + 4 : position + 8]
+            chunk_end = position + 12 + chunk_size
+            self.assertLessEqual(chunk_end, len(data))
+            chunk_data = data[position + 8 : position + 8 + chunk_size]
+            stored_crc = struct.unpack(">I", data[position + 8 + chunk_size : chunk_end])[0]
+            calculated_crc = binascii.crc32(chunk_type)
+            calculated_crc = binascii.crc32(chunk_data, calculated_crc) & 0xFFFFFFFF
+            self.assertEqual(stored_crc, calculated_crc)
+
+            if chunk_type == b"IDAT":
+                idat_chunks.append(chunk_data)
+            if chunk_type == b"IEND":
+                self.assertEqual(0, chunk_size)
+                self.assertEqual(len(data), chunk_end)
+                saw_iend = True
+            position = chunk_end
+
+        self.assertTrue(saw_iend)
+        self.assertTrue(idat_chunks)
+        zlib.decompress(b"".join(idat_chunks))
 
         expected = (
-            '<link rel="icon" type="image/png" sizes="64x64" '
+            '<link rel="icon" type="image/png" sizes="96x96" '
+            'href="https://bousaikun.ashigaru.jp/favicon.png">'
+        )
+        expected_apple_touch_icon = (
+            '<link rel="apple-touch-icon" '
             'href="https://bousaikun.ashigaru.jp/favicon.png">'
         )
         for page in sorted(PUBLIC.rglob("*.html")):
             html = page.read_text(encoding="utf-8")
             self.assertEqual(1, html.count(expected), page)
+            self.assertEqual(1, html.count(expected_apple_touch_icon), page)
             self.assertEqual(1, html.count('<link rel="icon"'), page)
+            self.assertEqual(1, html.count('<link rel="apple-touch-icon"'), page)
 
     def test_homepage_declares_search_site_name(self):
         home = (PUBLIC / "index.html").read_text(encoding="utf-8")
