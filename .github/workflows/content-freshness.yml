@@ -34,5 +34,38 @@ jobs:
         run: python scripts/enhance_linear_rainband_feature.py
       - name: Run tests
         run: python -m unittest discover -s tests -v
+      - name: Diagnose favicon file and robots
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://bousaikun.ashigaru.jp"
+
+          normal_body="${RUNNER_TEMP}/favicon-normal.png"
+          normal_headers="${RUNNER_TEMP}/favicon-normal.headers"
+          image_body="${RUNNER_TEMP}/favicon-googlebot-image.png"
+          image_headers="${RUNNER_TEMP}/favicon-googlebot-image.headers"
+
+          normal_code="$(curl --silent --show-error --location             --connect-timeout 15 --max-time 90             --dump-header "$normal_headers"             --output "$normal_body"             --write-out "%{http_code}"             "$base/favicon.png")"
+          image_code="$(curl --silent --show-error --location             --connect-timeout 15 --max-time 90             --user-agent "Googlebot-Image/1.0"             --dump-header "$image_headers"             --output "$image_body"             --write-out "%{http_code}"             "$base/favicon.png")"
+
+          echo "normal_favicon_http: $normal_code"
+          echo "googlebot_image_http: $image_code"
+          echo "normal_favicon_bytes: $(wc -c < "$normal_body")"
+          echo "googlebot_image_bytes: $(wc -c < "$image_body")"
+          echo "normal_favicon_sha256: $(sha256sum "$normal_body" | awk '{print $1}')"
+          echo "googlebot_image_sha256: $(sha256sum "$image_body" | awk '{print $1}')"
+          echo "normal_favicon_headers:"
+          grep -Ei '^(HTTP/|content-type:|content-length:|cache-control:|etag:|last-modified:|vary:|server:)' "$normal_headers" || true
+          echo "googlebot_image_headers:"
+          grep -Ei '^(HTTP/|content-type:|content-length:|cache-control:|etag:|last-modified:|vary:|server:)' "$image_headers" || true
+
+          cmp -s "$normal_body" "$image_body"             && echo "normal_vs_googlebot_image: IDENTICAL"             || echo "normal_vs_googlebot_image: DIFFERENT"
+
+          robots="${RUNNER_TEMP}/robots.txt"
+          robots_code="$(curl --silent --show-error --location             --connect-timeout 15 --max-time 90             --output "$robots"             --write-out "%{http_code}"             "$base/robots.txt")"
+          echo "robots_http: $robots_code"
+          echo "robots_content:"
+          cat "$robots"
+
       - name: Check content registry
         run: bousai-blog-freshness data/content_registry.json
