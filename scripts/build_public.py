@@ -204,22 +204,32 @@ def add_accessibility_scaffolding(html: str) -> str:
 
 
 def favicon_link(site_config: dict) -> str:
-    """Return one canonical same-host favicon declaration for public HTML."""
+    """Return the canonical same-host favicon declaration for public HTML."""
     base_url = str(site_config.get("public_base_url", "")).strip()
     if not base_url:
         raise ValueError("public_base_url is required for favicon")
     href = base_url.rstrip("/") + "/favicon.png"
-    return f'<link rel="icon" type="image/png" sizes="64x64" href="{href}">'
+    return f'<link rel="icon" type="image/png" sizes="96x96" href="{href}">'
+
+
+def apple_touch_icon_link(site_config: dict) -> str:
+    """Return the Apple touch icon declaration using the stable favicon URL."""
+    base_url = str(site_config.get("public_base_url", "")).strip()
+    if not base_url:
+        raise ValueError("public_base_url is required for Apple touch icon")
+    href = base_url.rstrip("/") + "/favicon.png"
+    return f'<link rel="apple-touch-icon" href="{href}">'
 
 
 def inject_favicon(html: str, site_config: dict) -> str:
-    """Normalize favicon markup to one stable absolute same-host URL."""
+    """Normalize favicon markup to stable same-host favicon declarations."""
     cleaned = ICON_LINK_RE.sub("", html)
     if "</head>" not in cleaned.lower():
         raise ValueError("Missing </head> while injecting favicon")
+    icon_markup = favicon_link(site_config) + "\n" + apple_touch_icon_link(site_config)
     return re.sub(
         r"</head>",
-        lambda _: favicon_link(site_config) + "\n</head>",
+        lambda _: icon_markup + "\n</head>",
         cleaned,
         count=1,
         flags=re.IGNORECASE,
@@ -400,10 +410,13 @@ def validate_public(
         if "準備中" in text:
             errors.append(f"{rel}: 準備中 remains")
         expected_favicon = favicon_link(site_config)
+        expected_apple_touch_icon = apple_touch_icon_link(site_config)
         if text.count(expected_favicon) != 1:
             errors.append(f"{rel}: canonical favicon link missing or duplicated")
-        if len(ICON_LINK_RE.findall(text)) != 1:
-            errors.append(f"{rel}: favicon link count != 1")
+        if text.count(expected_apple_touch_icon) != 1:
+            errors.append(f"{rel}: Apple touch icon link missing or duplicated")
+        if len(ICON_LINK_RE.findall(text)) != 2:
+            errors.append(f"{rel}: favicon link count != 2")
 
         article = article_by_output.get(rel)
         if article is not None:
